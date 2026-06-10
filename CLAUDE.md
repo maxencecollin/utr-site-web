@@ -15,6 +15,18 @@ designer est la **source de vérité** pour le design.
 - Tailwind CSS v4 — configuration via `@theme` dans `app/globals.css` (PAS de `tailwind.config.js`)
 - Site 100 % statique : `output: 'export'`, `images.unoptimized: true`, `trailingSlash: true`
 
+## Typographie (maquette XD, remplace l'ancienne charte du briefing)
+
+Système réel de la maquette — Futura n'est PLUS utilisé :
+- **Comico** → grand titre du hero — classe `.headline`
+- **Technor** (police variable, axe 200→900) → titres de section + chiffres — classes `.titre` / `.chiffre`
+- **Inter** → interface et corps de texte — `--font-sans`
+
+Fichiers dans `app/fonts/`, chargés via `next/font/local` (+ Inter via `next/font/google`)
+dans `app/layout.tsx`. `.headline`/`.titre`/`.chiffre` sont définies **hors `@layer`** dans
+`globals.css` pour que `text-transform: uppercase` ne soit pas écrasé par les utilitaires.
+Bleu principal confirmé par la maquette : `#0781DD`. Specs XD brutes : `_assets-source/xd-exports/` (non versionné).
+
 ## Déploiement
 
 - **GitHub Pages** sur ce repo, source **branche `main` / dossier `/docs`**.
