@@ -54,13 +54,34 @@
   --color-dark-800: #1f1f1f;
   --color-dark-900: #111111;
 
+  /* Fond papier creme des sections de contenu */
+  --color-creme: #f5f1ea;
+
   /* Typographies de la marque (chargees via next/font/local dans layout.tsx) */
   --font-sans: var(--font-futura), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-comico), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: #ffffff;
   color: var(--color-dark-800);
   font-family: var(--font-sans);
+}
+
+@layer components {
+  /*
+    Style des titres de section facon maquette : Futura gras oblique,
+    capitales, interlettrage resserre. (choix valide : Futura en oblique)
+  */
+  .titre {
+    font-weight: 700;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
 }
