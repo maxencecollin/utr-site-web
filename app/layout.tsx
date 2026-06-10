@@ -1,15 +1,28 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
-// Police de la marque : Futura (corps + titres en oblique). Comico conservee
-// comme asset dans app/fonts/ mais non chargee (non utilisee dans la maquette).
-const futura = localFont({
-  src: [
-    { path: "./fonts/Futura-Medium.woff2", weight: "400", style: "normal" },
-    { path: "./fonts/Futura-Bold.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-futura",
+// Interface / corps de texte : Inter
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Grand titre du hero : Comico (police de marque)
+const comico = localFont({
+  src: "./fonts/Comico-Regular.woff2",
+  variable: "--font-comico",
+  display: "swap",
+});
+
+// Gros titres de section + chiffres : Technor
+// (seul le Regular 400 est fourni ; le gras des chiffres est synthetise pour l'instant)
+const technor = localFont({
+  src: "./fonts/Technor-Regular.woff2",
+  variable: "--font-technor",
+  weight: "400",
   display: "swap",
 });
 
@@ -31,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${futura.variable} h-full antialiased`}
+      className={`${inter.variable} ${comico.variable} ${technor.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

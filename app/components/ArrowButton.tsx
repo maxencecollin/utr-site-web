@@ -16,9 +16,9 @@ const VARIANTS: Record<Variant, string> = {
   brown: "bg-sable-500 text-white hover:bg-sable-600",
   dark: "bg-dark-900 text-white hover:bg-dark-700",
   "outline-dark":
-    "border border-dark-900/60 text-dark-900 hover:bg-dark-900 hover:text-white",
+    "border border-dark-900 text-dark-900 hover:bg-dark-900 hover:text-white",
   "outline-white":
-    "border border-white/60 text-white hover:bg-white hover:text-dark-900",
+    "border border-white text-white hover:bg-white hover:text-dark-900",
 };
 
 const ROTATION: Record<Direction, string> = {
@@ -45,10 +45,10 @@ export default function ArrowButton({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center gap-3 rounded-md py-2.5 pl-5 pr-2.5 text-xs font-bold uppercase tracking-widest transition-colors ${VARIANTS[variant]} ${className}`}
+      className={`group inline-flex items-center gap-3 rounded-md py-2 pl-5 pr-2 text-xs font-semibold uppercase tracking-wide transition-colors ${VARIANTS[variant]} ${className}`}
     >
       <span>{children}</span>
-      <span className="flex h-7 w-7 items-center justify-center rounded-full border border-current/50">
+      <span className="flex h-8 w-8 items-center justify-center rounded-full border border-current">
         <svg
           viewBox="0 0 24 24"
           fill="none"

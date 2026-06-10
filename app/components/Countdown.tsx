@@ -41,16 +41,17 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="flex items-end gap-3 sm:gap-4">
+    <div className="inline-flex rounded-md border border-white/80 bg-black/20 shadow-[0_3px_6px_#00000029] backdrop-blur-sm">
       {UNITS.map(({ key, label }) => (
-        <div key={key} className="text-center">
-          <div className="min-w-[3rem] rounded-md border border-white/25 bg-black/25 px-3 py-2 backdrop-blur-sm sm:min-w-[3.5rem]">
-            <span className="titre block text-2xl text-white sm:text-3xl">
-              {parts ? String(parts[key]).padStart(2, "0") : "--"}
-            </span>
-          </div>
-          <span className="mt-1.5 block text-[0.6rem] font-semibold uppercase tracking-widest text-white/70">
+        <div
+          key={key}
+          className="flex min-w-[4.25rem] flex-col items-center justify-center border-l border-white/20 px-3 py-2.5 first:border-l-0"
+        >
+          <span className="text-[0.6rem] font-semibold uppercase tracking-wide text-white/80">
             {label}
+          </span>
+          <span className="chiffre text-[2rem] leading-none text-white">
+            {parts ? String(parts[key]).padStart(2, "0") : "--"}
           </span>
         </div>
       ))}

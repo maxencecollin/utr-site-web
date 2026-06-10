@@ -3,7 +3,7 @@ import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
 import Placeholder from "../Placeholder";
 
-const PARTNERS = ["Decathlon", "Kinetik", "Brieuc", "UTMB Index"];
+const PARTNERS = ["Sponsor 1", "Sponsor 2", "Sponsor 3", "Sponsor 4"];
 
 export default function Hero() {
   return (
@@ -22,14 +22,14 @@ export default function Hero() {
       <Header />
 
       {/* Contenu central */}
-      <div className="flex flex-1 flex-col items-center justify-center gap-7 px-6 pt-24 text-center">
-        <h1 className="titre max-w-4xl text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
-          Un ultra au cœur
+      <div className="flex flex-1 flex-col items-center justify-center gap-8 px-6 pt-24 text-center">
+        <h1 className="headline -rotate-[5deg] text-5xl leading-[1.15] sm:text-6xl">
+          Un ultra au
           <br />
-          du Morbihan
+          Cœur du Morbihan
         </h1>
 
-        <span className="rounded-md bg-ria-500 px-4 py-1.5 text-xs font-bold uppercase tracking-widest">
+        <span className="-rotate-[5deg] rounded-md bg-ria-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide">
           16 octobre 2027
         </span>
 
@@ -43,13 +43,14 @@ export default function Hero() {
             Nos épreuves
           </ArrowButton>
 
-          <ul className="hidden items-center gap-6 opacity-80 lg:flex">
+          <ul className="hidden items-center gap-8 opacity-90 lg:flex">
             {PARTNERS.map((name) => (
-              <li
-                key={name}
-                className="text-[0.7rem] font-bold uppercase tracking-widest"
-              >
-                {name}
+              <li key={name}>
+                <Placeholder
+                  label={name}
+                  tone="dark"
+                  className="h-8 w-16 border-0 bg-white/10 text-[0.55rem]"
+                />
               </li>
             ))}
           </ul>

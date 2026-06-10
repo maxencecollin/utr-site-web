@@ -57,8 +57,14 @@
   /* Fond papier creme des sections de contenu */
   --color-creme: #f5f1ea;
 
-  /* Typographie de la marque : Futura (chargee via next/font/local dans layout.tsx) */
-  --font-sans: var(--font-futura), ui-sans-serif, system-ui, sans-serif;
+  /*
+    Systeme typographique de la maquette (chargees via next/font dans layout.tsx) :
+    - Inter   : interface / corps de texte
+    - Comico  : grand titre du hero
+    - Technor : gros titres de section + chiffres
+  */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-comico), ui-serif, Georgia, serif;
 }
 
 html {
@@ -72,15 +78,30 @@ body {
   font-family: var(--font-sans);
 }
 
-@layer components {
-  /*
-    Style des titres de section facon maquette : Futura gras oblique,
-    capitales, interlettrage resserre. (choix valide : Futura en oblique)
-  */
-  .titre {
-    font-weight: 700;
-    font-style: italic;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-  }
+/*
+  Classes typographiques hors @layer : non layered = priorite plus haute que les
+  utilitaires Tailwind, donc text-transform: uppercase s'applique de facon fiable.
+*/
+
+/* Grand titre du hero : Comico */
+.headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* Titres de section : Technor (gras synthetise en attendant le Bold) */
+.titre {
+  font-family: var(--font-technor), var(--font-inter), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Chiffres (compte a rebours, stats) : Technor */
+.chiffre {
+  font-family: var(--font-technor), var(--font-inter), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
 }
