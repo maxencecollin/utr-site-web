@@ -54,8 +54,9 @@
   --color-dark-800: #1f1f1f;
   --color-dark-900: #111111;
 
-  /* Typographies (Inter en attendant les polices definitives de la maquette) */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Typographies de la marque (chargees via next/font/local dans layout.tsx) */
+  --font-sans: var(--font-futura), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-comico), ui-serif, Georgia, serif;
 }
 
 body {

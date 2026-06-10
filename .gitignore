@@ -20,6 +20,9 @@
 # production
 /build
 
+# matieres premieres (photos brutes, exports XD) - on ne versionne que le web optimise
+/_assets-source
+
 # misc
 .DS_Store
 *.pem

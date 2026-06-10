@@ -5,7 +5,7 @@ export default function Home() {
         Ria d&apos;Étel · Bretagne
       </p>
 
-      <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-6xl">
+      <h1 className="max-w-3xl font-display text-5xl leading-tight sm:text-7xl">
         Ultra Tour de la Ria d&apos;Étel
       </h1>
 
