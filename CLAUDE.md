@@ -17,10 +17,19 @@ designer est la **source de vérité** pour le design.
 
 ## Déploiement
 
-- **GitHub Pages** sur domaine racine `www.ultratourdelaria.fr` (fichier `public/CNAME`).
-- PAS de `basePath` ni `assetPrefix` (servi à la racine).
+- **GitHub Pages** sur ce repo, source **branche `main` / dossier `/docs`**.
 - `npm run deploy` construit le site et copie l'export dans `docs/` (source GitHub Pages).
 - Le dossier `docs/` est versionné ; `out/` est ignoré.
+- PAS de `basePath` ni `assetPrefix` (le site cible est servi à la racine du domaine).
+
+### Domaine `www.ultratourdelaria.fr` — bascule différée
+
+Le domaine est **encore rattaché à l'ancien repo `ultra-tour-de-la-ria`** qui sert le
+site actuellement en ligne. On NE revendique PAS le domaine ici tant que le nouveau site
+n'est pas prêt (sinon le build Pages de l'ancien casse). Au moment du go-live :
+1. Recréer `public/CNAME` avec `www.ultratourdelaria.fr`.
+2. Retirer le domaine de l'ancien repo (`gh api -X PUT repos/maxencecollin/ultra-tour-de-la-ria/pages -f cname=""`).
+3. Le déclarer sur ce repo (`gh api -X PUT repos/maxencecollin/utr-site-web/pages -f cname=www.ultratourdelaria.fr`).
 
 ## Règles de développement
 
