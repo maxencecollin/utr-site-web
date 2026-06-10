@@ -91,22 +91,25 @@ body {
   line-height: 1.1;
 }
 
-/* Titres de section : Technor (gras synthetise en attendant le Bold) */
+/* Titres de section : Inter Extrabold Italic (specs XD, ex. "NOS COURSES") */
 .titre {
-  font-family: var(--font-technor), var(--font-inter), system-ui, sans-serif;
-  font-weight: 700;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  font-style: italic;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
 }
 
-/* Chiffres (compte a rebours, stats) : Technor */
+/* Chiffres / gros lettrages (compte a rebours, "33 KM"...) : Technor */
 .chiffre {
   font-family: var(--font-technor), var(--font-inter), system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.03em;
 }
 
-/* Famille Technor seule (graisse geree a cote, ex. badge date) */
+/* Familles seules (graisse geree a cote) */
 .font-technor {
   font-family: var(--font-technor), var(--font-inter), system-ui, sans-serif;
+}
+.font-comico {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
 }
