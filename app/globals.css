@@ -105,3 +105,8 @@ body {
   font-weight: 700;
   letter-spacing: -0.03em;
 }
+
+/* Famille Technor seule (graisse geree a cote, ex. badge date) */
+.font-technor {
+  font-family: var(--font-technor), var(--font-inter), system-ui, sans-serif;
+}

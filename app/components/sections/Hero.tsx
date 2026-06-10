@@ -29,8 +29,11 @@ export default function Hero() {
           Cœur du Morbihan
         </h1>
 
-        <span className="-rotate-[5deg] rounded-md bg-ria-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide">
-          16 octobre 2027
+        {/* Badge date : chiffres en Technor 600, mois en Inter Bold (specs XD) */}
+        <span className="inline-flex -rotate-[5deg] items-baseline gap-1.5 rounded-md bg-ria-500 px-4 py-1.5 uppercase leading-[26px] text-white">
+          <span className="font-technor text-[21px] font-semibold">16</span>
+          <span className="text-[18px] font-bold">octobre</span>
+          <span className="font-technor text-[21px] font-semibold">2027</span>
         </span>
 
         <Countdown />
