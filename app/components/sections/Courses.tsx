@@ -2,28 +2,16 @@ import Placeholder from "../Placeholder";
 import ArrowButton from "../ArrowButton";
 
 const COURSES = [
-  {
-    lignes: ["33", "KM"],
-    legende: "Le 33 de la Ria",
-    rotation: "lg:-rotate-2",
-  },
-  {
-    lignes: ["80", "KM"],
-    legende: "Le tour complet",
-    rotation: "lg:-translate-y-8",
-  },
-  {
-    lignes: ["REL", "AIS"],
-    legende: "Le tour en duo",
-    rotation: "lg:rotate-1",
-  },
+  { lignes: ["33", "KM"], legende: "Le 33 de la Ria", rotation: "lg:-rotate-2" },
+  { lignes: ["80", "KM"], legende: "Le tour complet", rotation: "" },
+  { lignes: ["REL", "AIS"], legende: "Le tour en duo", rotation: "lg:rotate-1" },
 ];
 
 export default function Courses() {
   return (
-    <section id="courses" className="bg-creme pt-20 lg:pt-28">
+    <section id="courses" className="relative overflow-hidden bg-white pt-20 lg:pt-28">
+      {/* En-tete (sur fond blanc) */}
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        {/* En-tete */}
         <div className="flex items-start gap-4">
           {/* Picto de section (asset a venir) */}
           <span
@@ -42,58 +30,61 @@ export default function Courses() {
           </span>
 
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-4">
-              {/* Surtitre : boite noire, Comico blanc tres espace */}
-              <span className="font-comico bg-dark-900 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
-                Choisis ton trail !
-              </span>
-              <span className="h-0 flex-1 border-t-2 border-dashed border-[#101010]" />
+            <span className="font-comico inline-block bg-dark-900 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
+              Choisis ton trail !
+            </span>
+            <div className="mt-2 flex items-baseline justify-between gap-4">
+              <h2 className="titre text-4xl text-[#2c2c2c]">Nos courses</h2>
               <span className="font-technor text-[23px] font-semibold text-black">
                 / 2027
               </span>
             </div>
-            <h2 className="titre mt-1 text-4xl text-[#2c2c2c]">Nos courses</h2>
+            <span className="mt-3 block h-0 border-t-2 border-dashed border-[#101010]" />
           </div>
         </div>
+      </div>
 
-        {/* Cartes */}
-        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
-          {COURSES.map((course) => (
-            <figure
-              key={course.legende}
-              className={`flex flex-col ${course.rotation}`}
-            >
-              <div className="relative aspect-[2/3] w-full overflow-hidden shadow-[0_3px_8px_#00000029]">
-                <Placeholder
-                  label="Photo coureur"
-                  tone="dark"
-                  className="h-full w-full border-0"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-dark-900/70 to-transparent p-5">
-                  <span className="chiffre block text-7xl leading-[0.9] text-white [text-shadow:0_3px_6px_#00000086]">
+      {/* Zone cartes + bande noire de fond */}
+      <div className="relative mt-12">
+        {/* Bande noire : couvre le bas des cartes, les legendes et les boutons */}
+        <div className="absolute inset-x-0 bottom-0 top-[60%] bg-black" aria-hidden="true" />
+
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+            {COURSES.map((course) => (
+              <figure key={course.legende} className="flex flex-col">
+                {/* Carte photo (seule a etre legerement inclinee) */}
+                <div
+                  className={`relative aspect-[2/3] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`}
+                >
+                  <Placeholder label="Photo coureur" tone="dark" className="h-full w-full border-0" />
+                  <span className="chiffre absolute inset-x-0 bottom-[10%] text-center text-7xl leading-[0.92] text-white [text-shadow:0_3px_6px_#00000086] sm:text-8xl">
                     {course.lignes[0]}
                     <br />
                     {course.lignes[1]}
                   </span>
                 </div>
-              </div>
-              <figcaption className="mt-4 text-center text-[13px] font-semibold italic uppercase tracking-[1.17px] text-[#2c2c2c]">
-                {course.legende}
-              </figcaption>
-            </figure>
-          ))}
+                {/* Legende : droite (non inclinee), sur la bande noire */}
+                <figcaption className="mt-5 text-center text-[13px] font-semibold italic uppercase tracking-[1.17px] text-white">
+                  {course.legende}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Boutons entre deux filets pleine largeur */}
-      <div className="mt-16 border-y border-dark-300">
-        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-6 py-4 lg:px-10">
-          <ArrowButton href="#courses" variant="outline-dark" direction="up">
-            Détails des courses
-          </ArrowButton>
-          <ArrowButton href="#inscription" variant="outline-dark">
-            Inscription 2027
-          </ArrowButton>
+      {/* Boutons sur la bande noire, entre deux filets blancs pleine largeur */}
+      <div className="bg-black">
+        <div className="border-y border-white/80">
+          <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-6 py-4 lg:px-10">
+            <ArrowButton href="#courses" variant="outline-white" direction="up">
+              Détails des courses
+            </ArrowButton>
+            <ArrowButton href="#inscription" variant="outline-white">
+              Inscription 2027
+            </ArrowButton>
+          </div>
         </div>
       </div>
     </section>
