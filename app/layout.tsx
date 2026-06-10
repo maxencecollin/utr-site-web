@@ -17,12 +17,11 @@ const comico = localFont({
   display: "swap",
 });
 
-// Gros titres de section + chiffres : Technor
-// (seul le Regular 400 est fourni ; le gras des chiffres est synthetise pour l'instant)
+// Gros titres de section + chiffres : Technor (police variable, axe 200->900)
 const technor = localFont({
-  src: "./fonts/Technor-Regular.woff2",
+  src: "./fonts/Technor-Variable.woff2",
   variable: "--font-technor",
-  weight: "400",
+  weight: "200 900",
   display: "swap",
 });
 
