@@ -45,9 +45,9 @@ export default function Courses() {
       </div>
 
       {/* Zone cartes + bande noire de fond */}
-      <div className="relative mt-12">
-        {/* Bande noire : couvre le bas des cartes, les legendes et les boutons */}
-        <div className="absolute inset-x-0 bottom-0 top-[60%] bg-black" aria-hidden="true" />
+      <div className="relative mt-12 pb-10">
+        {/* Bande noire : du milieu des "KM" jusqu'un peu sous les legendes */}
+        <div className="absolute inset-x-0 bottom-0 top-[76%] bg-black" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
@@ -74,9 +74,9 @@ export default function Courses() {
         </div>
       </div>
 
-      {/* Boutons sur la bande noire, entre deux filets blancs pleine largeur */}
-      <div className="bg-black">
-        <div className="border-y border-white/80">
+      {/* Bas de section : reste noir ; boutons noirs (contour blanc) ceintures par deux filets blancs */}
+      <div className="bg-black pb-14">
+        <div className="border-y border-white/70">
           <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-6 py-4 lg:px-10">
             <ArrowButton href="#courses" variant="outline-white" direction="up">
               Détails des courses
