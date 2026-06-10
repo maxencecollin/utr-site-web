@@ -31,12 +31,16 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* S'inscrire : degrade bleu, Inter bold italic, sans fleche */}
+          {/* S'inscrire : degrade bleu en parallelogramme, Inter bold italic, sans fleche */}
           <Link
             href="#inscription"
-            className="rounded-md bg-[linear-gradient(90deg,#0781dd_0%,#04416f_100%)] px-5 py-2.5 text-sm font-bold italic uppercase text-white transition-opacity hover:opacity-90"
+            className="group relative px-5 py-2.5 text-sm font-bold italic uppercase text-white"
           >
-            S&apos;inscrire
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 -skew-x-12 bg-[linear-gradient(90deg,#0781dd_0%,#04416f_100%)] transition-opacity group-hover:opacity-90"
+            />
+            <span className="relative">S&apos;inscrire</span>
           </Link>
 
           <button

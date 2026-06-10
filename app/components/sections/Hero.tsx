@@ -29,11 +29,18 @@ export default function Hero() {
           Cœur du Morbihan
         </h1>
 
-        {/* Badge date : chiffres en Technor 600, mois en Inter Bold (specs XD) */}
-        <span className="inline-flex -rotate-[5deg] items-baseline gap-[5px] rounded-md bg-ria-500 px-4 py-1.5 uppercase leading-[26px] text-white">
-          <span className="font-technor text-[21px] font-semibold tracking-[1.05px]">16</span>
-          <span className="text-[18px] font-bold tracking-[0.9px]">octobre</span>
-          <span className="font-technor text-[21px] font-semibold tracking-[1.05px]">2027</span>
+        {/* Badge date : parallelogramme bleu incline, chiffres Technor 600 + mois Inter Bold */}
+        <span className="inline-block -rotate-[5deg]">
+          <span className="relative inline-flex items-baseline gap-[5px] px-4 py-1.5 uppercase leading-[26px] text-white">
+            <span aria-hidden="true" className="absolute inset-0 -skew-x-12 bg-ria-500" />
+            <span className="relative font-technor text-[21px] font-semibold tracking-[1.05px]">
+              16
+            </span>
+            <span className="relative text-[18px] font-bold tracking-[0.9px]">octobre</span>
+            <span className="relative font-technor text-[21px] font-semibold tracking-[1.05px]">
+              2027
+            </span>
+          </span>
         </span>
 
         <Countdown />
