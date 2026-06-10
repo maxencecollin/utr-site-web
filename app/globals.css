@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/*
+  Charte graphique de base (issue du briefing de l'ancien projet).
+  A confronter / remplacer avec la maquette Adobe XD = source de verite.
+  Quatre familles de couleurs declinees de 50 a 900.
+*/
+@theme {
+  /* Bleu Ria - couleur principale */
+  --color-ria-50: #ebf5fd;
+  --color-ria-100: #d4eafb;
+  --color-ria-200: #aad5f7;
+  --color-ria-300: #72b8f0;
+  --color-ria-400: #3a9ae8;
+  --color-ria-500: #0781dd;
+  --color-ria-600: #0669bb;
+  --color-ria-700: #045099;
+  --color-ria-800: #023e7c;
+  --color-ria-900: #012d5a;
+
+  /* Pinede - vert foret */
+  --color-pinede-50: #edf2de;
+  --color-pinede-100: #d5e0bc;
+  --color-pinede-200: #adc087;
+  --color-pinede-300: #7a9457;
+  --color-pinede-400: #556a3c;
+  --color-pinede-500: #374426;
+  --color-pinede-600: #2f3d1c;
+  --color-pinede-700: #283516;
+  --color-pinede-800: #1e280f;
+  --color-pinede-900: #111508;
+
+  /* Sable / Terrain - brun */
+  --color-sable-50: #f9ede4;
+  --color-sable-100: #f0d8c6;
+  --color-sable-200: #e0b99a;
+  --color-sable-300: #cc8f68;
+  --color-sable-400: #b06a42;
+  --color-sable-500: #8b4e2a;
+  --color-sable-600: #8b421c;
+  --color-sable-700: #733514;
+  --color-sable-800: #5c2a0e;
+  --color-sable-900: #3a1a08;
+
+  /* Dark - texte / neutres */
+  --color-dark-50: #f5f5f5;
+  --color-dark-100: #e5e5e5;
+  --color-dark-200: #cccccc;
+  --color-dark-300: #aaaaaa;
+  --color-dark-400: #888888;
+  --color-dark-500: #666666;
+  --color-dark-600: #4a4a4a;
+  --color-dark-700: #333333;
+  --color-dark-800: #1f1f1f;
+  --color-dark-900: #111111;
+
+  /* Typographies (Inter en attendant les polices definitives de la maquette) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-dark-800);
+  font-family: var(--font-sans);
+}
