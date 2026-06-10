@@ -1,7 +1,7 @@
 # Ultra Tour de la Ria d'Étel — site web
 
 Site officiel de l'**Ultra Tour de la Ria d'Étel**, fête du trail nature autour de la
-Ria d'Étel (Bretagne, zone Natura 2000). Prochaine édition : **22 mai 2027**.
+Ria d'Étel (Bretagne, zone Natura 2000). Prochaine édition : **16 octobre 2027**.
 
 Épreuves : Ultra 80 km · Relais Duo 80 km · Trail 30 km.
 

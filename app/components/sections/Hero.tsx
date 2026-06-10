@@ -30,7 +30,7 @@ export default function Hero() {
         </h1>
 
         <span className="rounded-md bg-ria-500 px-4 py-1.5 text-xs font-bold uppercase tracking-widest">
-          22 mai 2027
+          16 octobre 2027
         </span>
 
         <Countdown />

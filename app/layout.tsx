@@ -2,14 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-// Police d'affichage / titres
-const comico = localFont({
-  src: "./fonts/Comico-Regular.woff2",
-  variable: "--font-comico",
-  display: "swap",
-});
-
-// Police de corps
+// Police de la marque : Futura (corps + titres en oblique). Comico conservee
+// comme asset dans app/fonts/ mais non chargee (non utilisee dans la maquette).
 const futura = localFont({
   src: [
     { path: "./fonts/Futura-Medium.woff2", weight: "400", style: "normal" },
@@ -26,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Ultra Tour de la Ria d'Étel",
   },
   description:
-    "La grande fête du trail nature autour de la Ria d'Étel, en Bretagne. Édition du 22 mai 2027 : Ultra 80 km, Relais Duo et Trail 30 km en zone Natura 2000.",
+    "La grande fête du trail nature autour de la Ria d'Étel, en Bretagne. Édition du 16 octobre 2027 : Ultra 80 km, Relais Duo et Trail 33 km en zone Natura 2000.",
 };
 
 export default function RootLayout({
@@ -37,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${comico.variable} ${futura.variable} h-full antialiased`}
+      className={`${futura.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

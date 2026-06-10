@@ -30,7 +30,7 @@ export default function Footer() {
             />
             <p className="mt-4 text-sm text-ria-200">
               La grande fête du trail nature autour de la Ria d&apos;Étel,
-              en Bretagne. Édition du 22 mai 2027.
+              en Bretagne. Édition du 16 octobre 2027.
             </p>
             <a
               href="mailto:contact@ultratourdelaria.fr"

@@ -7,7 +7,7 @@ Note de contexte pour recréer le projet de zéro avec un nouveau design (maquet
 ## 1. Contexte de l'événement
 
 - **Nom officiel** : Ultra Tour de la Ria d'Étel
-- **Date de l'édition** : 22 mai 2027
+- **Date de l'édition** : 16 octobre 2027
 - **Lieu** : Ria d'Étel, Bretagne (Locoal-Mendon / Saint-Hélène)
 - **Nature** : Grande fête du trail nature autour de la Ria d'Étel, en zone Natura 2000. Spécificité : traversée en bateau pendant la course.
 - **Positionnement** : événement sportif nature valorisant le patrimoine de la Ria d'Étel.

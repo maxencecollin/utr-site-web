@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-// Date de l'edition : 22 mai 2027
-const TARGET = new Date("2027-05-22T08:00:00+02:00").getTime();
+// Date de l'edition : 16 octobre 2027
+const TARGET = new Date("2027-10-16T08:00:00+02:00").getTime();
 
 type Parts = { jours: number; heures: number; minutes: number; secondes: number };
 
