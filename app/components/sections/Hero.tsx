@@ -18,7 +18,7 @@ export default function Hero() {
     >
       {/* Fond : photo plein cadre + voile sombre */}
       <Image
-        src="/photos/img_2638-marin.png"
+        src="/photos/img_2638-marin.jpg"
         alt=""
         fill
         priority

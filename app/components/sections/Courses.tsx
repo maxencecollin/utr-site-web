@@ -6,19 +6,19 @@ const COURSES = [
     lignes: ["33", "KM"],
     legende: "Le 33 de la Ria",
     rotation: "lg:-rotate-2",
-    photo: "/photos/_dsc6696-girl.png",
+    photo: "/photos/_dsc6696-girl.jpg",
   },
   {
     lignes: ["80", "KM"],
     legende: "Le tour complet",
     rotation: "",
-    photo: "/photos/_dsc6870-guy.png",
+    photo: "/photos/_dsc6870-guy.jpg",
   },
   {
     lignes: ["REL", "AIS"],
     legende: "Le tour en duo",
     rotation: "lg:rotate-1",
-    photo: "/photos/_dsc6509-girl2.png",
+    photo: "/photos/_dsc6509-girl2.jpg",
   },
 ];
 

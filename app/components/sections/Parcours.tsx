@@ -16,7 +16,7 @@ export default function Parcours() {
         </div>
         <div className="relative h-64 w-full sm:h-80">
           <Image
-            src="/photos/calque-24.png"
+            src="/photos/calque-24.jpg"
             alt="Ambiance et public"
             fill
             sizes="100vw"
