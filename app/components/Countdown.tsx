@@ -41,7 +41,7 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="inline-flex border border-white/80 bg-black/20 shadow-[0_3px_6px_#00000029] backdrop-blur-sm">
+    <div className="inline-flex border border-white/80 shadow-[0_3px_6px_#00000029]">
       {UNITS.map(({ key, label }) => (
         <div
           key={key}

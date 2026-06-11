@@ -55,7 +55,7 @@ export default function Hero() {
         </div>
 
         {/* Compte a rebours, place plus bas */}
-        <div className="mb-10 lg:mb-16">
+        <div className="mb-5 lg:mb-7">
           <Countdown />
         </div>
       </div>
