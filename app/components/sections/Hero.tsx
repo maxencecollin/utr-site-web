@@ -4,10 +4,10 @@ import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
 
 const PARTNERS = [
-  { nom: "Decathlon", src: "/images/partenaires/decathlon.svg" },
-  { nom: "Kinetik", src: "/images/partenaires/kinetik.svg" },
-  { nom: "Plancoët", src: "/images/partenaires/plancoet.svg" },
-  { nom: "UTMB Index", src: "/images/partenaires/utmb-index.svg" },
+  { nom: "Decathlon", src: "/images/partenaires/decathlon.svg", w: 313, h: 203 },
+  { nom: "Kinetik", src: "/images/partenaires/kinetik.svg", w: 171, h: 159 },
+  { nom: "Plancoët", src: "/images/partenaires/plancoet.svg", w: 216, h: 101 },
+  { nom: "UTMB Index", src: "/images/partenaires/utmb-index.svg", w: 185, h: 44 },
 ];
 
 export default function Hero() {
@@ -30,15 +30,17 @@ export default function Hero() {
       <Header />
 
       {/* Contenu central */}
-      <div className="flex flex-1 flex-col items-center justify-center gap-8 px-6 pt-24 text-center">
-        <h1 className="headline -rotate-[5deg] text-5xl leading-[1.15] sm:text-6xl">
-          Un ultra au
-          <br />
-          Cœur du Morbihan
-        </h1>
+      <div className="flex flex-1 flex-col items-center px-6 pt-24 text-center">
+        {/* Titre + badge, centres dans l'espace disponible */}
+        <div className="flex flex-1 flex-col items-center justify-center gap-7">
+          <h1 className="headline -rotate-[5deg] text-5xl leading-[1.15] sm:text-6xl">
+            Un ultra au
+            <br />
+            Cœur du Morbihan
+          </h1>
 
-        {/* Badge date : parallelogramme bleu incline, chiffres Technor 600 + mois Inter Bold */}
-        <span className="inline-block -rotate-[5deg]">
+          {/* Badge date : parallelogramme bleu incline, chiffres Technor 600 + mois Inter Bold */}
+          <span className="inline-block -rotate-[5deg]">
           <span className="relative inline-flex items-baseline gap-[5px] px-4 py-1.5 uppercase leading-[26px] text-white">
             <span aria-hidden="true" className="absolute inset-0 -skew-x-12 bg-ria-500" />
             <span className="relative font-technor text-[21px] font-semibold tracking-[1.05px]">
@@ -49,9 +51,13 @@ export default function Hero() {
               2027
             </span>
           </span>
-        </span>
+          </span>
+        </div>
 
-        <Countdown />
+        {/* Compte a rebours, place plus bas */}
+        <div className="mb-10 lg:mb-16">
+          <Countdown />
+        </div>
       </div>
 
       {/* Bas de hero : actions + partenaires */}
@@ -61,10 +67,10 @@ export default function Hero() {
             Nos épreuves
           </ArrowButton>
 
-          <ul className="hidden items-center gap-8 lg:flex">
+          <ul className="hidden items-center gap-5 lg:flex">
             {PARTNERS.map((p) => (
-              <li key={p.nom} className="relative h-7 w-24 opacity-90">
-                <Image src={p.src} alt={p.nom} fill className="object-contain" />
+              <li key={p.nom} className="opacity-90">
+                <Image src={p.src} alt={p.nom} width={p.w} height={p.h} className="h-6 w-auto" />
               </li>
             ))}
           </ul>
