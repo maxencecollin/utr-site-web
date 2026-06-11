@@ -1,10 +1,25 @@
-import Placeholder from "../Placeholder";
+import Image from "next/image";
 import ArrowButton from "../ArrowButton";
 
 const COURSES = [
-  { lignes: ["33", "KM"], legende: "Le 33 de la Ria", rotation: "lg:-rotate-2" },
-  { lignes: ["80", "KM"], legende: "Le tour complet", rotation: "" },
-  { lignes: ["REL", "AIS"], legende: "Le tour en duo", rotation: "lg:rotate-1" },
+  {
+    lignes: ["33", "KM"],
+    legende: "Le 33 de la Ria",
+    rotation: "lg:-rotate-2",
+    photo: "/photos/_dsc6696-girl.png",
+  },
+  {
+    lignes: ["80", "KM"],
+    legende: "Le tour complet",
+    rotation: "",
+    photo: "/photos/_dsc6870-guy.png",
+  },
+  {
+    lignes: ["REL", "AIS"],
+    legende: "Le tour en duo",
+    rotation: "lg:rotate-1",
+    photo: "/photos/_dsc6509-girl2.png",
+  },
 ];
 
 export default function Courses() {
@@ -13,21 +28,14 @@ export default function Courses() {
       {/* En-tete (sur fond blanc) */}
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex items-start gap-4">
-          {/* Picto de section (asset a venir) */}
-          <span
-            className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center bg-dark-900 text-white"
-            aria-hidden="true"
-          >
-            <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-              <path
-                d="M4 18l5-9 4 6 3-4 4 7"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
+          {/* Picto de section */}
+          <Image
+            src="/images/icones/courses.svg"
+            alt=""
+            width={44}
+            height={44}
+            className="mt-1 h-11 w-11 shrink-0"
+          />
 
           <div className="min-w-0 flex-1">
             <span className="font-comico inline-block bg-dark-900 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
@@ -57,7 +65,13 @@ export default function Courses() {
                 <div
                   className={`relative aspect-[2/3] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`}
                 >
-                  <Placeholder label="Photo coureur" tone="dark" className="h-full w-full border-0" />
+                  <Image
+                    src={course.photo}
+                    alt={course.legende}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover"
+                  />
                   <span className="chiffre absolute inset-x-0 bottom-[10%] text-center text-7xl leading-[0.92] text-white [text-shadow:0_3px_6px_#00000086] sm:text-8xl">
                     {course.lignes[0]}
                     <br />

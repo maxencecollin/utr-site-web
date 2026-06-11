@@ -1,9 +1,14 @@
+import Image from "next/image";
 import Header from "../Header";
 import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
-import Placeholder from "../Placeholder";
 
-const PARTNERS = ["Sponsor 1", "Sponsor 2", "Sponsor 3", "Sponsor 4"];
+const PARTNERS = [
+  { nom: "Decathlon", src: "/images/partenaires/decathlon.svg" },
+  { nom: "Kinetik", src: "/images/partenaires/kinetik.svg" },
+  { nom: "UTMB Index", src: "/images/partenaires/utmb-index.svg" },
+  { nom: "Plancoët", src: "/images/partenaires/plancoet.svg" },
+];
 
 export default function Hero() {
   return (
@@ -11,11 +16,14 @@ export default function Hero() {
       id="top"
       className="relative isolate flex min-h-screen flex-col overflow-hidden text-white"
     >
-      {/* Fond : photo plein cadre (placeholder) + voile sombre */}
-      <Placeholder
-        label="Photo hero — coureur"
-        tone="dark"
-        className="absolute inset-0 -z-20 h-full w-full border-0"
+      {/* Fond : photo plein cadre + voile sombre */}
+      <Image
+        src="/photos/img_2638-marin.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="-z-20 object-cover object-center"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-dark-900/40 via-dark-900/30 to-dark-900/70" />
 
@@ -53,14 +61,10 @@ export default function Hero() {
             Nos épreuves
           </ArrowButton>
 
-          <ul className="hidden items-center gap-8 opacity-90 lg:flex">
-            {PARTNERS.map((name) => (
-              <li key={name}>
-                <Placeholder
-                  label={name}
-                  tone="dark"
-                  className="h-8 w-16 border-0 bg-white/10 text-[0.55rem]"
-                />
+          <ul className="hidden items-center gap-8 lg:flex">
+            {PARTNERS.map((p) => (
+              <li key={p.nom} className="relative h-7 w-24 opacity-90">
+                <Image src={p.src} alt={p.nom} fill className="object-contain" />
               </li>
             ))}
           </ul>
