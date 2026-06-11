@@ -6,8 +6,8 @@ import ArrowButton from "../ArrowButton";
 const PARTNERS = [
   { nom: "Decathlon", src: "/images/partenaires/decathlon.svg" },
   { nom: "Kinetik", src: "/images/partenaires/kinetik.svg" },
-  { nom: "UTMB Index", src: "/images/partenaires/utmb-index.svg" },
   { nom: "Plancoët", src: "/images/partenaires/plancoet.svg" },
+  { nom: "UTMB Index", src: "/images/partenaires/utmb-index.svg" },
 ];
 
 export default function Hero() {
@@ -23,9 +23,9 @@ export default function Hero() {
         fill
         priority
         sizes="100vw"
-        className="-z-20 object-cover object-center"
+        className="-z-20 object-cover object-[50%_18%]"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-dark-900/40 via-dark-900/30 to-dark-900/70" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-dark-900/25 via-dark-900/5 to-dark-900/45" />
 
       <Header />
 
