@@ -1,11 +1,12 @@
+import Image from "next/image";
 import SectionHeading from "../SectionHeading";
 import ArrowButton from "../ArrowButton";
 
 const PARTNERS = [
-  { nom: "Decathlon", niveau: "Officiel" },
-  { nom: "Kinetik", niveau: "Privilège" },
-  { nom: "UTMB Index", niveau: "Majeur" },
-  { nom: "Plancoët", niveau: "Majeur" },
+  { nom: "Decathlon", niveau: "Officiel", src: "/images/partenaires/decathlon.svg" },
+  { nom: "Kinetik", niveau: "Privilège", src: "/images/partenaires/kinetik.svg" },
+  { nom: "UTMB Index", niveau: "Majeur", src: "/images/partenaires/utmb-index.svg" },
+  { nom: "Plancoët", niveau: "Majeur", src: "/images/partenaires/plancoet.svg" },
 ];
 
 export default function Partenaires() {
@@ -15,16 +16,16 @@ export default function Partenaires() {
         <SectionHeading
           overline="Merci à tous"
           title="Nos partenaires"
+          icon="/images/icones/fichier-13.svg"
           accent="blue"
         />
 
         <div className="mt-12 overflow-hidden rounded-xl bg-gradient-to-r from-ria-700 to-ria-500">
           <div className="flex flex-wrap items-center justify-between gap-8 px-8 py-10">
             {PARTNERS.map((p) => (
-              <div key={p.nom} className="text-center text-white">
-                {/* Logo partenaire (placeholder) */}
-                <div className="flex h-10 items-center justify-center text-lg font-bold tracking-wide">
-                  {p.nom}
+              <div key={p.nom} className="text-center">
+                <div className="relative h-9 w-28">
+                  <Image src={p.src} alt={p.nom} fill className="object-contain" />
                 </div>
                 <span className="mt-2 block text-[0.65rem] font-semibold uppercase tracking-widest text-white/70">
                   {p.niveau}

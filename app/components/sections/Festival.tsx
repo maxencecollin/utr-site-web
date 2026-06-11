@@ -1,4 +1,4 @@
-import Placeholder from "../Placeholder";
+import Image from "next/image";
 import ArrowButton from "../ArrowButton";
 
 export default function Festival() {
@@ -7,10 +7,12 @@ export default function Festival() {
       id="village"
       className="relative isolate flex min-h-[80vh] items-center overflow-hidden py-24 text-white"
     >
-      <Placeholder
-        label="Photo foule — village festif"
-        tone="dark"
-        className="absolute inset-0 -z-20 h-full w-full border-0"
+      <Image
+        src="/photos/real_-jansen-d3gfrvatsd0-unsplash.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="-z-20 object-cover"
       />
       <div className="absolute inset-0 -z-10 bg-dark-900/60" />
 

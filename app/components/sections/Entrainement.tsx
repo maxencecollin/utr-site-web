@@ -1,5 +1,5 @@
+import Image from "next/image";
 import SectionHeading from "../SectionHeading";
-import Placeholder from "../Placeholder";
 import ArrowButton from "../ArrowButton";
 
 const THEMES = [
@@ -17,6 +17,7 @@ export default function Entrainement() {
         <SectionHeading
           overline="Prépares-toi à"
           title="L'entraînement"
+          icon="/images/icones/entrainement.svg"
           accent="brown"
         />
 
@@ -30,11 +31,15 @@ export default function Entrainement() {
         </ul>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <Placeholder
-            label="Photo coureur — saut"
-            tone="light"
-            className="aspect-[4/3] w-full rounded-lg border-0 lg:-rotate-2"
-          />
+          <div className="relative aspect-[4/3] w-full overflow-hidden lg:-rotate-2">
+            <Image
+              src="/photos/venti-views--uyedjt31zy-unsplash.jpg"
+              alt="Coureur en plein saut"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
 
           <div className="lg:pl-4">
             <h3 className="titre text-2xl text-dark-900">

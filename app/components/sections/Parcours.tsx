@@ -1,37 +1,40 @@
-import SectionHeading from "../SectionHeading";
-import Placeholder from "../Placeholder";
+import Image from "next/image";
 
 export default function Parcours() {
   return (
-    <section id="parcours" className="bg-creme py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <SectionHeading
-          overline="Au fil de la ria"
-          title="Le parcours"
-          accent="blue"
-        />
-
-        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-2">
-          {/* Carte d'itineraire dessinee : fournie sous forme d'asset graphique */}
-          <Placeholder
-            label="Carte d'itinéraire (asset à venir)"
-            tone="light"
-            className="min-h-[28rem] w-full rounded-lg border-0"
+    <section id="parcours" className="relative overflow-hidden bg-creme">
+      {/* Deux bandes photo pleine largeur, empilees */}
+      <div className="flex flex-col">
+        <div className="relative h-64 w-full sm:h-80">
+          <Image
+            src="/photos/994.jpg"
+            alt="Coureur en mouvement"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
+        </div>
+        <div className="relative h-64 w-full sm:h-80">
+          <Image
+            src="/photos/calque-24.png"
+            alt="Ambiance et public"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      </div>
 
-          {/* Photos */}
-          <div className="grid grid-rows-2 gap-6">
-            <Placeholder
-              label="Photo coureur en mouvement"
-              tone="dark"
-              className="min-h-48 w-full border-0"
-            />
-            <Placeholder
-              label="Photo foule / ambiance"
-              tone="dark"
-              className="min-h-48 w-full border-0"
-            />
-          </div>
+      {/* Carte d'itineraire dessinee, centree par-dessus (coupe les photos en deux) */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="relative h-[115%] aspect-square">
+          <Image
+            src="/photos/groupe-321.png"
+            alt="Itinéraire : Locoal-Mendon, traversée d'Étel, Sainte-Hélène"
+            fill
+            sizes="(max-width: 640px) 90vw, 640px"
+            className="object-contain drop-shadow-2xl"
+          />
         </div>
       </div>
     </section>

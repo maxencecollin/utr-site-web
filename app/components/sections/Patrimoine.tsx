@@ -1,5 +1,5 @@
+import Image from "next/image";
 import SectionHeading from "../SectionHeading";
-import Placeholder from "../Placeholder";
 import ArrowButton from "../ArrowButton";
 
 const LABELS = ["Natura 2000", "ZNIEFF", "Sites classés"];
@@ -13,6 +13,7 @@ export default function Patrimoine() {
             <SectionHeading
               overline="La Ria d'Étel, notre"
               title="Patrimoine naturel"
+              icon="/images/icones/patrimoine.svg"
               accent="green"
             />
 
@@ -42,20 +43,28 @@ export default function Patrimoine() {
             </div>
           </div>
 
-          <Placeholder
-            label="Photo coureur — Ria d'Étel"
-            tone="light"
-            className="aspect-[4/3] w-full rounded-lg border-0"
-          />
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <Image
+              src="/photos/_dsc7014.jpg"
+              alt="Coureur dans la Ria d'Étel"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
         </div>
 
         {/* Vue panoramique pleine largeur */}
         <figure className="mt-14">
-          <Placeholder
-            label="Panorama — Île Saint-Cado"
-            tone="light"
-            className="aspect-[21/9] w-full rounded-lg border-0"
-          />
+          <div className="relative aspect-[21/9] w-full overflow-hidden">
+            <Image
+              src="/photos/ilot-de-nichtarguer-maison-bleue-morbihan-1-scaled.jpg"
+              alt="Maison aux volets bleus, Île Saint-Cado"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
           <figcaption className="mt-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-pinede-500">
             <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
               <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
