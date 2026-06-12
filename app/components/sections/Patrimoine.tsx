@@ -1,75 +1,136 @@
 import Image from "next/image";
-import SectionHeading from "../SectionHeading";
 import ArrowButton from "../ArrowButton";
 
 const LABELS = ["Natura 2000", "ZNIEFF", "Sites classés"];
 
 export default function Patrimoine() {
   return (
-    <section id="patrimoine" className="bg-creme py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+    // Marge haute large : la carte du parcours depasse dans cette section, le texte commence dessous
+    <section id="patrimoine" className="relative overflow-hidden bg-white pb-20 pt-56 sm:pt-72 lg:pb-28 lg:pt-80">
+      {/* Fond : motif topographique sur blanc (maquette XD) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: "url(/images/deco/topographie.svg)",
+          backgroundSize: "1400px auto",
+          backgroundRepeat: "repeat",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
           <div>
-            <SectionHeading
-              overline="La Ria d'Étel, notre"
-              title="Patrimoine naturel"
-              icon="/images/icones/patrimoine.svg"
-              accent="green"
-            />
+            {/* En-tete : picto + cartouche Comico vert + titre + pointilles verts (picto XD : 55x54, ecart 40px) */}
+            <div className="flex items-start gap-10">
+              <Image
+                src="/images/icones/patrimoine.svg?v=2"
+                alt=""
+                width={55}
+                height={54}
+                className="h-[54px] w-[55px] shrink-0"
+              />
 
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-widest text-pinede-500">
-              {LABELS.map((label) => (
-                <li key={label} className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-pinede-400" />
-                  {label}
-                </li>
-              ))}
-            </ul>
+              {/* Tout le texte est aligne sur le bord gauche du cartouche (specs XD : left 262px) */}
+              <div className="min-w-0 flex-1">
+                <span className="font-comico inline-block bg-pinede-400 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
+                  La Ria d&apos;Étel, notre
+                </span>
+                <h2 className="titre mt-2 text-4xl text-[#2c2c2c]">
+                  Patrimoine naturel
+                </h2>
+                <span className="mt-3 block h-0 border-t-2 border-dashed border-pinede-400" />
 
-            <h3 className="titre mt-8 text-xl text-dark-900">
-              Un joyau naturel de la Bretagne
-            </h3>
-            <p className="mt-3 max-w-md text-dark-600">
-              Cette ancienne vallée fluviale envahie par la mer abrite une
-              biodiversité remarquable : oiseaux migrateurs, poissons, crustacés
-              et une flore unique. Nous nous engageons à préserver ce trésor par
-              différentes actions.
-            </p>
+                {/* Labels reglementaires : Comico 16px vert, separes par des "/" */}
+                <ul className="font-comico mt-5 flex flex-wrap items-center gap-x-3 text-[16px] uppercase leading-5 text-pinede-500">
+                  {LABELS.map((label, i) => (
+                    <li key={label} className="flex items-center gap-x-3">
+                      {i > 0 && <span aria-hidden="true">/</span>}
+                      {label}
+                    </li>
+                  ))}
+                </ul>
 
-            <div className="mt-8">
-              <ArrowButton href="#patrimoine" variant="green">
-                Nos engagements
-              </ArrowButton>
+                <h3 className="titre mt-8 text-xl text-[#2c2c2c]">
+                  Un joyau naturel
+                  <br />
+                  de la Bretagne
+                </h3>
+                <p className="mt-4 max-w-md text-dark-700">
+                  Cette ancienne vallée fluviale envahie par la mer abrite une
+                  biodiversité remarquable : oiseaux migrateurs, poissons,
+                  crustacés et une flore unique. Nous nous engageons à préserver
+                  ce trésor par différentes actions :
+                </p>
+
+                <div className="mt-8">
+                  <ArrowButton href="#patrimoine" variant="green">
+                    Nos engagements
+                  </ArrowButton>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] w-full overflow-hidden">
+          {/* Photo scotchee en haut au milieu, legerement inclinee (specs XD : 410x457) */}
+          <div className="relative mx-auto w-full max-w-[410px] lg:ml-auto">
+            <div className="relative aspect-[410/457] w-full -rotate-1 overflow-hidden shadow-[0_3px_6px_#00000029]">
+              <Image
+                src="/photos/_dsc7014.jpg"
+                alt="Coureur dans la Ria d'Étel"
+                fill
+                sizes="(max-width: 1024px) 100vw, 410px"
+                className="object-cover"
+              />
+            </div>
             <Image
-              src="/photos/_dsc7014.jpg"
-              alt="Coureur dans la Ria d'Étel"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              src="/images/deco/scotch.png"
+              alt=""
+              width={103}
+              height={29}
+              className="absolute -top-4 left-1/2 w-[103px] -translate-x-1/2 -rotate-2 opacity-[0.16] shadow-[0_3px_6px_#00000029]"
             />
           </div>
         </div>
 
-        {/* Vue panoramique pleine largeur */}
-        <figure className="mt-14">
-          <div className="relative aspect-[21/9] w-full overflow-hidden">
+        {/* Vue panoramique, scotch sur le coin haut-gauche (specs XD : 1186x403) */}
+        <figure className="mt-16">
+          {/* Les scotchs sont ancres sur ce conteneur = la photo seule (pas la legende) */}
+          <div className="relative">
+            <div className="relative aspect-[1186/403] w-full -rotate-1 overflow-hidden shadow-[2px_4px_7px_#00000046]">
+              <Image
+                src="/photos/ilot-de-nichtarguer-maison-bleue-morbihan-1-scaled.jpg"
+                alt="Maison aux volets bleus, Île Saint-Cado"
+                fill
+                sizes="100vw"
+                className="object-cover object-[50%_68%]"
+              />
+            </div>
             <Image
-              src="/photos/ilot-de-nichtarguer-maison-bleue-morbihan-1-scaled.jpg"
-              alt="Maison aux volets bleus, Île Saint-Cado"
-              fill
-              sizes="100vw"
-              className="object-cover"
+              src="/images/deco/scotch.png"
+              alt=""
+              width={92}
+              height={29}
+              className="absolute -left-6 -top-2 w-[92px] -rotate-[35deg] border-2 border-[#707070] opacity-[0.16] shadow-[0_3px_6px_#00000029]"
+            />
+            <Image
+              src="/images/deco/scotch.png"
+              alt=""
+              width={96}
+              height={29}
+              className="absolute -bottom-3 -right-6 w-[96px] -rotate-[29deg] border-2 border-[#707070] opacity-[0.16] shadow-[0_3px_6px_#00000029]"
             />
           </div>
-          <figcaption className="mt-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-pinede-500">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-              <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
-            </svg>
-            Maison aux volets bleu — Île Saint-Cado (Morbihan)
+          {/* Legende : Comico 13px sombre, legerement inclinee comme la photo (specs XD) */}
+          <figcaption className="font-comico mt-4 flex -rotate-1 items-center gap-2 text-[13px] uppercase leading-5 text-[#1c1c1c]">
+            <Image
+              src="/images/icones/pin.svg?v=2"
+              alt=""
+              width={16}
+              height={16}
+              className="h-4 w-4"
+            />
+            Maison aux volets bleus — Île Saint-Cado (Morbihan)
           </figcaption>
         </figure>
       </div>

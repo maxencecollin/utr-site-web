@@ -18,17 +18,17 @@
   --color-ria-800: #023e7c;
   --color-ria-900: #012d5a;
 
-  /* Pinede - vert foret */
+  /* Pinede - vert. Valeurs XD : 400 #86B13A (clair, elements), 500 #6B8C30, 700 #3C4C1F (fin du degrade bouton) */
   --color-pinede-50: #edf2de;
   --color-pinede-100: #d5e0bc;
-  --color-pinede-200: #adc087;
-  --color-pinede-300: #7a9457;
-  --color-pinede-400: #556a3c;
-  --color-pinede-500: #374426;
-  --color-pinede-600: #2f3d1c;
-  --color-pinede-700: #283516;
-  --color-pinede-800: #1e280f;
-  --color-pinede-900: #111508;
+  --color-pinede-200: #b4cc7d;
+  --color-pinede-300: #9cc451;
+  --color-pinede-400: #86b13a;
+  --color-pinede-500: #6b8c30;
+  --color-pinede-600: #567123;
+  --color-pinede-700: #3c4c1f;
+  --color-pinede-800: #2f400f;
+  --color-pinede-900: #1d2908;
 
   /* Sable / Terrain - brun */
   --color-sable-50: #f9ede4;

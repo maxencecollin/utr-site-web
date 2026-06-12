@@ -2,10 +2,12 @@ import Image from "next/image";
 
 export default function Parcours() {
   return (
-    // clip-path : coupe la carte en haut (bande noire) et sur les cotes, mais la laisse depasser en bas
-    <section id="parcours" className="bg-white [clip-path:inset(0_0_-9999px_0)]">
-      {/* Espace au-dessus : la photo ne touche pas la bande noire des courses */}
-      <div className="pb-16 pt-12">
+    // clip-path : coupe la carte en haut (bande noire) mais la laisse depasser en bas ;
+    // z-10 pour que ce depassement reste visible au-dessus du fond topo de la section suivante
+    <section id="parcours" className="relative z-10 bg-white [clip-path:inset(0_0_-9999px_0)]">
+      {/* Espace au-dessus : la photo ne touche pas la bande noire des courses.
+          Pas d'espace en dessous : le fond topo de la section suivante remonte jusqu'a la photo. */}
+      <div className="pt-12">
         <div className="relative">
           {/* Bande du haut : la MEME photo des deux cotes, recadree differemment (horizon aligne, la carte cache la jonction) */}
           <div className="flex h-72 w-full sm:h-[26rem]">

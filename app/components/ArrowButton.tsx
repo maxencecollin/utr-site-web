@@ -13,7 +13,8 @@ type Direction = "right" | "up" | "down";
 // Couche de fond (parallelogramme incline)
 const LAYER: Record<Variant, string> = {
   blue: "bg-ria-500 group-hover:bg-ria-600",
-  green: "bg-pinede-500 group-hover:bg-pinede-600",
+  green:
+    "bg-[linear-gradient(90deg,#86b13a_0%,#3c4c1f_100%)] group-hover:brightness-110",
   brown: "bg-sable-500 group-hover:bg-sable-600",
   dark: "bg-dark-900 group-hover:bg-dark-700",
   "outline-dark": "border border-dark-900 group-hover:bg-dark-900",
