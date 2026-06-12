@@ -7,18 +7,24 @@ const COURSES = [
     legende: "Le 33 de la Ria",
     rotation: "lg:-rotate-2",
     photo: "/photos/_dsc6696-girl.jpg",
+    flip: false,
+    zoom: "scale-110",
   },
   {
     lignes: ["80", "KM"],
     legende: "Le tour complet",
     rotation: "",
     photo: "/photos/_dsc6870-guy.jpg",
+    flip: true,
+    zoom: "scale-110",
   },
   {
     lignes: ["REL", "AIS"],
     legende: "Le tour en duo",
     rotation: "lg:rotate-1",
     photo: "/photos/_dsc6509-girl2.jpg",
+    flip: false,
+    zoom: "scale-125",
   },
 ];
 
@@ -63,15 +69,18 @@ export default function Courses() {
               <figure key={course.legende} className="flex flex-col">
                 {/* Carte photo (seule a etre legerement inclinee) */}
                 <div
-                  className={`relative aspect-[2/3] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`}
+                  className={`relative aspect-[425/654] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`}
                 >
-                  <Image
-                    src={course.photo}
-                    alt={course.legende}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover"
-                  />
+                  {/* Conteneur de zoom (le flip reste sur l'image pour eviter le conflit de transform) */}
+                  <div className={`absolute inset-0 ${course.zoom}`}>
+                    <Image
+                      src={course.photo}
+                      alt={course.legende}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className={`object-cover ${course.flip ? "-scale-x-100" : ""}`}
+                    />
+                  </div>
                   <span className="chiffre absolute inset-x-0 bottom-[10%] text-center text-7xl leading-[0.92] text-white [text-shadow:0_3px_6px_#00000086] sm:text-8xl">
                     {course.lignes[0]}
                     <br />
