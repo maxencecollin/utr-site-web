@@ -1,10 +1,9 @@
 import Image from "next/image";
-import SectionHeading from "../SectionHeading";
 import ArrowButton from "../ArrowButton";
 
 const THEMES = [
   "Coaching",
-  "Matériel",
+  "Matériels",
   "Nutrition",
   "Préparation mentale",
   "Plan d'entraînement",
@@ -12,49 +11,108 @@ const THEMES = [
 
 export default function Entrainement() {
   return (
-    <section id="entrainement" className="bg-creme py-20 lg:py-28">
+    <section id="entrainement" className="overflow-hidden bg-white py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <SectionHeading
-          overline="Prépares-toi à"
-          title="L'entraînement"
-          icon="/images/icones/entrainement.svg"
-          accent="brown"
-        />
+        {/* En-tete : picto + cartouche Comico marron + titre + pointilles */}
+        <div className="flex items-start gap-5">
+          <Image
+            src="/images/icones/fichier-12.svg"
+            alt=""
+            width={68}
+            height={60}
+            className="h-[60px] w-[68px] shrink-0"
+          />
 
-        <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold uppercase tracking-widest text-sable-600">
-          {THEMES.map((theme) => (
-            <li key={theme} className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-sable-400" />
-              {theme}
-            </li>
-          ))}
-        </ul>
+          <div className="min-w-0 flex-1">
+            <span className="font-comico inline-block bg-sable-500 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
+              Prépares-toi à
+            </span>
+            <h2 className="titre mt-2 text-4xl text-[#2c2c2c]">
+              L&apos;entraînement
+            </h2>
+            {/* Pointilles plus espaces que border-dashed (tirets 11px, trous 9px) */}
+            <span className="mt-3 block h-[2px] bg-[repeating-linear-gradient(90deg,#797979_0,#797979_11px,transparent_11px,transparent_20px)]" />
 
-        <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <div className="relative aspect-[4/3] w-full overflow-hidden lg:-rotate-2">
+            {/* Categories : Comico marron, separees par des "/" */}
+            <ul className="font-comico mt-5 flex flex-wrap items-center gap-x-3 text-[16px] uppercase leading-5 text-sable-500">
+              {THEMES.map((theme, i) => (
+                <li key={theme} className="flex items-center gap-x-3">
+                  {i > 0 && <span aria-hidden="true">/</span>}
+                  {theme}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Photo scotchee + traits marrons + bloc texte aligne a droite */}
+        <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-[55%_1fr]">
+          <div className="relative">
+            {/* Bandes marrons #6F4126 (12px, specs XD) qui passent sous la photo :
+                une a gauche depuis le bord de l'ecran, deux a droite vers le texte */}
+            <span
+              aria-hidden="true"
+              className="absolute right-[75.2%] top-[21%] h-3 w-screen -rotate-1 bg-[#6f4126]"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute left-[80.4%] top-[68.4%] h-3 w-[276px] -rotate-1 bg-[#6f4126]"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute left-[82.7%] top-[77.6%] h-3 w-[276px] -rotate-1 bg-[#6f4126]"
+            />
+
+            {/* Photo 665x456 (specs XD), legerement inclinee ;
+                cadrage : jambes et chaussures sur fond de ciel */}
+            <div
+              className="relative aspect-[665/456] w-full -rotate-1 shadow-[0_3px_6px_#00000029]"
+              role="img"
+              aria-label="Jambes d'un coureur en plein saut"
+              style={{
+                backgroundImage:
+                  "url(/photos/venti-views--uyedjt31zy-unsplash.jpg)",
+                backgroundSize: "auto 190%",
+                backgroundPosition: "42% 54%",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
+
+            {/* Scotchs : coin haut-gauche + coin bas-droit (specs XD) */}
             <Image
-              src="/photos/venti-views--uyedjt31zy-unsplash.jpg"
-              alt="Coureur en plein saut"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              src="/images/deco/scotch.png"
+              alt=""
+              width={91}
+              height={29}
+              className="absolute -left-5 -top-3.5 w-[91px] -rotate-[37deg] opacity-[0.16] shadow-[0_3px_6px_#00000029]"
+            />
+            <Image
+              src="/images/deco/scotch.png"
+              alt=""
+              width={96}
+              height={29}
+              className="absolute -bottom-2 -right-5 w-[96px] -rotate-[29deg] opacity-[0.16] shadow-[0_3px_6px_#00000029]"
             />
           </div>
 
-          <div className="lg:pl-4">
-            <h3 className="titre text-2xl text-dark-900">
-              Prépares-toi pour ton trail !
+          <div className="flex flex-col items-end text-right">
+            <h3 className="titre text-xl text-[#2c2c2c]">
+              Prépares-toi
+              <br />
+              pour ton trail !
             </h3>
-            <p className="mt-4 max-w-md text-dark-600">
-              Que ce soit pour performer ou terminer ta première course de trail,
-              on te donne tous les conseils, pour les novices comme pour les
+            <p className="mt-4 max-w-sm text-dark-700">
+              Que ce soit pour performer ou terminer ta première course de
+              trail, on donne tous les conseils pour les novices et les
               expérimentés. On te propose aussi un coach perso pour
               t&apos;accompagner dans ton aventure.
             </p>
-            <p className="titre mt-3 text-sable-600">Tiens-toi prêt !</p>
+            <p className="mt-1 font-bold italic text-dark-800">
+              Tiens-toi prêt !
+            </p>
             <div className="mt-8">
               <ArrowButton href="#entrainement" variant="brown">
-                Entraîne-toi !
+                Entraînes-toi !
               </ArrowButton>
             </div>
           </div>
