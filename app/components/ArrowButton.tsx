@@ -42,6 +42,8 @@ type Props = {
   href: string;
   variant?: Variant;
   direction?: Direction;
+  /* Taille du texte : 14px par defaut (specs XD hero), surchargable par section */
+  textSize?: string;
   className?: string;
 };
 
@@ -50,12 +52,13 @@ export default function ArrowButton({
   href,
   variant = "blue",
   direction = "right",
+  textSize = "text-[14px]",
   className = "",
 }: Props) {
   return (
     <Link
       href={href}
-      className={`group relative inline-flex items-center gap-3 py-2 pl-5 pr-2 text-xs font-semibold uppercase tracking-wide transition-colors ${TEXT[variant]} ${className}`}
+      className={`group relative inline-flex items-center gap-3 py-2 pl-5 pr-2 ${textSize} font-semibold uppercase tracking-wide transition-colors ${TEXT[variant]} ${className}`}
     >
       {/* Fond en parallelogramme (angles vifs, cotes inclines facon italique) */}
       <span
