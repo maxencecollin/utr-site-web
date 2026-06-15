@@ -25,7 +25,7 @@ export default function Entrainement() {
 
           <div className="min-w-0 flex-1">
             <span className="font-comico inline-block bg-sable-500 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
-              Prépares-toi à
+              Prépare-toi à
             </span>
             <h2 className="titre mt-2 text-4xl text-[#2c2c2c]">
               L&apos;entraînement
@@ -97,7 +97,7 @@ export default function Entrainement() {
 
           <div className="flex flex-col items-end text-right">
             <h3 className="titre text-xl text-[#2c2c2c]">
-              Prépares-toi
+              Prépare-toi
               <br />
               pour ton trail !
             </h3>
@@ -112,7 +112,7 @@ export default function Entrainement() {
             </p>
             <div className="mt-8">
               <ArrowButton href="#entrainement" variant="brown">
-                Entraînes-toi !
+                Entraîne-toi !
               </ArrowButton>
             </div>
           </div>
