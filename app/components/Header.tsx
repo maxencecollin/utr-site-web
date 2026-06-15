@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LanguageSelector from "./LanguageSelector";
 
 const LINKS = [
   { label: "Nos épreuves", href: "#courses" },
@@ -43,12 +44,8 @@ export default function Header() {
             <span className="relative">S&apos;inscrire</span>
           </Link>
 
-          <button
-            type="button"
-            className="text-base font-semibold uppercase text-white/90 transition-opacity hover:opacity-100"
-          >
-            FR
-          </button>
+          {/* Selecteur de langue : menu deroulant (FR par defaut, EN/ES caches) */}
+          <LanguageSelector />
         </div>
       </nav>
     </header>
