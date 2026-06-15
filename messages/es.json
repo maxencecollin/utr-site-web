@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "courses": "Las carreras",
+    "parcours": "El recorrido",
+    "patrimoine": "Patrimonio",
+    "village": "El pueblo",
+    "benevoles": "Voluntarios",
+    "partenaires": "Colaboradores",
+    "epreuves": "Nuestras carreras",
+    "engagements": "Nuestros compromisos",
+    "inscrire": "Inscribirse"
+  },
+  "footer": {
+    "tagline": "La gran fiesta del trail en plena naturaleza alrededor de la Ría de Étel, en Bretaña. Edición del 16 de octubre de 2027.",
+    "rights": "Asociación Ultra Trail de la Ria. Todos los derechos reservados.",
+    "mentionsLegales": "Aviso legal",
+    "cgv": "Condiciones de venta",
+    "confidentialite": "Privacidad"
+  },
+  "legal": {
+    "back": "Volver al inicio"
+  }
+}

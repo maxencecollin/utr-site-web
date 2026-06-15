@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "courses": "The races",
+    "parcours": "The route",
+    "patrimoine": "Heritage",
+    "village": "The village",
+    "benevoles": "Volunteers",
+    "partenaires": "Partners",
+    "epreuves": "Our races",
+    "engagements": "Our commitments",
+    "inscrire": "Register"
+  },
+  "footer": {
+    "tagline": "The great nature trail festival around the Ria d'Étel, in Brittany. October 16, 2027 edition.",
+    "rights": "Association Ultra Trail de la Ria. All rights reserved.",
+    "mentionsLegales": "Legal notice",
+    "cgv": "Terms of sale",
+    "confidentialite": "Privacy"
+  },
+  "legal": {
+    "back": "Back to home"
+  }
+}

@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Footer from "./Footer";
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export default function LegalLayout({ title, children }: Props) {
+  const t = useTranslations("legal");
   return (
     <>
       {/* En-tete simple : logo (retour accueil) + lien retour */}
@@ -26,7 +28,7 @@ export default function LegalLayout({ title, children }: Props) {
             href="/"
             className="text-sm font-bold italic uppercase text-dark-700 transition-opacity hover:opacity-70"
           >
-            Retour à l&apos;accueil
+            {t("back")}
           </Link>
         </div>
       </header>

@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import LanguageSelector from "./LanguageSelector";
 
 const LINKS = [
-  { label: "Nos épreuves", href: "#courses" },
-  { label: "Nos engagements", href: "#patrimoine" },
-];
+  { key: "epreuves", href: "#courses" },
+  { key: "engagements", href: "#patrimoine" },
+] as const;
 
 export default function Header() {
+  const t = useTranslations("nav");
   return (
     <header className="absolute inset-x-0 top-0 z-30">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
@@ -26,7 +28,7 @@ export default function Header() {
             {LINKS.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="transition-opacity hover:opacity-70">
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               </li>
             ))}
@@ -41,7 +43,7 @@ export default function Header() {
               aria-hidden="true"
               className="absolute inset-0 -skew-x-12 bg-[linear-gradient(90deg,#0781dd_0%,#04416f_100%)] transition-opacity group-hover:opacity-90"
             />
-            <span className="relative">S&apos;inscrire</span>
+            <span className="relative">{t("inscrire")}</span>
           </Link>
 
           {/* Selecteur de langue : menu deroulant (FR par defaut, EN/ES caches) */}

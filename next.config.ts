@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   // Site 100% statique, servi par GitHub Pages
@@ -11,4 +12,8 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// Branche next-intl (lit i18n/request.ts). Le middleware/proxy n'est pas utilise
+// en export statique ; il sera ajoute lors du passage sur serveur.
+const withNextIntl = createNextIntlPlugin();
+
+export default withNextIntl(nextConfig);
