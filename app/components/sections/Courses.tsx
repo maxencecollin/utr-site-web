@@ -1,26 +1,31 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
+// Le gros lettrage : distance fixe (33/80 KM, universel) ou mot "relais" traduit (2 lignes).
 const COURSES = [
   {
-    lignes: ["33", "KM"],
-    legende: "Le 33 de la Ria",
+    id: "trail33",
+    lignes: ["33", "KM"] as [string, string] | null,
+    legendKey: "legendTrail33",
     rotation: "lg:-rotate-2",
     photo: "/photos/_dsc6696-girl.jpg",
     flip: false,
     zoom: "scale-110",
   },
   {
-    lignes: ["80", "KM"],
-    legende: "Le tour complet",
+    id: "ultra80",
+    lignes: ["80", "KM"] as [string, string] | null,
+    legendKey: "legendUltra80",
     rotation: "",
     photo: "/photos/_dsc6870-guy.jpg",
     flip: true,
     zoom: "scale-110",
   },
   {
-    lignes: ["REL", "AIS"],
-    legende: "Le tour en duo",
+    id: "relais",
+    lignes: null,
+    legendKey: "legendRelais",
     rotation: "lg:rotate-1",
     photo: "/photos/_dsc6509-girl2.jpg",
     flip: false,
@@ -29,6 +34,8 @@ const COURSES = [
 ];
 
 export default function Courses() {
+  const t = useTranslations("courses");
+  const tCta = useTranslations("cta");
   return (
     <section id="courses" className="relative overflow-hidden bg-white pt-20 lg:pt-28">
       {/* En-tete (sur fond blanc) */}
@@ -45,10 +52,10 @@ export default function Courses() {
 
           <div className="min-w-0 flex-1">
             <span className="font-comico inline-block bg-dark-900 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
-              Choisis ton trail !
+              {t("overline")}
             </span>
             <div className="mt-2 flex items-baseline justify-between gap-4">
-              <h2 className="titre text-4xl text-[#2c2c2c]">Nos courses</h2>
+              <h2 className="titre text-4xl text-[#2c2c2c]">{t("title")}</h2>
               <span className="font-technor text-[23px] font-semibold text-black">
                 / 2027
               </span>
@@ -65,34 +72,38 @@ export default function Courses() {
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
-            {COURSES.map((course) => (
-              <figure key={course.legende} className="flex flex-col">
-                {/* Carte photo (seule a etre legerement inclinee) */}
-                <div
-                  className={`relative aspect-[425/654] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`}
-                >
-                  {/* Conteneur de zoom (le flip reste sur l'image pour eviter le conflit de transform) */}
-                  <div className={`absolute inset-0 ${course.zoom}`}>
-                    <Image
-                      src={course.photo}
-                      alt={course.legende}
-                      fill
-                      sizes="(max-width: 640px) 100vw, 33vw"
-                      className={`object-cover ${course.flip ? "-scale-x-100" : ""}`}
-                    />
+            {COURSES.map((course) => {
+              const legend = t(course.legendKey);
+              const lignes = course.lignes ?? [t("relaisLine1"), t("relaisLine2")];
+              return (
+                <figure key={course.id} className="flex flex-col">
+                  {/* Carte photo (seule a etre legerement inclinee) */}
+                  <div
+                    className={`relative aspect-[425/654] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`}
+                  >
+                    {/* Conteneur de zoom (le flip reste sur l'image pour eviter le conflit de transform) */}
+                    <div className={`absolute inset-0 ${course.zoom}`}>
+                      <Image
+                        src={course.photo}
+                        alt={legend}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className={`object-cover ${course.flip ? "-scale-x-100" : ""}`}
+                      />
+                    </div>
+                    <span className="chiffre absolute inset-x-0 bottom-[10%] text-center text-7xl leading-[0.92] text-white [text-shadow:0_3px_6px_#00000086] sm:text-8xl">
+                      {lignes[0]}
+                      <br />
+                      {lignes[1]}
+                    </span>
                   </div>
-                  <span className="chiffre absolute inset-x-0 bottom-[10%] text-center text-7xl leading-[0.92] text-white [text-shadow:0_3px_6px_#00000086] sm:text-8xl">
-                    {course.lignes[0]}
-                    <br />
-                    {course.lignes[1]}
-                  </span>
-                </div>
-                {/* Legende : droite (non inclinee), sur la bande noire */}
-                <figcaption className="mt-5 text-center text-[13px] font-semibold italic uppercase tracking-[1.17px] text-white">
-                  {course.legende}
-                </figcaption>
-              </figure>
-            ))}
+                  {/* Legende : droite (non inclinee), sur la bande noire */}
+                  <figcaption className="mt-5 text-center text-[13px] font-semibold italic uppercase tracking-[1.17px] text-white">
+                    {legend}
+                  </figcaption>
+                </figure>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -102,10 +113,10 @@ export default function Courses() {
         <div className="border-y border-white/70">
           <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-6 py-4 lg:px-10">
             <ArrowButton href="#courses" variant="outline-white" direction="up">
-              Détails des courses
+              {t("details")}
             </ArrowButton>
             <ArrowButton href="#inscription" variant="outline-white">
-              Inscription 2027
+              {tCta("inscription")}
             </ArrowButton>
           </div>
         </div>

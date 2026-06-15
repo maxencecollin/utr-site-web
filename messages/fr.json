@@ -33,5 +33,15 @@
     "heures": "Heures",
     "min": "Min",
     "sec": "Sec"
+  },
+  "courses": {
+    "overline": "Choisis ton trail !",
+    "title": "Nos courses",
+    "details": "Détails des courses",
+    "relaisLine1": "REL",
+    "relaisLine2": "AIS",
+    "legendTrail33": "Le 33 de la Ria",
+    "legendUltra80": "Le tour complet",
+    "legendRelais": "Le tour en duo"
   }
 }

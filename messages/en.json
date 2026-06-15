@@ -33,5 +33,15 @@
     "heures": "Hours",
     "min": "Min",
     "sec": "Sec"
+  },
+  "courses": {
+    "overline": "Choose your trail!",
+    "title": "Our races",
+    "details": "Race details",
+    "relaisLine1": "RE",
+    "relaisLine2": "LAY",
+    "legendTrail33": "The Ria 33",
+    "legendUltra80": "The full loop",
+    "legendRelais": "The loop in pairs"
   }
 }

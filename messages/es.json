@@ -33,5 +33,15 @@
     "heures": "Horas",
     "min": "Min",
     "sec": "Seg"
+  },
+  "courses": {
+    "overline": "¡Elige tu trail!",
+    "title": "Nuestras carreras",
+    "details": "Detalles de las carreras",
+    "relaisLine1": "RE",
+    "relaisLine2": "LEVO",
+    "legendTrail33": "El 33 de la Ria",
+    "legendUltra80": "La vuelta completa",
+    "legendRelais": "La vuelta en dúo"
   }
 }
