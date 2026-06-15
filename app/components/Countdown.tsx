@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 // Date de l'edition : 16 octobre 2027
 const TARGET = new Date("2027-10-16T08:00:00+02:00").getTime();
@@ -18,14 +19,15 @@ function computeParts(): Parts {
   };
 }
 
-const UNITS: { key: keyof Parts; label: string }[] = [
-  { key: "jours", label: "Jours" },
-  { key: "heures", label: "Heures" },
-  { key: "minutes", label: "Min" },
-  { key: "secondes", label: "Sec" },
+const UNITS: { key: keyof Parts; labelKey: string }[] = [
+  { key: "jours", labelKey: "jours" },
+  { key: "heures", labelKey: "heures" },
+  { key: "minutes", labelKey: "min" },
+  { key: "secondes", labelKey: "sec" },
 ];
 
 export default function Countdown() {
+  const t = useTranslations("countdown");
   // Valeur initiale nulle pour eviter un decalage d'hydratation (SSG)
   const [parts, setParts] = useState<Parts | null>(null);
 
@@ -42,13 +44,13 @@ export default function Countdown() {
 
   return (
     <div className="inline-flex border border-white/80 shadow-[0_3px_6px_#00000029]">
-      {UNITS.map(({ key, label }) => (
+      {UNITS.map(({ key, labelKey }) => (
         <div
           key={key}
           className="flex min-w-[4.25rem] flex-col items-center justify-center border-l border-white/20 px-3 py-2.5 first:border-l-0"
         >
           <span className="text-[0.6rem] font-semibold uppercase tracking-wide text-white/80">
-            {label}
+            {t(labelKey)}
           </span>
           <span className="chiffre text-[2rem] leading-none text-white">
             {parts ? String(parts[key]).padStart(2, "0") : "--"}

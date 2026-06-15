@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import Header from "../Header";
 import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
@@ -11,6 +12,9 @@ const PARTNERS = [
 ];
 
 export default function Hero() {
+  const t = useTranslations("hero");
+  const tNav = useTranslations("nav");
+  const tCta = useTranslations("cta");
   return (
     <section
       id="top"
@@ -34,9 +38,9 @@ export default function Hero() {
         {/* Titre + badge, centres dans l'espace disponible */}
         <div className="flex flex-1 flex-col items-center justify-center gap-7">
           <h1 className="headline -rotate-[5deg] text-5xl leading-[1.15] sm:text-6xl">
-            Un ultra au
+            {t("titleLine1")}
             <br />
-            Cœur du Morbihan
+            {t("titleLine2")}
           </h1>
 
           {/* Badge date : parallelogramme bleu incline, chiffres Technor 600 + mois Inter Bold */}
@@ -46,7 +50,9 @@ export default function Hero() {
             <span className="relative font-technor text-[21px] font-semibold tracking-[1.05px]">
               16
             </span>
-            <span className="relative text-[18px] font-bold tracking-[0.9px]">octobre</span>
+            <span className="relative text-[18px] font-bold tracking-[0.9px]">
+              {t("month")}
+            </span>
             <span className="relative font-technor text-[21px] font-semibold tracking-[1.05px]">
               2027
             </span>
@@ -64,7 +70,7 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-7xl px-6 pb-8 lg:px-10">
         <div className="flex items-end justify-between gap-4">
           <ArrowButton href="#courses" variant="outline-white" direction="down">
-            Nos épreuves
+            {tNav("epreuves")}
           </ArrowButton>
 
           <ul className="hidden items-center gap-5 lg:flex">
@@ -76,7 +82,7 @@ export default function Hero() {
           </ul>
 
           <ArrowButton href="#inscription" variant="outline-white">
-            Inscription 2027
+            {tCta("inscription")}
           </ArrowButton>
         </div>
       </div>

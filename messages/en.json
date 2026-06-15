@@ -19,5 +19,19 @@
   },
   "legal": {
     "back": "Back to home"
+  },
+  "hero": {
+    "titleLine1": "An ultra in the",
+    "titleLine2": "heart of Morbihan",
+    "month": "October"
+  },
+  "cta": {
+    "inscription": "Registration 2027"
+  },
+  "countdown": {
+    "jours": "Days",
+    "heures": "Hours",
+    "min": "Min",
+    "sec": "Sec"
   }
 }

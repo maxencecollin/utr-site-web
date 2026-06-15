@@ -19,5 +19,19 @@
   },
   "legal": {
     "back": "Retour à l'accueil"
+  },
+  "hero": {
+    "titleLine1": "Un ultra au",
+    "titleLine2": "Cœur du Morbihan",
+    "month": "octobre"
+  },
+  "cta": {
+    "inscription": "Inscription 2027"
+  },
+  "countdown": {
+    "jours": "Jours",
+    "heures": "Heures",
+    "min": "Min",
+    "sec": "Sec"
   }
 }

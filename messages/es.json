@@ -19,5 +19,19 @@
   },
   "legal": {
     "back": "Volver al inicio"
+  },
+  "hero": {
+    "titleLine1": "Un ultra en el",
+    "titleLine2": "corazón del Morbihan",
+    "month": "octubre"
+  },
+  "cta": {
+    "inscription": "Inscripción 2027"
+  },
+  "countdown": {
+    "jours": "Días",
+    "heures": "Horas",
+    "min": "Min",
+    "sec": "Seg"
   }
 }
