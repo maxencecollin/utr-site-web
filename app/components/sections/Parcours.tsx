@@ -8,9 +8,9 @@ export default function Parcours() {
       {/* Espace au-dessus : la photo ne touche pas la bande noire des courses.
           Pas d'espace en dessous : le fond topo de la section suivante remonte jusqu'a la photo. */}
       <div className="pt-12">
-        {/* Conteneur a ratio fixe (composition validee a 1440x748) : tout est en
-            pourcentages, donc bandes ET carte scalent ensemble a toutes les largeurs */}
-        <div className="relative aspect-[1440/748] w-full">
+        {/* DESKTOP/TABLETTE (md+) : conteneur a ratio fixe (composition validee a 1440x748) ;
+            tout en pourcentages, donc bandes ET carte scalent ensemble a toutes les largeurs */}
+        <div className="relative hidden aspect-[1440/748] w-full md:block">
           {/* Bande du haut (55.6%) : la MEME photo des deux cotes, recadree differemment
               (horizon aligne, la carte cache la jonction) */}
           <div className="absolute inset-x-0 top-0 flex h-[55.6%]">
@@ -57,6 +57,30 @@ export default function Parcours() {
                 fill
                 sizes="(max-width: 640px) 90vw, 900px"
                 className="object-contain [filter:drop-shadow(0_2px_3px_rgba(0,0,0,0.28))]"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* MOBILE (<md) : photo d'action en banniere, puis la carte lisible en grand */}
+        <div className="md:hidden">
+          <div className="relative h-52 w-full">
+            <Image
+              src="/photos/_dsc6875.jpg"
+              alt="Coureur en mouvement"
+              fill
+              sizes="100vw"
+              className="object-cover object-[32%_42%]"
+            />
+          </div>
+          <div className="px-6 pb-12 pt-8">
+            <div className="relative mx-auto aspect-square w-full max-w-sm">
+              <Image
+                src="/photos/groupe-321.png"
+                alt="Itinéraire : Locoal-Mendon, traversée d'Étel, Sainte-Hélène"
+                fill
+                sizes="(max-width: 768px) 90vw, 384px"
+                className="object-contain"
               />
             </div>
           </div>

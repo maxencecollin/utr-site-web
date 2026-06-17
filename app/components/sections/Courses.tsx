@@ -67,8 +67,9 @@ export default function Courses() {
 
       {/* Zone cartes + bande noire de fond */}
       <div className="relative mt-12 pb-10">
-        {/* Bande noire : du milieu des "KM" jusqu'un peu sous les legendes */}
-        <div className="absolute inset-x-0 bottom-0 top-[76%] bg-black" aria-hidden="true" />
+        {/* Bande noire : sur mobile (cartes empilees) elle couvre toute la zone ;
+            sur desktop elle part du milieu des "KM" (cartes cote a cote) */}
+        <div className="absolute inset-x-0 bottom-0 top-0 bg-black sm:top-[76%]" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
