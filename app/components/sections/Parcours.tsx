@@ -8,9 +8,12 @@ export default function Parcours() {
       {/* Espace au-dessus : la photo ne touche pas la bande noire des courses.
           Pas d'espace en dessous : le fond topo de la section suivante remonte jusqu'a la photo. */}
       <div className="pt-12">
-        <div className="relative">
-          {/* Bande du haut : la MEME photo des deux cotes, recadree differemment (horizon aligne, la carte cache la jonction) */}
-          <div className="flex h-72 w-full sm:h-[26rem]">
+        {/* Conteneur a ratio fixe (composition validee a 1440x748) : tout est en
+            pourcentages, donc bandes ET carte scalent ensemble a toutes les largeurs */}
+        <div className="relative aspect-[1440/748] w-full">
+          {/* Bande du haut (55.6%) : la MEME photo des deux cotes, recadree differemment
+              (horizon aligne, la carte cache la jonction) */}
+          <div className="absolute inset-x-0 top-0 flex h-[55.6%]">
             {/* Gauche : juste l'effet bleu (mer/ciel floue, extreme gauche de la meme photo) */}
             <div
               className="relative w-[34%]"
@@ -34,8 +37,8 @@ export default function Parcours() {
             </div>
           </div>
 
-          {/* Bande du bas : foule, pleine largeur (separee de celle du haut par un filet blanc) */}
-          <div className="relative mt-3 block h-64 w-full sm:h-80">
+          {/* Bande du bas (42.8%) : foule, pleine largeur (filet blanc de 1.6% au-dessus) */}
+          <div className="absolute inset-x-0 bottom-0 h-[42.8%]">
             <Image
               src="/photos/calque-24.jpg"
               alt="Foule de coureurs"
