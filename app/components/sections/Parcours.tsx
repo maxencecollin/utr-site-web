@@ -62,9 +62,10 @@ export default function Parcours() {
           </div>
         </div>
 
-        {/* MOBILE (<md) : photo d'action en banniere, puis la carte lisible en grand */}
-        <div className="md:hidden">
-          <div className="relative h-52 w-full">
+        {/* MOBILE (<md) : les deux photos empilees + la carte qui les traverse (echo du desktop) */}
+        <div className="relative md:hidden">
+          {/* Photo du haut : le coureur */}
+          <div className="relative h-48 w-full">
             <Image
               src="/photos/_dsc6875.jpg"
               alt="Coureur en mouvement"
@@ -73,14 +74,25 @@ export default function Parcours() {
               className="object-cover object-[32%_42%]"
             />
           </div>
-          <div className="px-6 pb-12 pt-8">
-            <div className="relative mx-auto aspect-square w-full max-w-sm">
+          {/* Photo du bas : la foule (filet blanc au-dessus) */}
+          <div className="relative mt-2 h-48 w-full">
+            <Image
+              src="/photos/calque-24.jpg"
+              alt="Foule de coureurs"
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+          {/* Carte qui traverse les deux photos, centree */}
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <div className="relative h-[120%] aspect-square">
               <Image
                 src="/photos/groupe-321.png"
                 alt="Itinéraire : Locoal-Mendon, traversée d'Étel, Sainte-Hélène"
                 fill
-                sizes="(max-width: 768px) 90vw, 384px"
-                className="object-contain"
+                sizes="100vw"
+                className="object-contain [filter:drop-shadow(0_2px_4px_rgba(0,0,0,0.3))]"
               />
             </div>
           </div>

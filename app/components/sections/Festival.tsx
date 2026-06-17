@@ -10,7 +10,8 @@ import ArrowButton from "../ArrowButton";
 export default function Festival() {
   return (
     <section id="village" className="relative isolate overflow-hidden text-white">
-      <div className="relative aspect-[1440/696] w-full">
+      {/* DESKTOP/TABLETTE (md+) : composition pleine aux specs XD */}
+      <div className="relative hidden aspect-[1440/696] w-full md:block">
         {/* 1. Flou bleu en pleine largeur, sous tout le reste */}
         <Image
           src="/photos/994.jpg"
@@ -104,6 +105,67 @@ export default function Festival() {
           <ArrowButton href="#village" variant="outline-white" textSize="text-[17px]">
             Le village
           </ArrowButton>
+        </div>
+      </div>
+
+      {/* MOBILE (<md) : photo de fete + contenu empile, lisible */}
+      <div className="relative isolate md:hidden">
+        <Image
+          src="/photos/real_-jansen-d3gfrvatsd0-unsplash.jpg"
+          alt="Fête au village de Locoal-Mendon"
+          fill
+          sizes="100vw"
+          className="-z-10 object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-dark-900/55" />
+
+        <div className="px-6 py-16">
+          <h2 className="titre text-6xl leading-[0.9]">
+            Locoal
+            <br />
+            festif
+          </h2>
+
+          <div className="mt-5 flex items-center gap-2">
+            <Image
+              src="/images/icones/pin.svg?v=2"
+              alt=""
+              width={18}
+              height={27}
+              className="h-6 w-auto brightness-0 invert"
+            />
+            <span className="font-comico bg-white px-2 py-0.5 text-[13px] uppercase leading-tight text-[#317598]">
+              Locoal-Mendon
+            </span>
+          </div>
+
+          <p className="mt-5 max-w-sm text-[15px] font-medium leading-relaxed">
+            Le centre névralgique conçu comme un lieu d&apos;échange et de
+            convivialité pour tous les participants.
+          </p>
+
+          <div className="mt-5 flex items-center gap-2">
+            <Image
+              src="/images/icones/fichier-15.svg"
+              alt="Buvette"
+              width={29}
+              height={28}
+              className="h-7 w-auto brightness-0 invert"
+            />
+            <Image
+              src="/images/icones/fichier-14.svg"
+              alt="Assistance"
+              width={29}
+              height={28}
+              className="h-7 w-auto brightness-0 invert"
+            />
+          </div>
+
+          <div className="mt-8">
+            <ArrowButton href="#village" variant="outline-white">
+              Le village
+            </ArrowButton>
+          </div>
         </div>
       </div>
     </section>
