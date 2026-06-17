@@ -60,5 +60,16 @@
     "altBuvette": "Refreshments",
     "altAssistance": "First aid",
     "altPhoto": "Festivities in the Locoal-Mendon village"
+  },
+  "entrainement": {
+    "overline": "Get ready for",
+    "title": "Training",
+    "categories": ["Coaching", "Gear", "Nutrition", "Mental preparation", "Training plan"],
+    "subtitle1": "Get ready",
+    "subtitle2": "for your trail!",
+    "text": "Whether you're aiming to perform or to finish your first trail race, we share all our advice, for beginners and seasoned runners alike. We also offer a personal coach to support you on your adventure.",
+    "ready": "Stay ready!",
+    "button": "Train now!",
+    "altPhoto": "Legs of a runner mid-jump"
   }
 }

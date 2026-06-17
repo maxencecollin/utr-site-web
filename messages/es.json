@@ -60,5 +60,16 @@
     "altBuvette": "Bar",
     "altAssistance": "Asistencia",
     "altPhoto": "Fiesta en el pueblo de Locoal-Mendon"
+  },
+  "entrainement": {
+    "overline": "Prepárate para",
+    "title": "El entrenamiento",
+    "categories": ["Coaching", "Material", "Nutrición", "Preparación mental", "Plan de entrenamiento"],
+    "subtitle1": "Prepárate",
+    "subtitle2": "para tu trail!",
+    "text": "Ya sea para rendir al máximo o para terminar tu primera carrera de trail, te damos todos los consejos, tanto para principiantes como para experimentados. También te proponemos un entrenador personal para acompañarte en tu aventura.",
+    "ready": "¡Mantente listo!",
+    "button": "¡Entrénate!",
+    "altPhoto": "Piernas de un corredor en pleno salto"
   }
 }

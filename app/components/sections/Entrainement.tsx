@@ -1,15 +1,10 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
-const THEMES = [
-  "Coaching",
-  "Matériels",
-  "Nutrition",
-  "Préparation mentale",
-  "Plan d'entraînement",
-];
-
 export default function Entrainement() {
+  const t = useTranslations("entrainement");
+  const THEMES = t.raw("categories") as string[];
   return (
     <section id="entrainement" className="overflow-hidden bg-white py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -25,10 +20,10 @@ export default function Entrainement() {
 
           <div className="min-w-0 flex-1">
             <span className="font-comico inline-block bg-sable-500 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
-              Prépare-toi à
+              {t("overline")}
             </span>
             <h2 className="titre mt-2 text-3xl text-[#2c2c2c] sm:text-4xl">
-              L&apos;entraînement
+              {t("title")}
             </h2>
             {/* Pointilles plus espaces que border-dashed (tirets 11px, trous 9px) */}
             <span className="mt-3 block h-[2px] bg-[repeating-linear-gradient(90deg,#797979_0,#797979_11px,transparent_11px,transparent_20px)]" />
@@ -68,7 +63,7 @@ export default function Entrainement() {
             <div
               className="relative aspect-[665/456] w-full -rotate-1 shadow-[0_3px_6px_#00000029]"
               role="img"
-              aria-label="Jambes d'un coureur en plein saut"
+              aria-label={t("altPhoto")}
               style={{
                 backgroundImage:
                   "url(/photos/venti-views--uyedjt31zy-unsplash.jpg)",
@@ -97,22 +92,15 @@ export default function Entrainement() {
 
           <div className="flex flex-col items-start text-left lg:items-end lg:text-right">
             <h3 className="titre text-xl text-[#2c2c2c]">
-              Prépare-toi
+              {t("subtitle1")}
               <br />
-              pour ton trail !
+              {t("subtitle2")}
             </h3>
-            <p className="mt-4 max-w-sm text-dark-700">
-              Que ce soit pour performer ou terminer ta première course de
-              trail, on donne tous les conseils pour les novices et les
-              expérimentés. On te propose aussi un coach perso pour
-              t&apos;accompagner dans ton aventure.
-            </p>
-            <p className="mt-1 font-bold italic text-dark-800">
-              Tiens-toi prêt !
-            </p>
+            <p className="mt-4 max-w-sm text-dark-700">{t("text")}</p>
+            <p className="mt-1 font-bold italic text-dark-800">{t("ready")}</p>
             <div className="mt-8">
               <ArrowButton href="#entrainement" variant="brown">
-                Entraîne-toi !
+                {t("button")}
               </ArrowButton>
             </div>
           </div>
