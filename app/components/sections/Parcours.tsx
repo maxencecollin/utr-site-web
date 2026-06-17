@@ -84,9 +84,9 @@ export default function Parcours() {
               className="object-cover"
             />
           </div>
-          {/* Carte qui traverse les deux photos, centree */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <div className="relative h-[120%] aspect-square">
+          {/* Carte qui traverse les deux photos, centree (largeur bornee a l'ecran) */}
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+            <div className="relative h-[120%] w-full">
               <Image
                 src="/photos/groupe-321.png"
                 alt="Itinéraire : Locoal-Mendon, traversée d'Étel, Sainte-Hélène"

@@ -8,7 +8,8 @@ import ArrowButton from "../ArrowButton";
 export default function Benevoles() {
   return (
     <section id="benevoles" className="relative isolate overflow-hidden text-white">
-      <div className="relative aspect-[1440/694] w-full">
+      {/* DESKTOP/TABLETTE (md+) : composition pleine aux specs XD */}
+      <div className="relative hidden aspect-[1440/694] w-full md:block">
         <Image
           src="/photos/img_2769.jpg"
           alt="Bénévoles reflétés dans les lunettes d'un coureur"
@@ -64,6 +65,47 @@ export default function Benevoles() {
           <ArrowButton href="#benevoles" variant="outline-white" textSize="text-[15px]">
             Devenir bénévole
           </ArrowButton>
+        </div>
+      </div>
+
+      {/* MOBILE (<md) : contenu empile sur la photo */}
+      <div className="relative isolate md:hidden">
+        <Image
+          src="/photos/img_2769.jpg"
+          alt="Bénévoles reflétés dans les lunettes d'un coureur"
+          fill
+          sizes="100vw"
+          className="-z-10 object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-dark-900/55" />
+
+        <div className="px-6 py-16">
+          <span className="font-comico text-[15px] uppercase tracking-[2px]">
+            Rejoins l&apos;aventure
+          </span>
+          <span aria-hidden="true" className="mt-3 block h-0.5 w-16 bg-white" />
+
+          <div className="mt-6 flex items-center gap-4">
+            <Image
+              src="/images/icones/fichier-13.svg?v=2"
+              alt=""
+              width={64}
+              height={56}
+              className="h-14 w-auto shrink-0"
+            />
+            <span aria-hidden="true" className="h-14 w-0.5 -skew-x-12 bg-white/80" />
+            <h2 className="titre text-4xl leading-[1.05]">
+              Deviens
+              <br />
+              bénévole
+            </h2>
+          </div>
+
+          <div className="mt-8">
+            <ArrowButton href="#benevoles" variant="outline-white">
+              Devenir bénévole
+            </ArrowButton>
+          </div>
         </div>
       </div>
     </section>

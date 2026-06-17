@@ -95,7 +95,7 @@ export default function Entrainement() {
             />
           </div>
 
-          <div className="flex flex-col items-end text-right">
+          <div className="flex flex-col items-start text-left lg:items-end lg:text-right">
             <h3 className="titre text-xl text-[#2c2c2c]">
               Prépare-toi
               <br />
