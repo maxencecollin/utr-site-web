@@ -122,7 +122,7 @@ export default function Festival() {
         <div className="absolute inset-0 -z-10 bg-dark-900/55" />
 
         <div className="px-6 py-16">
-          <h2 className="titre text-6xl leading-[0.9]">
+          <h2 className="titre text-5xl leading-[0.9]">
             Locoal
             <br />
             festif

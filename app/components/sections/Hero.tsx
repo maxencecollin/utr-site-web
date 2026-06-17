@@ -37,7 +37,7 @@ export default function Hero() {
       <div className="flex flex-1 flex-col items-center px-6 pt-24 text-center">
         {/* Titre + badge, centres dans l'espace disponible */}
         <div className="flex flex-1 flex-col items-center justify-center gap-7">
-          <h1 className="headline -rotate-[5deg] text-5xl leading-[1.15] sm:text-6xl">
+          <h1 className="headline -rotate-[5deg] text-4xl leading-[1.15] sm:text-6xl">
             {t("titleLine1")}
             <br />
             {t("titleLine2")}

@@ -96,7 +96,7 @@ export default function Benevoles() {
               className="h-14 w-auto shrink-0"
             />
             <span aria-hidden="true" className="h-14 w-0.5 -skew-x-12 bg-white/80" />
-            <h2 className="titre text-4xl leading-[1.05]">
+            <h2 className="titre text-3xl leading-[1.05]">
               {t("title1")}
               <br />
               {t("title2")}

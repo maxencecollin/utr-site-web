@@ -22,7 +22,7 @@ export default function Entrainement() {
             <span className="font-comico inline-block bg-sable-500 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
               {t("overline")}
             </span>
-            <h2 className="titre mt-2 text-3xl text-[#2c2c2c] sm:text-4xl">
+            <h2 className="titre mt-2 text-2xl text-[#2c2c2c] sm:text-4xl">
               {t("title")}
             </h2>
             {/* Pointilles plus espaces que border-dashed (tirets 11px, trous 9px) */}
