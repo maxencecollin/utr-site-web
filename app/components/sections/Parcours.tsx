@@ -50,13 +50,13 @@ export default function Parcours() {
 
           {/* Carte d'itineraire dessinee, a gauche et grosse, traverse les photos */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-start">
-            <div className="relative -ml-[24%] h-[170%] aspect-square">
+            <div className="relative -ml-[18%] h-[185%] aspect-square">
               <Image
                 src="/photos/groupe-321.png"
                 alt="Itinéraire : Locoal-Mendon, traversée d'Étel, Sainte-Hélène"
                 fill
-                sizes="(max-width: 640px) 90vw, 640px"
-                className="object-contain drop-shadow-2xl"
+                sizes="(max-width: 640px) 90vw, 900px"
+                className="object-contain [filter:drop-shadow(0_2px_3px_rgba(0,0,0,0.28))]"
               />
             </div>
           </div>
