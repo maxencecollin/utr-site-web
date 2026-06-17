@@ -1,9 +1,12 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
-const LABELS = ["Natura 2000", "ZNIEFF", "Sites classés"];
-
 export default function Patrimoine() {
+  const t = useTranslations("patrimoine");
+  const tNav = useTranslations("nav");
+  // "Natura 2000" et "ZNIEFF" sont des designations propres (non traduites)
+  const LABELS = ["Natura 2000", "ZNIEFF", t("sitesClasses")];
   return (
     // Marge haute large : la carte du parcours depasse dans cette section, le texte commence dessous
     <section id="patrimoine" className="relative overflow-hidden bg-white pb-20 pt-56 sm:pt-72 lg:pb-28 lg:pt-80">
@@ -34,10 +37,10 @@ export default function Patrimoine() {
               {/* Tout le texte est aligne sur le bord gauche du cartouche (specs XD : left 262px) */}
               <div className="min-w-0 flex-1">
                 <span className="font-comico inline-block bg-pinede-400 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
-                  La Ria d&apos;Étel, notre
+                  {t("overline")}
                 </span>
                 <h2 className="titre mt-2 text-3xl text-[#2c2c2c] sm:text-4xl">
-                  Patrimoine naturel
+                  {t("title")}
                 </h2>
                 <span className="mt-3 block h-0 border-t-2 border-dashed border-pinede-400" />
 
@@ -52,20 +55,15 @@ export default function Patrimoine() {
                 </ul>
 
                 <h3 className="titre mt-8 text-xl text-[#2c2c2c]">
-                  Un joyau naturel
+                  {t("subtitle1")}
                   <br />
-                  de la Bretagne
+                  {t("subtitle2")}
                 </h3>
-                <p className="mt-4 max-w-md text-dark-700">
-                  Cette ancienne vallée fluviale envahie par la mer abrite une
-                  biodiversité remarquable : oiseaux migrateurs, poissons,
-                  crustacés et une flore unique. Nous nous engageons à préserver
-                  ce trésor par différentes actions :
-                </p>
+                <p className="mt-4 max-w-md text-dark-700">{t("text")}</p>
 
                 <div className="mt-8">
                   <ArrowButton href="#patrimoine" variant="green">
-                    Nos engagements
+                    {tNav("engagements")}
                   </ArrowButton>
                 </div>
               </div>
@@ -77,7 +75,7 @@ export default function Patrimoine() {
             <div className="relative aspect-[410/457] w-full -rotate-1 overflow-hidden shadow-[0_3px_6px_#00000029]">
               <Image
                 src="/photos/_dsc7014.jpg"
-                alt="Coureur dans la Ria d'Étel"
+                alt={t("altRunner")}
                 fill
                 sizes="(max-width: 1024px) 100vw, 410px"
                 className="object-cover"
@@ -100,7 +98,7 @@ export default function Patrimoine() {
             <div className="relative aspect-[1186/403] w-full -rotate-1 overflow-hidden shadow-[2px_4px_7px_#00000046]">
               <Image
                 src="/photos/ilot-de-nichtarguer-maison-bleue-morbihan-1-scaled.jpg"
-                alt="Maison aux volets bleus, Île Saint-Cado"
+                alt={t("altPanorama")}
                 fill
                 sizes="100vw"
                 className="object-cover object-[50%_68%]"
@@ -130,7 +128,7 @@ export default function Patrimoine() {
               height={16}
               className="h-4 w-4"
             />
-            Maison aux volets bleus — Île Saint-Cado (Morbihan)
+            {t("caption")}
           </figcaption>
         </figure>
       </div>

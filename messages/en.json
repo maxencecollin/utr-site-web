@@ -43,5 +43,16 @@
     "legendTrail33": "The Ria 33",
     "legendUltra80": "The full loop",
     "legendRelais": "The loop in pairs"
+  },
+  "patrimoine": {
+    "overline": "The Ria d'Étel, our",
+    "title": "Natural heritage",
+    "sitesClasses": "Protected sites",
+    "subtitle1": "A natural jewel",
+    "subtitle2": "of Brittany",
+    "text": "This former river valley flooded by the sea is home to remarkable biodiversity: migratory birds, fish, shellfish and unique flora. We are committed to preserving this treasure through various actions:",
+    "caption": "House with blue shutters — Saint-Cado Island (Morbihan)",
+    "altRunner": "Runner in the Ria d'Étel",
+    "altPanorama": "House with blue shutters, Saint-Cado Island"
   }
 }

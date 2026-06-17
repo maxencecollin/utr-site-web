@@ -43,5 +43,16 @@
     "legendTrail33": "Le 33 de la Ria",
     "legendUltra80": "Le tour complet",
     "legendRelais": "Le tour en duo"
+  },
+  "patrimoine": {
+    "overline": "La Ria d'Étel, notre",
+    "title": "Patrimoine naturel",
+    "sitesClasses": "Sites classés",
+    "subtitle1": "Un joyau naturel",
+    "subtitle2": "de la Bretagne",
+    "text": "Cette ancienne vallée fluviale envahie par la mer abrite une biodiversité remarquable : oiseaux migrateurs, poissons, crustacés et une flore unique. Nous nous engageons à préserver ce trésor par différentes actions :",
+    "caption": "Maison aux volets bleus — Île Saint-Cado (Morbihan)",
+    "altRunner": "Coureur dans la Ria d'Étel",
+    "altPanorama": "Maison aux volets bleus, Île Saint-Cado"
   }
 }

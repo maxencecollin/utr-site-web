@@ -43,5 +43,16 @@
     "legendTrail33": "El 33 de la Ria",
     "legendUltra80": "La vuelta completa",
     "legendRelais": "La vuelta en dúo"
+  },
+  "patrimoine": {
+    "overline": "La Ria d'Étel, nuestro",
+    "title": "Patrimonio natural",
+    "sitesClasses": "Espacios protegidos",
+    "subtitle1": "Una joya natural",
+    "subtitle2": "de Bretaña",
+    "text": "Este antiguo valle fluvial invadido por el mar alberga una biodiversidad excepcional: aves migratorias, peces, crustáceos y una flora única. Nos comprometemos a preservar este tesoro mediante diversas acciones:",
+    "caption": "Casa de contraventanas azules — Isla de Saint-Cado (Morbihan)",
+    "altRunner": "Corredor en la Ria d'Étel",
+    "altPanorama": "Casa de contraventanas azules, Isla de Saint-Cado"
   }
 }
