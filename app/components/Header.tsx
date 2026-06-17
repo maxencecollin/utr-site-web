@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import LanguageSelector from "./LanguageSelector";
+import MobileMenu from "./MobileMenu";
 
 const LINKS = [
   { key: "epreuves", href: "#courses" },
@@ -34,10 +35,10 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* S'inscrire : degrade bleu en parallelogramme, Inter bold italic, sans fleche */}
+          {/* S'inscrire : degrade bleu en parallelogramme (desktop ; sur mobile il est dans le menu) */}
           <Link
             href="#inscription"
-            className="group relative px-5 py-2.5 text-sm font-bold italic uppercase text-white"
+            className="group relative hidden px-5 py-2.5 text-sm font-bold italic uppercase text-white md:inline-block"
           >
             <span
               aria-hidden="true"
@@ -46,8 +47,13 @@ export default function Header() {
             <span className="relative">{t("inscrire")}</span>
           </Link>
 
-          {/* Selecteur de langue : menu deroulant (FR par defaut, EN/ES caches) */}
-          <LanguageSelector />
+          {/* Selecteur de langue (desktop ; sur mobile il est dans le menu) */}
+          <div className="hidden md:block">
+            <LanguageSelector />
+          </div>
+
+          {/* Menu burger (mobile uniquement) */}
+          <MobileMenu />
         </div>
       </nav>
     </header>
