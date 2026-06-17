@@ -54,5 +54,11 @@
     "caption": "Casa de contraventanas azules — Isla de Saint-Cado (Morbihan)",
     "altRunner": "Corredor en la Ria d'Étel",
     "altPanorama": "Casa de contraventanas azules, Isla de Saint-Cado"
+  },
+  "festival": {
+    "text": "El centro neurálgico, concebido como un lugar de encuentro y convivencia para todos los participantes.",
+    "altBuvette": "Bar",
+    "altAssistance": "Asistencia",
+    "altPhoto": "Fiesta en el pueblo de Locoal-Mendon"
   }
 }

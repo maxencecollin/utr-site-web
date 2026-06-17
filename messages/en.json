@@ -54,5 +54,11 @@
     "caption": "House with blue shutters — Saint-Cado Island (Morbihan)",
     "altRunner": "Runner in the Ria d'Étel",
     "altPanorama": "House with blue shutters, Saint-Cado Island"
+  },
+  "festival": {
+    "text": "The nerve centre, designed as a place of exchange and conviviality for all participants.",
+    "altBuvette": "Refreshments",
+    "altAssistance": "First aid",
+    "altPhoto": "Festivities in the Locoal-Mendon village"
   }
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
 /*
@@ -8,6 +9,8 @@ import ArrowButton from "../ArrowButton";
   par-dessus le flou bleu, ce qui cree la jonction en diagonale de la maquette.
 */
 export default function Festival() {
+  const t = useTranslations("festival");
+  const tNav = useTranslations("nav");
   return (
     <section id="village" className="relative isolate overflow-hidden text-white">
       {/* DESKTOP/TABLETTE (md+) : composition pleine aux specs XD */}
@@ -72,22 +75,21 @@ export default function Festival() {
 
         {/* Paragraphe (Inter medium 16px/20px, 217px de large) */}
         <p className="absolute left-[72.43%] top-[53.45%] w-[217px] text-[16px] font-medium leading-5">
-          Le centre névralgique conçu comme un lieu d&apos;échange et de
-          convivialité pour tous les participants.
+          {t("text")}
         </p>
 
         {/* Pictos buvette + secours (28px, blancs) */}
         <div className="absolute left-[72.92%] top-[67.96%] flex items-center gap-1">
           <Image
             src="/images/icones/fichier-15.svg"
-            alt="Buvette"
+            alt={t("altBuvette")}
             width={29}
             height={28}
             className="h-7 w-auto brightness-0 invert"
           />
           <Image
             src="/images/icones/fichier-14.svg"
-            alt="Assistance"
+            alt={t("altAssistance")}
             width={29}
             height={28}
             className="h-7 w-auto brightness-0 invert"
@@ -103,7 +105,7 @@ export default function Festival() {
         {/* Bouton Le village (Inter 600 17px) */}
         <div className="absolute left-[78.3%] top-[83.9%]">
           <ArrowButton href="#village" variant="outline-white" textSize="text-[17px]">
-            Le village
+            {tNav("village")}
           </ArrowButton>
         </div>
       </div>
@@ -112,7 +114,7 @@ export default function Festival() {
       <div className="relative isolate md:hidden">
         <Image
           src="/photos/real_-jansen-d3gfrvatsd0-unsplash.jpg"
-          alt="Fête au village de Locoal-Mendon"
+          alt={t("altPhoto")}
           fill
           sizes="100vw"
           className="-z-10 object-cover"
@@ -140,21 +142,20 @@ export default function Festival() {
           </div>
 
           <p className="mt-5 max-w-sm text-[15px] font-medium leading-relaxed">
-            Le centre névralgique conçu comme un lieu d&apos;échange et de
-            convivialité pour tous les participants.
+            {t("text")}
           </p>
 
           <div className="mt-5 flex items-center gap-2">
             <Image
               src="/images/icones/fichier-15.svg"
-              alt="Buvette"
+              alt={t("altBuvette")}
               width={29}
               height={28}
               className="h-7 w-auto brightness-0 invert"
             />
             <Image
               src="/images/icones/fichier-14.svg"
-              alt="Assistance"
+              alt={t("altAssistance")}
               width={29}
               height={28}
               className="h-7 w-auto brightness-0 invert"
@@ -163,7 +164,7 @@ export default function Festival() {
 
           <div className="mt-8">
             <ArrowButton href="#village" variant="outline-white">
-              Le village
+              {tNav("village")}
             </ArrowButton>
           </div>
         </div>

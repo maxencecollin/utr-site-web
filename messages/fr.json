@@ -54,5 +54,11 @@
     "caption": "Maison aux volets bleus — Île Saint-Cado (Morbihan)",
     "altRunner": "Coureur dans la Ria d'Étel",
     "altPanorama": "Maison aux volets bleus, Île Saint-Cado"
+  },
+  "festival": {
+    "text": "Le centre névralgique conçu comme un lieu d'échange et de convivialité pour tous les participants.",
+    "altBuvette": "Buvette",
+    "altAssistance": "Assistance",
+    "altPhoto": "Fête au village de Locoal-Mendon"
   }
 }
