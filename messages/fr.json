@@ -78,5 +78,12 @@
     "title2": "bénévole",
     "button": "Devenir bénévole",
     "altPhoto": "Bénévoles reflétés dans les lunettes d'un coureur"
+  },
+  "partenaires": {
+    "overline": "Merci à tous",
+    "title": "Nos partenaires",
+    "officiel": "Officiel",
+    "privilege": "Privilège",
+    "majeur": "Majeur"
   }
 }

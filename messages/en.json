@@ -78,5 +78,12 @@
     "title2": "volunteer",
     "button": "Volunteer now",
     "altPhoto": "Volunteers reflected in a runner's sunglasses"
+  },
+  "partenaires": {
+    "overline": "Thanks to all",
+    "title": "Our partners",
+    "officiel": "Official",
+    "privilege": "Privilege",
+    "majeur": "Major"
   }
 }

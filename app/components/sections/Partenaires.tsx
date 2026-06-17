@@ -1,14 +1,16 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
 const PARTNERS = [
-  { nom: "Decathlon", niveau: "Officiel", src: "/images/partenaires/decathlon.svg", w: 313, h: 203 },
-  { nom: "Kinetik", niveau: "Privilège", src: "/images/partenaires/kinetik.svg", w: 171, h: 159 },
-  { nom: "UTMB Index", niveau: "Majeur", src: "/images/partenaires/utmb-index.svg", w: 185, h: 44 },
-  { nom: "Plancoët", niveau: "Majeur", src: "/images/partenaires/plancoet.svg", w: 216, h: 101 },
+  { nom: "Decathlon", niveauKey: "officiel", src: "/images/partenaires/decathlon.svg", w: 313, h: 203 },
+  { nom: "Kinetik", niveauKey: "privilege", src: "/images/partenaires/kinetik.svg", w: 171, h: 159 },
+  { nom: "UTMB Index", niveauKey: "majeur", src: "/images/partenaires/utmb-index.svg", w: 185, h: 44 },
+  { nom: "Plancoët", niveauKey: "majeur", src: "/images/partenaires/plancoet.svg", w: 216, h: 101 },
 ];
 
 export default function Partenaires() {
+  const t = useTranslations("partenaires");
   return (
     <section id="partenaires" className="bg-white pb-24 pt-20 lg:pb-32 lg:pt-24">
       {/* En-tete : ermine + cartouche Comico noir + titre + pointilles */}
@@ -24,10 +26,10 @@ export default function Partenaires() {
 
           <div className="min-w-0 flex-1">
             <span className="font-comico inline-block bg-black px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
-              Merci à tous
+              {t("overline")}
             </span>
             <h2 className="titre mt-2 text-[30px] leading-[38px] text-[#2c2c2c] sm:text-[46px] sm:leading-[56px]">
-              Nos partenaires
+              {t("title")}
             </h2>
             <span className="mt-2 block h-[2px] bg-[repeating-linear-gradient(90deg,#101010_0,#101010_11px,transparent_11px,transparent_20px)]" />
           </div>
@@ -60,14 +62,14 @@ export default function Partenaires() {
                     className="mx-auto h-14 w-auto"
                   />
                   <span className="mt-4 block text-[13px] font-bold uppercase tracking-[2px] text-white/85">
-                    {p.niveau}
+                    {t(p.niveauKey)}
                   </span>
                 </div>
               </div>
             ))}
 
             <ArrowButton href="#partenaires" variant="outline-white" textSize="text-[14px]">
-              Nos partenaires
+              {t("title")}
             </ArrowButton>
           </div>
         </div>

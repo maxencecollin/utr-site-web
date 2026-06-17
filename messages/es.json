@@ -78,5 +78,12 @@
     "title2": "voluntario",
     "button": "Quiero ser voluntario",
     "altPhoto": "Voluntarios reflejados en las gafas de un corredor"
+  },
+  "partenaires": {
+    "overline": "Gracias a todos",
+    "title": "Nuestros colaboradores",
+    "officiel": "Oficial",
+    "privilege": "Privilegio",
+    "majeur": "Principal"
   }
 }
