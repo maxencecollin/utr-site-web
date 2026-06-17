@@ -13,7 +13,7 @@ export default function Header() {
   const t = useTranslations("nav");
   return (
     <header className="absolute inset-x-0 top-0 z-30">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-10">
         <Link href="#top" aria-label="Ultra Tour de la Ria d'Étel — accueil">
           <Image
             src="/images/logos/logo-etire-blanc.svg"
@@ -24,7 +24,7 @@ export default function Header() {
           />
         </Link>
 
-        <div className="flex items-center gap-6 lg:gap-8">
+        <div className="flex items-center gap-3 md:gap-6 lg:gap-8">
           <ul className="hidden items-center gap-6 text-sm font-bold italic uppercase text-white md:flex lg:gap-8">
             {LINKS.map((link) => (
               <li key={link.href}>
@@ -35,10 +35,10 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* S'inscrire : degrade bleu en parallelogramme (desktop ; sur mobile il est dans le menu) */}
+          {/* S'inscrire : degrade bleu en parallelogramme (toujours visible, compact sur mobile) */}
           <Link
             href="#inscription"
-            className="group relative hidden px-5 py-2.5 text-sm font-bold italic uppercase text-white md:inline-block"
+            className="group relative px-4 py-2 text-xs font-bold italic uppercase text-white md:px-5 md:py-2.5 md:text-sm"
           >
             <span
               aria-hidden="true"

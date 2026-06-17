@@ -81,21 +81,8 @@ export default function MobileMenu() {
             </a>
           ))}
 
-          {/* CTA S'inscrire (parallelogramme degrade) */}
-          <a
-            href="#inscription"
-            onClick={() => setOpen(false)}
-            className="group relative mt-5 inline-flex items-center justify-center self-start px-6 py-3 text-sm font-bold italic uppercase text-white"
-          >
-            <span
-              aria-hidden="true"
-              className="absolute inset-0 -skew-x-12 bg-[linear-gradient(90deg,#0781dd_0%,#04416f_100%)]"
-            />
-            <span className="relative">{t("inscrire")}</span>
-          </a>
-
           {/* Selecteur de langue */}
-          <div className="mt-5 flex items-center gap-3 text-base font-semibold uppercase">
+          <div className="mt-6 flex items-center gap-3 text-base font-semibold uppercase">
             <span aria-hidden="true" className="text-white/50">
               /
             </span>
