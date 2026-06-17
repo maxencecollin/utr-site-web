@@ -55,7 +55,7 @@ export default function Courses() {
               {t("overline")}
             </span>
             <div className="mt-2 flex items-baseline justify-between gap-4">
-              <h2 className="titre text-4xl text-[#2c2c2c]">{t("title")}</h2>
+              <h2 className="titre text-3xl text-[#2c2c2c] sm:text-4xl">{t("title")}</h2>
               <span className="font-technor text-[23px] font-semibold text-black">
                 / 2027
               </span>

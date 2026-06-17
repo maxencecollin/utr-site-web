@@ -26,7 +26,7 @@ export default function Partenaires() {
             <span className="font-comico inline-block bg-black px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
               Merci à tous
             </span>
-            <h2 className="titre mt-2 text-[46px] leading-[56px] text-[#2c2c2c]">
+            <h2 className="titre mt-2 text-[30px] leading-[38px] text-[#2c2c2c] sm:text-[46px] sm:leading-[56px]">
               Nos partenaires
             </h2>
             <span className="mt-2 block h-[2px] bg-[repeating-linear-gradient(90deg,#101010_0,#101010_11px,transparent_11px,transparent_20px)]" />

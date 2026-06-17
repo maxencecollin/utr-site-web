@@ -36,7 +36,7 @@ export default function Patrimoine() {
                 <span className="font-comico inline-block bg-pinede-400 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
                   La Ria d&apos;Étel, notre
                 </span>
-                <h2 className="titre mt-2 text-4xl text-[#2c2c2c]">
+                <h2 className="titre mt-2 text-3xl text-[#2c2c2c] sm:text-4xl">
                   Patrimoine naturel
                 </h2>
                 <span className="mt-3 block h-0 border-t-2 border-dashed border-pinede-400" />

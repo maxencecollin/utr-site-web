@@ -27,7 +27,7 @@ export default function Entrainement() {
             <span className="font-comico inline-block bg-sable-500 px-3 py-1 text-[15px] uppercase leading-[23px] tracking-[9px] text-white">
               Prépare-toi à
             </span>
-            <h2 className="titre mt-2 text-4xl text-[#2c2c2c]">
+            <h2 className="titre mt-2 text-3xl text-[#2c2c2c] sm:text-4xl">
               L&apos;entraînement
             </h2>
             {/* Pointilles plus espaces que border-dashed (tirets 11px, trous 9px) */}
