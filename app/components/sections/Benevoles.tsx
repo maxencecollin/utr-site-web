@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
 /*
@@ -6,13 +7,14 @@ import ArrowButton from "../ArrowButton";
   positions en pourcentages, typo en vw pour rester proportionnelle au cadre.
 */
 export default function Benevoles() {
+  const t = useTranslations("benevoles");
   return (
     <section id="benevoles" className="relative isolate overflow-hidden text-white">
       {/* DESKTOP/TABLETTE (md+) : composition pleine aux specs XD */}
       <div className="relative hidden aspect-[1440/694] w-full md:block">
         <Image
           src="/photos/img_2769.jpg"
-          alt="Bénévoles reflétés dans les lunettes d'un coureur"
+          alt={t("altPhoto")}
           fill
           priority={false}
           sizes="100vw"
@@ -22,7 +24,7 @@ export default function Benevoles() {
 
         {/* Surtitre (Comico 24px/37px) a left 368 / top 197 */}
         <span className="font-comico absolute left-[25.56%] top-[28.4%] text-[1.667vw] uppercase leading-[2.569vw]">
-          Rejoins l&apos;aventure
+          {t("overline")}
         </span>
 
         {/* Filet sous le surtitre (left 363, width 1105 -> bord droit), 2px */}
@@ -49,9 +51,9 @@ export default function Benevoles() {
 
         {/* Titre (Inter 800 italic 49px/54px) a left 340 / top 263 */}
         <h2 className="titre absolute left-[23.6%] top-[37.9%] text-[3.403vw] leading-[3.75vw]">
-          Deviens
+          {t("title1")}
           <br />
-          bénévole
+          {t("title2")}
         </h2>
 
         {/* Filet sous le titre (depuis le bord gauche jusqu'a 40.5%), 2px */}
@@ -63,7 +65,7 @@ export default function Benevoles() {
         {/* Bouton (cadre 290x54 a left 325 / top 6540) */}
         <div className="absolute left-[22.57%] top-[66.1%]">
           <ArrowButton href="#benevoles" variant="outline-white" textSize="text-[15px]">
-            Devenir bénévole
+            {t("button")}
           </ArrowButton>
         </div>
       </div>
@@ -72,7 +74,7 @@ export default function Benevoles() {
       <div className="relative isolate md:hidden">
         <Image
           src="/photos/img_2769.jpg"
-          alt="Bénévoles reflétés dans les lunettes d'un coureur"
+          alt={t("altPhoto")}
           fill
           sizes="100vw"
           className="-z-10 object-cover"
@@ -81,7 +83,7 @@ export default function Benevoles() {
 
         <div className="px-6 py-16">
           <span className="font-comico text-[15px] uppercase tracking-[2px]">
-            Rejoins l&apos;aventure
+            {t("overline")}
           </span>
           <span aria-hidden="true" className="mt-3 block h-0.5 w-16 bg-white" />
 
@@ -95,15 +97,15 @@ export default function Benevoles() {
             />
             <span aria-hidden="true" className="h-14 w-0.5 -skew-x-12 bg-white/80" />
             <h2 className="titre text-4xl leading-[1.05]">
-              Deviens
+              {t("title1")}
               <br />
-              bénévole
+              {t("title2")}
             </h2>
           </div>
 
           <div className="mt-8">
             <ArrowButton href="#benevoles" variant="outline-white">
-              Devenir bénévole
+              {t("button")}
             </ArrowButton>
           </div>
         </div>

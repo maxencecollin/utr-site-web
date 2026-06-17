@@ -71,5 +71,12 @@
     "ready": "Tiens-toi prêt !",
     "button": "Entraîne-toi !",
     "altPhoto": "Jambes d'un coureur en plein saut"
+  },
+  "benevoles": {
+    "overline": "Rejoins l'aventure",
+    "title1": "Deviens",
+    "title2": "bénévole",
+    "button": "Devenir bénévole",
+    "altPhoto": "Bénévoles reflétés dans les lunettes d'un coureur"
   }
 }

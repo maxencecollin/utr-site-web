@@ -71,5 +71,12 @@
     "ready": "¡Mantente listo!",
     "button": "¡Entrénate!",
     "altPhoto": "Piernas de un corredor en pleno salto"
+  },
+  "benevoles": {
+    "overline": "Únete a la aventura",
+    "title1": "Hazte",
+    "title2": "voluntario",
+    "button": "Quiero ser voluntario",
+    "altPhoto": "Voluntarios reflejados en las gafas de un corredor"
   }
 }

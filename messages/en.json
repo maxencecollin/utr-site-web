@@ -71,5 +71,12 @@
     "ready": "Stay ready!",
     "button": "Train now!",
     "altPhoto": "Legs of a runner mid-jump"
+  },
+  "benevoles": {
+    "overline": "Join the adventure",
+    "title1": "Become a",
+    "title2": "volunteer",
+    "button": "Volunteer now",
+    "altPhoto": "Volunteers reflected in a runner's sunglasses"
   }
 }
