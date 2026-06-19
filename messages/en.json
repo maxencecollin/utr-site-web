@@ -18,7 +18,31 @@
     "confidentialite": "Privacy"
   },
   "legal": {
-    "back": "Back to home"
+    "back": "Back to home",
+    "mentionsTitle": "Legal notice",
+    "cgvTitle": "Terms and conditions of sale",
+    "confidentialiteTitle": "Privacy policy",
+    "mentions": {
+      "editorHeading": "Site publisher",
+      "editorIntro": "The Ultra Tour de la Ria website is published by:",
+      "itemLegalName": "<b>Legal name:</b> Association ULTRA TRAIL DE LA RIA (registered association)",
+      "itemRna": "<b>RNA number:</b> W561014176",
+      "itemSiret": "<b>SIRET number:</b> 100 445 485 00012",
+      "itemAddress": "<b>Registered office:</b> 11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon, France",
+      "itemActivity": "<b>Main activity:</b> Organisation of events and sports club activities (APE code 93.12Z). The association's purpose is to create and manage outdoor sporting events that showcase the natural heritage of the Ria d'Étel.",
+      "itemPublisher": "<b>Publication director:</b> Maxence COLLIN",
+      "itemEmail": "<b>Email:</b> <mail>contact@ultratourdelaria.fr</mail>",
+      "hostingHeading": "Hosting",
+      "hostingBody": "This website is hosted by GitHub Pages, a service of GitHub Inc.<br></br><b>Address:</b> 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA<br></br><b>Website:</b> <host>pages.github.com</host>",
+      "ipHeading": "Intellectual property",
+      "ipBody": "All content on this site (text, images, videos, logos, etc.) is the exclusive property of the Ultra Tour de la Ria association, unless otherwise stated. Any reproduction, representation, modification, publication or adaptation of all or part of the site's elements is prohibited without the prior written consent of the association.",
+      "photoHeading": "Photo credits",
+      "photoBody": "The photographs on this site are the property of the Ultra Tour de la Ria association or are used with the permission of their respective authors.",
+      "liabilityHeading": "Limitation of liability",
+      "liabilityBody": "The Ultra Tour de la Ria association strives to ensure the accuracy and timeliness of the information published on this site. However, it cannot guarantee the accuracy, precision or completeness of the information provided. Accordingly, the association accepts no liability for any imprecision, inaccuracy or omission regarding the information available on this site.",
+      "contactHeading": "Contact",
+      "contactBody": "For any question about the site or the event, you can contact us at: <mail>contact@ultratourdelaria.fr</mail>"
+    }
   },
   "hero": {
     "titleLine1": "An ultra in the",

@@ -18,7 +18,31 @@
     "confidentialite": "Confidentialité"
   },
   "legal": {
-    "back": "Retour à l'accueil"
+    "back": "Retour à l'accueil",
+    "mentionsTitle": "Mentions légales",
+    "cgvTitle": "Conditions générales de vente",
+    "confidentialiteTitle": "Politique de confidentialité",
+    "mentions": {
+      "editorHeading": "Éditeur du site",
+      "editorIntro": "Le site Ultra Tour de la Ria est édité par :",
+      "itemLegalName": "<b>Nom légal :</b> Association ULTRA TRAIL DE LA RIA (Association déclarée)",
+      "itemRna": "<b>Numéro RNA :</b> W561014176",
+      "itemSiret": "<b>Numéro SIRET :</b> 100 445 485 00012",
+      "itemAddress": "<b>Siège social :</b> 11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon",
+      "itemActivity": "<b>Activité principale :</b> Organisation d'événements et activités de clubs de sports (Code APE 93.12Z). L'association a pour but la création et la gestion d'événements sportifs nature pour valoriser le patrimoine de la Ria d'Étel.",
+      "itemPublisher": "<b>Responsable de la publication :</b> Maxence COLLIN",
+      "itemEmail": "<b>Email :</b> <mail>contact@ultratourdelaria.fr</mail>",
+      "hostingHeading": "Hébergement",
+      "hostingBody": "Ce site est hébergé par GitHub Pages, un service de GitHub Inc.<br></br><b>Adresse :</b> 88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis<br></br><b>Site web :</b> <host>pages.github.com</host>",
+      "ipHeading": "Propriété intellectuelle",
+      "ipBody": "L'ensemble du contenu de ce site (textes, images, vidéos, logos, etc.) est la propriété exclusive de l'association Ultra Tour de la Ria, sauf mention contraire. Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site est interdite sans l'autorisation écrite préalable de l'association.",
+      "photoHeading": "Crédits photos",
+      "photoBody": "Les photographies présentes sur ce site sont la propriété de l'association Ultra Tour de la Ria ou utilisées avec l'autorisation de leurs auteurs respectifs.",
+      "liabilityHeading": "Limitation de responsabilité",
+      "liabilityBody": "L'association Ultra Tour de la Ria s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, elle ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition. En conséquence, l'association décline toute responsabilité pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur ce site.",
+      "contactHeading": "Contact",
+      "contactBody": "Pour toute question concernant le site ou l'événement, vous pouvez nous contacter à l'adresse : <mail>contact@ultratourdelaria.fr</mail>"
+    }
   },
   "hero": {
     "titleLine1": "Un ultra au",
