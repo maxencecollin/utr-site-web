@@ -42,6 +42,21 @@
       "liabilityBody": "The Ultra Tour de la Ria association strives to ensure the accuracy and timeliness of the information published on this site. However, it cannot guarantee the accuracy, precision or completeness of the information provided. Accordingly, the association accepts no liability for any imprecision, inaccuracy or omission regarding the information available on this site.",
       "contactHeading": "Contact",
       "contactBody": "For any question about the site or the event, you can contact us at: <mail>contact@ultratourdelaria.fr</mail>"
+    },
+    "cgv": {
+      "klikegoHeading": "Registration via Klikego",
+      "klikegoBody": "Registration for the Ultra Tour de la Ria is handled exclusively by the <b>Klikego</b> platform. By registering for the event, you accept Klikego's terms and conditions of sale.",
+      "boxIntro": "During registration on Klikego, you will have access to the full terms and conditions of sale, which cover:",
+      "boxItem1": "Registration and payment terms",
+      "boxItem2": "Cancellation and refund conditions",
+      "boxItem3": "Bib transfer",
+      "boxItem4": "Protection of personal data",
+      "reglementHeading": "Event rules",
+      "reglementBody": "By registering for the Ultra Tour de la Ria, you also agree to comply with the <reg>event rules</reg>.",
+      "contactHeading": "Contact",
+      "contactBody": "For any question about your registration, you can contact:<br></br><br></br><b>Klikego</b>: directly via their platform for technical questions related to registration<br></br><br></br><b>Ultra Tour de la Ria association</b>: <mail>contact@ultratourdelaria.fr</mail> for questions about the event",
+      "insuranceHeading": "Insurance",
+      "insuranceBody": "The organisation of the Ultra Tour de la Ria is covered by civil liability insurance. Participants are advised to check their own insurance coverage for trail running. An FFA licence or individual insurance covering trail running is recommended."
     }
   },
   "hero": {

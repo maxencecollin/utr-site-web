@@ -42,6 +42,21 @@
       "liabilityBody": "L'association Ultra Tour de la Ria s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Toutefois, elle ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition. En conséquence, l'association décline toute responsabilité pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur ce site.",
       "contactHeading": "Contact",
       "contactBody": "Pour toute question concernant le site ou l'événement, vous pouvez nous contacter à l'adresse : <mail>contact@ultratourdelaria.fr</mail>"
+    },
+    "cgv": {
+      "klikegoHeading": "Inscriptions via Klikego",
+      "klikegoBody": "Les inscriptions à l'Ultra Tour de la Ria sont gérées exclusivement par la plateforme <b>Klikego</b>. En vous inscrivant à l'événement, vous acceptez les conditions générales de vente de Klikego.",
+      "boxIntro": "Lors de votre inscription sur Klikego, vous aurez accès aux conditions générales de vente complètes qui régissent :",
+      "boxItem1": "Les modalités d'inscription et de paiement",
+      "boxItem2": "Les conditions d'annulation et de remboursement",
+      "boxItem3": "Le transfert de dossard",
+      "boxItem4": "La protection des données personnelles",
+      "reglementHeading": "Règlement de l'épreuve",
+      "reglementBody": "En vous inscrivant à l'Ultra Tour de la Ria, vous vous engagez également à respecter le <reg>règlement de l'épreuve</reg>.",
+      "contactHeading": "Contact",
+      "contactBody": "Pour toute question concernant votre inscription, vous pouvez contacter :<br></br><br></br><b>Klikego</b> : directement via leur plateforme pour les questions techniques liées à l'inscription<br></br><br></br><b>Association Ultra Tour de la Ria</b> : <mail>contact@ultratourdelaria.fr</mail> pour les questions relatives à l'événement",
+      "insuranceHeading": "Assurance",
+      "insuranceBody": "L'organisation de l'Ultra Tour de la Ria est couverte par une assurance responsabilité civile. Les participants sont invités à vérifier leur propre couverture d'assurance pour la pratique du trail running. Une licence FFA ou une assurance individuelle couvrant la pratique du trail est recommandée."
     }
   },
   "hero": {
