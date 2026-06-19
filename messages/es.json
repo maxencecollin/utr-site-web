@@ -57,6 +57,28 @@
       "contactBody": "Para cualquier pregunta sobre su inscripción, puede contactar:<br></br><br></br><b>Klikego</b>: directamente a través de su plataforma para las cuestiones técnicas relacionadas con la inscripción<br></br><br></br><b>Asociación Ultra Tour de la Ria</b>: <mail>contact@ultratourdelaria.fr</mail> para las cuestiones relativas al evento",
       "insuranceHeading": "Seguro",
       "insuranceBody": "La organización del Ultra Tour de la Ria está cubierta por un seguro de responsabilidad civil. Se recomienda a los participantes que verifiquen su propia cobertura de seguro para la práctica del trail running. Se recomienda una licencia FFA o un seguro individual que cubra la práctica del trail."
+    },
+    "confidentialite": {
+      "intro": "La asociación Ultra Tour de la Ria concede gran importancia a la protección de sus datos personales. Esta política de privacidad le informa sobre cómo se recogen y utilizan sus datos.",
+      "controllerHeading": "Responsable del tratamiento",
+      "controllerBody": "El responsable del tratamiento de los datos es:<br></br><b>Asociación Ultra Tour de la Ria</b><br></br>11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon, Francia<br></br>Correo electrónico: <mail>contact@ultratourdelaria.fr</mail>",
+      "dataHeading": "Datos recogidos en este sitio",
+      "dataBody": "Este sitio de presentación no recoge ningún dato personal directamente. En este sitio no se utiliza ningún formulario de contacto, ninguna suscripción a un boletín ni ninguna cookie de seguimiento.",
+      "registrationHeading": "Inscripciones al evento",
+      "registrationBody": "Las inscripciones al Ultra Tour de la Ria se gestionan a través de la plataforma <b>Klikego</b>. Cuando se inscribe en el evento, sus datos personales son recogidos y tratados por Klikego de acuerdo con su propia política de privacidad. Le invitamos a consultar las condiciones de Klikego al inscribirse.<br></br><br></br>Los datos de inscripción transmitidos a la asociación Ultra Tour de la Ria se utilizan únicamente para la organización del evento: gestión de dorsales, comunicación relativa a la carrera, resultados, etc.",
+      "cookiesHeading": "Cookies",
+      "cookiesBody": "Este sitio no utiliza cookies de seguimiento ni cookies publicitarias. El alojamiento (GitHub Pages) solo puede utilizar cookies técnicas esenciales para el funcionamiento del sitio.",
+      "rightsHeading": "Sus derechos",
+      "rightsIntro": "De conformidad con el Reglamento General de Protección de Datos (RGPD), dispone de los siguientes derechos en relación con sus datos personales:",
+      "right1": "Derecho de acceso a sus datos",
+      "right2": "Derecho de rectificación",
+      "right3": "Derecho de supresión",
+      "right4": "Derecho a la limitación del tratamiento",
+      "right5": "Derecho a la portabilidad de los datos",
+      "right6": "Derecho de oposición",
+      "rightsContact": "Para ejercer estos derechos, puede contactarnos en: <mail>contact@ultratourdelaria.fr</mail>",
+      "updateHeading": "Modificación de la política",
+      "updateBody": "Esta política de privacidad puede modificarse en cualquier momento. La fecha de la última actualización se indica a continuación.<br></br><br></br><b>Última actualización:</b> enero de 2027"
     }
   },
   "hero": {
