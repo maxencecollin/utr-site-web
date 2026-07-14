@@ -1,12 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import LanguageSelector from "./LanguageSelector";
 import MobileMenu from "./MobileMenu";
 
+// Chemins absolus (avec /) : fonctionnent aussi depuis les pages de course
 const LINKS = [
-  { key: "epreuves", href: "#courses" },
-  { key: "engagements", href: "#patrimoine" },
+  { key: "epreuves", href: "/#courses" },
+  { key: "engagements", href: "/#patrimoine" },
 ] as const;
 
 export default function Header() {
@@ -14,7 +15,7 @@ export default function Header() {
   return (
     <header className="absolute inset-x-0 top-0 z-30">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-10">
-        <Link href="#top" aria-label="Ultra Tour de la Ria d'Étel — accueil">
+        <Link href="/" aria-label="Ultra Tour de la Ria d'Étel — accueil">
           <Image
             src="/images/logos/logo-etire-blanc.svg"
             alt="Ultra Tour de la Ria d'Étel"
@@ -37,7 +38,7 @@ export default function Header() {
           </ul>
 
           {/* S'inscrire : degrade bleu en parallelogramme (toujours visible, compact sur mobile) */}
-          <Link
+          <a
             href="#inscription"
             className="group relative px-4 py-2 text-xs font-bold italic uppercase text-white md:px-5 md:py-2.5 md:text-sm"
           >
@@ -46,7 +47,7 @@ export default function Header() {
               className="absolute inset-0 -skew-x-12 bg-[linear-gradient(90deg,#0781dd_0%,#04416f_100%)] transition-opacity group-hover:opacity-90"
             />
             <span className="relative">{t("inscrire")}</span>
-          </Link>
+          </a>
 
           {/* Selecteur de langue (desktop ; sur mobile il est dans le menu) */}
           <div className="hidden md:block">

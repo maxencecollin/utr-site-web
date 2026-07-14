@@ -2,16 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 
+// Chemins absolus (avec /) : fonctionnent aussi depuis les pages de course
 const NAV = [
-  { key: "courses", href: "#courses" },
-  { key: "parcours", href: "#parcours" },
-  { key: "patrimoine", href: "#patrimoine" },
-  { key: "village", href: "#village" },
-  { key: "benevoles", href: "#benevoles" },
-  { key: "partenaires", href: "#partenaires" },
+  { key: "courses", href: "/#courses" },
+  { key: "parcours", href: "/#parcours" },
+  { key: "patrimoine", href: "/#patrimoine" },
+  { key: "village", href: "/#village" },
+  { key: "benevoles", href: "/#benevoles" },
+  { key: "partenaires", href: "/#partenaires" },
 ] as const;
 
 export default function MobileMenu() {
@@ -71,14 +72,14 @@ export default function MobileMenu() {
       >
         <nav className="flex flex-col px-6 py-4">
           {NAV.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
               className="border-b border-white/10 py-3 text-lg font-bold italic uppercase tracking-wide text-white transition-colors hover:text-ria-200"
             >
               {t(item.key)}
-            </a>
+            </Link>
           ))}
 
           {/* Selecteur de langue */}

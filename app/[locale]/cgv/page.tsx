@@ -16,7 +16,7 @@ const tags = {
   ),
   reg: (chunks: ReactNode) => (
     <a
-      href="/docs/Reglement_Ultra_Trail_Ria_2027.pdf"
+      href="/docs/Reglement_Ultra_Tour_Ria_2027.pdf"
       target="_blank"
       rel="noopener noreferrer"
     >

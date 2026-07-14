@@ -2,13 +2,14 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
+// Chemins absolus (avec /) : fonctionnent aussi depuis les pages de course
 const NAV = [
-  { key: "courses", href: "#courses" },
-  { key: "parcours", href: "#parcours" },
-  { key: "patrimoine", href: "#patrimoine" },
-  { key: "village", href: "#village" },
-  { key: "benevoles", href: "#benevoles" },
-  { key: "partenaires", href: "#partenaires" },
+  { key: "courses", href: "/#courses" },
+  { key: "parcours", href: "/#parcours" },
+  { key: "patrimoine", href: "/#patrimoine" },
+  { key: "village", href: "/#village" },
+  { key: "benevoles", href: "/#benevoles" },
+  { key: "partenaires", href: "/#partenaires" },
 ] as const;
 
 const LEGAL = [
@@ -43,13 +44,13 @@ export default function Footer() {
 
           <nav className="grid grid-cols-2 gap-x-12 gap-y-2 text-sm">
             {NAV.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-ria-100 transition-colors hover:text-white"
               >
                 {tNav(item.key)}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

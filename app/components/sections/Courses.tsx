@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import ArrowButton from "../ArrowButton";
 
 // Le gros lettrage : distance fixe (33/80 KM, universel) ou mot "relais" traduit (2 lignes).
+// href : page dediee de la course (les pages 33 km et relais arrivent ensuite).
 const COURSES = [
   {
     id: "trail33",
@@ -12,6 +14,7 @@ const COURSES = [
     photo: "/photos/_dsc6696-girl.jpg",
     flip: false,
     zoom: "scale-110",
+    href: null as string | null,
   },
   {
     id: "ultra80",
@@ -21,6 +24,7 @@ const COURSES = [
     photo: "/photos/_dsc6870-guy.jpg",
     flip: true,
     zoom: "scale-110",
+    href: "/80km" as string | null,
   },
   {
     id: "relais",
@@ -30,6 +34,7 @@ const COURSES = [
     photo: "/photos/_dsc6509-girl2.jpg",
     flip: false,
     zoom: "scale-125",
+    href: null as string | null,
   },
 ];
 
@@ -76,28 +81,40 @@ export default function Courses() {
             {COURSES.map((course) => {
               const legend = t(course.legendKey);
               const lignes = course.lignes ?? [t("relaisLine1"), t("relaisLine2")];
+              const carte = (
+                <>
+                  {/* Conteneur de zoom (le flip reste sur l'image pour eviter le conflit de transform) */}
+                  <div className={`absolute inset-0 ${course.zoom}`}>
+                    <Image
+                      src={course.photo}
+                      alt={legend}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className={`object-cover ${course.flip ? "-scale-x-100" : ""}`}
+                    />
+                  </div>
+                  <span className="chiffre absolute inset-x-0 bottom-[10%] text-center text-7xl leading-[0.92] text-white [text-shadow:0_3px_6px_#00000086] sm:text-8xl">
+                    {lignes[0]}
+                    <br />
+                    {lignes[1]}
+                  </span>
+                </>
+              );
+              const carteClass = `relative aspect-[425/654] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`;
               return (
                 <figure key={course.id} className="flex flex-col">
-                  {/* Carte photo (seule a etre legerement inclinee) */}
-                  <div
-                    className={`relative aspect-[425/654] w-full overflow-hidden shadow-[0_3px_8px_#00000029] ${course.rotation}`}
-                  >
-                    {/* Conteneur de zoom (le flip reste sur l'image pour eviter le conflit de transform) */}
-                    <div className={`absolute inset-0 ${course.zoom}`}>
-                      <Image
-                        src={course.photo}
-                        alt={legend}
-                        fill
-                        sizes="(max-width: 640px) 100vw, 33vw"
-                        className={`object-cover ${course.flip ? "-scale-x-100" : ""}`}
-                      />
-                    </div>
-                    <span className="chiffre absolute inset-x-0 bottom-[10%] text-center text-7xl leading-[0.92] text-white [text-shadow:0_3px_6px_#00000086] sm:text-8xl">
-                      {lignes[0]}
-                      <br />
-                      {lignes[1]}
-                    </span>
-                  </div>
+                  {/* Carte photo (seule a etre legerement inclinee) ; cliquable si la page existe */}
+                  {course.href ? (
+                    <Link
+                      href={course.href}
+                      aria-label={legend}
+                      className={`${carteClass} transition-transform duration-300 hover:scale-[1.02]`}
+                    >
+                      {carte}
+                    </Link>
+                  ) : (
+                    <div className={carteClass}>{carte}</div>
+                  )}
                   {/* Legende : droite (non inclinee), sur la bande noire */}
                   <figcaption className="mt-5 text-center text-[13px] font-semibold italic uppercase tracking-[1.17px] text-white">
                     {legend}
