@@ -14,10 +14,13 @@ import CourseAutresEpreuves, {
 import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Ultra 80 km — Ultra Tour de la Ria d'Étel",
+  title: "Trail 33 km — Ultra Tour de la Ria d'Étel",
   description:
-    "L'Ultra 80 km, le tour complet de la Ria d'Étel en semi-autonomie : parcours, infos pratiques, ravitaillements et inscription. 16 octobre 2027, Locoal-Mendon.",
+    "Le 33 de la Ria, un trail entre sentiers techniques et paysages emblématiques de la Ria d'Étel : parcours, infos pratiques et inscription. 16 octobre 2027, Sainte-Hélène.",
 };
+
+// Declinaison verte de la maquette pour le 33 km
+const VERT = "bg-[#4a5a20]";
 
 // Page dediee a l'entrainement a venir ; en attendant, ancre de la landing
 const HREF_ENTRAINEMENT = "/#entrainement";
@@ -32,11 +35,11 @@ const HOTSPOTS: Hotspot[] = [
 
 const AUTRES_EPREUVES: AutreEpreuve[] = [
   {
-    href: "/33km",
-    photo: "/photos/_dsc6696-girl.jpg",
+    href: "/80km",
+    photo: "/photos/_dsc6870-guy.jpg",
     photoPosition: "50% 20%",
-    lines: ["33", "KM"],
-    legendKey: "legendTrail33",
+    lines: ["80", "KM"],
+    legendKey: "legendUltra80",
   },
   {
     href: "/relais",
@@ -47,7 +50,7 @@ const AUTRES_EPREUVES: AutreEpreuve[] = [
   },
 ];
 
-export default async function Ultra80({
+export default async function Trail33({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -55,34 +58,41 @@ export default async function Ultra80({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("course");
-  const t80 = await getTranslations("course80");
+  const t33 = await getTranslations("course33");
 
   return (
     <>
       <CourseHero
-        titleLines={["80 KM"]}
-        photo="/photos/_dsc6870-guy.jpg"
-        photoAlt={t80("heroAlt")}
-        photoPosition="50% 22%"
-        utmbIndex="50K"
+        titleLines={["33 KM"]}
+        photo="/photos/_dsc6696-girl.jpg"
+        photoAlt={t33("heroAlt")}
+        photoPosition="50% 20%"
+        utmbIndex="20K"
       />
       <CourseEpreuve
-        trailing="/ 80 KM"
+        trailing="/ 33 KM"
         photo="/photos/materiel-course.jpg"
         photoAlt={t("altMateriel")}
         hotspots={HOTSPOTS}
-        utmbIndex="50K"
+        utmbIndex="20K"
       />
-      <CourseInfos namespace="course80" utmbIndex="50K" />
+      <CourseInfos
+        namespace="course33"
+        utmbIndex="20K"
+        accent={VERT}
+        buttonVariant="green"
+      />
       <CourseParcours
-        traceUrl="/docs/UTR-80km-relais.gpx"
-        legendTrace={t80("legendTrace")}
+        traceUrl="/docs/UTR-33km.gpx"
+        waypointsUrl="/docs/UTR-80km-relais.gpx"
+        legendTrace={t33("legendTrace")}
+        bgClass={VERT}
       />
       <CourseEnvironnement />
-      <CoursePrepare />
-      <CourseFestif />
-      <CourseAutresEpreuves epreuves={AUTRES_EPREUVES} />
-      <CoursePartenaires />
+      <CoursePrepare stripeClass={VERT} />
+      <CourseFestif blur="/photos/blur-vert.jpg" />
+      <CourseAutresEpreuves epreuves={AUTRES_EPREUVES} bandClass={VERT} />
+      <CoursePartenaires photo="/photos/blur-vert.jpg" />
       <Footer />
     </>
   );

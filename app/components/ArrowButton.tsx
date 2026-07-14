@@ -1,6 +1,6 @@
 import { Link } from "@/i18n/navigation";
 
-type Variant =
+export type ArrowButtonVariant =
   | "blue"
   | "blue-gradient"
   | "green"
@@ -8,6 +8,8 @@ type Variant =
   | "dark"
   | "outline-dark"
   | "outline-white";
+
+type Variant = ArrowButtonVariant;
 
 type Direction = "right" | "up" | "down";
 

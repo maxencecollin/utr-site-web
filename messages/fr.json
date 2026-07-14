@@ -201,5 +201,18 @@
     "retraitValue": "Vendredi 15 octobre",
     "retraitSub": "Samedi 16 octobre",
     "legendTrace": "80 km – Parcours complet"
+  },
+  "course33": {
+    "heroAlt": "Coureuse du trail 33 km avec lunettes de soleil",
+    "infoTitle": "Le 33 de la Ria, une évasion mêlant nature et effort. Une aventure qui vous donnera envie d'aller toujours plus loin !",
+    "description": "Le 33 km vous emmène à la découverte des paysages emblématiques de la Ria d'Étel, alternant entre sentiers techniques et paysages à couper le souffle.",
+    "dateValue": "16 octobre 2027",
+    "distanceValue": "33 km",
+    "lieuValue": "Sainte-Hélène",
+    "departValue": "10 heures",
+    "limiteValue": "6 heures",
+    "retraitValue": "Vendredi 15 octobre",
+    "retraitSub": "Samedi 16 octobre",
+    "legendTrace": "33 km – Parcours complet"
   }
 }

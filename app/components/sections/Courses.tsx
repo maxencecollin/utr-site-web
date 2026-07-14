@@ -14,7 +14,7 @@ const COURSES = [
     photo: "/photos/_dsc6696-girl.jpg",
     flip: false,
     zoom: "scale-110",
-    href: null as string | null,
+    href: "/33km" as string | null,
   },
   {
     id: "ultra80",

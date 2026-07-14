@@ -5,24 +5,34 @@ import ParcoursMap from "./ParcoursMap";
 
 type Props = {
   traceUrl: string;
+  /* GPX des waypoints (ravitos...) si different de la trace */
+  waypointsUrl?: string;
   /* Libelle de la trace dans la legende (ex. "80 km - Parcours complet") */
   legendTrace: string;
   /* Prefixes (en minuscules) des waypoints du GPX a afficher en marqueurs */
   markers?: string[];
+  /* Couleur de fond de la section (classe bg-*), marine par defaut */
+  bgClass?: string;
 };
 
-/* Section "Le parcours" : fond marine + motif topo, carte OpenStreetMap
+/* Section "Le parcours" : fond colore + motif topo, carte OpenStreetMap
    interactive avec legende, boutons GPX / inscription (maquette XD) */
-export default function CourseParcours({ traceUrl, legendTrace, markers }: Props) {
+export default function CourseParcours({
+  traceUrl,
+  waypointsUrl,
+  legendTrace,
+  markers,
+  bgClass = "bg-[#0d3757]",
+}: Props) {
   const t = useTranslations("course");
   const tCta = useTranslations("cta");
 
   return (
-    <section id="parcours" className="relative overflow-hidden bg-[#0d3757] py-16 text-white lg:py-20">
-      {/* Motif topographique en filigrane (lignes claires sur marine) */}
+    <section id="parcours" className={`relative overflow-hidden py-16 text-white lg:py-20 ${bgClass}`}>
+      {/* Motif topographique en filigrane (lignes blanches, maquette) */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-30 invert"
+        className="absolute inset-0 opacity-15 brightness-0 invert"
         style={{
           backgroundImage: "url(/images/deco/topographie.svg)",
           backgroundSize: "1400px auto",
@@ -44,6 +54,7 @@ export default function CourseParcours({ traceUrl, legendTrace, markers }: Props
         <div className="relative mt-10">
           <ParcoursMap
             traceUrl={traceUrl}
+            waypointsUrl={waypointsUrl}
             markers={markers}
             startLabel={t("departArrivee")}
             className="h-[420px] w-full border-2 border-white md:h-[520px]"

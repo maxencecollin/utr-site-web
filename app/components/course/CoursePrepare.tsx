@@ -6,11 +6,16 @@ import CourseSectionHeading from "./CourseSectionHeading";
 // Page dediee a l'entrainement a venir ; en attendant, ancre de la landing
 const HREF_ENTRAINEMENT = "/#entrainement";
 
+type Props = {
+  /* Couleur des bandes decoratives (classe bg-*), marine par defaut */
+  stripeClass?: string;
+};
+
 /*
   Section "Prepare ta course" : echo de la section Entrainement de la landing
-  (photo scotchee + traits, texte a droite), avec les traits en bleu marine.
+  (photo scotchee + traits, texte a droite), avec les traits a la couleur de la course.
 */
-export default function CoursePrepare() {
+export default function CoursePrepare({ stripeClass = "bg-[#0d3757]" }: Props) {
   const t = useTranslations("course");
   const tEntrainement = useTranslations("entrainement");
 
@@ -25,18 +30,18 @@ export default function CoursePrepare() {
 
         <div className="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-[55%_1fr]">
           <div className="relative">
-            {/* Bandes marines, plus fines que les marrons de la landing (maquette) */}
+            {/* Bandes colorees, plus fines que les marrons de la landing (maquette) */}
             <span
               aria-hidden="true"
-              className="absolute right-[75.2%] top-[21%] h-[7px] w-screen -rotate-1 bg-[#0d3757]"
+              className={`absolute right-[75.2%] top-[21%] h-[7px] w-screen -rotate-1 ${stripeClass}`}
             />
             <span
               aria-hidden="true"
-              className="absolute left-[80.4%] top-[68.4%] h-[7px] w-[276px] -rotate-1 bg-[#0d3757]"
+              className={`absolute left-[80.4%] top-[68.4%] h-[7px] w-[276px] -rotate-1 ${stripeClass}`}
             />
             <span
               aria-hidden="true"
-              className="absolute left-[82.7%] top-[77.6%] h-[7px] w-[276px] -rotate-1 bg-[#0d3757]"
+              className={`absolute left-[82.7%] top-[77.6%] h-[7px] w-[276px] -rotate-1 ${stripeClass}`}
             />
 
             {/* Photo scotchee, legerement inclinee */}

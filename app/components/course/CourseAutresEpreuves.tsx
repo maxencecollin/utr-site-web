@@ -18,13 +18,18 @@ export type AutreEpreuve = {
 
 type Props = {
   epreuves: AutreEpreuve[];
+  /* Couleur de la bande de fond (classe bg-*), marine par defaut */
+  bandClass?: string;
 };
 
 /*
   Section "Nos autres epreuves" : deux cartes parallelogrammes sur bande
   marine, boutons details / inscription (maquette XD).
 */
-export default function CourseAutresEpreuves({ epreuves }: Props) {
+export default function CourseAutresEpreuves({
+  epreuves,
+  bandClass = "bg-[#0d3757]",
+}: Props) {
   const t = useTranslations("course");
   const tCourses = useTranslations("courses");
   const tCta = useTranslations("cta");
@@ -40,17 +45,14 @@ export default function CourseAutresEpreuves({ epreuves }: Props) {
         />
       </div>
 
-      {/* Barre decorative marine a gauche (maquette) */}
-      <span
-        aria-hidden="true"
-        className="mt-10 block h-3 w-[32%] bg-[#0d3757]"
-      />
+      {/* Barre decorative a gauche (maquette) */}
+      <span aria-hidden="true" className={`mt-10 block h-3 w-[32%] ${bandClass}`} />
 
-      {/* Cartes + bande marine de fond */}
+      {/* Cartes + bande de fond */}
       <div className="relative">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 bottom-0 top-0 bg-[#0d3757] sm:top-[38%]"
+          className={`absolute inset-x-0 bottom-0 top-0 sm:top-[38%] ${bandClass}`}
         />
 
         <div className="relative mx-auto max-w-6xl px-6 pt-6 lg:px-10">

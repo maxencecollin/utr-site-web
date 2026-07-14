@@ -8,16 +8,21 @@ import ArrowButton from "../ArrowButton";
   La photo de fete (calque 1020x1486 demarrant a y 4050) est posee en darken
   par-dessus le flou bleu, ce qui cree la jonction en diagonale de la maquette.
 */
-export default function Festival() {
+type Props = {
+  /* Fond flou de droite : bleu par defaut, decline par les pages de course */
+  blur?: string;
+};
+
+export default function Festival({ blur = "/photos/994.jpg" }: Props) {
   const t = useTranslations("festival");
   const tNav = useTranslations("nav");
   return (
     <section id="village" className="relative isolate overflow-hidden text-white">
       {/* DESKTOP/TABLETTE (md+) : composition pleine aux specs XD */}
       <div className="relative hidden aspect-[1440/696] w-full md:block">
-        {/* 1. Flou bleu en pleine largeur, sous tout le reste */}
+        {/* 1. Flou en pleine largeur, sous tout le reste */}
         <Image
-          src="/photos/994.jpg"
+          src={blur}
           alt=""
           fill
           sizes="100vw"
@@ -36,11 +41,11 @@ export default function Festival() {
           }}
         />
 
-        {/* 3. Couche de bleu pur a droite : bord gauche en diagonale
+        {/* 3. Couche de flou pur a droite : bord gauche en diagonale
               (repousse vers la droite en haut, au bord de la couche en bas) */}
         <div className="absolute right-0 top-0 h-full w-[44%] [clip-path:polygon(25%_0,100%_0,100%_100%,0_100%)]">
           <Image
-            src="/photos/994.jpg"
+            src={blur}
             alt=""
             fill
             sizes="47vw"

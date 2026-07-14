@@ -9,14 +9,19 @@ const PARTNERS = [
   { nom: "Plancoët", niveauKey: "majeur", src: "/images/partenaires/plancoet.svg", w: 216, h: 101 },
 ];
 
-/* Bandeau bleu pleine largeur : logos + niveaux + bouton.
+type Props = {
+  /* Fond flou du bandeau ; bleu par defaut, vert/marron sur les pages de course */
+  photo?: string;
+};
+
+/* Bandeau pleine largeur : logos + niveaux + bouton.
    Partage entre la section Partenaires de la landing et les pages de course. */
-export default function PartnersBand() {
+export default function PartnersBand({ photo = "/photos/994.jpg" }: Props) {
   const t = useTranslations("partenaires");
   return (
     <div className="relative isolate overflow-hidden">
       <Image
-        src="/photos/994.jpg"
+        src={photo}
         alt=""
         fill
         sizes="100vw"

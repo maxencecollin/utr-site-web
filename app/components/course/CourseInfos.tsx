@@ -1,29 +1,35 @@
 import { useTranslations } from "next-intl";
-import ArrowButton from "../ArrowButton";
+import ArrowButton, { type ArrowButtonVariant } from "../ArrowButton";
 import UtmbBadge from "./UtmbBadge";
 
 type Props = {
   /* Namespace des contenus specifiques a la course (ex. "course80") */
   namespace: string;
   utmbIndex?: string;
+  /* Couleur des cartouches de la grille (classe bg-*), bleu Ria par defaut */
+  accent?: string;
+  /* Variante du bouton d'inscription */
+  buttonVariant?: ArrowButtonVariant;
 };
 
-/* Etiquette bleue inclinee (Comico 18px blanc sur #0781DC, specs XD) + valeur */
+/* Etiquette inclinee (Comico 18px blanc sur fond accent, specs XD) + valeur */
 function InfoItem({
   label,
   value,
   sub,
+  accent,
   children,
 }: {
   label: string;
   value?: string;
   sub?: string;
+  accent: string;
   children?: React.ReactNode;
 }) {
   return (
     <div>
       <dt className="relative inline-block px-3 py-px">
-        <span aria-hidden="true" className="absolute inset-0 -skew-x-12 bg-ria-500" />
+        <span aria-hidden="true" className={`absolute inset-0 -skew-x-12 ${accent}`} />
         <span className="font-comico relative text-[18px] uppercase leading-[28px] text-white">
           {label}
         </span>
@@ -37,7 +43,12 @@ function InfoItem({
   );
 }
 
-export default function CourseInfos({ namespace, utmbIndex }: Props) {
+export default function CourseInfos({
+  namespace,
+  utmbIndex,
+  accent = "bg-ria-500",
+  buttonVariant = "blue-gradient",
+}: Props) {
   const t = useTranslations(namespace);
   const tCourse = useTranslations("course");
   const tCta = useTranslations("cta");
@@ -82,7 +93,7 @@ export default function CourseInfos({ namespace, utmbIndex }: Props) {
             <p className="text-[16px] leading-relaxed text-dark-700">
               {t("description")}
             </p>
-            <ArrowButton href="#inscription" variant="blue-gradient">
+            <ArrowButton href="#inscription" variant={buttonVariant}>
               {tCta("inscription")}
             </ArrowButton>
           </div>
@@ -92,21 +103,22 @@ export default function CourseInfos({ namespace, utmbIndex }: Props) {
             colonnes a 0 / 250 / 450 / 770 px), trait qui s'arrete apres le contenu */}
         <dl className="mt-16">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-[210px_160px_280px_1fr] lg:gap-x-10">
-            <InfoItem label={tCourse("date")} value={t("dateValue")} />
-            <InfoItem label={tCourse("distance")} value={t("distanceValue")} />
-            <InfoItem label={tCourse("lieu")} value={t("lieuValue")} />
+            <InfoItem accent={accent} label={tCourse("date")} value={t("dateValue")} />
+            <InfoItem accent={accent} label={tCourse("distance")} value={t("distanceValue")} />
+            <InfoItem accent={accent} label={tCourse("lieu")} value={t("lieuValue")} />
           </div>
           <span aria-hidden="true" className="mt-6 block h-px w-full max-w-[910px] bg-[#1c1c1c]" />
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[210px_160px_280px_1fr] lg:gap-x-10">
-            <InfoItem label={tCourse("heureDepart")} value={t("departValue")} />
-            <InfoItem label={tCourse("tempsLimite")} value={t("limiteValue")} />
+            <InfoItem accent={accent} label={tCourse("heureDepart")} value={t("departValue")} />
+            <InfoItem accent={accent} label={tCourse("tempsLimite")} value={t("limiteValue")} />
             <InfoItem
+              accent={accent}
               label={tCourse("retraitDossard")}
               value={t("retraitValue")}
               sub={t("retraitSub")}
             />
             {utmbIndex && (
-              <InfoItem label={tCourse("indexUtmb")}>
+              <InfoItem accent={accent} label={tCourse("indexUtmb")}>
                 <UtmbBadge index={utmbIndex} />
               </InfoItem>
             )}

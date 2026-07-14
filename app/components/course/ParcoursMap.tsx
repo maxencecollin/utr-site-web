@@ -7,6 +7,9 @@ import "leaflet/dist/leaflet.css";
 type Props = {
   /* GPX du parcours : trace (<trkpt>/<rtept>) + waypoints (<wpt>) */
   traceUrl: string;
+  /* GPX contenant les waypoints (ravitos...) si different de la trace
+     (ex. 33 km : ravitos du GPX 80, filtres par proximite avec la trace) */
+  waypointsUrl?: string;
   /* Prefixes (en minuscules) des noms de waypoints a afficher en marqueurs.
      Les autres (commissaires, secours...) restent hors carte publique. */
   markers?: string[];
@@ -14,6 +17,19 @@ type Props = {
   startLabel?: string;
   className?: string;
 };
+
+/* Distance approximative (m) entre un point et la trace */
+function distanceToTrace(lat: number, lon: number, trace: [number, number][]) {
+  const cos = Math.cos((lat * Math.PI) / 180);
+  let min = Infinity;
+  for (const [tlat, tlon] of trace) {
+    const dLat = (tlat - lat) * 111320;
+    const dLon = (tlon - lon) * 111320 * cos;
+    const d = dLat * dLat + dLon * dLon;
+    if (d < min) min = d;
+  }
+  return Math.sqrt(min);
+}
 
 /* Pin des marqueurs (dessine en SVG, comme la maquette) : vert ravito, orange depart */
 const pinSvg = (color: string) => `
@@ -24,6 +40,7 @@ const pinSvg = (color: string) => `
 
 export default function ParcoursMap({
   traceUrl,
+  waypointsUrl,
   markers = ["ravitaillement"],
   startLabel,
   className = "",
@@ -51,15 +68,17 @@ export default function ParcoursMap({
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
 
-      let doc: Document | null = null;
-      try {
-        const res = await fetch(traceUrl);
-        if (res.ok) {
-          doc = new DOMParser().parseFromString(await res.text(), "application/xml");
+      const fetchGpx = async (url: string) => {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) return null;
+          return new DOMParser().parseFromString(await res.text(), "application/xml");
+        } catch {
+          return null;
         }
-      } catch {
-        doc = null;
-      }
+      };
+
+      const doc = await fetchGpx(traceUrl);
       if (cancelled || !map || !doc) return;
 
       // Trace du parcours
@@ -77,7 +96,10 @@ export default function ParcoursMap({
         map.fitBounds(line.getBounds(), { padding: [28, 28] });
       }
 
-      // Marqueurs : ravitaillements (verts) + depart/arrivee (orange)
+      // Marqueurs : ravitaillements (verts) + depart/arrivee (orange).
+      // Le depart vient toujours du GPX de la trace ; les autres marqueurs
+      // peuvent venir d'un GPX distinct, filtres par proximite avec la trace
+      // (ecarte les points des autres courses).
       const makeIcon = (color: string) =>
         L.divIcon({
           html: pinSvg(color),
@@ -88,18 +110,29 @@ export default function ParcoursMap({
         });
       const ravitoIcon = makeIcon("#3ba55d");
       const startIcon = makeIcon("#d9822b");
-      [...doc.querySelectorAll("wpt")].forEach((el) => {
-        const name = el.querySelector("name")?.textContent ?? "";
-        const lat = Number(el.getAttribute("lat"));
-        const lon = Number(el.getAttribute("lon"));
-        if (!Number.isFinite(lat) || !Number.isFinite(lon) || !map) return;
-        if (markers.some((prefix) => name.toLowerCase().startsWith(prefix))) {
-          L.marker([lat, lon], { icon: ravitoIcon }).addTo(map).bindPopup(name);
-        } else if (startLabel && name.toLowerCase() === "begin") {
+
+      if (startLabel) {
+        [...doc.querySelectorAll("wpt")].forEach((el) => {
+          if (el.querySelector("name")?.textContent?.toLowerCase() !== "begin") return;
+          const lat = Number(el.getAttribute("lat"));
+          const lon = Number(el.getAttribute("lon"));
+          if (!Number.isFinite(lat) || !Number.isFinite(lon) || !map) return;
           L.marker([lat, lon], { icon: startIcon, zIndexOffset: 100 })
             .addTo(map)
             .bindPopup(startLabel);
-        }
+        });
+      }
+
+      const wptDoc = waypointsUrl ? await fetchGpx(waypointsUrl) : doc;
+      if (cancelled || !map || !wptDoc) return;
+      [...wptDoc.querySelectorAll("wpt")].forEach((el) => {
+        const name = el.querySelector("name")?.textContent ?? "";
+        if (!markers.some((prefix) => name.toLowerCase().startsWith(prefix))) return;
+        const lat = Number(el.getAttribute("lat"));
+        const lon = Number(el.getAttribute("lon"));
+        if (!Number.isFinite(lat) || !Number.isFinite(lon) || !map) return;
+        if (points.length && distanceToTrace(lat, lon, points) > 200) return;
+        L.marker([lat, lon], { icon: ravitoIcon }).addTo(map).bindPopup(name);
       });
     })();
 
@@ -107,9 +140,9 @@ export default function ParcoursMap({
       cancelled = true;
       map?.remove();
     };
-    // markers : liste statique passee en dur par les pages (pas de re-render attendu)
+    // markers/startLabel : valeurs statiques passees en dur par les pages
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [traceUrl]);
+  }, [traceUrl, waypointsUrl]);
 
   return <div ref={container} className={`z-0 ${className}`} />;
 }
