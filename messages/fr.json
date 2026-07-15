@@ -126,15 +126,13 @@
     "overline": "Prépare-toi à",
     "title": "L'entraînement",
     "categories": [
-      "Coaching",
-      "Matériels",
+      "Plan d'entraînement",
       "Nutrition",
-      "Préparation mentale",
-      "Plan d'entraînement"
+      "Matériel"
     ],
     "subtitle1": "Prépare-toi",
     "subtitle2": "pour ton trail !",
-    "text": "Que ce soit pour performer ou terminer ta première course de trail, on donne tous les conseils pour les novices et les expérimentés. On te propose aussi un coach perso pour t'accompagner dans ton aventure.",
+    "text": "Que ce soit pour finir ton trail ou aller chercher un record personnel, voici tous les conseils pour te préparer au mieux pour le jour de la course. On te propose aussi un coach perso !",
     "ready": "Tiens-toi prêt !",
     "button": "Entraîne-toi !",
     "altPhoto": "Jambes d'un coureur en plein saut"
