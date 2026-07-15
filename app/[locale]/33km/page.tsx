@@ -26,11 +26,11 @@ const VERT = "bg-[#4a5a20]";
 const HREF_ENTRAINEMENT = "/#entrainement";
 
 const HOTSPOTS: Hotspot[] = [
-  { labelKey: "hydratation", href: HREF_ENTRAINEMENT, direction: "right", left: "19%", top: "24%" },
-  { labelKey: "parcoursLabel", href: "#parcours", direction: "down", left: "41.5%", top: "41%" },
-  { labelKey: "equipements", href: HREF_ENTRAINEMENT, direction: "right", left: "15.5%", top: "62%" },
-  { labelKey: "entrainementLabel", href: HREF_ENTRAINEMENT, direction: "right", left: "40%", top: "72.5%" },
-  { labelKey: "dossard", href: "#infos", direction: "down", left: "68%", top: "64.5%" },
+  { labelKey: "hydratation", href: HREF_ENTRAINEMENT, direction: "right", left: "19%", top: "24%", zoom: { x: 20, y: 26 } },
+  { labelKey: "parcoursLabel", href: "#parcours", direction: "down", left: "41.5%", top: "41%", zoom: { x: 43, y: 46 } },
+  { labelKey: "equipements", href: HREF_ENTRAINEMENT, direction: "right", left: "15.5%", top: "62%", zoom: { x: 19, y: 70 } },
+  { labelKey: "entrainementLabel", href: HREF_ENTRAINEMENT, direction: "right", left: "40%", top: "72.5%", zoom: { x: 39, y: 80 } },
+  { labelKey: "dossard", href: "#infos", direction: "down", left: "68%", top: "64.5%", zoom: { x: 70, y: 77 } },
 ];
 
 const AUTRES_EPREUVES: AutreEpreuve[] = [

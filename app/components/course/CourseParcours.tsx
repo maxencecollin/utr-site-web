@@ -67,7 +67,6 @@ export default function CourseParcours({
               waypointsUrl={waypointsUrl}
               markers={markers}
               startLabel={t("departArrivee")}
-              chapterLabels={{ overview: t("vueEnsemble"), ravito: t("legendRavito") }}
               className="h-[420px] w-full border-2 border-white md:h-[520px]"
               legend={
                 <div className="absolute bottom-6 left-6 z-[1000] hidden rounded-md bg-white px-5 py-4 text-[#333333] shadow-[0_2px_10px_#00000045] sm:block">

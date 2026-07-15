@@ -1,4 +1,6 @@
-import type { CSSProperties, ReactNode } from "react";
+"use client";
+
+import { useState, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -14,6 +16,8 @@ export type Hotspot = {
   /* Position du coin haut-gauche de l'etiquette, en % de la photo */
   left: string;
   top: string;
+  /* Centre de l'objet vise par le zoom, en % de la photo */
+  zoom?: { x: number; y: number };
 };
 
 type Props = {
@@ -72,9 +76,27 @@ function HotspotLink({
   );
 }
 
+/* Echelle du zoom photo (clic sur un chapitre) */
+const ZOOM = 2.2;
+
 /*
-  Section "L'epreuve" : photo du materiel a plat, etiquettes cliquables
-  posees sur les objets (desktop) ou listees sous la photo (mobile).
+  Recentre le point vise au milieu du cadre, borne pour que les bords
+  de la photo n'entrent pas dans le cadre.
+*/
+function zoomTransform(x: number, y: number) {
+  const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+  const tx = clamp(50 - x, (100 - x) * (1 - ZOOM), x * (ZOOM - 1));
+  const ty = clamp(50 - y, (100 - y) * (1 - ZOOM), y * (ZOOM - 1));
+  return {
+    transform: `translate(${tx}%, ${ty}%) scale(${ZOOM})`,
+    transformOrigin: `${x}% ${y}%`,
+  };
+}
+
+/*
+  Section "L'epreuve" : photo du materiel a plat. Chapitres a gauche :
+  un clic zoome la photo sur l'objet (facon page produit Apple).
+  Les pastilles sur les objets restent les liens de navigation.
 */
 export default function CourseEpreuve({
   trailing,
@@ -84,6 +106,17 @@ export default function CourseEpreuve({
   utmbIndex,
 }: Props) {
   const t = useTranslations("course");
+  // Index du chapitre zoome (-1 = vue d'ensemble)
+  const [zoomed, setZoomed] = useState(-1);
+
+  const active = zoomed >= 0 ? hotspots[zoomed] : null;
+  // Cible du zoom : centre de l'objet si fourni, sinon deduit de l'ancre de l'etiquette
+  const zoomStyle = active
+    ? zoomTransform(
+        active.zoom?.x ?? parseFloat(active.left) + 4,
+        active.zoom?.y ?? parseFloat(active.top) + 12,
+      )
+    : { transform: "translate(0%, 0%) scale(1)", transformOrigin: "50% 50%" };
 
   return (
     <section id="epreuve" className="overflow-x-clip bg-white pt-16 lg:pt-20">
@@ -98,7 +131,12 @@ export default function CourseEpreuve({
 
       {/* Photo pleine largeur avec les etiquettes (masquees sur petit ecran) */}
       <div className="relative mt-8 w-full overflow-hidden">
-        <div className="relative aspect-[4/3] w-full sm:aspect-[1965/1120]">
+        <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[1965/1120]">
+          {/* Couche zoomable : photo + pastilles (les chapitres pilotent le zoom) */}
+          <div
+            className="absolute inset-0 transition-transform duration-700 ease-in-out will-change-transform"
+            style={zoomStyle}
+          >
           <Image
             src={photo}
             alt={photoAlt}
@@ -107,40 +145,32 @@ export default function CourseEpreuve({
             className="object-cover"
           />
 
+          </div>
+
           {utmbIndex && (
             <UtmbBadge index={utmbIndex} className="absolute right-[5%] top-[10%]" />
           )}
 
-          {hotspots.map((h) => (
-            <HotspotLink
-              key={h.labelKey}
-              href={h.href}
-              className="group absolute hidden sm:block"
-              style={{ left: h.left, top: h.top }}
-            >
-              {/* Zone de survol genereuse autour de l'objet */}
-              <span aria-hidden="true" className="absolute -left-16 -top-14 h-32 w-40" />
-
-              {/* Pastille : seul repere visible au repos */}
-              <span aria-hidden="true" className="relative flex h-4 w-4">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/50 [animation-duration:2.2s]" />
-                <span className="relative inline-flex h-4 w-4 rounded-full border-2 border-white bg-white/40 backdrop-blur-[2px]" />
-              </span>
-
-              {/* Etiquette : apparait en fondu au survol, au-dessus de la pastille */}
-              <span className="pointer-events-none absolute bottom-7 left-1/2 -translate-x-1/2 translate-y-1 opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
-                <span className="relative inline-flex items-center gap-2.5 whitespace-nowrap border border-white/60 bg-white/25 px-4 py-2 text-[13px] font-semibold uppercase tracking-[1px] text-white backdrop-blur-[3px]">
-                  {t(h.labelKey)}
-                  <Arrow direction={h.direction} />
-                  {/* Petite pointe vers la pastille */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute -bottom-[7px] left-1/2 h-3.5 w-3.5 -translate-x-1/2 rotate-45 border-b border-r border-white/60 bg-white/10 backdrop-blur-[3px]"
-                  />
-                </span>
-              </span>
-            </HotspotLink>
-          ))}
+          {/* Chapitres (facon page produit Apple) : pilules translucides, zoom au clic */}
+          <ul className="absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-start gap-2.5 sm:flex">
+            {[{ label: t("vueEnsemble"), index: -1 }, ...hotspots.map((h, i) => ({ label: t(h.labelKey), index: i }))].map(
+              ({ label, index }) => (
+                <li key={label}>
+                  <button
+                    type="button"
+                    onClick={() => setZoomed(zoomed === index && index !== -1 ? -1 : index)}
+                    className={`rounded-full px-5 py-2.5 text-[14px] font-medium backdrop-blur-xl transition-all duration-300 active:scale-95 ${
+                      zoomed === index
+                        ? "bg-white/90 text-[#1c1c1c] shadow-[0_4px_16px_rgba(0,0,0,0.35)]"
+                        : "bg-black/35 text-white/95 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.14),0_2px_10px_rgba(0,0,0,0.25)] hover:bg-black/50"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                </li>
+              ),
+            )}
+          </ul>
         </div>
       </div>
 
