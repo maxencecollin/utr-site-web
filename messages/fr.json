@@ -185,7 +185,8 @@
     "legendTitle": "Légende",
     "legendRavito": "Ravitaillement",
     "departArrivee": "Départ / Arrivée",
-    "downloadGpx": "Télécharger le GPX"
+    "downloadGpx": "Télécharger le GPX",
+    "vueEnsemble": "Vue d'ensemble"
   },
   "course80": {
     "heroAlt": "Coureur de l'ultra 80 km, casquette et gilet d'hydratation",

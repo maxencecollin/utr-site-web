@@ -115,17 +115,29 @@ export default function CourseEpreuve({
             <HotspotLink
               key={h.labelKey}
               href={h.href}
-              className="group absolute hidden sm:inline-flex"
+              className="group absolute hidden sm:block"
               style={{ left: h.left, top: h.top }}
             >
-              <span className="relative inline-flex items-center gap-2.5 border border-white/60 bg-white/20 px-4 py-2 text-[13px] font-semibold uppercase tracking-[1px] text-white backdrop-blur-[3px] transition-colors group-hover:bg-white/35">
-                {t(h.labelKey)}
-                <Arrow direction={h.direction} />
-                {/* Petite pointe sous l'etiquette (vise l'objet sur la photo) */}
-                <span
-                  aria-hidden="true"
-                  className="absolute -bottom-[7px] left-8 h-3.5 w-3.5 rotate-45 border-b border-r border-white/60 bg-white/10 backdrop-blur-[3px]"
-                />
+              {/* Zone de survol genereuse autour de l'objet */}
+              <span aria-hidden="true" className="absolute -left-16 -top-14 h-32 w-40" />
+
+              {/* Pastille : seul repere visible au repos */}
+              <span aria-hidden="true" className="relative flex h-4 w-4">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/50 [animation-duration:2.2s]" />
+                <span className="relative inline-flex h-4 w-4 rounded-full border-2 border-white bg-white/40 backdrop-blur-[2px]" />
+              </span>
+
+              {/* Etiquette : apparait en fondu au survol, au-dessus de la pastille */}
+              <span className="pointer-events-none absolute bottom-7 left-1/2 -translate-x-1/2 translate-y-1 opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                <span className="relative inline-flex items-center gap-2.5 whitespace-nowrap border border-white/60 bg-white/25 px-4 py-2 text-[13px] font-semibold uppercase tracking-[1px] text-white backdrop-blur-[3px]">
+                  {t(h.labelKey)}
+                  <Arrow direction={h.direction} />
+                  {/* Petite pointe vers la pastille */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-[7px] left-1/2 h-3.5 w-3.5 -translate-x-1/2 rotate-45 border-b border-r border-white/60 bg-white/10 backdrop-blur-[3px]"
+                  />
+                </span>
               </span>
             </HotspotLink>
           ))}
