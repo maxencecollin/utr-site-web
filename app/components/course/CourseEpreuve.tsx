@@ -176,15 +176,15 @@ export default function CourseEpreuve({
 
           {/* Lien vers la page liee a l'objet zoome (apparait une fois le zoom pose) */}
           <div
-            className={`absolute bottom-6 right-6 z-10 hidden transition-all duration-300 sm:block ${
+            className={`absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 transition-all duration-300 sm:block ${
               active
                 ? "translate-y-0 opacity-100 delay-700"
-                : "pointer-events-none translate-y-2 opacity-0"
+                : "pointer-events-none translate-y-3 opacity-0"
             }`}
           >
             <HotspotLink
               href={active?.href ?? "#"}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-white/90 px-5 py-2.5 text-[14px] font-medium text-[#1c1c1c] shadow-[0_4px_16px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-colors hover:bg-white"
+              className="group inline-flex items-center gap-3 rounded-full bg-white/90 px-7 py-3.5 text-[16px] font-medium text-[#1c1c1c] shadow-[0_6px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-colors hover:bg-white"
             >
               {t("enSavoirPlus")}
               {active && <Arrow direction={active.direction} />}
