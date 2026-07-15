@@ -80,16 +80,17 @@ function HotspotLink({
 const ZOOM = 2.2;
 
 /*
-  Recentre le point vise au milieu du cadre, borne pour que les bords
-  de la photo n'entrent pas dans le cadre.
+  Recentre le point vise au milieu du cadre, borne pour que les bords de la
+  photo n'entrent pas dans le cadre. Origine fixe (0,0) : seul translate/scale
+  change d'un etat a l'autre, l'animation est donc continue entre deux objets.
 */
-function zoomTransform(x: number, y: number) {
+function zoomTransform(x: number, y: number, scale: number) {
   const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
-  const tx = clamp(50 - x, (100 - x) * (1 - ZOOM), x * (ZOOM - 1));
-  const ty = clamp(50 - y, (100 - y) * (1 - ZOOM), y * (ZOOM - 1));
+  const tx = clamp(50 - scale * x, 100 - 100 * scale, 0);
+  const ty = clamp(50 - scale * y, 100 - 100 * scale, 0);
   return {
-    transform: `translate(${tx}%, ${ty}%) scale(${ZOOM})`,
-    transformOrigin: `${x}% ${y}%`,
+    transform: `translate(${tx}%, ${ty}%) scale(${scale})`,
+    transformOrigin: "0 0",
   };
 }
 
@@ -115,8 +116,9 @@ export default function CourseEpreuve({
     ? zoomTransform(
         active.zoom?.x ?? parseFloat(active.left) + 4,
         active.zoom?.y ?? parseFloat(active.top) + 12,
+        ZOOM,
       )
-    : { transform: "translate(0%, 0%) scale(1)", transformOrigin: "50% 50%" };
+    : zoomTransform(50, 50, 1);
 
   return (
     <section id="epreuve" className="overflow-x-clip bg-white pt-16 lg:pt-20">
@@ -132,9 +134,9 @@ export default function CourseEpreuve({
       {/* Photo pleine largeur avec les etiquettes (masquees sur petit ecran) */}
       <div className="relative mt-8 w-full overflow-hidden">
         <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[1965/1120]">
-          {/* Couche zoomable : photo + pastilles (les chapitres pilotent le zoom) */}
+          {/* Couche zoomable (les chapitres pilotent le zoom) */}
           <div
-            className="absolute inset-0 transition-transform duration-700 ease-in-out will-change-transform"
+            className="absolute inset-0 transition-transform duration-[1100ms] will-change-transform [transition-timing-function:cubic-bezier(0.32,0.72,0.24,1)]"
             style={zoomStyle}
           >
           <Image
@@ -171,6 +173,23 @@ export default function CourseEpreuve({
               ),
             )}
           </ul>
+
+          {/* Lien vers la page liee a l'objet zoome (apparait une fois le zoom pose) */}
+          <div
+            className={`absolute bottom-6 right-6 z-10 hidden transition-all duration-300 sm:block ${
+              active
+                ? "translate-y-0 opacity-100 delay-700"
+                : "pointer-events-none translate-y-2 opacity-0"
+            }`}
+          >
+            <HotspotLink
+              href={active?.href ?? "#"}
+              className="group inline-flex items-center gap-2.5 rounded-full bg-white/90 px-5 py-2.5 text-[14px] font-medium text-[#1c1c1c] shadow-[0_4px_16px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-colors hover:bg-white"
+            >
+              {t("enSavoirPlus")}
+              {active && <Arrow direction={active.direction} />}
+            </HotspotLink>
+          </div>
         </div>
       </div>
 
