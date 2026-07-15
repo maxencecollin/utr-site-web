@@ -214,5 +214,20 @@
     "retraitValue": "Vendredi 15 octobre",
     "retraitSub": "Samedi 16 octobre",
     "legendTrace": "33 km – Parcours complet"
+  },
+  "courseRelais": {
+    "heroAlt": "Duo de relayeurs dos à dos",
+    "infoTitle": "Partagez l'aventure en relais ! Vivez l'expérience du Tour de la Ria à deux, entre Locoal-Mendon et Sainte-Hélène",
+    "description": "Le premier coureur reliera Locoal-Mendon à Sainte-Hélène en franchissant la Ria d'Étel en bateau, avant de passer le relais à son partenaire qui bouclera le parcours jusqu'à Locoal-Mendon.",
+    "distanceLabel": "Distances",
+    "lieuLabel": "Lieux",
+    "dateValue": "16 octobre 2027",
+    "distanceValue": "R1 : 50 km / R2 : 30 km",
+    "lieuValue": "R1 : Locoal-Mendon – R2 : Sainte-Hélène",
+    "departValue": "8 heures",
+    "limiteValue": "15 heures",
+    "retraitValue": "Vendredi 15 octobre",
+    "retraitSub": "Samedi 16 octobre",
+    "legendTrace": "80 km – Parcours complet"
   }
 }

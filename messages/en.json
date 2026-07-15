@@ -214,5 +214,20 @@
     "retraitValue": "Friday, October 15",
     "retraitSub": "Saturday, October 16",
     "legendTrace": "33 km – Full route"
+  },
+  "courseRelais": {
+    "heroAlt": "Relay duo standing back to back",
+    "infoTitle": "Share the adventure as a relay! Experience the Tour de la Ria as a duo, between Locoal-Mendon and Sainte-Hélène",
+    "description": "The first runner links Locoal-Mendon to Sainte-Hélène, crossing the Ria d'Étel by boat, before handing over to their partner, who completes the loop back to Locoal-Mendon.",
+    "distanceLabel": "Distances",
+    "lieuLabel": "Locations",
+    "dateValue": "October 16, 2027",
+    "distanceValue": "Leg 1: 50 km / Leg 2: 30 km",
+    "lieuValue": "Leg 1: Locoal-Mendon – Leg 2: Sainte-Hélène",
+    "departValue": "8 am",
+    "limiteValue": "15 hours",
+    "retraitValue": "Friday, October 15",
+    "retraitSub": "Saturday, October 16",
+    "legendTrace": "80 km – Full route"
   }
 }

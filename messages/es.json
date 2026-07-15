@@ -214,5 +214,20 @@
     "retraitValue": "Viernes 15 de octubre",
     "retraitSub": "Sábado 16 de octubre",
     "legendTrace": "33 km – Recorrido completo"
+  },
+  "courseRelais": {
+    "heroAlt": "Dúo de relevistas espalda con espalda",
+    "infoTitle": "¡Comparte la aventura en relevo! Vive la experiencia del Tour de la Ria en dúo, entre Locoal-Mendon y Sainte-Hélène",
+    "description": "El primer corredor unirá Locoal-Mendon con Sainte-Hélène cruzando la Ria d'Étel en barco, antes de pasar el relevo a su compañero, que completará el recorrido hasta Locoal-Mendon.",
+    "distanceLabel": "Distancias",
+    "lieuLabel": "Lugares",
+    "dateValue": "16 de octubre de 2027",
+    "distanceValue": "R1: 50 km / R2: 30 km",
+    "lieuValue": "R1: Locoal-Mendon – R2: Sainte-Hélène",
+    "departValue": "8 h",
+    "limiteValue": "15 horas",
+    "retraitValue": "Viernes 15 de octubre",
+    "retraitSub": "Sábado 16 de octubre",
+    "legendTrace": "80 km – Recorrido completo"
   }
 }

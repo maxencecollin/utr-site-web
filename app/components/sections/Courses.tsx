@@ -34,7 +34,7 @@ const COURSES = [
     photo: "/photos/_dsc6509-girl2.jpg",
     flip: false,
     zoom: "scale-125",
-    href: null as string | null,
+    href: "/relais" as string | null,
   },
 ];
 
