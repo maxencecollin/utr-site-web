@@ -34,14 +34,12 @@ Bleu principal confirmé par la maquette : `#0781DD`. Specs XD brutes : `_assets
 - Le dossier `docs/` est versionné ; `out/` est ignoré.
 - PAS de `basePath` ni `assetPrefix` (le site cible est servi à la racine du domaine).
 
-### Domaine `www.ultratourdelaria.fr` — bascule différée
+### Domaine `ultratourdelaria.fr` — bascule effectuée
 
-Le domaine est **encore rattaché à l'ancien repo `ultra-tour-de-la-ria`** qui sert le
-site actuellement en ligne. On NE revendique PAS le domaine ici tant que le nouveau site
-n'est pas prêt (sinon le build Pages de l'ancien casse). Au moment du go-live :
-1. Recréer `public/CNAME` avec `www.ultratourdelaria.fr`.
-2. Retirer le domaine de l'ancien repo (`gh api -X PUT repos/maxencecollin/ultra-tour-de-la-ria/pages -f cname=""`).
-3. Le déclarer sur ce repo (`gh api -X PUT repos/maxencecollin/utr-site-web/pages -f cname=www.ultratourdelaria.fr`).
+Le domaine (apex) est rattaché à **ce repo** depuis juillet 2026 ; l'ancien repo
+`ultra-tour-de-la-ria` n'est plus en ligne. `public/CNAME` contient
+`ultratourdelaria.fr` et doit rester en place (il est copié dans `docs/` au déploiement).
+Publier = `npm run deploy` puis commit + push de `docs/`.
 
 ## Règles de développement
 
