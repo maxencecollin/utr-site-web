@@ -118,26 +118,64 @@ export default function CourseEpreuve({
   const t = useTranslations("course");
   const containerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLElement>(null);
-  // Progression 0..1 dans le conteneur de scroll (0 sur mobile : pas de sticky)
+  // Progression affichee, lissee avec inertie derriere la position de scroll :
+  // un coup de molette rapide traverse quand meme les objets en un mouvement fluide
   const [progress, setProgress] = useState(0);
   // Si la section depasse la hauteur de l'ecran, on l'epingle par le bas
   // (le haut du titre sort de l'ecran, la photo reste entierement visible)
   const [stickyTop, setStickyTop] = useState(0);
 
   useEffect(() => {
+    // Raideur du rappel : plus grand = suit le scroll de plus pres
+    const STIFFNESS = 5;
+    // Vitesse max de la progression (part du voyage complet par seconde) :
+    // un gros coup de molette traverse les objets a un rythme lisible
+    const MAX_SPEED = 0.6;
     let raf = 0;
+    let running = false;
+    let started = false;
+    let last = 0;
+    let target = 0;
+    let current = 0;
+
+    const tick = (now: number) => {
+      // Le timestamp rAF (debut de frame) peut preceder le performance.now()
+      // capture au lancement : dt doit rester >= 0
+      const dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
+      last = now;
+      const delta = (target - current) * (1 - Math.exp(-STIFFNESS * dt));
+      const maxDelta = MAX_SPEED * dt;
+      current += Math.min(maxDelta, Math.max(-maxDelta, delta));
+      if (Math.abs(target - current) < 0.0005) {
+        current = target;
+        running = false;
+      } else {
+        raf = requestAnimationFrame(tick);
+      }
+      setProgress(current);
+    };
+
     const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const container = containerRef.current;
-        const sticky = stickyRef.current;
-        if (!container || !sticky) return;
-        const top = Math.min(0, window.innerHeight - sticky.offsetHeight);
-        setStickyTop(top);
-        const range = container.offsetHeight - sticky.offsetHeight;
-        const y = top - container.getBoundingClientRect().top;
-        setProgress(range > 0 ? Math.min(1, Math.max(0, y / range)) : 0);
-      });
+      const container = containerRef.current;
+      const sticky = stickyRef.current;
+      if (!container || !sticky) return;
+      const top = Math.min(0, window.innerHeight - sticky.offsetHeight);
+      setStickyTop(top);
+      const range = container.offsetHeight - sticky.offsetHeight;
+      const y = top - container.getBoundingClientRect().top;
+      target = range > 0 ? Math.min(1, Math.max(0, y / range)) : 0;
+      if (!started) {
+        // Premier passage (chargement, arrivee par ancre) : on se cale sans animer
+        started = true;
+        current = target;
+        setProgress(target);
+        return;
+      }
+      if (!running) {
+        running = true;
+        last = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -161,7 +199,7 @@ export default function CourseEpreuve({
 
   // Position dans les segments : palier (DWELL) a chaque bout, smoothstep entre
   const f = progress * (steps.length - 1);
-  const seg = Math.min(Math.floor(f), steps.length - 2);
+  const seg = Math.max(0, Math.min(Math.floor(f), steps.length - 2));
   const tSeg = f - seg;
   let eased = 0;
   if (tSeg >= 1 - DWELL) eased = 1;
