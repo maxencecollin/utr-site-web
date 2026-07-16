@@ -187,12 +187,7 @@
     "legendTitle": "Key",
     "legendRavito": "Aid station",
     "departArrivee": "Start / Finish",
-    "downloadGpx": "Download the GPX",
-    "hydratationText": "Semi-self-sufficiency: a water reserve is mandatory (1 L for the 80 km, 0.5 L for the 33 km and the relay), with food and drink stations every 10 to 15 km.",
-    "parcoursLabelText": "Paint-free course marking: the races cross the Ria d'Étel, a protected Natura 2000 natural site.",
-    "equipementsText": "Waterproof jacket, survival blanket, whistle and charged phone are mandatory. Poles are forbidden on all three races.",
-    "entrainementLabelText": "A food reserve is mandatory throughout the race: race nutrition is something you practise in training.",
-    "dossardText": "Bibs must be collected at the salle Émeraude in Locoal-Mendon (ID required) and worn visibly on your front during the race."
+    "downloadGpx": "Download the GPX"
   },
   "course80": {
     "heroAlt": "Ultra 80 km runner wearing a cap and hydration vest",
@@ -205,7 +200,12 @@
     "limiteValue": "15 hours",
     "retraitValue": "Friday, October 15",
     "retraitSub": "Saturday, October 16",
-    "legendTrace": "80 km – Full route"
+    "legendTrace": "80 km – Full route",
+    "hydratationText": "The 80 km is run in semi-self-sufficiency: at least 1 L of water in your pack, with food and drink stations every 10 to 15 km.",
+    "parcoursLabelText": "The full loop of the Ria d'Étel, including a boat crossing with neutralised timing, on a protected Natura 2000 site.",
+    "equipementsText": "Race pack, headlamp, waterproof jacket, survival blanket, whistle and charged phone are mandatory — poles are forbidden.",
+    "entrainementLabelText": "15 hours maximum to complete the loop: a food reserve is mandatory, and the pace is built in training.",
+    "dossardText": "Chip-fitted bib to collect at the salle Émeraude in Locoal-Mendon (ID required), worn visibly on your front."
   },
   "course33": {
     "heroAlt": "33 km trail runner wearing sunglasses",
@@ -218,7 +218,12 @@
     "limiteValue": "6 hours",
     "retraitValue": "Friday, October 15",
     "retraitSub": "Saturday, October 16",
-    "legendTrace": "33 km – Full route"
+    "legendTrace": "33 km – Full route",
+    "hydratationText": "The 33 km is run in semi-self-sufficiency: at least 0.5 L of water with you, with food and drink stations every 10 to 15 km.",
+    "parcoursLabelText": "33 km of coastal paths and woodland trails from Sainte-Hélène, on a protected Natura 2000 site with paint-free course marking.",
+    "equipementsText": "Waterproof jacket, survival blanket, whistle, personal cup and charged phone are mandatory — poles are forbidden.",
+    "entrainementLabelText": "6 hours maximum to reach the finish: a food reserve is mandatory, and the pace is built in training.",
+    "dossardText": "Chip-fitted bib to collect at the salle Émeraude in Locoal-Mendon (ID required), worn visibly on your front."
   },
   "courseRelais": {
     "heroAlt": "Relay duo standing back to back",
@@ -233,6 +238,11 @@
     "limiteValue": "15 hours",
     "retraitValue": "Friday, October 15",
     "retraitSub": "Saturday, October 16",
-    "legendTrace": "80 km – Full route"
+    "legendTrace": "80 km – Full route",
+    "hydratationText": "The relay is run in semi-self-sufficiency: at least 0.5 L of water with you, with food and drink stations every 10 to 15 km.",
+    "parcoursLabelText": "The full loop of the Ria as a duo: 50 km then 30 km, with the handover in Sainte-Hélène and a boat crossing with neutralised timing.",
+    "equipementsText": "Waterproof jacket, survival blanket, whistle and charged phone are mandatory; a headlamp for the first runner — poles are forbidden.",
+    "entrainementLabelText": "15 hours maximum for the team: a food reserve is mandatory, and both paces are built in training.",
+    "dossardText": "Chip-fitted bibs to collect at the salle Émeraude in Locoal-Mendon (ID required), worn visibly on your front."
   }
 }

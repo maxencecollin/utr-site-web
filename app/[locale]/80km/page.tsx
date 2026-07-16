@@ -72,6 +72,7 @@ export default async function Ultra80({
         photoAlt={t("altMateriel")}
         hotspots={HOTSPOTS}
         utmbIndex="50K"
+        captionNamespace="course80"
       />
       <CourseInfos namespace="course80" utmbIndex="50K" />
       <CourseParcours

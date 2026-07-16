@@ -33,6 +33,8 @@ type Props = {
   photoAlt: string;
   hotspots: Hotspot[];
   utmbIndex?: string;
+  /* Namespace des legendes d'objets (course80...) : textes specifiques a l'epreuve */
+  captionNamespace: string;
 };
 
 function Arrow({ direction }: { direction: "right" | "down" }) {
@@ -114,8 +116,10 @@ export default function CourseEpreuve({
   photoAlt,
   hotspots,
   utmbIndex,
+  captionNamespace,
 }: Props) {
   const t = useTranslations("course");
+  const tCaptions = useTranslations(captionNamespace);
   const containerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLElement>(null);
   // Progression affichee, lissee avec inertie derriere la position de scroll :
@@ -368,7 +372,7 @@ export default function CourseEpreuve({
               }`}
             >
               <p className="rounded-2xl bg-black/45 px-7 py-4 text-center text-[15px] font-medium leading-relaxed text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12),0_6px_24px_rgba(0,0,0,0.3)] backdrop-blur-xl">
-                {caption && t(`${caption.labelKey}Text`)}
+                {caption && tCaptions(`${caption.labelKey}Text`)}
               </p>
             </div>
           </div>

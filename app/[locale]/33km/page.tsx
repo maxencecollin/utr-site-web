@@ -75,6 +75,7 @@ export default async function Trail33({
         photoAlt={t("altMateriel")}
         hotspots={HOTSPOTS}
         utmbIndex="20K"
+        captionNamespace="course33"
       />
       <CourseInfos
         namespace="course33"

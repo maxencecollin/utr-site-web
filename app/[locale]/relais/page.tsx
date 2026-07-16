@@ -75,6 +75,7 @@ export default async function Relais({
         photoAlt={t("altMateriel")}
         hotspots={HOTSPOTS}
         utmbIndex="20K"
+        captionNamespace="courseRelais"
       />
       <CourseInfos
         namespace="courseRelais"

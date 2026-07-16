@@ -187,12 +187,7 @@
     "legendTitle": "Légende",
     "legendRavito": "Ravitaillement",
     "departArrivee": "Départ / Arrivée",
-    "downloadGpx": "Télécharger le GPX",
-    "hydratationText": "Semi-autonomie : réserve d'eau obligatoire (1 L sur le 80 km, 0,5 L sur le 33 km et le relais), ravitaillements solides et liquides tous les 10 à 15 km.",
-    "parcoursLabelText": "Balisage sans marquage au sol : les épreuves traversent la Ria d'Étel, un site naturel classé Natura 2000.",
-    "equipementsText": "Veste imperméable, couverture de survie, sifflet et téléphone chargé obligatoires. Les bâtons sont interdits sur les trois épreuves.",
-    "entrainementLabelText": "Une réserve alimentaire est obligatoire pendant toute l'épreuve : l'alimentation en course se travaille à l'entraînement.",
-    "dossardText": "Dossard à retirer à la salle Émeraude de Locoal-Mendon (pièce d'identité obligatoire), à porter visible sur l'avant pendant la course."
+    "downloadGpx": "Télécharger le GPX"
   },
   "course80": {
     "heroAlt": "Coureur de l'ultra 80 km, casquette et gilet d'hydratation",
@@ -205,7 +200,12 @@
     "limiteValue": "15 heures",
     "retraitValue": "Vendredi 15 octobre",
     "retraitSub": "Samedi 16 octobre",
-    "legendTrace": "80 km – Parcours complet"
+    "legendTrace": "80 km – Parcours complet",
+    "hydratationText": "Le 80 km se court en semi-autonomie : 1 L d'eau minimum dans le sac, ravitaillements solides et liquides tous les 10 à 15 km.",
+    "parcoursLabelText": "Le tour complet de la Ria d'Étel, avec une traversée en bateau au chronomètre neutralisé, sur un site classé Natura 2000.",
+    "equipementsText": "Sac de course, lampe frontale, veste imperméable, couverture de survie, sifflet et téléphone chargé obligatoires — bâtons interdits.",
+    "entrainementLabelText": "15 heures maximum pour boucler le tour : réserve alimentaire obligatoire, et une allure qui se prépare à l'entraînement.",
+    "dossardText": "Dossard avec puce à retirer à la salle Émeraude de Locoal-Mendon (pièce d'identité obligatoire), à porter visible sur l'avant."
   },
   "course33": {
     "heroAlt": "Coureuse du trail 33 km avec lunettes de soleil",
@@ -218,7 +218,12 @@
     "limiteValue": "6 heures",
     "retraitValue": "Vendredi 15 octobre",
     "retraitSub": "Samedi 16 octobre",
-    "legendTrace": "33 km – Parcours complet"
+    "legendTrace": "33 km – Parcours complet",
+    "hydratationText": "Le 33 km se court en semi-autonomie : 0,5 L d'eau minimum sur soi, ravitaillements solides et liquides tous les 10 à 15 km.",
+    "parcoursLabelText": "33 km entre sentiers côtiers et sous-bois au départ de Sainte-Hélène, sur un site classé Natura 2000 balisé sans marquage au sol.",
+    "equipementsText": "Veste imperméable, couverture de survie, sifflet, gobelet personnel et téléphone chargé obligatoires — bâtons interdits.",
+    "entrainementLabelText": "6 heures maximum pour rallier l'arrivée : réserve alimentaire obligatoire, et une allure qui se prépare à l'entraînement.",
+    "dossardText": "Dossard avec puce à retirer à la salle Émeraude de Locoal-Mendon (pièce d'identité obligatoire), à porter visible sur l'avant."
   },
   "courseRelais": {
     "heroAlt": "Duo de relayeurs dos à dos",
@@ -233,6 +238,11 @@
     "limiteValue": "15 heures",
     "retraitValue": "Vendredi 15 octobre",
     "retraitSub": "Samedi 16 octobre",
-    "legendTrace": "80 km – Parcours complet"
+    "legendTrace": "80 km – Parcours complet",
+    "hydratationText": "Le relais se court en semi-autonomie : 0,5 L d'eau minimum sur soi, ravitaillements solides et liquides tous les 10 à 15 km.",
+    "parcoursLabelText": "Le tour complet de la Ria à deux : 50 km puis 30 km, passage de relais à Sainte-Hélène et traversée en bateau au chronomètre neutralisé.",
+    "equipementsText": "Veste imperméable, couverture de survie, sifflet et téléphone chargé obligatoires ; lampe frontale pour le premier relayeur — bâtons interdits.",
+    "entrainementLabelText": "15 heures maximum pour l'équipe : réserve alimentaire obligatoire, et deux allures à préparer à l'entraînement.",
+    "dossardText": "Dossards avec puce à retirer à la salle Émeraude de Locoal-Mendon (pièce d'identité obligatoire), à porter visibles sur l'avant."
   }
 }
