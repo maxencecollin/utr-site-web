@@ -87,6 +87,7 @@ export default async function Trail33({
         waypointsUrl="/docs/UTR-80km-relais.gpx"
         legendTrace={t33("legendTrace")}
         bgClass={VERT}
+        stravaRouteId="3512367351976300948"
       />
       <CourseEnvironnement />
       <CoursePrepare stripeClass={VERT} />
