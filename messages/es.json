@@ -201,11 +201,11 @@
     "retraitValue": "Viernes 15 de octubre",
     "retraitSub": "Sábado 16 de octubre",
     "legendTrace": "80 km – Recorrido completo",
-    "hydratationText": "El 80 km se corre en semiautosuficiencia: mínimo 1 L de agua en la mochila, con avituallamientos sólidos y líquidos cada 10 a 15 km.",
-    "parcoursLabelText": "La vuelta completa a la Ría de Étel, con una travesía en barco con cronómetro neutralizado, en un espacio protegido Natura 2000.",
-    "equipementsText": "Mochila de carrera, frontal, chaqueta impermeable, manta de supervivencia, silbato y teléfono cargado obligatorios; bastones prohibidos.",
-    "entrainementLabelText": "15 horas como máximo para completar la vuelta: la reserva de alimentos es obligatoria, y el ritmo se construye entrenando.",
-    "dossardText": "Dorsal con chip a recoger en la sala Émeraude de Locoal-Mendon (documento de identidad obligatorio), visible por delante."
+    "hydratationText": "80 km en semiautosuficiencia: mínimo 1 L de agua en la mochila, avituallamientos cada 10 a 15 km. Entre uno y otro, cada corredor es autónomo.",
+    "parcoursLabelText": "La vuelta completa a la Ría de Étel — senderos costeros, espacio protegido Natura 2000 y una travesía en barco con cronómetro neutralizado.",
+    "equipementsText": "Mochila de carrera, frontal, chaqueta impermeable, manta de supervivencia, silbato, teléfono cargado. Puede haber controles; bastones prohibidos.",
+    "entrainementLabelText": "15 horas como máximo para completar la vuelta. Reserva de alimentos obligatoria — un ritmo que se construye entrenando.",
+    "dossardText": "Dorsal con chip, visible por delante de la salida a la meta. Recogida en la sala Émeraude de Locoal-Mendon, documento de identidad obligatorio."
   },
   "course33": {
     "heroAlt": "Corredora del trail de 33 km con gafas de sol",
@@ -219,11 +219,11 @@
     "retraitValue": "Viernes 15 de octubre",
     "retraitSub": "Sábado 16 de octubre",
     "legendTrace": "33 km – Recorrido completo",
-    "hydratationText": "El 33 km se corre en semiautosuficiencia: mínimo 0,5 L de agua encima, con avituallamientos sólidos y líquidos cada 10 a 15 km.",
-    "parcoursLabelText": "33 km entre senderos costeros y bosque desde Sainte-Hélène, en un espacio protegido Natura 2000 con balizaje sin marcas en el suelo.",
-    "equipementsText": "Chaqueta impermeable, manta de supervivencia, silbato, vaso personal y teléfono cargado obligatorios; bastones prohibidos.",
-    "entrainementLabelText": "6 horas como máximo para llegar a meta: la reserva de alimentos es obligatoria, y el ritmo se construye entrenando.",
-    "dossardText": "Dorsal con chip a recoger en la sala Émeraude de Locoal-Mendon (documento de identidad obligatorio), visible por delante."
+    "hydratationText": "33 km en semiautosuficiencia: mínimo 0,5 L de agua, avituallamientos cada 10 a 15 km. Entre uno y otro, cada corredor es autónomo.",
+    "parcoursLabelText": "Salida de Sainte-Hélène: senderos costeros, bosque y panorámicas de la Ría. Espacio protegido Natura 2000, balizaje sin marcas en el suelo.",
+    "equipementsText": "Chaqueta impermeable, manta de supervivencia, silbato, vaso personal, teléfono cargado. Puede haber controles; bastones prohibidos.",
+    "entrainementLabelText": "6 horas como máximo para llegar a meta. Reserva de alimentos obligatoria — un ritmo que se construye entrenando.",
+    "dossardText": "Dorsal con chip, visible por delante de la salida a la meta. Recogida en la sala Émeraude de Locoal-Mendon, documento de identidad obligatorio."
   },
   "courseRelais": {
     "heroAlt": "Dúo de relevistas espalda con espalda",
@@ -239,10 +239,10 @@
     "retraitValue": "Viernes 15 de octubre",
     "retraitSub": "Sábado 16 de octubre",
     "legendTrace": "80 km – Recorrido completo",
-    "hydratationText": "El relevo se corre en semiautosuficiencia: mínimo 0,5 L de agua encima, con avituallamientos sólidos y líquidos cada 10 a 15 km.",
-    "parcoursLabelText": "La vuelta completa a la Ría en dúo: 50 km y luego 30 km, con el relevo en Sainte-Hélène y una travesía en barco con cronómetro neutralizado.",
-    "equipementsText": "Chaqueta impermeable, manta de supervivencia, silbato y teléfono cargado obligatorios; frontal para el primer relevista — bastones prohibidos.",
-    "entrainementLabelText": "15 horas como máximo para el equipo: la reserva de alimentos es obligatoria, y los dos ritmos se preparan entrenando.",
-    "dossardText": "Dorsales con chip a recoger en la sala Émeraude de Locoal-Mendon (documento de identidad obligatorio), visibles por delante."
+    "hydratationText": "La vuelta en dúo, en semiautosuficiencia: mínimo 0,5 L de agua, avituallamientos cada 10 a 15 km. Entre uno y otro, cada relevista es autónomo.",
+    "parcoursLabelText": "50 km y luego 30 km, relevo en Sainte-Hélène y travesía en barco con cronómetro neutralizado: la vuelta completa a la Ría, entre dos.",
+    "equipementsText": "Chaqueta impermeable, manta de supervivencia, silbato, teléfono cargado — y frontal para el primer relevista. Bastones prohibidos.",
+    "entrainementLabelText": "15 horas como máximo para el equipo. Reserva de alimentos obligatoria — dos ritmos que preparar entrenando.",
+    "dossardText": "Dorsales con chip, visibles por delante de la salida a la meta. Recogida en la sala Émeraude de Locoal-Mendon, documento de identidad obligatorio."
   }
 }
