@@ -340,10 +340,9 @@ export default function CourseEpreuve({
 
             {/* Chapitres : pilules translucides, indicateur + acces direct */}
             <ul className="absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-start gap-2.5 sm:flex">
-              {[
-                { label: t("vueEnsemble"), step: 0 },
-                ...hotspots.map((h, i) => ({ label: t(h.labelKey), step: i + 1 })),
-              ].map(({ label, step }) => (
+              {hotspots
+                .map((h, i) => ({ label: t(h.labelKey), step: i + 1 }))
+                .map(({ label, step }) => (
                 <li key={label}>
                   <button
                     type="button"
