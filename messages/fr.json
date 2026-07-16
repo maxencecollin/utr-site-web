@@ -204,7 +204,7 @@
     "hydratationText": "80 km en semi-autonomie : 1 L d'eau minimum dans le sac, ravitaillements tous les 10 à 15 km. Entre deux ravitos, chaque coureur est autonome.",
     "parcoursLabelText": "Le tour complet de la Ria d'Étel — sentiers côtiers, site classé Natura 2000, et une traversée en bateau au chronomètre neutralisé.",
     "equipementsText": "Sac de course, frontale, veste imperméable, couverture de survie, sifflet, téléphone chargé. Contrôles possibles ; bâtons interdits.",
-    "entrainementLabelText": "15 heures maximum pour boucler le tour. Réserve alimentaire obligatoire — une allure qui se construit à l'entraînement.",
+    "entrainementLabelText": "15 heures maximum pour boucler le tour. Réserve alimentaire obligatoire — sur cette distance, la préparation fait toute la différence.",
     "dossardText": "Dossard avec puce, porté visible sur l'avant du départ à l'arrivée. Retrait à la salle Émeraude de Locoal-Mendon, pièce d'identité obligatoire."
   },
   "course33": {
@@ -222,7 +222,7 @@
     "hydratationText": "33 km en semi-autonomie : 0,5 L d'eau minimum, ravitaillements tous les 10 à 15 km. Entre deux ravitos, chaque coureur est autonome.",
     "parcoursLabelText": "Départ de Sainte-Hélène : sentiers côtiers, sous-bois et panoramas sur la Ria. Site classé Natura 2000, balisage sans marquage au sol.",
     "equipementsText": "Veste imperméable, couverture de survie, sifflet, gobelet personnel, téléphone chargé. Contrôles possibles ; bâtons interdits.",
-    "entrainementLabelText": "6 heures maximum pour rallier l'arrivée. Réserve alimentaire obligatoire — une allure qui se construit à l'entraînement.",
+    "entrainementLabelText": "6 heures maximum pour rallier l'arrivée. Réserve alimentaire obligatoire — et une bonne préparation pour en profiter jusqu'au bout.",
     "dossardText": "Dossard avec puce, porté visible sur l'avant du départ à l'arrivée. Retrait à la salle Émeraude de Locoal-Mendon, pièce d'identité obligatoire."
   },
   "courseRelais": {
@@ -242,7 +242,7 @@
     "hydratationText": "Le tour à deux, en semi-autonomie : 0,5 L d'eau minimum, ravitaillements tous les 10 à 15 km. Entre deux ravitos, chaque relayeur est autonome.",
     "parcoursLabelText": "50 km puis 30 km, passage de relais à Sainte-Hélène et traversée en bateau au chronomètre neutralisé : le tour complet de la Ria, à deux.",
     "equipementsText": "Veste imperméable, couverture de survie, sifflet, téléphone chargé — et lampe frontale pour le premier relayeur. Bâtons interdits.",
-    "entrainementLabelText": "15 heures maximum pour l'équipe. Réserve alimentaire obligatoire — deux allures à préparer à l'entraînement.",
+    "entrainementLabelText": "15 heures maximum pour l'équipe. Réserve alimentaire obligatoire — et une préparation qui se mène à deux.",
     "dossardText": "Dossards avec puce, portés visibles sur l'avant du départ à l'arrivée. Retrait à la salle Émeraude de Locoal-Mendon, pièce d'identité obligatoire."
   }
 }

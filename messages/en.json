@@ -204,7 +204,7 @@
     "hydratationText": "80 km in semi-self-sufficiency: at least 1 L of water in the pack, aid stations every 10 to 15 km. Between them, every runner is on their own.",
     "parcoursLabelText": "The full loop of the Ria d'Étel — coastal trails, a protected Natura 2000 site, and a boat crossing with neutralised timing.",
     "equipementsText": "Race pack, headlamp, waterproof jacket, survival blanket, whistle, charged phone. Checks may be carried out; poles are forbidden.",
-    "entrainementLabelText": "15 hours maximum to complete the loop. Food reserve mandatory — a pace that is built in training.",
+    "entrainementLabelText": "15 hours maximum to complete the loop. Food reserve mandatory — over this distance, preparation makes all the difference.",
     "dossardText": "Chip-fitted bib, worn visibly on the front from start to finish. Collection at the salle Émeraude in Locoal-Mendon, ID required."
   },
   "course33": {
@@ -222,7 +222,7 @@
     "hydratationText": "33 km in semi-self-sufficiency: at least 0.5 L of water, aid stations every 10 to 15 km. Between them, every runner is on their own.",
     "parcoursLabelText": "Starting from Sainte-Hélène: coastal paths, woodland and views over the Ria. A protected Natura 2000 site, paint-free course marking.",
     "equipementsText": "Waterproof jacket, survival blanket, whistle, personal cup, charged phone. Checks may be carried out; poles are forbidden.",
-    "entrainementLabelText": "6 hours maximum to reach the finish. Food reserve mandatory — a pace that is built in training.",
+    "entrainementLabelText": "6 hours maximum to reach the finish. Food reserve mandatory — and solid preparation to enjoy it all the way.",
     "dossardText": "Chip-fitted bib, worn visibly on the front from start to finish. Collection at the salle Émeraude in Locoal-Mendon, ID required."
   },
   "courseRelais": {
@@ -242,7 +242,7 @@
     "hydratationText": "The loop as a duo, in semi-self-sufficiency: at least 0.5 L of water, aid stations every 10 to 15 km. Between them, every runner is on their own.",
     "parcoursLabelText": "50 km then 30 km, handover in Sainte-Hélène and a boat crossing with neutralised timing: the full loop of the Ria, as a pair.",
     "equipementsText": "Waterproof jacket, survival blanket, whistle, charged phone — and a headlamp for the first runner. Poles are forbidden.",
-    "entrainementLabelText": "15 hours maximum for the team. Food reserve mandatory — two paces to prepare in training.",
+    "entrainementLabelText": "15 hours maximum for the team. Food reserve mandatory — and preparation is a two-person job.",
     "dossardText": "Chip-fitted bibs, worn visibly on the front from start to finish. Collection at the salle Émeraude in Locoal-Mendon, ID required."
   }
 }
