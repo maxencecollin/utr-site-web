@@ -42,6 +42,9 @@ export default async function Confidentialite({
       <h2>{t("registrationHeading")}</h2>
       <p>{t.rich("registrationBody", tags)}</p>
 
+      <h2>{t("embedsHeading")}</h2>
+      <p>{t.rich("embedsBody", tags)}</p>
+
       <h2>{t("cookiesHeading")}</h2>
       <p>{t("cookiesBody")}</p>
 

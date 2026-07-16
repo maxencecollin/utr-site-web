@@ -63,11 +63,13 @@
       "controllerHeading": "Responsable du traitement",
       "controllerBody": "Le responsable du traitement des données est :<br></br><b>Association Ultra Tour de la Ria</b><br></br>11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon<br></br>Email : <mail>contact@ultratourdelaria.fr</mail>",
       "dataHeading": "Données collectées sur ce site",
-      "dataBody": "Ce site vitrine ne collecte aucune donnée personnelle directement. Aucun formulaire de contact, aucune inscription à une newsletter et aucun cookie de suivi n'est utilisé sur ce site.",
+      "dataBody": "Ce site vitrine ne collecte aucune donnée personnelle directement. Aucun formulaire de contact ni inscription à une newsletter n'est proposé, et le site ne dépose aucun cookie de suivi de son propre fait. Les pages de course intègrent toutefois une carte fournie par Strava (voir la section « Contenus tiers »).",
       "registrationHeading": "Inscriptions à l'événement",
       "registrationBody": "Les inscriptions à l'Ultra Tour de la Ria sont gérées par la plateforme <b>Klikego</b>. Lorsque vous vous inscrivez à l'événement, vos données personnelles sont collectées et traitées par Klikego conformément à leur propre politique de confidentialité. Nous vous invitons à consulter les conditions de Klikego lors de votre inscription.<br></br><br></br>Les données d'inscription transmises à l'association Ultra Tour de la Ria sont utilisées uniquement pour l'organisation de l'événement : gestion des dossards, communication relative à la course, résultats, etc.",
+      "embedsHeading": "Contenus tiers (cartes Strava)",
+      "embedsBody": "Les pages des épreuves affichent les parcours à l'aide d'un module cartographique fourni par <b>Strava</b> (strava-embeds.com), qui s'appuie sur le service de cartes Mapbox. Lorsque vous consultez ces pages, votre navigateur charge des ressources depuis les serveurs de ces services, qui reçoivent alors des données techniques telles que votre adresse IP et peuvent déposer leurs propres cookies. Ces traitements sont régis par les politiques de confidentialité de Strava et de Mapbox, que nous vous invitons à consulter.",
       "cookiesHeading": "Cookies",
-      "cookiesBody": "Ce site n'utilise pas de cookies de suivi ou de cookies publicitaires. Seuls des cookies techniques essentiels au fonctionnement du site peuvent être utilisés par l'hébergeur (GitHub Pages).",
+      "cookiesBody": "Ce site ne dépose pas de cookies de suivi ni de cookies publicitaires. Des cookies techniques essentiels peuvent être utilisés par l'hébergeur (GitHub Pages), et les modules de cartes Strava intégrés aux pages de course peuvent déposer leurs propres cookies (voir la section « Contenus tiers »).",
       "rightsHeading": "Vos droits",
       "rightsIntro": "Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants concernant vos données personnelles :",
       "right1": "Droit d'accès à vos données",
@@ -78,7 +80,7 @@
       "right6": "Droit d'opposition",
       "rightsContact": "Pour exercer ces droits, vous pouvez nous contacter à l'adresse : <mail>contact@ultratourdelaria.fr</mail>",
       "updateHeading": "Modification de la politique",
-      "updateBody": "Cette politique de confidentialité peut être modifiée à tout moment. La date de dernière mise à jour est indiquée ci-dessous.<br></br><br></br><b>Dernière mise à jour :</b> Janvier 2027"
+      "updateBody": "Cette politique de confidentialité peut être modifiée à tout moment. La date de dernière mise à jour est indiquée ci-dessous.<br></br><br></br><b>Dernière mise à jour :</b> Juillet 2026"
     }
   },
   "hero": {
