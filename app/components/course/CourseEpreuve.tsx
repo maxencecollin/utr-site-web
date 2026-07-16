@@ -177,15 +177,71 @@ export default function CourseEpreuve({
         raf = requestAnimationFrame(tick);
       }
     };
+    // Molette : tant que la section est epinglee, un geste = un objet.
+    // On accumule les deltas (seuil anti-declenchement accidentel) puis on
+    // scrolle en douceur jusqu'au palier suivant ; pendant le trajet et le
+    // temps de recharge, les evenements (inertie du trackpad) sont avales.
+    const WHEEL_THRESHOLD = 100;
+    const WHEEL_COOLDOWN = 1200;
+    let wheelAccum = 0;
+    let coolUntil = 0;
+
+    const onWheel = (e: WheelEvent) => {
+      const container = containerRef.current;
+      const sticky = stickyRef.current;
+      if (!container || !sticky) return;
+      const stepsCount = hotspots.length + 1;
+      const top = Math.min(0, window.innerHeight - sticky.offsetHeight);
+      const range = container.offsetHeight - sticky.offsetHeight;
+      if (range <= 0) return;
+      const y = top - container.getBoundingClientRect().top;
+      // Hors de la zone epinglee : scroll natif
+      if (y < 1 || y > range - 1) {
+        wheelAccum = 0;
+        return;
+      }
+      const stepSize = range / (stepsCount - 1);
+      const nearestStep = Math.round(y / stepSize);
+      const goingDown = e.deltaY > 0;
+      // Pose sur le premier/dernier palier et on continue dans la meme
+      // direction : on libere le scroll natif pour sortir de la section
+      const atEdge = goingDown ? nearestStep >= stepsCount - 1 : nearestStep <= 0;
+      if (atEdge && Math.abs(y - nearestStep * stepSize) < 2) {
+        wheelAccum = 0;
+        return;
+      }
+      e.preventDefault();
+      const now = performance.now();
+      if (now < coolUntil) return;
+      wheelAccum += e.deltaY;
+      if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
+      const targetStep = Math.max(
+        0,
+        Math.min(stepsCount - 1, nearestStep + (wheelAccum > 0 ? 1 : -1)),
+      );
+      wheelAccum = 0;
+      coolUntil = now + WHEEL_COOLDOWN;
+      window.scrollTo({
+        top:
+          window.scrollY +
+          container.getBoundingClientRect().top -
+          top +
+          stepSize * targetStep,
+        behavior: "smooth",
+      });
+    };
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("wheel", onWheel, { passive: false });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("wheel", onWheel);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [hotspots.length]);
 
   // Etapes du voyage : vue d'ensemble puis chaque objet
   const steps = [
