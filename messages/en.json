@@ -63,11 +63,13 @@
       "controllerHeading": "Data controller",
       "controllerBody": "The data controller is:<br></br><b>Ultra Tour de la Ria association</b><br></br>11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon, France<br></br>Email: <mail>contact@ultratourdelaria.fr</mail>",
       "dataHeading": "Data collected on this site",
-      "dataBody": "This showcase website does not collect any personal data directly. No contact form, no newsletter sign-up and no tracking cookies are used on this site.",
+      "dataBody": "This showcase website does not collect any personal data directly. There is no contact form or newsletter sign-up, and the site itself does not set any tracking cookies. The race pages do, however, embed a map provided by Strava (see the \"Third-party content\" section).",
       "registrationHeading": "Event registration",
       "registrationBody": "Registration for the Ultra Tour de la Ria is handled by the <b>Klikego</b> platform. When you register for the event, your personal data is collected and processed by Klikego in accordance with their own privacy policy. We invite you to review Klikego's terms when you register.<br></br><br></br>The registration data passed on to the Ultra Tour de la Ria association is used solely to organise the event: bib management, race-related communication, results, etc.",
+      "embedsHeading": "Third-party content (Strava maps)",
+      "embedsBody": "The race pages display the routes using a map module provided by <b>Strava</b> (strava-embeds.com), which relies on the Mapbox mapping service. When you visit these pages, your browser loads resources from these services' servers, which then receive technical data such as your IP address and may set their own cookies. This processing is governed by the privacy policies of Strava and Mapbox, which we invite you to consult.",
       "cookiesHeading": "Cookies",
-      "cookiesBody": "This site does not use tracking or advertising cookies. Only technical cookies essential to the operation of the site may be used by the host (GitHub Pages).",
+      "cookiesBody": "This site does not set tracking or advertising cookies. Essential technical cookies may be used by the host (GitHub Pages), and the Strava map modules embedded in the race pages may set their own cookies (see the \"Third-party content\" section).",
       "rightsHeading": "Your rights",
       "rightsIntro": "In accordance with the General Data Protection Regulation (GDPR), you have the following rights regarding your personal data:",
       "right1": "Right of access to your data",
@@ -78,7 +80,7 @@
       "right6": "Right to object",
       "rightsContact": "To exercise these rights, you can contact us at: <mail>contact@ultratourdelaria.fr</mail>",
       "updateHeading": "Changes to this policy",
-      "updateBody": "This privacy policy may be amended at any time. The date of the last update is indicated below.<br></br><br></br><b>Last updated:</b> January 2027"
+      "updateBody": "This privacy policy may be amended at any time. The date of the last update is indicated below.<br></br><br></br><b>Last updated:</b> July 2026"
     }
   },
   "hero": {
