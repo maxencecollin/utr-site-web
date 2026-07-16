@@ -187,7 +187,11 @@
     "departArrivee": "Start / Finish",
     "downloadGpx": "Download the GPX",
     "vueEnsemble": "Overview",
-    "enSavoirPlus": "Learn more"
+    "hydratationText": "A semi-self-sufficient race: between aid stations, every runner carries their own water supply.",
+    "parcoursLabelText": "The route follows the trails of the Ria d'Étel. Interactive map and GPX file further down the page.",
+    "equipementsText": "The full mandatory equipment list is detailed in the race rules, available for download.",
+    "entrainementLabelText": "Training plan, nutrition, gear: find our advice to be ready on race day.",
+    "dossardText": "Bibs can be collected the day before or on the morning of the race. All practical info is just below."
   },
   "course80": {
     "heroAlt": "Ultra 80 km runner wearing a cap and hydration vest",

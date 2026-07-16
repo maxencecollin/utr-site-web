@@ -120,6 +120,9 @@ export default function CourseEpreuve({
   const stickyRef = useRef<HTMLElement>(null);
   // Progression 0..1 dans le conteneur de scroll (0 sur mobile : pas de sticky)
   const [progress, setProgress] = useState(0);
+  // Si la section depasse la hauteur de l'ecran, on l'epingle par le bas
+  // (le haut du titre sort de l'ecran, la photo reste entierement visible)
+  const [stickyTop, setStickyTop] = useState(0);
 
   useEffect(() => {
     let raf = 0;
@@ -129,8 +132,10 @@ export default function CourseEpreuve({
         const container = containerRef.current;
         const sticky = stickyRef.current;
         if (!container || !sticky) return;
+        const top = Math.min(0, window.innerHeight - sticky.offsetHeight);
+        setStickyTop(top);
         const range = container.offsetHeight - sticky.offsetHeight;
-        const y = -container.getBoundingClientRect().top;
+        const y = top - container.getBoundingClientRect().top;
         setProgress(range > 0 ? Math.min(1, Math.max(0, y / range)) : 0);
       });
     };
@@ -177,6 +182,9 @@ export default function CourseEpreuve({
   const settled = eased === 0 ? seg : eased === 1 ? seg + 1 : -1;
   const nearest = Math.round(f);
   const active = settled >= 1 ? hotspots[settled - 1] : null;
+  // Legende affichee sous l'objet (celle de l'etape la plus proche, pour que
+  // le texte soit deja le bon quand il reapparait apres une transition)
+  const caption = nearest >= 1 ? hotspots[nearest - 1] : null;
 
   // Clic sur une pilule : scrolle jusqu'au palier de l'etape (step 0 = vue d'ensemble)
   const scrollToStep = (step: number) => {
@@ -187,7 +195,8 @@ export default function CourseEpreuve({
     if (range <= 0) return;
     const top =
       window.scrollY +
-      container.getBoundingClientRect().top +
+      container.getBoundingClientRect().top -
+      stickyTop +
       range * (step / (steps.length - 1));
     window.scrollTo({ top, behavior: "smooth" });
   };
@@ -197,7 +206,8 @@ export default function CourseEpreuve({
     <div id="epreuve" ref={containerRef} className="relative sm:h-[400vh]">
       <section
         ref={stickyRef}
-        className="overflow-x-clip bg-white pt-16 sm:sticky sm:top-0 lg:pt-20"
+        className="overflow-x-clip bg-white pt-16 sm:sticky lg:pt-20"
+        style={{ top: stickyTop }}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           {/* Picto coureur (entrainement.svg, passe en noir par l'en-tete) */}
@@ -251,21 +261,17 @@ export default function CourseEpreuve({
               ))}
             </ul>
 
-            {/* Lien vers la page liee a l'objet (apparait quand la vue est posee) */}
+            {/* Legende de l'objet (apparait quand la vue est posee) */}
             <div
-              className={`absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 transition-all duration-300 sm:block ${
+              className={`absolute bottom-8 left-1/2 z-10 hidden w-[min(88%,600px)] -translate-x-1/2 transition-all duration-300 sm:block ${
                 active
                   ? "translate-y-0 opacity-100"
                   : "pointer-events-none translate-y-3 opacity-0"
               }`}
             >
-              <HotspotLink
-                href={active?.href ?? "#"}
-                className="group inline-flex items-center gap-3 rounded-full bg-white/90 px-7 py-3.5 text-[16px] font-medium text-[#1c1c1c] shadow-[0_6px_24px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-colors hover:bg-white"
-              >
-                {t("enSavoirPlus")}
-                {active && <Arrow direction={active.direction} />}
-              </HotspotLink>
+              <p className="rounded-2xl bg-black/45 px-7 py-4 text-center text-[15px] font-medium leading-relaxed text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12),0_6px_24px_rgba(0,0,0,0.3)] backdrop-blur-xl">
+                {caption && t(`${caption.labelKey}Text`)}
+              </p>
             </div>
           </div>
         </div>

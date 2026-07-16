@@ -187,7 +187,11 @@
     "departArrivee": "Départ / Arrivée",
     "downloadGpx": "Télécharger le GPX",
     "vueEnsemble": "Vue d'ensemble",
-    "enSavoirPlus": "En savoir plus"
+    "hydratationText": "Une épreuve en semi-autonomie : entre deux ravitaillements, chaque coureur transporte sa propre réserve d'eau.",
+    "parcoursLabelText": "Le tracé emprunte les sentiers de la Ria d'Étel. Carte interactive et fichier GPX un peu plus bas sur la page.",
+    "equipementsText": "La liste du matériel obligatoire est détaillée dans le règlement de course, disponible en téléchargement.",
+    "entrainementLabelText": "Plan d'entraînement, nutrition, matériel : retrouve nos conseils pour arriver prêt le jour J.",
+    "dossardText": "Les dossards sont à retirer la veille ou le matin de la course. Toutes les infos pratiques sont juste en dessous."
   },
   "course80": {
     "heroAlt": "Coureur de l'ultra 80 km, casquette et gilet d'hydratation",

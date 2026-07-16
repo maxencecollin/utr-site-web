@@ -187,7 +187,11 @@
     "departArrivee": "Salida / Meta",
     "downloadGpx": "Descargar el GPX",
     "vueEnsemble": "Vista general",
-    "enSavoirPlus": "Más información"
+    "hydratationText": "Una prueba en semiautosuficiencia: entre avituallamientos, cada corredor lleva su propia reserva de agua.",
+    "parcoursLabelText": "El recorrido sigue los senderos de la Ría de Étel. Mapa interactivo y archivo GPX un poco más abajo.",
+    "equipementsText": "La lista completa del material obligatorio está detallada en el reglamento de la carrera, disponible para descargar.",
+    "entrainementLabelText": "Plan de entrenamiento, nutrición, material: nuestros consejos para llegar listo el día D.",
+    "dossardText": "Los dorsales se recogen la víspera o la mañana de la carrera. Toda la información práctica está justo debajo."
   },
   "course80": {
     "heroAlt": "Corredor del ultra de 80 km con gorra y chaleco de hidratación",
