@@ -186,11 +186,11 @@
     "legendRavito": "Aid station",
     "departArrivee": "Start / Finish",
     "downloadGpx": "Download the GPX",
-    "hydratationText": "A semi-self-sufficient race: between aid stations, every runner carries their own water supply.",
-    "parcoursLabelText": "The route follows the trails of the Ria d'Étel. Interactive map and GPX file further down the page.",
-    "equipementsText": "The full mandatory equipment list is detailed in the race rules, available for download.",
-    "entrainementLabelText": "Training plan, nutrition, gear: find our advice to be ready on race day.",
-    "dossardText": "Bibs can be collected the day before or on the morning of the race. All practical info is just below."
+    "hydratationText": "Semi-self-sufficiency: a water reserve is mandatory (1 L for the 80 km, 0.5 L for the 33 km and the relay), with food and drink stations every 10 to 15 km.",
+    "parcoursLabelText": "Paint-free course marking: the races cross the Ria d'Étel, a protected Natura 2000 natural site.",
+    "equipementsText": "Waterproof jacket, survival blanket, whistle and charged phone are mandatory. Poles are forbidden on all three races.",
+    "entrainementLabelText": "A food reserve is mandatory throughout the race: race nutrition is something you practise in training.",
+    "dossardText": "Bibs must be collected at the salle Émeraude in Locoal-Mendon (ID required) and worn visibly on your front during the race."
   },
   "course80": {
     "heroAlt": "Ultra 80 km runner wearing a cap and hydration vest",

@@ -186,11 +186,11 @@
     "legendRavito": "Ravitaillement",
     "departArrivee": "Départ / Arrivée",
     "downloadGpx": "Télécharger le GPX",
-    "hydratationText": "Une épreuve en semi-autonomie : entre deux ravitaillements, chaque coureur transporte sa propre réserve d'eau.",
-    "parcoursLabelText": "Le tracé emprunte les sentiers de la Ria d'Étel. Carte interactive et fichier GPX un peu plus bas sur la page.",
-    "equipementsText": "La liste du matériel obligatoire est détaillée dans le règlement de course, disponible en téléchargement.",
-    "entrainementLabelText": "Plan d'entraînement, nutrition, matériel : retrouve nos conseils pour arriver prêt le jour J.",
-    "dossardText": "Les dossards sont à retirer la veille ou le matin de la course. Toutes les infos pratiques sont juste en dessous."
+    "hydratationText": "Semi-autonomie : réserve d'eau obligatoire (1 L sur le 80 km, 0,5 L sur le 33 km et le relais), ravitaillements solides et liquides tous les 10 à 15 km.",
+    "parcoursLabelText": "Balisage sans marquage au sol : les épreuves traversent la Ria d'Étel, un site naturel classé Natura 2000.",
+    "equipementsText": "Veste imperméable, couverture de survie, sifflet et téléphone chargé obligatoires. Les bâtons sont interdits sur les trois épreuves.",
+    "entrainementLabelText": "Une réserve alimentaire est obligatoire pendant toute l'épreuve : l'alimentation en course se travaille à l'entraînement.",
+    "dossardText": "Dossard à retirer à la salle Émeraude de Locoal-Mendon (pièce d'identité obligatoire), à porter visible sur l'avant pendant la course."
   },
   "course80": {
     "heroAlt": "Coureur de l'ultra 80 km, casquette et gilet d'hydratation",

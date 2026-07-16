@@ -186,11 +186,11 @@
     "legendRavito": "Avituallamiento",
     "departArrivee": "Salida / Meta",
     "downloadGpx": "Descargar el GPX",
-    "hydratationText": "Una prueba en semiautosuficiencia: entre avituallamientos, cada corredor lleva su propia reserva de agua.",
-    "parcoursLabelText": "El recorrido sigue los senderos de la Ría de Étel. Mapa interactivo y archivo GPX un poco más abajo.",
-    "equipementsText": "La lista completa del material obligatorio está detallada en el reglamento de la carrera, disponible para descargar.",
-    "entrainementLabelText": "Plan de entrenamiento, nutrición, material: nuestros consejos para llegar listo el día D.",
-    "dossardText": "Los dorsales se recogen la víspera o la mañana de la carrera. Toda la información práctica está justo debajo."
+    "hydratationText": "Semiautosuficiencia: reserva de agua obligatoria (1 L en el 80 km, 0,5 L en el 33 km y el relevo), con avituallamientos sólidos y líquidos cada 10 a 15 km.",
+    "parcoursLabelText": "Balizaje sin marcas en el suelo: las pruebas atraviesan la Ría de Étel, un espacio natural protegido Natura 2000.",
+    "equipementsText": "Chaqueta impermeable, manta de supervivencia, silbato y teléfono cargado obligatorios. Los bastones están prohibidos en las tres pruebas.",
+    "entrainementLabelText": "La reserva de alimentos es obligatoria durante toda la prueba: la nutrición en carrera se trabaja en los entrenamientos.",
+    "dossardText": "Los dorsales se recogen en la sala Émeraude de Locoal-Mendon (documento de identidad obligatorio) y deben llevarse visibles por delante durante la carrera."
   },
   "course80": {
     "heroAlt": "Corredor del ultra de 80 km con gorra y chaleco de hidratación",
