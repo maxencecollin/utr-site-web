@@ -87,6 +87,7 @@ export default async function Relais({
         traceUrl="/docs/UTR-80km-relais.gpx"
         legendTrace={tRelais("legendTrace")}
         bgClass={MARRON}
+        stravaRouteId="3512364379356723150"
       />
       <CourseEnvironnement />
       <CoursePrepare stripeClass={MARRON} />

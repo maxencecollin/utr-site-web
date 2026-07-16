@@ -77,6 +77,7 @@ export default async function Ultra80({
       <CourseParcours
         traceUrl="/docs/UTR-80km-relais.gpx"
         legendTrace={t80("legendTrace")}
+        stravaRouteId="3512364379356723150"
       />
       <CourseEnvironnement />
       <CoursePrepare />
