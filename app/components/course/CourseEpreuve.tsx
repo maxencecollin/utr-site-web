@@ -129,8 +129,10 @@ export default function CourseEpreuve({
     // Raideur du rappel : plus grand = suit le scroll de plus pres
     const STIFFNESS = 5;
     // Vitesse max de la progression (part du voyage complet par seconde) :
-    // un gros coup de molette traverse les objets a un rythme lisible
-    const MAX_SPEED = 0.6;
+    // un gros coup de molette traverse les objets a un rythme lisible.
+    // La remontee est plus rapide que la descente.
+    const MAX_SPEED_DOWN = 0.6;
+    const MAX_SPEED_UP = 1.2;
     let raf = 0;
     let running = false;
     let started = false;
@@ -144,7 +146,7 @@ export default function CourseEpreuve({
       const dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
       last = now;
       const delta = (target - current) * (1 - Math.exp(-STIFFNESS * dt));
-      const maxDelta = MAX_SPEED * dt;
+      const maxDelta = (target < current ? MAX_SPEED_UP : MAX_SPEED_DOWN) * dt;
       current += Math.min(maxDelta, Math.max(-maxDelta, delta));
       if (Math.abs(target - current) < 0.0005) {
         current = target;
@@ -182,7 +184,9 @@ export default function CourseEpreuve({
     // scrolle en douceur jusqu'au palier suivant ; pendant le trajet et le
     // temps de recharge, les evenements (inertie du trackpad) sont avales.
     const WHEEL_THRESHOLD = 100;
-    const WHEEL_COOLDOWN = 1200;
+    // Recharge apres un pas : plus courte en remontant (retour rapide)
+    const WHEEL_COOLDOWN_DOWN = 1200;
+    const WHEEL_COOLDOWN_UP = 450;
     let wheelAccum = 0;
     let coolUntil = 0;
 
@@ -219,8 +223,9 @@ export default function CourseEpreuve({
         0,
         Math.min(stepsCount - 1, nearestStep + (wheelAccum > 0 ? 1 : -1)),
       );
+      const goingUp = targetStep < nearestStep;
       wheelAccum = 0;
-      coolUntil = now + WHEEL_COOLDOWN;
+      coolUntil = now + (goingUp ? WHEEL_COOLDOWN_UP : WHEEL_COOLDOWN_DOWN);
       window.scrollTo({
         top:
           window.scrollY +
