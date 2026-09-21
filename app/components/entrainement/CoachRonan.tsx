@@ -2,8 +2,8 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
-// Offre de coaching de Ronan : cible a fournir (site ou page dediee)
-const HREF_COACH = "#coach";
+// Page dediee au coaching de Ronan
+const HREF_COACH = "/coaching";
 
 /*
   Section "Les conseils du coach Ronan" : fond brun profond avec la topographie
