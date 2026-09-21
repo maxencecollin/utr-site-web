@@ -6,6 +6,9 @@ import EntrainementNav from "@/app/components/entrainement/EntrainementNav";
 import EntrainementIntro from "@/app/components/entrainement/EntrainementIntro";
 import CoachRonan from "@/app/components/entrainement/CoachRonan";
 import EntrainementRavitos from "@/app/components/entrainement/EntrainementRavitos";
+import EntrainementNutrition from "@/app/components/entrainement/EntrainementNutrition";
+import EntrainementMateriel from "@/app/components/entrainement/EntrainementMateriel";
+import EntrainementRegles from "@/app/components/entrainement/EntrainementRegles";
 import CoursePartenaires from "@/app/components/course/CoursePartenaires";
 import Footer from "@/app/components/Footer";
 
@@ -31,7 +34,9 @@ export default async function Entrainement({
       <EntrainementIntro />
       <CoachRonan />
       <EntrainementRavitos />
-      {/* A venir : guide nutrition, materiel obligatoire, regles a respecter */}
+      <EntrainementNutrition />
+      <EntrainementMateriel />
+      <EntrainementRegles />
       <CoursePartenaires />
       <Footer />
     </>
