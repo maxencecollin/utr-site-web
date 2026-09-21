@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import Header from "@/app/components/Header";
 import CourseHero from "@/app/components/course/CourseHero";
 import CourseEpreuve, { type Hotspot } from "@/app/components/course/CourseEpreuve";
 import CourseInfos from "@/app/components/course/CourseInfos";
@@ -22,8 +23,8 @@ export const metadata: Metadata = {
 // Declinaison marron de la maquette pour le relais
 const MARRON = "bg-[#5e3a1c]";
 
-// Page dediee a l'entrainement a venir ; en attendant, ancre de la landing
-const HREF_ENTRAINEMENT = "/#entrainement";
+// Page dediee a l'entrainement
+const HREF_ENTRAINEMENT = "/entrainement";
 
 const HOTSPOTS: Hotspot[] = [
   { labelKey: "hydratation", href: HREF_ENTRAINEMENT, direction: "right", left: "19%", top: "24%", zoom: { x: 20, y: 26 } },
@@ -62,6 +63,7 @@ export default async function Relais({
 
   return (
     <>
+      <Header />
       <CourseHero
         titleLines={["RELAIS"]}
         photo="/photos/_dsc6509-girl2.jpg"

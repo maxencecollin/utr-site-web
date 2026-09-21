@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import Header from "@/app/components/Header";
 import CourseHero from "@/app/components/course/CourseHero";
 import CourseEpreuve, { type Hotspot } from "@/app/components/course/CourseEpreuve";
 import CourseInfos from "@/app/components/course/CourseInfos";
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
     "L'Ultra 80 km, le tour complet de la Ria d'Étel en semi-autonomie : parcours, infos pratiques, ravitaillements et inscription. 16 octobre 2027, Locoal-Mendon.",
 };
 
-// Page dediee a l'entrainement a venir ; en attendant, ancre de la landing
-const HREF_ENTRAINEMENT = "/#entrainement";
+// Page dediee a l'entrainement
+const HREF_ENTRAINEMENT = "/entrainement";
 
 const HOTSPOTS: Hotspot[] = [
   { labelKey: "hydratation", href: HREF_ENTRAINEMENT, direction: "right", left: "19%", top: "24%", zoom: { x: 20, y: 26 } },
@@ -59,6 +60,7 @@ export default async function Ultra80({
 
   return (
     <>
+      <Header />
       <CourseHero
         titleLines={["80 KM"]}
         photo="/photos/_dsc6870-guy.jpg"

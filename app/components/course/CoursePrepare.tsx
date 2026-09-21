@@ -3,8 +3,8 @@ import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 import CourseSectionHeading from "./CourseSectionHeading";
 
-// Page dediee a l'entrainement a venir ; en attendant, ancre de la landing
-const HREF_ENTRAINEMENT = "/#entrainement";
+// Page dediee a l'entrainement
+const HREF_ENTRAINEMENT = "/entrainement";
 
 type Props = {
   /* Couleur des bandes decoratives (classe bg-*), marine par defaut */

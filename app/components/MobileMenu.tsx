@@ -4,16 +4,9 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { HEADER_LINKS, SECONDARY_LINKS } from "./navLinks";
 
-// Chemins absolus (avec /) : fonctionnent aussi depuis les pages de course
-const NAV = [
-  { key: "courses", href: "/#courses" },
-  { key: "parcours", href: "/#parcours" },
-  { key: "patrimoine", href: "/#patrimoine" },
-  { key: "village", href: "/#village" },
-  { key: "benevoles", href: "/#benevoles" },
-  { key: "partenaires", href: "/#partenaires" },
-] as const;
+const NAV = [...HEADER_LINKS, ...SECONDARY_LINKS];
 
 export default function MobileMenu() {
   const t = useTranslations("nav");

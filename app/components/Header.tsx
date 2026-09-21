@@ -1,19 +1,33 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import LanguageSelector from "./LanguageSelector";
 import MobileMenu from "./MobileMenu";
+import { HEADER_LINKS } from "./navLinks";
 
-// Chemins absolus (avec /) : fonctionnent aussi depuis les pages de course
-const LINKS = [
-  { key: "epreuves", href: "/#courses" },
-  { key: "engagements", href: "/#patrimoine" },
-] as const;
+/* Hauteur de scroll a partir de laquelle le header prend son fond opaque */
+const SCROLL_THRESHOLD = 24;
 
 export default function Header() {
   const t = useTranslations("nav");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
+    onScroll(); // etat correct si la page est rechargee deja defilee
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
+    <header
+      className={`fixed inset-x-0 top-0 z-30 transition-colors duration-300 ${
+        scrolled ? "bg-dark-900 shadow-[0_2px_16px_#00000040]" : "bg-transparent"
+      }`}
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-10">
         <Link href="/" aria-label="Ultra Tour de la Ria d'Étel — accueil">
           <Image
@@ -28,7 +42,7 @@ export default function Header() {
 
         <div className="flex items-center gap-3 md:gap-6 lg:gap-8">
           <ul className="hidden items-center gap-6 text-sm font-bold italic uppercase text-white md:flex lg:gap-8">
-            {LINKS.map((link) => (
+            {HEADER_LINKS.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="transition-opacity hover:opacity-70">
                   {t(link.key)}

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import Header from "../Header";
 import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
 import UtmbBadge from "./UtmbBadge";
@@ -43,7 +42,6 @@ export default function CourseHero({
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-dark-900/25 via-dark-900/5 to-dark-900/45" />
 
-      <Header />
 
       {/* Contenu central */}
       <div className="flex flex-1 flex-col items-center px-6 pt-24 text-center">

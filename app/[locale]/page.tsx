@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import Header from "@/app/components/Header";
 import Hero from "@/app/components/sections/Hero";
 import Courses from "@/app/components/sections/Courses";
 import Parcours from "@/app/components/sections/Parcours";
@@ -19,6 +20,7 @@ export default async function Home({
 
   return (
     <>
+      <Header />
       <Hero />
       <Courses />
       <Parcours />

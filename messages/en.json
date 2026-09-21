@@ -8,6 +8,10 @@
     "partenaires": "Partners",
     "epreuves": "Our races",
     "engagements": "Our commitments",
+    "headerEpreuves": "Races",
+    "headerEntrainement": "Training",
+    "headerEnvironnement": "Environment",
+    "headerInfos": "Practical info",
     "inscrire": "Register"
   },
   "footer": {
