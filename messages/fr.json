@@ -321,7 +321,15 @@
     "contactCta": "Écrire à Ronan",
     "offresAlt": "Coureur en flou de mouvement sur la route",
     "prix80et33": "80 km / 33 km",
-    "prixRelais": "Relais"
+    "prixRelais": "Relais",
+    "faqQ1a": "Compte 12 à 16 semaines de préparation spécifique avant le jour J, en partant d'une base d'endurance déjà installée. Pour le 80 km, vise plutôt le haut de la fourchette ; pour le 33 km, 10 à 12 semaines suffisent si tu cours déjà régulièrement.",
+    "faqQ1b": "L'idée n'est pas d'enchaîner les grosses semaines dès le départ. On monte progressivement, avec une semaine allégée toutes les trois semaines environ, et on termine par deux semaines d'affûtage où le volume baisse nettement.",
+    "faqQ2a": "Entre 3 et 6 séances de course à pied selon ton niveau et le temps dont tu disposes, plus une séance de préparation physique générale. Trois séances bien placées valent mieux que cinq faites à moitié.",
+    "faqQ2b": "Le plus important reste la sortie longue du week-end : c'est là que tu construis ton endurance et que tu testes ton matériel et ta nutrition. Le reste de la semaine sert à entretenir et à ajouter un peu d'intensité.",
+    "faqQ4a": "Ce n'est pas obligatoire, mais c'est un vrai plus. Le parcours alterne sentiers côtiers, chemins et portions roulantes : y poser les pieds avant la course t'évite les mauvaises surprises.",
+    "faqQ4b": "Si tu habites loin, cherche des sorties au profil comparable : du relief court et répété plutôt que de longues montées, et des sols souples. Reconnaître une ou deux portions clés, en particulier la fin de parcours, suffit souvent à te rassurer.",
+    "faqQ5a": "Partir trop vite, d'abord. Les premiers kilomètres paraissent faciles et se paient très cher ensuite. Puis négliger de boire et de manger sur les deux premières heures : quand la fatigue arrive, il est trop tard pour rattraper.",
+    "faqQ5b": "Enfin, tester du neuf le jour J. Chaussures, sac, gel jamais essayé : tout ce que tu portes et tout ce que tu avales doit avoir été validé à l'entraînement. Et ne néglige pas ton sommeil de la semaine précédente, il compte plus que la dernière grosse séance."
   },
   "benevoles": {
     "overline": "Rejoins l'aventure",

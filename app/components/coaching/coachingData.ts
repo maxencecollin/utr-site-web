@@ -4,9 +4,8 @@
 */
 
 /* Adresse de contact de Ronan : le site est statique, le formulaire de la
-   maquette est remplace par un lien mailto.
-   TODO : remplacer par sa vraie adresse. */
-export const EMAIL_RONAN = "contact@ultratourdelaria.fr";
+   maquette est remplace par un lien mailto. */
+export const EMAIL_RONAN = "ronan.kervadec@gmail.com";
 
 export type Offre = {
   titreKey: string;
@@ -46,12 +45,18 @@ export const OFFRES: Offre[] = [
   },
 ];
 
-/* Les cinq questions de la FAQ. Seule celle sur l'alimentation a sa reponse
-   dans la maquette ; les autres attendent les textes de Ronan. */
+/*
+  Les cinq questions de la FAQ.
+
+  Seule la reponse sur l'alimentation figure dans la maquette. Les quatre
+  autres sont des textes de base rediges de notre cote : ce sont des conseils
+  generaux d'entrainement, a faire relire et signer par Ronan avant mise en
+  ligne, puisqu'ils lui sont attribues.
+*/
 export const FAQ = [
-  { questionKey: "faqQ1", reponses: [] as string[] },
-  { questionKey: "faqQ2", reponses: [] as string[] },
+  { questionKey: "faqQ1", reponses: ["faqQ1a", "faqQ1b"] },
+  { questionKey: "faqQ2", reponses: ["faqQ2a", "faqQ2b"] },
   { questionKey: "faqQ3", reponses: ["faqQ3a", "faqQ3b"] },
-  { questionKey: "faqQ4", reponses: [] as string[] },
-  { questionKey: "faqQ5", reponses: [] as string[] },
+  { questionKey: "faqQ4", reponses: ["faqQ4a", "faqQ4b"] },
+  { questionKey: "faqQ5", reponses: ["faqQ5a", "faqQ5b"] },
 ];

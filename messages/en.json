@@ -321,7 +321,15 @@
     "contactCta": "Email Ronan",
     "offresAlt": "A runner blurred with motion on the road",
     "prix80et33": "80 km / 33 km",
-    "prixRelais": "Relay"
+    "prixRelais": "Relay",
+    "faqQ1a": "Count on twelve to sixteen weeks of specific training before race day, starting from an endurance base you already have. For the 80 km, aim for the upper end; for the 33 km, ten to twelve weeks are enough if you already run regularly.",
+    "faqQ1b": "The point is not to pile on big weeks from the start. You build up gradually, with an easier week roughly every third week, and you finish with a two-week taper where the volume drops right back.",
+    "faqQ2a": "Three to six running sessions depending on your level and the time you have, plus one general conditioning session. Three well-placed sessions beat five done half-heartedly.",
+    "faqQ2b": "The weekend long run matters most: that is where you build endurance and where you test your kit and your nutrition. The rest of the week keeps things ticking over and adds a little intensity.",
+    "faqQ4a": "It is not essential, but it helps a lot. The course mixes coastal paths, tracks and faster, flatter stretches, and walking or running some of it beforehand saves you from nasty surprises.",
+    "faqQ4b": "If you live far away, look for outings with a similar profile: short, repeated climbs rather than long ascents, on soft ground. Recceing one or two key stretches, the finish especially, is usually enough to settle your nerves.",
+    "faqQ5a": "Going out too fast, first of all. The opening kilometres feel easy and you pay dearly for them later. Then neglecting to drink and eat in the first two hours: once the fatigue arrives it is too late to catch up.",
+    "faqQ5b": "And trying something new on race day. Shoes, pack, a gel you have never taken — everything you wear and everything you swallow should have been tested in training. Do not skimp on sleep the week before either; it counts for more than one last big session."
   },
   "benevoles": {
     "overline": "Join the adventure",
