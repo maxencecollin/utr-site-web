@@ -7,6 +7,7 @@ import CoachingFaq from "@/app/components/coaching/CoachingFaq";
 import CoachingOffres from "@/app/components/coaching/CoachingOffres";
 import CoachingConseil from "@/app/components/coaching/CoachingConseil";
 import CoachingContact from "@/app/components/coaching/CoachingContact";
+import CoachingInstagram from "@/app/components/coaching/CoachingInstagram";
 import CoursePartenaires from "@/app/components/course/CoursePartenaires";
 import Footer from "@/app/components/Footer";
 
@@ -33,6 +34,7 @@ export default async function Coaching({
       <CoachingOffres />
       <CoachingConseil />
       <CoachingContact />
+      <CoachingInstagram />
       <CoursePartenaires />
       <Footer />
     </>
