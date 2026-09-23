@@ -17,7 +17,7 @@ export default function EnvironnementHero() {
         fill
         priority
         sizes="100vw"
-        className="-z-20 object-cover object-[50%_55%]"
+        className="-z-20 object-cover"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-dark-900/35 via-dark-900/5 to-dark-900/40" />
 

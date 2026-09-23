@@ -23,24 +23,23 @@ export default function Enjeux() {
 
         <div className="mt-12 grid grid-cols-1 items-start gap-12 lg:grid-cols-[52%_1fr] lg:gap-16">
           {/* Deux photos posees l'une sur l'autre */}
-          {/* Grande photo 524 x 605 ; la petite (60 %) se pose en bas et deborde
-              a droite de 130 px, comme la maquette */}
-          <div className="relative max-w-[524px] pb-16 lg:-ml-[38px] lg:pb-4">
+          {/* Grande photo 525 x 511 ; la petite (60 %) se pose en bas et deborde
+              a droite, comme la maquette. Fichiers recadres comme dans XD. */}
+          <div className="relative max-w-[525px] pb-24 lg:-ml-[38px] lg:pb-16">
             <PhotoScotchee
               src="/photos/env-enjeux.jpg"
               alt={t("enjAltBalade")}
-              ratio="524/605"
-              sizes="(min-width: 1024px) 46vw, 90vw"
-              position="35% 50%"
+              ratio="525/511"
+              sizes="(min-width: 1024px) 525px, 90vw"
               rotation={-1.5}
             />
             <PhotoScotchee
               src="/photos/env-maree-basse.jpg"
               alt={t("enjAltMaree")}
-              ratio="900/600"
+              ratio="314/212"
               sizes="(min-width: 1024px) 24vw, 50vw"
               rotation={3}
-              className="absolute left-[40%] top-[67%] w-[60%] sm:left-[65%]"
+              className="absolute left-[40%] top-[61%] w-[60%] sm:left-[64.6%]"
             />
           </div>
 

@@ -10,9 +10,8 @@ export default function EnvironnementSternes() {
         <PhotoScotchee
           src="/photos/env-sternes.jpg"
           alt={t("sternesAlt")}
-          ratio="1200/390"
-          sizes="(min-width: 1152px) 1100px, 100vw"
-          position="50% 45%"
+          ratio="1125/338"
+          sizes="(min-width: 1200px) 1125px, 100vw"
           rotation={-0.6}
           legende={t("sternesLegende")}
         />

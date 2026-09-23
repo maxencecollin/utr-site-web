@@ -40,52 +40,52 @@ export default function PatrimoineNaturel() {
             </div>
           </div>
           <PhotoScotchee
-            src="/photos/_dsc7014.jpg"
+            src="/photos/env-coureur.jpg"
             alt={t("patriAltCoureur")}
-            ratio="410/457"
+            ratio="383/441"
             sizes="(min-width: 1024px) 38vw, 90vw"
             rotation={1.5}
-            className="mx-auto w-full max-w-[380px] lg:-mt-24 lg:mr-0"
+            className="mx-auto w-full max-w-[383px] lg:-mt-24 lg:mr-0"
           />
         </div>
 
         {/* Collage des especes + texte a droite */}
-        <div className="mt-16 grid grid-cols-1 items-start gap-12 lg:mt-12 lg:grid-cols-[1fr_40%] lg:gap-16">
+        <div className="mt-16 grid grid-cols-1 items-start gap-12 lg:mt-12 xl:grid-cols-[1fr_40%] xl:gap-16">
           {/* Collage : empile en grille sur mobile, photos posees en chevauchement
-              sur grand ecran (cotes relevees sur la maquette, loutre 364 px,
-              saumon 274 px, lamproie 290 px) */}
-          <div className="grid grid-cols-[1.15fr_1fr] items-start gap-4 sm:gap-6 lg:relative lg:-ml-[58px] lg:block lg:h-[640px]">
+              sur grand ecran. Cotes et cadrages releves sur la maquette : les
+              fichiers sont recadres exactement comme dans XD. */}
+          <div className="grid max-w-[720px] grid-cols-[1.15fr_1fr] items-start gap-4 sm:gap-6 xl:relative xl:max-w-none xl:-ml-[58px] xl:block xl:h-[560px]">
             <PhotoScotchee
               src="/photos/env-loutre.jpg"
               alt={t("patriAltLoutre")}
-              ratio="900/1150"
-              sizes="(min-width: 1024px) 364px, 50vw"
+              ratio="367/493"
+              sizes="(min-width: 1024px) 367px, 50vw"
               rotation={-2}
               legende={t("patriLoutre")}
-              className="row-span-2 lg:absolute lg:left-0 lg:top-0 lg:w-[364px]"
+              className="row-span-2 xl:absolute xl:left-0 xl:top-0 xl:w-[367px]"
             />
             <PhotoScotchee
               src="/photos/env-saumon.jpg"
               alt={t("patriAltSaumon")}
-              ratio="274/300"
-              sizes="(min-width: 1024px) 274px, 42vw"
+              ratio="276/305"
+              sizes="(min-width: 1024px) 276px, 42vw"
               rotation={2}
-              position="50% 35%"
               legende={t("patriSaumon")}
-              className="pt-6 lg:absolute lg:left-[330px] lg:top-[10px] lg:z-10 lg:w-[274px] lg:pt-0"
+              className="pt-6 xl:absolute xl:left-[333px] xl:top-[9px] xl:z-10 xl:w-[276px] xl:pt-0"
+              legendeClassName="xl:pl-[60px]"
             />
             <PhotoScotchee
               src="/photos/env-lamproie.jpg"
               alt={t("patriAltLamproie")}
-              ratio="900/560"
-              sizes="(min-width: 1024px) 290px, 42vw"
+              ratio="295/142"
+              sizes="(min-width: 1024px) 295px, 42vw"
               rotation={-3}
               legende={t("patriLamproie")}
-              className="lg:absolute lg:left-[420px] lg:top-[390px] lg:z-20 lg:w-[290px]"
+              className="xl:absolute xl:left-[422px] xl:top-[379px] xl:z-20 xl:w-[295px]"
             />
           </div>
 
-          <div className="space-y-5 text-[17px] leading-[1.3] text-dark-700 lg:ml-auto lg:max-w-[400px] lg:pt-24 lg:text-right">
+          <div className="space-y-5 text-[17px] leading-[1.3] text-dark-700 xl:ml-auto xl:max-w-[400px] xl:pt-24 xl:text-right">
             <p>
               {t("patriEspeces1")}
               <Mot>{t("patriLoutre")}</Mot>

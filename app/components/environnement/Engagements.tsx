@@ -17,7 +17,7 @@ export default function Engagements() {
   const t = useTranslations("environnement");
   return (
     <section id="engagements" className="relative isolate overflow-hidden py-20 text-white lg:py-28">
-      <Image src="/photos/env-engagements.jpg" alt={t("engAlt")} fill sizes="100vw" className="-z-20 object-cover object-[50%_40%]" />
+      <Image src="/photos/env-engagements.jpg" alt={t("engAlt")} fill sizes="100vw" className="-z-20 object-cover" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-dark-900/70 via-dark-900/45 to-dark-900/15" />
 
       <div className="mx-auto max-w-6xl px-6 lg:px-10">

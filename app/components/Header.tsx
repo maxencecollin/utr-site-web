@@ -11,7 +11,13 @@ import { HEADER_LINKS } from "./navLinks";
 /* Hauteur de scroll a partir de laquelle le header prend son fond opaque */
 const SCROLL_THRESHOLD = 24;
 
-export default function Header() {
+type Props = {
+  /* Logo couleur (texte fonce, "RIA" en bleu) tant que le header est transparent :
+     pour les heros a ciel clair (page Environnement). Blanc une fois le fond noir. */
+  logoFonce?: boolean;
+};
+
+export default function Header({ logoFonce = false }: Props) {
   const t = useTranslations("nav");
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,7 +37,7 @@ export default function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-10">
         <Link href="/" aria-label="Ultra Tour de la Ria d'Étel — accueil">
           <Image
-            src="/images/logos/logo-etire-blanc.svg"
+            src={logoFonce && !scrolled ? "/images/logos/logo-principal-couleur.svg" : "/images/logos/logo-etire-blanc.svg"}
             alt="Ultra Tour de la Ria d'Étel"
             width={116}
             height={56}
@@ -41,7 +47,7 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-3 md:gap-6 lg:gap-8">
-          <ul className="hidden items-center gap-6 text-sm font-bold italic uppercase text-white md:flex lg:gap-8">
+          <ul className="hidden items-center gap-8 text-sm font-bold italic uppercase text-white lg:flex">
             {HEADER_LINKS.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="transition-opacity hover:opacity-70">
@@ -54,7 +60,7 @@ export default function Header() {
           {/* S'inscrire : degrade bleu en parallelogramme (toujours visible, compact sur mobile) */}
           <a
             href="#inscription"
-            className="group relative px-4 py-2 text-xs font-bold italic uppercase text-white md:px-5 md:py-2.5 md:text-sm"
+            className="group relative px-4 py-2 text-xs font-bold italic uppercase text-white md:px-7 md:py-2 md:text-[18px] md:leading-7"
           >
             <span
               aria-hidden="true"
@@ -64,7 +70,7 @@ export default function Header() {
           </a>
 
           {/* Selecteur de langue (desktop ; sur mobile il est dans le menu) */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <LanguageSelector />
           </div>
 

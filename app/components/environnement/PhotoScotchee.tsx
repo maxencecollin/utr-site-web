@@ -13,6 +13,8 @@ type Props = {
   /* Cadrage de la photo (object-position) */
   position?: string;
   className?: string;
+  /* Classes de la legende (decalage quand une photo voisine la recouvre) */
+  legendeClassName?: string;
 };
 
 /*
@@ -29,6 +31,7 @@ export default function PhotoScotchee({
   legende,
   position,
   className = "",
+  legendeClassName = "",
 }: Props) {
   return (
     <figure className={className} style={{ transform: `rotate(${rotation}deg)` }}>
@@ -55,7 +58,9 @@ export default function PhotoScotchee({
         />
       </div>
       {legende && (
-        <figcaption className="font-comico mt-3 flex items-center gap-2 text-[12px] uppercase leading-5 tracking-wide text-[#1c1c1c] sm:text-[13px]">
+        <figcaption
+          className={`font-comico mt-3 flex items-center gap-2 text-[12px] uppercase leading-5 tracking-wide text-[#1c1c1c] sm:text-[13px] ${legendeClassName}`}
+        >
           <Image src="/images/icones/pin.svg?v=2" alt="" width={16} height={16} className="h-4 w-4" />
           {legende}
         </figcaption>
