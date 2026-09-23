@@ -4,7 +4,7 @@ import { useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { usePinnedSteps } from "../usePinnedSteps";
-import { EPREUVES, type RavitoSide } from "./ravitosData";
+import { EPREUVES, type Ravito, type RavitoSide } from "./ravitosData";
 
 /* Prestations affichees en grille, dans l'ordre de la maquette */
 const PRESTATIONS = [
@@ -55,6 +55,31 @@ function NumeroRavito({ n, actif }: { n: number; actif: boolean }) {
       </svg>
       <span className="relative">{n}</span>
     </span>
+  );
+}
+
+/* Kilometrage d'un ravito, suivi de sa mention eventuelle en plus petit.
+   empile : la mention passe a la ligne (grand nombre sur la carte, sinon il
+   deborde sur le trace). */
+function Kilometrage({
+  ravito,
+  mention,
+  empile = false,
+}: {
+  ravito: Ravito;
+  mention?: string;
+  empile?: boolean;
+}) {
+  return (
+    <>
+      {ravito.km} KM
+      {mention &&
+        (empile ? (
+          <span className="block text-center text-[0.5em] leading-tight">{mention}</span>
+        ) : (
+          <span className="text-[0.6em]"> / {mention}</span>
+        ))}
+    </>
   );
 }
 
@@ -179,7 +204,9 @@ export default function EntrainementRavitos() {
               {/* Titre du ravito : numero + kilometrage + heure de fermeture */}
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                 <NumeroRavito n={index + 1} actif />
-                <span className="titre text-3xl">{actif.km} KM</span>
+                <span className="titre text-3xl">
+                  <Kilometrage ravito={actif} mention={actif.mentionKey && t(actif.mentionKey)} />
+                </span>
                 <span className="flex items-center gap-2 text-[13px] uppercase italic tracking-wide text-white/85">
                   <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
                     <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
@@ -256,7 +283,9 @@ export default function EntrainementRavitos() {
                         className="flex items-center gap-3 transition-opacity hover:opacity-70"
                       >
                         <NumeroRavito n={ravitos.indexOf(r) + 1} actif={false} />
-                        <span className="titre text-lg">{r.km} KM</span>
+                        <span className="titre text-lg">
+                          <Kilometrage ravito={r} mention={r.mentionKey && t(r.mentionKey)} />
+                        </span>
                       </button>
                     </li>
                   ))}
@@ -292,7 +321,7 @@ export default function EntrainementRavitos() {
                           : { left: `${r.x + (r.dx ?? 0)}%`, top: `${r.y + (r.dy ?? 0)}%` }
                       }
                     >
-                      {r.km} KM
+                      <Kilometrage ravito={r} mention={r.mentionKey && t(r.mentionKey)} empile={courant} />
                     </span>
                   );
                 })}

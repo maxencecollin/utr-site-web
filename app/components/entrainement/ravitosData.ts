@@ -28,6 +28,8 @@ export type Ravito = {
      si on se contentait d'agrandir l'etiquette sur place. */
   ax: number;
   ay: number;
+  /* Mention accolee au kilometrage (ex. passage de relais) */
+  mentionKey?: string;
   /* Heure limite de passage, une fois connue (ex. "1h30") */
   arriveeMax?: string;
   /* Prestations presentes sur place */
@@ -53,7 +55,7 @@ export const RAVITOS_80: Ravito[] = [
   { km: 16, x: 40.0, y: 75.0, side: "below", ax: 40, ay: 83, ...COMPLET },
   { km: 27, x: 4.5, y: 85.0, side: "left", ax: 33, ay: 87, ...COMPLET },
   { km: 39, x: 30.0, y: 61.0, side: "above", dy: -2, ax: 37, ay: 55, ...COMPLET },
-  { km: 50, x: 27.0, y: 33.0, side: "left", ax: 19, ay: 27, ...COMPLET },
+  { km: 47, x: 27.0, y: 33.0, side: "left", ax: 19, ay: 27, mentionKey: "ravitosRelais", ...COMPLET },
   { km: 63, x: 55.0, y: 13.0, side: "left", dx: -3, dy: -7, ax: 55, ay: 28, ...COMPLET },
   { km: 73, x: 78.0, y: 19.0, side: "right", ax: 78, ay: 29, ...COMPLET },
 ];
@@ -63,17 +65,14 @@ export const RAVITOS_80: Ravito[] = [
   emprunte les deux derniers ravitos avant la meme arrivee. On reutilise donc la
   meme carte, en ne posant que les reperes concernes.
 
-  Le ravitaillement affiche "50 km" sur le grand parcours se situe en realite
-  vers le km 47-48 (precision de Maxence) : c'est de la que sort le 33 km, ce
-  qui tombe juste (80 - 47,5 = 32,5).
+  Il part du ravitaillement du km 47 (80 - 47 = 33), qui sert aussi de
+  passage de relais.
 
-  TODO : kilometrages deduits par soustraction a partir de 47,5 km, donc
-  arrondis. A confirmer avec l'organisation avant mise en ligne, en meme temps
-  que le libelle "50 km" du grand parcours.
+  TODO : kilometrages deduits par soustraction, a confirmer avec l'organisation.
 */
 export const RAVITOS_33: Ravito[] = [
-  { km: 15, x: 55.0, y: 13.0, side: "left", dx: -3, dy: -7, ax: 55, ay: 28, ...COMPLET },
-  { km: 25, x: 78.0, y: 19.0, side: "right", ax: 78, ay: 29, ...COMPLET },
+  { km: 16, x: 55.0, y: 13.0, side: "left", dx: -3, dy: -7, ax: 55, ay: 28, ...COMPLET },
+  { km: 26, x: 78.0, y: 19.0, side: "right", ax: 78, ay: 29, ...COMPLET },
 ];
 
 export type Repere = { x: number; y: number; side: RavitoSide };
@@ -100,7 +99,7 @@ export const EPREUVES: Epreuve[] = [
   {
     ongletKey: "ravitosTab33",
     ravitos: RAVITOS_33,
-    // Le depart du 33 est le ravitaillement du km 50 du grand parcours
+    // Le depart du 33 est le ravitaillement du km 47 du grand parcours
     depart: { x: 27.0, y: 33.0, side: "left" },
     arrivee: ERGOT_ARRIVEE,
   },
