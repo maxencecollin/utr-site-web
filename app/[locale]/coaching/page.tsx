@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import Header from "@/app/components/Header";
 import CoachingHero from "@/app/components/coaching/CoachingHero";
 import CoachingPresentation from "@/app/components/coaching/CoachingPresentation";
+import CoachingPhilosophie from "@/app/components/coaching/CoachingPhilosophie";
 import CoachingFaq from "@/app/components/coaching/CoachingFaq";
 import CoachingOffres from "@/app/components/coaching/CoachingOffres";
 import CoachingConseil from "@/app/components/coaching/CoachingConseil";
@@ -30,6 +31,7 @@ export default async function Coaching({
       <Header />
       <CoachingHero />
       <CoachingPresentation />
+      <CoachingPhilosophie />
       <CoachingFaq />
       <CoachingOffres />
       <CoachingConseil />
