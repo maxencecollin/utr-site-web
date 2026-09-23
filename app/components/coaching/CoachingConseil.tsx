@@ -6,7 +6,7 @@ export default function CoachingConseil() {
   const t = useTranslations("coaching");
 
   return (
-    <section className="relative isolate overflow-hidden py-20 text-white lg:py-28">
+    <section className="relative isolate overflow-hidden py-24 text-white lg:py-60">
       <Image
         src="/photos/dernier-conseil.jpg"
         alt={t("conseilAlt")}
