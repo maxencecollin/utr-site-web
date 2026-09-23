@@ -79,6 +79,9 @@ function HotspotLink({
   );
 }
 
+/* Pause apres le dernier objet, en hauteur d'ecran (reservee dans le conteneur) */
+const PAUSE_FIN = 0.5;
+
 /* Echelle du zoom photo */
 const ZOOM = 2.2;
 
@@ -116,8 +119,15 @@ export default function CourseEpreuve({
   const t = useTranslations("course");
   const tCaptions = useTranslations(captionNamespace);
   // Un palier par objet, precede de la vue d'ensemble
+  // Retours de l'asso : pas plus rapides, remontee d'un trait, et une pause
+  // sur le dernier objet avant d'enchainer sur la section suivante
   const { containerRef, stickyRef, progress, stickyTop, scrollToStep } =
-    usePinnedSteps(hotspots.length + 1);
+    usePinnedSteps(hotspots.length + 1, {
+      captureUp: false,
+      recharge: 600,
+      vitesse: 1.2,
+      pauseFin: PAUSE_FIN,
+    });
 
   // Etapes du voyage : vue d'ensemble puis chaque objet
   const steps = [
@@ -158,7 +168,7 @@ export default function CourseEpreuve({
 
   return (
     /* Conteneur haut : la hauteur donne la longueur du voyage au scroll (desktop) */
-    <div id="epreuve" ref={containerRef} className="relative sm:h-[400vh]">
+    <div id="epreuve" ref={containerRef} className="relative sm:h-[450vh]">
       <section
         ref={stickyRef}
         className="overflow-x-clip bg-white pt-16 sm:sticky lg:pt-20"

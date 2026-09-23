@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { CATEGORIES, EPREUVES, KIT_CANICULE, type Materiel } from "./materielData";
@@ -64,7 +65,7 @@ export default function EntrainementMateriel() {
             <caption className="sr-only">{t("materielTitle")}</caption>
             <thead>
               <tr className="font-comico text-[13px] uppercase tracking-[1px] sm:text-[15px]">
-                <th scope="col" colSpan={2} className="border border-white/70 px-4 py-3 text-center font-normal">
+                <th scope="col" className="border border-white/70 px-4 py-3 text-left font-normal">
                   {t("materielColonneMateriel")}
                 </th>
                 {EPREUVES.map((e) => (
@@ -79,43 +80,45 @@ export default function EntrainementMateriel() {
               </tr>
             </thead>
             <tbody>
-              {CATEGORIES.map((cat) =>
-                cat.items.map((item, i) => (
-                  <tr key={item.labelKey}>
-                    {/* Libelle de categorie, ecrit verticalement sur toute sa hauteur */}
-                    {i === 0 && (
-                      <th
-                        scope="rowgroup"
-                        rowSpan={cat.items.length}
-                        className="w-10 border border-white/70 p-0 align-middle"
-                      >
-                        <span className="font-comico block whitespace-nowrap text-[12px] uppercase tracking-[2px] [writing-mode:vertical-rl] [transform:rotate(180deg)] sm:text-[13px]">
-                          {t(cat.labelKey)}
-                        </span>
-                      </th>
-                    )}
-                    <th scope="row" className="border border-white/70 px-4 py-3 font-normal">
-                      <span className="block text-[14px] font-bold uppercase leading-[1.2] sm:text-[15px]">
-                        {t(item.labelKey)}
+              {CATEGORIES.map((cat) => (
+                <Fragment key={cat.labelKey}>
+                  {/* Intertitre de categorie, horizontal et aligne a gauche */}
+                  <tr>
+                    <th
+                      scope="colgroup"
+                      colSpan={EPREUVES.length + 1}
+                      className="border border-white/70 bg-white/10 px-4 py-2 text-left font-normal"
+                    >
+                      <span className="font-comico text-[12px] uppercase tracking-[3px] sm:text-[13px]">
+                        {t(cat.labelKey)}
                       </span>
-                      {item.detailKey && (
-                        <span className="mt-0.5 block text-[12px] font-normal normal-case leading-[1.35] text-white/75">
-                          {t(item.detailKey)}
-                        </span>
-                      )}
                     </th>
-                    {EPREUVES.map((e) => (
-                      <td key={e.cle} className="border border-white/70 px-3 py-3 text-center">
-                        {item[e.cle as keyof Materiel] ? (
-                          <Pastille titre={`${t(e.labelKey)} : ${t("materielObligatoire")}`} />
-                        ) : (
-                          <span className="sr-only">—</span>
-                        )}
-                      </td>
-                    ))}
                   </tr>
-                )),
-              )}
+                  {cat.items.map((item) => (
+                    <tr key={item.labelKey}>
+                      <th scope="row" className="border border-white/70 px-4 py-3 font-normal">
+                        <span className="block text-[14px] font-bold uppercase leading-[1.2] sm:text-[15px]">
+                          {t(item.labelKey)}
+                        </span>
+                        {item.detailKey && (
+                          <span className="mt-0.5 block text-[12px] font-normal normal-case leading-[1.35] text-white/75">
+                            {t(item.detailKey)}
+                          </span>
+                        )}
+                      </th>
+                      {EPREUVES.map((e) => (
+                        <td key={e.cle} className="border border-white/70 px-3 py-3 text-center">
+                          {item[e.cle as keyof Materiel] ? (
+                            <Pastille titre={`${t(e.labelKey)} : ${t("materielObligatoire")}`} />
+                          ) : (
+                            <span className="sr-only">—</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </Fragment>
+              ))}
             </tbody>
           </table>
         </div>

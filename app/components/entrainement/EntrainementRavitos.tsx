@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { usePinnedSteps } from "../usePinnedSteps";
@@ -58,27 +58,12 @@ function NumeroRavito({ n, actif }: { n: number; actif: boolean }) {
   );
 }
 
-/* Kilometrage d'un ravito, suivi de sa mention eventuelle en plus petit.
-   empile : la mention passe a la ligne (grand nombre sur la carte, sinon il
-   deborde sur le trace). */
-function Kilometrage({
-  ravito,
-  mention,
-  empile = false,
-}: {
-  ravito: Ravito;
-  mention?: string;
-  empile?: boolean;
-}) {
+/* Kilometrage d'un ravito, suivi de sa mention eventuelle en plus petit */
+function Kilometrage({ ravito, mention }: { ravito: Ravito; mention?: string }) {
   return (
     <>
       {ravito.km} KM
-      {mention &&
-        (empile ? (
-          <span className="block text-center text-[0.5em] leading-tight">{mention}</span>
-        ) : (
-          <span className="text-[0.6em]"> / {mention}</span>
-        ))}
+      {mention && <span className="text-[0.7em]"> / {mention}</span>}
     </>
   );
 }
@@ -106,6 +91,30 @@ export default function EntrainementRavitos() {
   const [manuel, setManuel] = useState<number | null>(null);
   const index = manuel ?? indexScroll;
 
+  /*
+    Changer de course change la hauteur de defilement de la section (70vh par
+    ravito : 4200 px pour le 80, 1400 pour le 33). Si on est en plein milieu,
+    la position de scroll se retrouve alors au-dela de la section et les
+    ravitos disparaissent de l'ecran. On revient donc au debut de la section,
+    sur le premier ravito de la nouvelle course : visuellement elle ne bouge pas.
+  */
+  const revenirAuDebut = useRef(false);
+  const changerEpreuve = (i: number) => {
+    const conteneur = containerRef.current;
+    revenirAuDebut.current = !!conteneur && conteneur.getBoundingClientRect().top < stickyTop;
+    setIndexEpreuve(i);
+    setManuel(null);
+  };
+  useEffect(() => {
+    const conteneur = containerRef.current;
+    if (!revenirAuDebut.current || !conteneur) return;
+    revenirAuDebut.current = false;
+    window.scrollTo({
+      top: window.scrollY + conteneur.getBoundingClientRect().top - stickyTop,
+      behavior: "instant",
+    });
+  }, [indexEpreuve, containerRef, stickyTop]);
+
   const allerAu = (i: number) => {
     setManuel(scrollToStep(i) ? null : i);
   };
@@ -123,7 +132,7 @@ export default function EntrainementRavitos() {
     >
       <section
         ref={stickyRef}
-        className="relative isolate overflow-hidden pb-10 pt-28 text-white lg:sticky"
+        className="relative isolate overflow-hidden pb-8 pt-28 text-white lg:sticky lg:pt-[160px]"
         style={{ top: stickyTop }}
       >
         {/* Fond vert flou pleine largeur */}
@@ -152,10 +161,7 @@ export default function EntrainementRavitos() {
               <button
                 key={e.ongletKey}
                 type="button"
-                onClick={() => {
-                  setIndexEpreuve(i);
-                  setManuel(null);
-                }}
+                onClick={() => changerEpreuve(i)}
                 aria-pressed={indexEpreuve === i}
                 className={`relative px-5 py-2 text-[13px] font-bold uppercase italic tracking-wide transition-colors ${
                   indexEpreuve === i ? "text-[#1c3d1c]" : "text-white hover:text-white/80"
@@ -294,7 +300,7 @@ export default function EntrainementRavitos() {
             </div>
 
             {/* ---------- Carte ---------- */}
-            <div className="relative mx-auto w-full max-w-[500px] lg:ml-auto lg:mr-0">
+            <div className="relative mx-auto w-full max-w-[460px] lg:ml-auto lg:mr-0">
               <div className="relative mx-auto aspect-[624/679] w-[78%] sm:w-[86%] lg:w-full">
                 <Image
                   src="/images/deco/carte-ravito.png"
@@ -304,24 +310,35 @@ export default function EntrainementRavitos() {
                   className="object-contain"
                 />
 
-                {/* Etiquettes kilometriques posees sur les reperes du trace */}
+                {/* Ravito courant : halo qui pulse sur son repere */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute h-7 w-7 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
+                  style={{ left: `${actif.x}%`, top: `${actif.y}%` }}
+                >
+                  <span className="absolute inset-0 animate-ping rounded-full bg-white/60 motion-reduce:animate-none" />
+                  <span className="absolute inset-[30%] rounded-full bg-white" />
+                </span>
+
+                {/* Etiquettes kilometriques posees sur les reperes du trace ;
+                    le ravito courant passe en pastille blanche, sans bouger */}
                 {ravitos.map((r, i) => {
                   const courant = i === index;
                   return (
                     <span
                       key={r.km}
-                      className={`titre absolute whitespace-nowrap transition-all duration-500 ${
-                        courant
-                          ? "-translate-x-1/2 -translate-y-1/2 text-2xl text-white sm:text-4xl"
-                          : `${OFFSET[r.side]} text-sm text-white/85 sm:text-lg`
-                      }`}
-                      style={
-                        courant
-                          ? { left: `${r.ax}%`, top: `${r.ay}%` }
-                          : { left: `${r.x + (r.dx ?? 0)}%`, top: `${r.y + (r.dy ?? 0)}%` }
-                      }
+                      className={`absolute whitespace-nowrap ${OFFSET[r.side]}`}
+                      style={{ left: `${r.x + (r.dx ?? 0)}%`, top: `${r.y + (r.dy ?? 0)}%` }}
                     >
-                      <Kilometrage ravito={r} mention={r.mentionKey && t(r.mentionKey)} empile={courant} />
+                      <span
+                        className={`titre inline-block transition-colors duration-300 ${
+                          courant
+                            ? "rounded-sm bg-white px-2 py-0.5 text-[15px] text-[#1c3d1c] shadow-[0_2px_10px_rgba(0,0,0,0.35)] sm:text-xl"
+                            : "text-sm text-white/85 sm:text-lg"
+                        }`}
+                      >
+                        <Kilometrage ravito={r} mention={r.mentionKey && t(r.mentionKey)} />
+                      </span>
                     </span>
                   );
                 })}

@@ -18,11 +18,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const STIFFNESS = 5;
 /* Vitesse max de la progression (part du voyage complet par seconde).
    La remontee est plus rapide que la descente. */
-const MAX_SPEED_DOWN = 0.6;
 const MAX_SPEED_UP = 1.2;
 /* Molette : seuil anti-declenchement accidentel, puis temps de recharge */
 const WHEEL_THRESHOLD = 100;
-const WHEEL_COOLDOWN_DOWN = 1200;
 const WHEEL_COOLDOWN_UP = 450;
 
 type Options = {
@@ -30,14 +28,44 @@ type Options = {
      reprend la main et on traverse la section d'un seul geste au lieu de
      repasser palier par palier. */
   captureUp?: boolean;
+  /* Temps de recharge de la molette apres un palier, en descendant (ms) */
+  recharge?: number;
+  /* Vitesse max de la progression en descendant (part du voyage par seconde) */
+  vitesse?: number;
+  /* Pause apres le dernier palier, en fraction de hauteur d'ecran : la section
+     reste epinglee sur son etat final avant de laisser place a la suite.
+     La hauteur du conteneur doit prevoir cette reserve. */
+  pauseFin?: number;
 };
 
-export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options = {}) {
+/*
+  Decalage d'epinglage : si la section depasse la hauteur de l'ecran, on
+  l'epingle par le bas. Uniquement quand elle est reellement "sticky" : sur
+  petit ecran elle est en position relative, et un "top" negatif la
+  remonterait par-dessus la section precedente.
+*/
+function decalageEpingle(sticky: HTMLElement) {
+  if (getComputedStyle(sticky).position !== "sticky") return 0;
+  return Math.min(0, window.innerHeight - sticky.offsetHeight);
+}
+
+export function usePinnedSteps(
+  stepsCount: number,
+  { captureUp = true, recharge = 1200, vitesse = 0.6, pauseFin = 0 }: Options = {},
+) {
   const containerRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLElement>(null);
   const [progress, setProgress] = useState(0);
   // Si la section depasse la hauteur de l'ecran, on l'epingle par le bas
   const [stickyTop, setStickyTop] = useState(0);
+
+  /* Longueur de scroll consacree aux paliers : la hauteur de voyage moins la
+     pause finale */
+  const paliers = useCallback(
+    (container: HTMLElement, sticky: HTMLElement) =>
+      container.offsetHeight - sticky.offsetHeight - pauseFin * window.innerHeight,
+    [pauseFin],
+  );
 
   useEffect(() => {
     let raf = 0;
@@ -53,7 +81,7 @@ export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options
       const dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
       last = now;
       const delta = (target - current) * (1 - Math.exp(-STIFFNESS * dt));
-      const maxDelta = (target < current ? MAX_SPEED_UP : MAX_SPEED_DOWN) * dt;
+      const maxDelta = (target < current ? MAX_SPEED_UP : vitesse) * dt;
       current += Math.min(maxDelta, Math.max(-maxDelta, delta));
       if (Math.abs(target - current) < 0.0005) {
         current = target;
@@ -68,9 +96,9 @@ export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options
       const container = containerRef.current;
       const sticky = stickyRef.current;
       if (!container || !sticky) return;
-      const top = Math.min(0, window.innerHeight - sticky.offsetHeight);
+      const top = decalageEpingle(sticky);
       setStickyTop(top);
-      const range = container.offsetHeight - sticky.offsetHeight;
+      const range = paliers(container, sticky);
       const y = top - container.getBoundingClientRect().top;
       target = range > 0 ? Math.min(1, Math.max(0, y / range)) : 0;
       if (!started) {
@@ -98,11 +126,11 @@ export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options
       const container = containerRef.current;
       const sticky = stickyRef.current;
       if (!container || !sticky) return;
-      const top = Math.min(0, window.innerHeight - sticky.offsetHeight);
-      const range = container.offsetHeight - sticky.offsetHeight;
+      const top = decalageEpingle(sticky);
+      const range = paliers(container, sticky);
       if (range <= 0) return;
       const y = top - container.getBoundingClientRect().top;
-      // Hors de la zone epinglee : scroll natif
+      // Hors de la zone des paliers (avant, dans la pause finale, apres) : scroll natif
       if (y < 1 || y > range - 1) {
         wheelAccum = 0;
         return;
@@ -133,7 +161,7 @@ export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options
       );
       const goingUp = targetStep < nearestStep;
       wheelAccum = 0;
-      coolUntil = now + (goingUp ? WHEEL_COOLDOWN_UP : WHEEL_COOLDOWN_DOWN);
+      coolUntil = now + (goingUp ? WHEEL_COOLDOWN_UP : recharge);
       window.scrollTo({
         top:
           window.scrollY +
@@ -154,7 +182,7 @@ export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options
       window.removeEventListener("wheel", onWheel);
       cancelAnimationFrame(raf);
     };
-  }, [stepsCount, captureUp]);
+  }, [stepsCount, captureUp, recharge, vitesse, paliers]);
 
   /* Saut direct a un palier (clic sur une pilule, une fleche...).
      Renvoie false si la section n'est pas epinglee (petit ecran) : l'appelant
@@ -164,7 +192,7 @@ export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options
       const container = containerRef.current;
       const sticky = stickyRef.current;
       if (!container || !sticky) return false;
-      const range = container.offsetHeight - sticky.offsetHeight;
+      const range = paliers(container, sticky);
       if (range <= 0) return false;
       window.scrollTo({
         top:
@@ -176,7 +204,7 @@ export function usePinnedSteps(stepsCount: number, { captureUp = true }: Options
       });
       return true;
     },
-    [stepsCount, stickyTop],
+    [stepsCount, stickyTop, paliers],
   );
 
   return { containerRef, stickyRef, progress, stickyTop, scrollToStep };
