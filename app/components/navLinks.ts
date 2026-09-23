@@ -5,12 +5,12 @@
 */
 
 /* Les quatre entrees de la maquette XD.
-   TODO : "Environnement" et "Infos pratiques" pointent sur les sections de la
-   landing en attendant leurs pages dediees. */
+   TODO : "Infos pratiques" pointe sur une section de la landing en attendant
+   sa page dediee. */
 export const HEADER_LINKS = [
   { key: "headerEpreuves", href: "/#courses" },
   { key: "headerEntrainement", href: "/entrainement" },
-  { key: "headerEnvironnement", href: "/#patrimoine" },
+  { key: "headerEnvironnement", href: "/environnement" },
   { key: "headerInfos", href: "/#village" },
 ] as const;
 

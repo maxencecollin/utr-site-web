@@ -1,11 +1,17 @@
 import { useTranslations } from "next-intl";
 
 /*
-  Chapeau de la page : titre a gauche, texte a droite (maquette XD).
+  Chapeau de page : titre a gauche, texte a droite (maquette XD).
   La puce sous le titre renvoie au reglement PDF.
+  Partage par les pages Entrainement et Environnement (meme mise en page,
+  memes cles de traduction dans leur namespace).
 */
-export default function EntrainementIntro() {
-  const t = useTranslations("entrainementPage");
+export default function EntrainementIntro({
+  namespace = "entrainementPage",
+}: {
+  namespace?: "entrainementPage" | "environnement";
+}) {
+  const t = useTranslations(namespace);
 
   return (
     <section className="bg-white py-14 lg:py-20">
