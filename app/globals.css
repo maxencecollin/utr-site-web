@@ -113,3 +113,12 @@ body {
 .font-comico {
   font-family: var(--font-display), ui-serif, Georgia, serif;
 }
+
+/* Rideau "site en construction" (app/chantier.ts) : visible par defaut, leve
+   quand le script du <head> ou le formulaire posent data-chantier="ouvert" */
+html[data-chantier="ouvert"] .chantier-voile {
+  display: none;
+}
+html:not([data-chantier="ouvert"]) body:has(.chantier-voile) {
+  overflow: hidden;
+}

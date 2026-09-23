@@ -448,5 +448,12 @@
     "equipementsText": "Veste imperméable, couverture de survie, sifflet, téléphone chargé — et lampe frontale pour le premier relayeur. Bâtons interdits.",
     "entrainementLabelText": "15 heures maximum pour l'équipe. Réserve alimentaire obligatoire — et une préparation qui se mène à deux.",
     "dossardText": "Dossards avec puce, portés visibles sur l'avant du départ à l'arrivée. Retrait à la salle Émeraude de Locoal-Mendon, pièce d'identité obligatoire."
+  },
+  "chantier": {
+    "titre": "Site en construction",
+    "texte": "Le site de l'Ultra Tour de la Ria d'Étel arrive bientôt. En attendant, l'accès est réservé à l'association.",
+    "label": "Mot de passe",
+    "bouton": "Entrer",
+    "erreur": "Mot de passe incorrect."
   }
 }

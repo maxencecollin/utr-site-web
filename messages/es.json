@@ -448,5 +448,12 @@
     "equipementsText": "Chaqueta impermeable, manta de supervivencia, silbato, teléfono cargado — y frontal para el primer relevista. Bastones prohibidos.",
     "entrainementLabelText": "15 horas como máximo para el equipo. Reserva de alimentos obligatoria — y una preparación que se hace entre dos.",
     "dossardText": "Dorsales con chip, visibles por delante de la salida a la meta. Recogida en la sala Émeraude de Locoal-Mendon, documento de identidad obligatorio."
+  },
+  "chantier": {
+    "titre": "Web en construcción",
+    "texte": "La web del Ultra Tour de la Ria d'Étel llegará pronto. Mientras tanto, el acceso está reservado a la asociación.",
+    "label": "Contraseña",
+    "bouton": "Entrar",
+    "erreur": "Contraseña incorrecta."
   }
 }

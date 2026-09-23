@@ -448,5 +448,12 @@
     "equipementsText": "Waterproof jacket, survival blanket, whistle, charged phone — and a headlamp for the first runner. Poles are forbidden.",
     "entrainementLabelText": "15 hours maximum for the team. Food reserve mandatory — and preparation is a two-person job.",
     "dossardText": "Chip-fitted bibs, worn visibly on the front from start to finish. Collection at the salle Émeraude in Locoal-Mendon, ID required."
+  },
+  "chantier": {
+    "titre": "Under construction",
+    "texte": "The Ultra Tour de la Ria d'Étel website is on its way. Until then, access is limited to the organising association.",
+    "label": "Password",
+    "bouton": "Enter",
+    "erreur": "Wrong password."
   }
 }

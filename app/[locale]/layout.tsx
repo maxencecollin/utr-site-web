@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { CHANTIER_ACTIF, CHANTIER_SCRIPT } from "../chantier";
+import ChantierVoile from "../components/ChantierVoile";
 import "../globals.css";
 
 // Interface / corps de texte : Inter
@@ -31,6 +33,8 @@ const technor = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ultratourdelaria.fr"),
+  // Site en construction : pas d'indexation (app/chantier.ts)
+  robots: CHANTIER_ACTIF ? { index: false, follow: false } : undefined,
   title: {
     default: "Ultra Tour de la Ria d'Étel",
     template: "%s | Ultra Tour de la Ria d'Étel",
@@ -69,9 +73,19 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`${inter.variable} ${comico.variable} ${technor.variable} h-full antialiased`}
+      // Le script du rideau pose data-chantier avant l'hydratation
+      suppressHydrationWarning
     >
+      {CHANTIER_ACTIF && (
+        <head>
+          <script dangerouslySetInnerHTML={{ __html: CHANTIER_SCRIPT }} />
+        </head>
+      )}
       <body className="flex min-h-full flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {CHANTIER_ACTIF && <ChantierVoile />}
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
