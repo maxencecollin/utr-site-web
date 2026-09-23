@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import Header from "@/app/components/Header";
 import EntrainementHero from "@/app/components/entrainement/EntrainementHero";
 import EntrainementNav from "@/app/components/entrainement/EntrainementNav";
@@ -12,11 +12,15 @@ import EntrainementRegles from "@/app/components/entrainement/EntrainementRegles
 import CoursePartenaires from "@/app/components/course/CoursePartenaires";
 import Footer from "@/app/components/Footer";
 
-export const metadata: Metadata = {
-  title: "Entraînement — Ultra Tour de la Ria d'Étel",
-  description:
-    "Prépare ton Ultra Tour de la Ria : conseils du coach, composition des ravitaillements, plan nutrition et matériel obligatoire des trois épreuves.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "entrainementPage" });
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
 export default async function Entrainement({
   params,

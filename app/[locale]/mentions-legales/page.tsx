@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import LegalLayout from "@/app/components/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Mentions légales — Ultra Tour de la Ria d'Étel",
+  title: "Mentions légales",
   description:
     "Mentions légales du site de l'Ultra Tour de la Ria d'Étel : éditeur, hébergement, propriété intellectuelle.",
 };

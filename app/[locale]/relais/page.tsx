@@ -15,7 +15,7 @@ import CourseAutresEpreuves, {
 import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Relais Duo 80 km — Ultra Tour de la Ria d'Étel",
+  title: "Relais Duo 80 km",
   description:
     "Le Relais Duo : le Tour de la Ria d'Étel à deux, 50 km puis 30 km avec passage de relais à Sainte-Hélène. Parcours, infos pratiques et inscription. 16 octobre 2027.",
 };

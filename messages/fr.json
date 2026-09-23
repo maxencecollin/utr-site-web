@@ -171,7 +171,6 @@
     "ravitosIntro": "Dans chaque ravito tu retrouves tout ce qu'il te faut pour continuer ta course dans les meilleures conditions.",
     "ravitosTab80": "80 km / Relais",
     "ravitosTab33": "33 km",
-    "ravitosBientot": "Bientôt",
     "ravitosArriveeMax": "Arrivée max",
     "ravitosAConfirmer": "à confirmer",
     "ravitosEau": "Point d'eau potable",
@@ -259,7 +258,9 @@
     "reglesBiodiversiteTitre": "Respect de la biodiversité",
     "reglesBiodiversiteTexte": "Ne cueille pas de plantes et ne dérange pas les animaux : tu traverses leur habitat naturel.",
     "reglesCta": "Règlement complet",
-    "ravitosRelais": "Relais"
+    "ravitosRelais": "Relais",
+    "metaTitle": "Entraînement",
+    "metaDescription": "Prépare ton Ultra Tour de la Ria : conseils du coach, composition des ravitaillements, plan nutrition et matériel obligatoire des trois épreuves."
   },
   "coaching": {
     "heroTitleLine1": "Coach",
@@ -341,7 +342,9 @@
     "philo2Fort": "Privilégier la régularité et le volume,",
     "philo2Suite": "indispensables si tu veux arriver à bout de longues distances",
     "philo3Fort": "Apporter la vitesse en plus d'une endurance solide",
-    "philo3Suite": "pour te permettre de performer au niveau que tu souhaites"
+    "philo3Suite": "pour te permettre de performer au niveau que tu souhaites",
+    "metaTitle": "Coach Ronan Kervadec",
+    "metaDescription": "Prépare l'Ultra Tour de la Ria avec Ronan Kervadec, entraîneur de trail et de triathlon : offres de coaching sur 3 mois, FAQ et conseils."
   },
   "benevoles": {
     "overline": "Rejoins l'aventure",

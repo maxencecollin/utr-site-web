@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import LegalLayout from "@/app/components/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Politique de confidentialité — Ultra Tour de la Ria d'Étel",
+  title: "Politique de confidentialité",
   description:
     "Politique de confidentialité de l'Ultra Tour de la Ria d'Étel : données collectées, cookies, droits RGPD.",
 };

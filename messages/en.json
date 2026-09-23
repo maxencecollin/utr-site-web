@@ -171,7 +171,6 @@
     "ravitosIntro": "Every aid station has what you need to carry on in the best possible shape.",
     "ravitosTab80": "80 km / Relay",
     "ravitosTab33": "33 km",
-    "ravitosBientot": "Coming soon",
     "ravitosArriveeMax": "Cut-off",
     "ravitosAConfirmer": "to be confirmed",
     "ravitosEau": "Drinking water",
@@ -259,7 +258,9 @@
     "reglesBiodiversiteTitre": "Respect the wildlife",
     "reglesBiodiversiteTexte": "Do not pick plants and do not disturb the animals — you are running through their home.",
     "reglesCta": "Full rules",
-    "ravitosRelais": "Relay"
+    "ravitosRelais": "Relay",
+    "metaTitle": "Training",
+    "metaDescription": "Get ready for the Ultra Tour de la Ria: advice from the coach, what is at each aid station, a race-day nutrition plan and the mandatory kit for all three races."
   },
   "coaching": {
     "heroTitleLine1": "Coach",
@@ -341,7 +342,9 @@
     "philo2Fort": "Put consistency and volume first,",
     "philo2Suite": "there is no way around them over long distances",
     "philo3Fort": "Add speed on top of solid endurance",
-    "philo3Suite": "so you can race at the level you are after"
+    "philo3Suite": "so you can race at the level you are after",
+    "metaTitle": "Coach Ronan Kervadec",
+    "metaDescription": "Train for the Ultra Tour de la Ria with Ronan Kervadec, trail and triathlon coach: 3-month coaching plans, FAQ and advice."
   },
   "benevoles": {
     "overline": "Join the adventure",

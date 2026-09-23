@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import LegalLayout from "@/app/components/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Conditions générales de vente — Ultra Tour de la Ria d'Étel",
+  title: "Conditions générales de vente",
   description:
     "Conditions générales de vente de l'Ultra Tour de la Ria d'Étel : inscriptions via Klikego, règlement, assurance.",
 };

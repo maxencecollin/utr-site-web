@@ -15,7 +15,7 @@ import CourseAutresEpreuves, {
 import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Ultra 80 km — Ultra Tour de la Ria d'Étel",
+  title: "Ultra 80 km",
   description:
     "L'Ultra 80 km, le tour complet de la Ria d'Étel en semi-autonomie : parcours, infos pratiques, ravitaillements et inscription. 16 octobre 2027, Locoal-Mendon.",
 };
