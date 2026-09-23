@@ -8,17 +8,26 @@ import { useTranslations } from "next-intl";
 */
 export default function EntrainementIntro({
   namespace = "entrainementPage",
+  sobre = false,
 }: {
   namespace?: "entrainementPage" | "environnement";
+  /* Titre en Inter Medium ~20 px et marges plus larges (maquette Environnement) */
+  sobre?: boolean;
 }) {
   const t = useTranslations(namespace);
 
   return (
     <section className="bg-white py-14 lg:py-20">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-2 lg:gap-16 lg:px-10">
+      <div className={`mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-2 lg:gap-16 ${sobre ? "lg:px-20" : "lg:px-10"}`}>
         <div>
           {/* Droit et non italique, contrairement aux titres de section (.titre) */}
-          <h2 className="text-2xl font-extrabold uppercase leading-[1.25] text-[#2c2c2c] sm:text-3xl lg:text-[34px]">
+          <h2
+            className={`uppercase text-[#2c2c2c] ${
+              sobre
+                ? "max-w-[390px] text-[18px] font-medium leading-[1.3] sm:text-[20px]"
+                : "text-2xl font-extrabold leading-[1.25] sm:text-3xl lg:text-[34px]"
+            }`}
+          >
             {t("introTitle")}
           </h2>
 

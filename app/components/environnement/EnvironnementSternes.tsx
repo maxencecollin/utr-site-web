@@ -6,7 +6,7 @@ export default function EnvironnementSternes() {
   const t = useTranslations("environnement");
   return (
     <div className="bg-white pb-16 lg:pb-24">
-      <div className="mx-auto max-w-6xl px-6 lg:px-10">
+      <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
         <PhotoScotchee
           src="/photos/env-sternes.jpg"
           alt={t("sternesAlt")}

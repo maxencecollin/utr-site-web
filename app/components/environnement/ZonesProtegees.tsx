@@ -36,14 +36,15 @@ export default function ZonesProtegees() {
         <span className="mx-auto mt-4 block h-[2px] max-w-xl bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_11px,transparent_11px,transparent_20px)] opacity-70" />
         <p className="mx-auto mt-5 max-w-[56ch] text-[16px] leading-[1.55] text-white/90">{t("zonesIntro")}</p>
 
-        <ul className="mt-14 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-10">
+        {/* Colonnes plus larges que le conteneur : centres a 305 / 720 / 1135 px (maquette) */}
+        <ul className="mt-14 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-6 lg:-mx-[74px]">
           {ZONES.map((z) => (
             <li key={z.titre} className="flex flex-col items-center">
               {/* Emplacement du picto, en attente de l'export */}
-              <span aria-hidden="true" className="block h-16 w-16" />
+              <span aria-hidden="true" className="block h-[90px] w-[90px]" />
               <h3 className="titre mt-4 text-[20px] sm:text-[22px]">{t(z.titre)}</h3>
               <span className="mt-3 block h-px w-24 bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_6px,transparent_6px,transparent_11px)]" />
-              <p className="mt-4 max-w-[30ch] text-[15px] leading-[1.5] text-white/90">{t(z.texte)}</p>
+              <p className="mt-4 max-w-[30ch] text-[15px] leading-[1.35] text-white/90">{t(z.texte)}</p>
               {z.lien && (
                 <a
                   href={z.lien}

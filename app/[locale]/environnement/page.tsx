@@ -35,7 +35,7 @@ export default async function Environnement({
     <>
       <Header />
       <EnvironnementHero />
-      <EntrainementIntro namespace="environnement" />
+      <EntrainementIntro namespace="environnement" sobre />
       <EnvironnementSternes />
       <ZonesProtegees />
       <PatrimoineNaturel />

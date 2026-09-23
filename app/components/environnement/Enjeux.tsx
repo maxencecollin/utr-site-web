@@ -23,11 +23,13 @@ export default function Enjeux() {
 
         <div className="mt-12 grid grid-cols-1 items-start gap-12 lg:grid-cols-[52%_1fr] lg:gap-16">
           {/* Deux photos posees l'une sur l'autre */}
-          <div className="relative pb-24 pr-8 sm:pb-32">
+          {/* Grande photo 524 x 605 ; la petite (60 %) se pose en bas et deborde
+              a droite de 130 px, comme la maquette */}
+          <div className="relative max-w-[524px] pb-16 lg:-ml-[38px] lg:pb-4">
             <PhotoScotchee
               src="/photos/env-enjeux.jpg"
               alt={t("enjAltBalade")}
-              ratio="1100/1150"
+              ratio="524/605"
               sizes="(min-width: 1024px) 46vw, 90vw"
               position="35% 50%"
               rotation={-1.5}
@@ -38,11 +40,11 @@ export default function Enjeux() {
               ratio="900/600"
               sizes="(min-width: 1024px) 24vw, 50vw"
               rotation={3}
-              className="absolute bottom-0 right-0 w-[52%]"
+              className="absolute left-[40%] top-[67%] w-[60%] sm:left-[65%]"
             />
           </div>
 
-          <div className="lg:text-right">
+          <div className="lg:ml-auto lg:max-w-[320px] lg:text-right">
             <p className="titre text-[19px] leading-[1.3] sm:text-[22px]">{t("enjIntro")}</p>
             <ul className="mt-6 space-y-5">
               {MENACES.map((m) => (
@@ -51,14 +53,14 @@ export default function Enjeux() {
                     {t(`${m}Titre`)}
                     <span aria-hidden="true"> •</span>
                   </p>
-                  <p className="mt-0.5 text-[15px] leading-[1.45] text-dark-700">{t(`${m}Texte`)}</p>
+                  <p className="mt-0.5 text-[15px] leading-[1.3] text-dark-700">{t(`${m}Texte`)}</p>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 text-[16px] leading-[1.6] text-dark-700 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-14 grid grid-cols-1 gap-8 text-[17px] leading-[1.3] text-dark-700 lg:grid-cols-2 lg:gap-16">
           <p>
             {t("enjUsagesAvant")}
             <span className="font-comico uppercase tracking-wide text-[#1c1c1c]">{t("enjUsagesFort")}</span>
