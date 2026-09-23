@@ -1,5 +1,5 @@
 /*
-  Ravitaillements du 80 km (parcours partage avec le relais).
+  Ravitaillements, par epreuve.
 
   x / y : position du repere sur `carte-ravito.png`, en pourcentage de l'image.
   Les petits traits perpendiculaires sont deja dessines dans l'asset ; on ne
@@ -58,5 +58,50 @@ export const RAVITOS_80: Ravito[] = [
   { km: 73, x: 78.0, y: 19.0, side: "right", ax: 78, ay: 29, ...COMPLET },
 ];
 
+/*
+  Le 33 km est la fin du parcours du 80 : il part du ravitaillement du km 50 et
+  emprunte les deux derniers ravitos avant la meme arrivee. On reutilise donc la
+  meme carte, en ne posant que les reperes concernes.
+
+  Le ravitaillement affiche "50 km" sur le grand parcours se situe en realite
+  vers le km 47-48 (precision de Maxence) : c'est de la que sort le 33 km, ce
+  qui tombe juste (80 - 47,5 = 32,5).
+
+  TODO : kilometrages deduits par soustraction a partir de 47,5 km, donc
+  arrondis. A confirmer avec l'organisation avant mise en ligne, en meme temps
+  que le libelle "50 km" du grand parcours.
+*/
+export const RAVITOS_33: Ravito[] = [
+  { km: 15, x: 55.0, y: 13.0, side: "left", dx: -3, dy: -7, ax: 55, ay: 28, ...COMPLET },
+  { km: 25, x: 78.0, y: 19.0, side: "right", ax: 78, ay: 29, ...COMPLET },
+];
+
+export type Repere = { x: number; y: number; side: RavitoSide };
+
+export type Epreuve = {
+  /* Cle de traduction de l'onglet */
+  ongletKey: string;
+  ravitos: Ravito[];
+  depart: Repere;
+  arrivee: Repere;
+};
+
 /* Ergots depart / arrivee dessines a droite du trace */
-export const DEPART_ARRIVEE = { x: 88.0, yArrivee: 57.5, yDepart: 61.0 };
+const ERGOT_ARRIVEE: Repere = { x: 88.0, y: 57.5, side: "right" };
+const ERGOT_DEPART: Repere = { x: 88.0, y: 61.0, side: "right" };
+
+export const EPREUVES: Epreuve[] = [
+  {
+    ongletKey: "ravitosTab80",
+    ravitos: RAVITOS_80,
+    depart: ERGOT_DEPART,
+    arrivee: ERGOT_ARRIVEE,
+  },
+  {
+    ongletKey: "ravitosTab33",
+    ravitos: RAVITOS_33,
+    // Le depart du 33 est le ravitaillement du km 50 du grand parcours
+    depart: { x: 27.0, y: 33.0, side: "left" },
+    arrivee: ERGOT_ARRIVEE,
+  },
+];

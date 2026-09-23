@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { usePinnedSteps } from "../usePinnedSteps";
-import { RAVITOS_80, DEPART_ARRIVEE, type RavitoSide } from "./ravitosData";
+import { EPREUVES, type RavitoSide } from "./ravitosData";
 
 /* Prestations affichees en grille, dans l'ordre de la maquette */
 const PRESTATIONS = [
@@ -60,12 +60,13 @@ function NumeroRavito({ n, actif }: { n: number; actif: boolean }) {
 
 export default function EntrainementRavitos() {
   const t = useTranslations("entrainementPage");
-  const ravitos = RAVITOS_80;
+  // Le 33 km emprunte la fin du parcours du 80 : meme carte, reperes differents
+  const [indexEpreuve, setIndexEpreuve] = useState(0);
+  const epreuve = EPREUVES[indexEpreuve];
+  const ravitos = epreuve.ravitos;
   // captureUp desactive : en remontant, on ressort de la section d'un trait
   const { containerRef, stickyRef, progress, stickyTop, scrollToStep } =
     usePinnedSteps(ravitos.length, { captureUp: false });
-  // Onglet 33 km : en attente de sa carte et de ses points de ravitaillement
-  const [epreuve, setEpreuve] = useState<"80" | "33">("80");
 
   // Un palier par ravito ; l'index courant est le palier le plus proche
   const indexScroll = Math.min(
@@ -87,7 +88,14 @@ export default function EntrainementRavitos() {
   const autres = ravitos.filter((_, i) => i !== index);
 
   return (
-    <div id="ravitos" ref={containerRef} className="relative lg:h-[420vh]">
+    <div
+      id="ravitos"
+      ref={containerRef}
+      /* Longueur du voyage proportionnelle au nombre de ravitos : le 33 km en
+         a deux, le 80 en a six. Une hauteur fixe rendrait le 33 interminable. */
+      style={{ "--hauteur-ravitos": `${ravitos.length * 70}vh` } as CSSProperties}
+      className="relative lg:h-[var(--hauteur-ravitos)]"
+    >
       <section
         ref={stickyRef}
         className="relative isolate overflow-hidden pb-10 pt-28 text-white lg:sticky"
@@ -115,34 +123,28 @@ export default function EntrainementRavitos() {
 
           {/* Choix de l'epreuve */}
           <div className="mt-6 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={() => setEpreuve("80")}
-              aria-pressed={epreuve === "80"}
-              className={`relative px-5 py-2 text-[13px] font-bold uppercase italic tracking-wide transition-colors ${
-                epreuve === "80" ? "text-[#1c3d1c]" : "text-white hover:text-white/80"
-              }`}
-            >
-              <span
-                aria-hidden="true"
-                className={`absolute inset-0 -skew-x-12 border border-white ${
-                  epreuve === "80" ? "bg-white" : ""
+            {EPREUVES.map((e, i) => (
+              <button
+                key={e.ongletKey}
+                type="button"
+                onClick={() => {
+                  setIndexEpreuve(i);
+                  setManuel(null);
+                }}
+                aria-pressed={indexEpreuve === i}
+                className={`relative px-5 py-2 text-[13px] font-bold uppercase italic tracking-wide transition-colors ${
+                  indexEpreuve === i ? "text-[#1c3d1c]" : "text-white hover:text-white/80"
                 }`}
-              />
-              <span className="relative">{t("ravitosTab80")}</span>
-            </button>
-            {/* 33 km : desactive tant que sa carte et ses points manquent */}
-            <button
-              type="button"
-              disabled
-              title={t("ravitosBientot")}
-              className="relative cursor-not-allowed px-5 py-2 text-[13px] font-bold uppercase italic tracking-wide text-white/45"
-            >
-              <span aria-hidden="true" className="absolute inset-0 -skew-x-12 border border-white/30" />
-              <span className="relative">
-                {t("ravitosTab33")} · {t("ravitosBientot")}
-              </span>
-            </button>
+              >
+                <span
+                  aria-hidden="true"
+                  className={`absolute inset-0 -skew-x-12 border border-white ${
+                    indexEpreuve === i ? "bg-white" : ""
+                  }`}
+                />
+                <span className="relative">{t(e.ongletKey)}</span>
+              </button>
+            ))}
           </div>
 
           <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
@@ -193,7 +195,7 @@ export default function EntrainementRavitos() {
               <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
                 {PRESTATIONS.filter((p) => actif[p.key]).map((p) => (
                   <li key={p.key} className="flex items-start gap-4">
-                    <Image src={p.icon} alt="" width={48} height={44} className="h-9 w-auto shrink-0" />
+                    <Image src={p.icon} alt="" width={48} height={44} className="h-9 w-auto shrink-0 brightness-0 invert" />
                     <div>
                       <p className="text-[15px] font-bold uppercase">{t(p.label)}</p>
                       <p className="mt-0.5 text-[13px] leading-[1.4] text-white/85">{t(p.desc)}</p>
@@ -208,7 +210,7 @@ export default function EntrainementRavitos() {
               <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
                 {PRODUITS.map((p) => (
                   <li key={p.nom} className="flex items-start gap-4">
-                    <Image src={p.icon} alt="" width={40} height={44} className="h-9 w-auto shrink-0" />
+                    <Image src={p.icon} alt="" width={40} height={44} className="h-9 w-auto shrink-0 brightness-0 invert" />
                     <div>
                       <p className="max-w-[16ch] text-[15px] font-bold uppercase leading-[1.2]">{p.nom}</p>
                       <p className="mt-0.5 flex items-center gap-3 text-[13px] text-white/85">
@@ -232,7 +234,7 @@ export default function EntrainementRavitos() {
               <ul className="mt-4 flex flex-wrap items-center gap-x-10 gap-y-3">
                 {SERVICES.filter((s) => actif[s.key]).map((s) => (
                   <li key={s.key} className="flex items-center gap-3">
-                    <Image src={s.icon} alt="" width={44} height={40} className="h-9 w-auto shrink-0" />
+                    <Image src={s.icon} alt="" width={44} height={40} className="h-9 w-auto shrink-0 brightness-0 invert" />
                     <span className="max-w-[10ch] text-[13px] font-bold uppercase leading-[1.2]">
                       {t(s.label)}
                     </span>
@@ -295,19 +297,19 @@ export default function EntrainementRavitos() {
                   );
                 })}
 
-                {/* Depart / arrivee */}
-                <span
-                  className="absolute -translate-y-1/2 pl-4 text-[13px] font-bold uppercase italic sm:text-[15px]"
-                  style={{ left: `${DEPART_ARRIVEE.x}%`, top: `${DEPART_ARRIVEE.yArrivee}%` }}
-                >
-                  {t("ravitosArrivee")}
-                </span>
-                <span
-                  className="absolute -translate-y-1/2 pl-4 text-[13px] font-bold uppercase italic sm:text-[15px]"
-                  style={{ left: `${DEPART_ARRIVEE.x}%`, top: `${DEPART_ARRIVEE.yDepart}%` }}
-                >
-                  {t("ravitosDepart")}
-                </span>
+                {/* Depart et arrivee, a leur place pour cette epreuve */}
+                {([
+                  { repere: epreuve.arrivee, cle: "ravitosArrivee" },
+                  { repere: epreuve.depart, cle: "ravitosDepart" },
+                ] as const).map(({ repere, cle }) => (
+                  <span
+                    key={cle}
+                    className={`absolute text-[13px] font-bold uppercase italic sm:text-[15px] ${OFFSET[repere.side]}`}
+                    style={{ left: `${repere.x}%`, top: `${repere.y}%` }}
+                  >
+                    {t(cle)}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
