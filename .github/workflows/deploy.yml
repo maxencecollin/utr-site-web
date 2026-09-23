@@ -1,0 +1,49 @@
+# Construit le site (export statique Next.js) et le publie sur GitHub Pages.
+# Source Pages : "GitHub Actions" (Settings > Pages). Domaine : ultratourdelaria.fr.
+name: Deploiement GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Relance manuelle depuis l'onglet Actions
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un seul deploiement a la fois ; on ne coupe pas celui en cours
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # next.config : output 'export' -> le site statique sort dans out/
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - id: deploiement
+        uses: actions/deploy-pages@v4
