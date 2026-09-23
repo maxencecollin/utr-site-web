@@ -11,11 +11,11 @@ const PRINCIPES = [
 /* Pastille hexagonale numerotee (brun clair sur fond brun) */
 function Numero({ n }: { n: number }) {
   return (
-    <span className="relative mx-auto flex h-14 w-14 items-center justify-center">
+    <span className="relative mx-auto flex h-[56px] w-[56px] items-center justify-center sm:h-[68px] sm:w-[68px]">
       <svg viewBox="0 0 40 40" aria-hidden="true" className="absolute inset-0 h-full w-full">
         <polygon points="20,1 37,10.5 37,29.5 20,39 3,29.5 3,10.5" fill="#78492d" />
       </svg>
-      <span className="font-comico relative text-[22px] leading-none text-white">{n}</span>
+      <span className="font-comico relative text-[32px] leading-none text-white sm:text-[40px]">{n}</span>
     </span>
   );
 }
@@ -34,7 +34,7 @@ export default function CoachingPhilosophie() {
         className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.07]"
       />
 
-      <div className="mx-auto max-w-5xl px-6 text-center lg:px-10">
+      <div className="mx-auto max-w-6xl px-6 text-center lg:px-10">
         <Image
           src="/images/icones/fichier-12.svg"
           alt=""
@@ -42,19 +42,19 @@ export default function CoachingPhilosophie() {
           height={60}
           className="mx-auto h-11 w-auto brightness-0 invert"
         />
-        <h2 className="font-comico mx-auto mt-5 max-w-[34ch] text-[22px] uppercase leading-[1.25] sm:text-[34px]">
+        <h2 className="font-comico mx-auto mt-5 max-w-[34ch] text-[24px] uppercase leading-[1.25] sm:text-[38px]">
           {t("philosophieTitre")}
         </h2>
         <span className="mt-6 block h-[2px] bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_11px,transparent_11px,transparent_20px)] opacity-70" />
 
-        <ul className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
+        <ul className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-10">
           {PRINCIPES.map((p, i) => (
             <li key={p.fort}>
               <Numero n={i + 1} />
-              <p className="mt-5 text-[17px] font-extrabold italic leading-[1.25] sm:text-[19px]">
+              <p className="mt-5 text-[20px] font-extrabold italic leading-[1.25] sm:text-[25px]">
                 {t(p.fort)}
               </p>
-              <p className="mx-auto mt-1.5 max-w-[26ch] text-[14px] leading-[1.4] text-white/90 sm:text-[15px]">
+              <p className="mx-auto mt-2 max-w-[30ch] text-[16px] leading-[1.4] text-white/90 sm:text-[17px]">
                 {t(p.suite)}
               </p>
             </li>
