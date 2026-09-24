@@ -34,7 +34,13 @@ export default function Header({ logoFonce = false }: Props) {
         scrolled ? "bg-dark-900 shadow-[0_2px_16px_#00000040]" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6 lg:px-10">
+      {/* Barre noire plus fine une fois le hero depasse : 76 px au lieu de 96
+          (60 au lieu de 80 sur mobile) */}
+      <nav
+        className={`mx-auto flex max-w-7xl items-center justify-between px-4 transition-[padding] duration-300 sm:px-6 lg:px-10 ${
+          scrolled ? "py-2.5" : "py-5"
+        }`}
+      >
         <Link href="/" aria-label="Ultra Tour de la Ria d'Étel — accueil">
           <Image
             src={logoFonce && !scrolled ? "/images/logos/logo-principal-couleur.svg" : "/images/logos/logo-etire-blanc.svg"}

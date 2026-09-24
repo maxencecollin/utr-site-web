@@ -77,7 +77,7 @@ export default function EntrainementNav() {
       <nav
         ref={navRef}
         aria-label={t("navAria")}
-        className="sticky top-20 z-20 border-b border-dark-100 bg-white/95 backdrop-blur md:top-24"
+        className="sticky top-[60px] z-20 border-b border-dark-100 bg-white/95 backdrop-blur md:top-[76px]"
       >
         <div className="mx-auto max-w-7xl lg:px-10">
           <ul
