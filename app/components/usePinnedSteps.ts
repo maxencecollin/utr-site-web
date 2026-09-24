@@ -25,6 +25,12 @@ const WHEEL_COOLDOWN_UP = 450;
 /* Silence (ms) qui separe deux gestes : un geste de trackpad est une rafale
    d'evenements qui s'amortit (inertie) ; tant qu'elle dure, c'est le meme geste */
 const FIN_DE_GESTE = 180;
+/* Au-dela de ce delai apres un palier, le suivant est accepte meme sans pause :
+   un defilement continu (on veut aller vite) avance au lieu de rester bloque */
+const VERROU_MAX = 1000;
+/* Amplitude sous laquelle un evenement est une traine d'inertie mourante, qui
+   ne doit pas declencher de palier une fois VERROU_MAX passe */
+const TRAINE = 15;
 
 type Options = {
   /* false : la molette n'est plus capturee quand on remonte, le scroll natif
@@ -125,8 +131,13 @@ export function usePinnedSteps(
     let wheelAccum = 0;
     let coolUntil = 0;
     let dernierEvenement = 0;
-    // Un palier vient d'etre franchi : on avale la suite du geste en cours
-    let gesteConsomme = false;
+    let derniereAmplitude = 0;
+    // Instant et numero du dernier palier vise
+    let palierA = -Infinity;
+    let palierVise = 0;
+    // Le geste en cours n'a pas encore franchi de palier : il reste libre
+    // jusqu'au prochain palier, meme quand son inertie decroit
+    let gesteLibre = true;
 
     const onWheel = (e: WheelEvent) => {
       const container = containerRef.current;
@@ -138,13 +149,24 @@ export function usePinnedSteps(
       const y = top - container.getBoundingClientRect().top;
       const goingDown = e.deltaY > 0;
       const now = performance.now();
-      if (now - dernierEvenement > FIN_DE_GESTE) gesteConsomme = false;
+      const amplitude = Math.abs(e.deltaY);
+      // Nouveau geste : une pause, ou une reacceleration (l'inertie ne fait que
+      // decroitre ; une nouvelle impulsion fait remonter l'amplitude)
+      const nouveauGeste =
+        now - dernierEvenement > FIN_DE_GESTE || amplitude > derniereAmplitude * 1.6 + 3;
       dernierEvenement = now;
-      // Un palier vient d'etre franchi (y compris le dernier) : le reste du geste
-      // et son inertie sont avales, sinon un seul geste de trackpad sautait
-      // deux paliers, ou emportait la page au-dela du dernier
+      derniereAmplitude = amplitude;
+      if (nouveauGeste) gesteLibre = true;
+      // Apres un palier (y compris le dernier), la suite du geste et son inertie
+      // sont avalees - sinon un seul geste de trackpad sautait deux paliers ou
+      // emportait la page au-dela du dernier - jusqu'a une pause du defilement,
+      // ou une reacceleration, ou au plus VERROU_MAX si le defilement reste
+      // franc : un defilement continu n'est jamais bloque
+      const verrouille =
+        now < coolUntil ||
+        (!gesteLibre && (now - palierA < VERROU_MAX || amplitude < TRAINE));
       const dansZone = y > -2 && y < range + 2;
-      if (dansZone && (goingDown || captureUp) && (gesteConsomme || now < coolUntil)) {
+      if (dansZone && (goingDown || captureUp) && verrouille) {
         e.preventDefault();
         return;
       }
@@ -170,13 +192,19 @@ export function usePinnedSteps(
       e.preventDefault();
       wheelAccum += e.deltaY;
       if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
+      // Pendant le trajet doux vers le palier vise (~0,5 s), la position n'a
+      // pas encore rejoint ce palier : on part de lui, sinon un geste rapide
+      // viserait a nouveau le meme palier et serait perdu
+      const depart = now - palierA < 600 ? palierVise : nearestStep;
       const targetStep = Math.max(
         0,
-        Math.min(stepsCount - 1, nearestStep + (wheelAccum > 0 ? 1 : -1)),
+        Math.min(stepsCount - 1, depart + (wheelAccum > 0 ? 1 : -1)),
       );
-      const goingUp = targetStep < nearestStep;
+      const goingUp = targetStep < depart;
       wheelAccum = 0;
-      gesteConsomme = true;
+      palierA = now;
+      palierVise = targetStep;
+      gesteLibre = false;
       coolUntil = now + (goingUp ? WHEEL_COOLDOWN_UP : recharge);
       window.scrollTo({
         top:

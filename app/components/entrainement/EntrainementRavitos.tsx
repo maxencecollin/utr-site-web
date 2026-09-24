@@ -76,7 +76,7 @@ export default function EntrainementRavitos() {
   const ravitos = epreuve.ravitos;
   // captureUp desactive : en remontant, on ressort de la section d'un trait
   const { containerRef, stickyRef, progress, stickyTop, scrollToStep } =
-    usePinnedSteps(ravitos.length, { captureUp: false, recharge: 600, vitesse: 1.2 });
+    usePinnedSteps(ravitos.length, { captureUp: false, recharge: 450, vitesse: 1.2 });
 
   // Un palier par ravito ; l'index courant est le palier le plus proche
   const indexScroll = Math.min(

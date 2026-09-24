@@ -124,7 +124,7 @@ export default function CourseEpreuve({
   const { containerRef, stickyRef, progress, stickyTop, scrollToStep } =
     usePinnedSteps(hotspots.length + 1, {
       captureUp: false,
-      recharge: 600,
+      recharge: 450,
       vitesse: 1.2,
       pauseFin: PAUSE_FIN,
     });
