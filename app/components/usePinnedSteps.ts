@@ -22,6 +22,9 @@ const MAX_SPEED_UP = 1.2;
 /* Molette : seuil anti-declenchement accidentel, puis temps de recharge */
 const WHEEL_THRESHOLD = 100;
 const WHEEL_COOLDOWN_UP = 450;
+/* Silence (ms) qui separe deux gestes : un geste de trackpad est une rafale
+   d'evenements qui s'amortit (inertie) ; tant qu'elle dure, c'est le meme geste */
+const FIN_DE_GESTE = 180;
 
 type Options = {
   /* false : la molette n'est plus capturee quand on remonte, le scroll natif
@@ -121,6 +124,9 @@ export function usePinnedSteps(
        trackpad) sont avales. */
     let wheelAccum = 0;
     let coolUntil = 0;
+    let dernierEvenement = 0;
+    // Un palier vient d'etre franchi : on avale la suite du geste en cours
+    let gesteConsomme = false;
 
     const onWheel = (e: WheelEvent) => {
       const container = containerRef.current;
@@ -130,6 +136,18 @@ export function usePinnedSteps(
       const range = paliers(container, sticky);
       if (range <= 0) return;
       const y = top - container.getBoundingClientRect().top;
+      const goingDown = e.deltaY > 0;
+      const now = performance.now();
+      if (now - dernierEvenement > FIN_DE_GESTE) gesteConsomme = false;
+      dernierEvenement = now;
+      // Un palier vient d'etre franchi (y compris le dernier) : le reste du geste
+      // et son inertie sont avales, sinon un seul geste de trackpad sautait
+      // deux paliers, ou emportait la page au-dela du dernier
+      const dansZone = y > -2 && y < range + 2;
+      if (dansZone && (goingDown || captureUp) && (gesteConsomme || now < coolUntil)) {
+        e.preventDefault();
+        return;
+      }
       // Hors de la zone des paliers (avant, dans la pause finale, apres) : scroll natif
       if (y < 1 || y > range - 1) {
         wheelAccum = 0;
@@ -137,7 +155,6 @@ export function usePinnedSteps(
       }
       const stepSize = range / (stepsCount - 1);
       const nearestStep = Math.round(y / stepSize);
-      const goingDown = e.deltaY > 0;
       // Remontee libre : on laisse filer le scroll natif
       if (!goingDown && !captureUp) {
         wheelAccum = 0;
@@ -151,8 +168,6 @@ export function usePinnedSteps(
         return;
       }
       e.preventDefault();
-      const now = performance.now();
-      if (now < coolUntil) return;
       wheelAccum += e.deltaY;
       if (Math.abs(wheelAccum) < WHEEL_THRESHOLD) return;
       const targetStep = Math.max(
@@ -161,6 +176,7 @@ export function usePinnedSteps(
       );
       const goingUp = targetStep < nearestStep;
       wheelAccum = 0;
+      gesteConsomme = true;
       coolUntil = now + (goingUp ? WHEEL_COOLDOWN_UP : recharge);
       window.scrollTo({
         top:
