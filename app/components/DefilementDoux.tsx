@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -8,6 +9,10 @@ import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger);
 
 let lenis: Lenis | null = null;
+let premiereVue = true;
+let retourNavigateur = false;
+/* Hauteur du header fixe en version fine, pour les ancres */
+const HAUTEUR_HEADER = 80;
 
 /*
   Saut programme (onglets, liste des ravitos...) : passe par Lenis quand il
@@ -15,7 +20,10 @@ let lenis: Lenis | null = null;
   disputeraient la position.
 */
 export function defilerVers(y: number, duree = 1.1) {
-  if (lenis) lenis.scrollTo(y, { duration: duree });
+  if (duree === 0) {
+    if (lenis) lenis.scrollTo(y, { immediate: true, force: true });
+    else window.scrollTo(0, y);
+  } else if (lenis) lenis.scrollTo(y, { duration: duree });
   else window.scrollTo({ top: y, behavior: "smooth" });
 }
 
@@ -48,6 +56,68 @@ export function aimanter(st: ScrollTrigger, paliers: number[]) {
   animations, et fige tant que le rideau "site en construction" est baisse.
 */
 export default function DefilementDoux() {
+  const chemin = usePathname();
+
+  /*
+    Changement de page sans rechargement : Next voudrait remettre la page en
+    haut, mais Lenis, qui garde l'ancienne position en memoire, la ramenait
+    aussitot au milieu de la nouvelle page. On fixe donc nous-memes la position :
+    - lien : haut de page, ou l'ancre visee (sous le header fixe) ;
+    - retour/avance du navigateur : la position restauree par le navigateur.
+    Puis on fait remesurer les sections animees de la nouvelle page.
+  */
+  useEffect(() => {
+    const surPopstate = () => { retourNavigateur = true; };
+    window.addEventListener("popstate", surPopstate);
+    return () => window.removeEventListener("popstate", surPopstate);
+  }, []);
+
+  useEffect(() => {
+    if (premiereVue) {
+      premiereVue = false;
+      return;
+    }
+    const retour = retourNavigateur;
+    retourNavigateur = false;
+    const placer = () => {
+      let cible = window.scrollY;
+      if (!retour) {
+        const ancre = window.location.hash ? document.getElementById(window.location.hash.slice(1)) : null;
+        cible = ancre ? ancre.getBoundingClientRect().top + window.scrollY - HAUTEUR_HEADER : 0;
+      }
+      if (lenis) lenis.scrollTo(cible, { immediate: true, force: true });
+      else window.scrollTo(0, cible);
+      ScrollTrigger.refresh();
+    };
+    // Second passage une fois la page stabilisee (images, sections epinglees) :
+    // la position d'une ancre peut encore bouger apres le premier rendu
+    const minuteurs = [window.setTimeout(placer, retour ? 60 : 0)];
+    if (!retour && window.location.hash) minuteurs.push(window.setTimeout(placer, 400));
+    return () => minuteurs.forEach(clearTimeout);
+  }, [chemin]);
+
+  /*
+    Recalcul des positions des sections animees quand la hauteur de la page
+    change (images qui se chargent, changement de page sans rechargement) :
+    sinon GSAP garde des positions mesurees trop tot, et une section demarre
+    au milieu de son animation.
+  */
+  useEffect(() => {
+    let minuteur = 0;
+    let hauteur = document.body.scrollHeight;
+    const obs = new ResizeObserver(() => {
+      if (document.body.scrollHeight === hauteur) return;
+      hauteur = document.body.scrollHeight;
+      clearTimeout(minuteur);
+      minuteur = window.setTimeout(() => ScrollTrigger.refresh(), 150);
+    });
+    obs.observe(document.body);
+    return () => {
+      clearTimeout(minuteur);
+      obs.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     lenis = new Lenis({ lerp: 0.1 });

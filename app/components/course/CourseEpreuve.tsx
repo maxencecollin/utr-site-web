@@ -176,75 +176,80 @@ export default function CourseEpreuve({
   const objet = etape > 0 ? hotspots[etape - 1] : null;
 
   return (
-    <section id="epreuve" ref={section} className="overflow-x-clip bg-white pt-16 sm:flex sm:h-screen sm:flex-col sm:pt-24">
-      <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
-        {/* Picto coureur (entrainement.svg, passe en noir par l'en-tete) */}
-        <CourseSectionHeading icon="/images/icones/entrainement.svg" title={t("epreuve")} trailing={trailing} />
-      </div>
+    /* Enveloppe geree par React : GSAP insere son conteneur d'epinglage entre
+       elle et la section. Au changement de page, React ne retire que
+       l'enveloppe, dont le parent n'a pas bouge (sinon erreur removeChild). */
+    <div>
+      <section id="epreuve" ref={section} className="overflow-x-clip bg-white pt-16 sm:flex sm:h-screen sm:flex-col sm:pt-24">
+        <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
+          {/* Picto coureur (entrainement.svg, passe en noir par l'en-tete) */}
+          <CourseSectionHeading icon="/images/icones/entrainement.svg" title={t("epreuve")} trailing={trailing} />
+        </div>
 
-      {/* Photo pleine largeur (etiquettes masquees sur petit ecran) */}
-      <div className="relative mt-8 w-full overflow-hidden sm:mt-6 sm:flex-1">
-        <div className="relative aspect-[4/3] w-full overflow-hidden sm:absolute sm:inset-0 sm:aspect-auto">
-          {/* Couche zoomable, pilotee par le defilement */}
-          <div ref={calque} className="absolute inset-0 will-change-transform">
-            <Image src={photo} alt={photoAlt} fill sizes="100vw" className="object-cover" />
-          </div>
+        {/* Photo pleine largeur (etiquettes masquees sur petit ecran) */}
+        <div className="relative mt-8 w-full overflow-hidden sm:mt-6 sm:flex-1">
+          <div className="relative aspect-[4/3] w-full overflow-hidden sm:absolute sm:inset-0 sm:aspect-auto">
+            {/* Couche zoomable, pilotee par le defilement */}
+            <div ref={calque} className="absolute inset-0 will-change-transform">
+              <Image src={photo} alt={photoAlt} fill sizes="100vw" className="object-cover" />
+            </div>
 
-          {utmbIndex && <UtmbBadge index={utmbIndex} className="absolute right-[5%] top-[10%]" />}
+            {utmbIndex && <UtmbBadge index={utmbIndex} className="absolute right-[5%] top-[10%]" />}
 
-          {/* Chapitres : pilules translucides, indicateur + acces direct */}
-          <ul className="absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-start gap-2.5 sm:flex">
-            {hotspots.map((h, i) => (
-              <li key={h.labelKey}>
-                <button
-                  type="button"
-                  onClick={() => allerA(i)}
-                  className={`rounded-full px-5 py-2.5 text-[14px] font-medium backdrop-blur-xl transition-all duration-500 active:scale-95 ${
-                    etape === i + 1
-                      ? "bg-white/90 text-[#1c1c1c] shadow-[0_4px_16px_rgba(0,0,0,0.35)]"
-                      : "bg-black/35 text-white/95 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.14),0_2px_10px_rgba(0,0,0,0.25)] hover:bg-black/50"
+            {/* Chapitres : pilules translucides, indicateur + acces direct */}
+            <ul className="absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-start gap-2.5 sm:flex">
+              {hotspots.map((h, i) => (
+                <li key={h.labelKey}>
+                  <button
+                    type="button"
+                    onClick={() => allerA(i)}
+                    className={`rounded-full px-5 py-2.5 text-[14px] font-medium backdrop-blur-xl transition-all duration-500 active:scale-95 ${
+                      etape === i + 1
+                        ? "bg-white/90 text-[#1c1c1c] shadow-[0_4px_16px_rgba(0,0,0,0.35)]"
+                        : "bg-black/35 text-white/95 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.14),0_2px_10px_rgba(0,0,0,0.25)] hover:bg-black/50"
+                    }`}
+                  >
+                    {t(h.labelKey)}
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            {/* Legendes : fondu enchaine d'un objet a l'autre */}
+            <div className="absolute bottom-8 left-1/2 z-10 hidden w-[min(88%,600px)] -translate-x-1/2 sm:block">
+              {hotspots.map((h) => (
+                <p
+                  key={h.labelKey}
+                  aria-hidden={objet !== h}
+                  className={`absolute inset-x-0 bottom-0 rounded-2xl bg-black/45 px-7 py-4 text-center text-[15px] font-medium leading-relaxed text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12),0_6px_24px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 ${
+                    objet === h ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
                   }`}
                 >
-                  {t(h.labelKey)}
-                </button>
-              </li>
-            ))}
-          </ul>
+                  {tCaptions(`${h.labelKey}Text`)}
+                </p>
+              ))}
+            </div>
 
-          {/* Legendes : fondu enchaine d'un objet a l'autre */}
-          <div className="absolute bottom-8 left-1/2 z-10 hidden w-[min(88%,600px)] -translate-x-1/2 sm:block">
-            {hotspots.map((h) => (
-              <p
-                key={h.labelKey}
-                aria-hidden={objet !== h}
-                className={`absolute inset-x-0 bottom-0 rounded-2xl bg-black/45 px-7 py-4 text-center text-[15px] font-medium leading-relaxed text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12),0_6px_24px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 ${
-                  objet === h ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
-                }`}
-              >
-                {tCaptions(`${h.labelKey}Text`)}
-              </p>
-            ))}
+            {/* Progression discrete */}
+            <div
+              className="absolute bottom-0 left-0 z-10 hidden h-[3px] bg-ria-500 transition-[width] duration-300 sm:block"
+              style={{ width: `${(etape / hotspots.length) * 100}%` }}
+            />
           </div>
-
-          {/* Progression discrete */}
-          <div
-            className="absolute bottom-0 left-0 z-10 hidden h-[3px] bg-ria-500 transition-[width] duration-300 sm:block"
-            style={{ width: `${(etape / hotspots.length) * 100}%` }}
-          />
         </div>
-      </div>
 
-      {/* Mobile : les memes liens, listes sous la photo */}
-      <div className="mx-auto flex max-w-7xl flex-wrap gap-3 px-6 pt-5 sm:hidden">
-        {hotspots.map((h) => (
-          <HotspotLink key={h.labelKey} href={h.href} className="inline-flex">
-            <span className="inline-flex items-center gap-2.5 border border-dark-900 px-4 py-2 text-[13px] font-semibold uppercase tracking-[1px] text-dark-900">
-              {t(h.labelKey)}
-              <Arrow direction={h.direction} />
-            </span>
-          </HotspotLink>
-        ))}
-      </div>
-    </section>
+        {/* Mobile : les memes liens, listes sous la photo */}
+        <div className="mx-auto flex max-w-7xl flex-wrap gap-3 px-6 pt-5 sm:hidden">
+          {hotspots.map((h) => (
+            <HotspotLink key={h.labelKey} href={h.href} className="inline-flex">
+              <span className="inline-flex items-center gap-2.5 border border-dark-900 px-4 py-2 text-[13px] font-semibold uppercase tracking-[1px] text-dark-900">
+                {t(h.labelKey)}
+                <Arrow direction={h.direction} />
+              </span>
+            </HotspotLink>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
