@@ -21,10 +21,10 @@ const PRODUITS = [
   { nom: "Energy date bar", icone: "/images/icones/barre-energie-simple.svg", desc: "ravitosProduit1Desc" },
   { nom: "ISO+ isotonic drink", icone: "/images/icones/boisson-energie-simple.svg", desc: "ravitosProduit2Desc" },
 ] as const;
-/* Le picto "toilettes" de la maquette n'est pas dans l'export de la graphiste */
 const SERVICES = [
   { cle: "medical", icone: "/images/icones/fichier-14.svg", label: "ravitosMedical" },
   { cle: "aideExterne", icone: "/images/icones/aide-exterieur.svg", label: "ravitosAideExterne" },
+  { cle: "toilettes", icone: "/images/icones/toilettes.svg", label: "ravitosToilettes" },
 ] as const;
 
 /* Grand ecran : section epinglee et pilotee par le defilement */

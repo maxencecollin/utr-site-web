@@ -2,15 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
-/*
-  Presentation : collage de photos inclinees a gauche, carte papier a droite.
-
-  La graphiste n'a pas livre la carte a bords dechires ni les glyphes d'oiseaux
-  de la maquette : la carte est reconstituee avec la texture papier et un
-  clip-path irregulier, a remplacer si l'export arrive.
-*/
-const BORDS_DECHIRES =
-  "polygon(0% 4%, 9% 1%, 21% 5%, 33% 1%, 46% 4%, 58% 0%, 71% 4%, 84% 1%, 95% 5%, 100% 2%, 100% 96%, 91% 99%, 78% 95%, 66% 99%, 53% 96%, 40% 100%, 27% 96%, 15% 99%, 5% 95%, 0% 98%)";
+/* Presentation : collage de photos inclinees a gauche, carte papier a droite */
 
 export default function CoachingPresentation() {
   const t = useTranslations("coaching");
@@ -83,26 +75,43 @@ export default function CoachingPresentation() {
 
           {/* Carte papier : nom, fonction, age */}
           <div>
-            <div
-              className="relative bg-[#f2efe9] bg-[url('/images/deco/papier-fond.jpg')] bg-cover px-8 py-10 shadow-[0_10px_26px_rgba(0,0,0,0.12)]"
-              style={{ clipPath: BORDS_DECHIRES }}
-            >
-              <p className="font-comico text-[30px] uppercase leading-[1.05] text-[#6f4126] sm:text-[40px]">
-                {t("nom")}
-              </p>
-              {/* Trait de pinceau sous le nom */}
-              <span
-                aria-hidden="true"
-                className="mt-1 block h-[6px] w-[86%] rounded-full bg-[#6f4126]"
-                style={{ clipPath: "polygon(0% 40%, 6% 0%, 40% 30%, 72% 5%, 100% 35%, 98% 100%, 55% 75%, 20% 100%, 2% 80%)" }}
+            <div className="relative">
+              {/* Oiseaux qui s'envolent du coin de la carte */}
+              <Image
+                src="/images/deco/oiseaux.svg"
+                alt=""
+                width={33}
+                height={22}
+                className="absolute -top-9 right-8 z-10 h-9 w-auto sm:-top-11 sm:h-11"
               />
-              <div className="mt-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-                <p className="font-comico max-w-[22ch] text-[17px] uppercase leading-[1.3] text-[#1c1c1c] sm:text-[20px]">
-                  {t("role")}
-                </p>
-                <p className="font-comico text-[17px] uppercase text-[#1c1c1c] sm:text-[20px]">
-                  {t("age")}
-                </p>
+              {/* Fond uni du papier, prolonge en bas par le bord dechire de la graphiste */}
+              <div className="drop-shadow-[0_10px_14px_rgba(0,0,0,0.12)]">
+                <div className="relative z-10 bg-[#fafafa] px-8 pb-1 pt-10">
+                  <p className="font-comico text-[30px] uppercase leading-[1.05] text-[#6f4126] sm:text-[40px]">
+                    {t("nom")}
+                  </p>
+                  {/* Trait de pinceau sous le nom */}
+                  <span
+                    aria-hidden="true"
+                    className="mt-1 block h-[6px] w-[86%] rounded-full bg-[#6f4126]"
+                    style={{ clipPath: "polygon(0% 40%, 6% 0%, 40% 30%, 72% 5%, 100% 35%, 98% 100%, 55% 75%, 20% 100%, 2% 80%)" }}
+                  />
+                  <div className="mt-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+                    <p className="font-comico max-w-[22ch] text-[17px] uppercase leading-[1.3] text-[#1c1c1c] sm:text-[20px]">
+                      {t("role")}
+                    </p>
+                    <p className="font-comico text-[17px] uppercase text-[#1c1c1c] sm:text-[20px]">
+                      {t("age")}
+                    </p>
+                  </div>
+                </div>
+                <Image
+                  src="/images/deco/papier-dechire.webp"
+                  alt=""
+                  width={1400}
+                  height={337}
+                  className="-mt-[11%] block h-auto w-full"
+                />
               </div>
             </div>
 

@@ -3,17 +3,16 @@ import { useTranslations } from "next-intl";
 
 /*
   Les trois protections traversees par le parcours.
-  TODO : pictos ZNIEFF / Natura 2000 / sites classes a recevoir de la graphiste
-  (emplacement reserve), et liens officiels ZNIEFF et sites classes a fournir.
+  TODO : liens officiels ZNIEFF et sites classes a fournir.
   Le lien Natura 2000 pointe sur la fiche INPN FR5300028 "Ria d'Etel" : a
   verifier avant mise en ligne.
 */
 export const LIEN_NATURA_2000 = "https://inpn.mnhn.fr/site/natura2000/FR5300028";
 
 const ZONES = [
-  { titre: "zonesZnieffTitre", texte: "zonesZnieffTexte", lien: null },
-  { titre: "zonesNaturaTitre", texte: "zonesNaturaTexte", lien: LIEN_NATURA_2000 },
-  { titre: "zonesClassesTitre", texte: "zonesClassesTexte", lien: null },
+  { titre: "zonesZnieffTitre", texte: "zonesZnieffTexte", picto: "/images/icones/znieff.svg", lien: null },
+  { titre: "zonesNaturaTitre", texte: "zonesNaturaTexte", picto: "/images/icones/natura-2000.svg", lien: LIEN_NATURA_2000 },
+  { titre: "zonesClassesTitre", texte: "zonesClassesTexte", picto: "/images/icones/sites-classes.svg", lien: null },
 ] as const;
 
 export default function ZonesProtegees() {
@@ -40,8 +39,7 @@ export default function ZonesProtegees() {
         <ul className="mt-14 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-6 lg:-mx-[74px]">
           {ZONES.map((z) => (
             <li key={z.titre} className="flex flex-col items-center">
-              {/* Emplacement du picto, en attente de l'export */}
-              <span aria-hidden="true" className="block h-[90px] w-[90px]" />
+              <Image src={z.picto} alt="" width={90} height={90} className="h-[90px] w-auto brightness-0 invert" />
               <h3 className="titre mt-4 text-[20px] sm:text-[22px]">{t(z.titre)}</h3>
               <span className="mt-3 block h-px w-24 bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_6px,transparent_6px,transparent_11px)]" />
               <p className="mt-4 max-w-[30ch] text-[15px] leading-[1.35] text-white/90">{t(z.texte)}</p>

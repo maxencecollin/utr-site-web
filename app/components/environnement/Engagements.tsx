@@ -1,16 +1,12 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-/*
-  Engagements eco-responsables de l'organisation.
-  TODO : pictos zero dechet, produits locaux et covoiturage a recevoir ;
-  l'emplacement est reserve pour que la mise en page ne bouge pas a leur arrivee.
-*/
+/* Engagements eco-responsables de l'organisation */
 const ENGAGEMENTS = [
-  { titre: "engDechetTitre", texte: "engDechetTexte", picto: null },
-  { titre: "engSignaTitre", texte: "engSignaTexte", picto: "/images/icones/signalisation.svg" },
-  { titre: "engLocauxTitre", texte: "engLocauxTexte", picto: null },
-  { titre: "engCovoitTitre", texte: "engCovoitTexte", picto: null },
+  { titre: "engDechetTitre", texte: "engDechetTexte", picto: "/images/icones/zero-dechet.svg" },
+  { titre: "engSignaTitre", texte: "engSignaTexte", picto: "/images/icones/signaletique.svg" },
+  { titre: "engLocauxTitre", texte: "engLocauxTexte", picto: "/images/icones/produits-locaux.svg" },
+  { titre: "engCovoitTitre", texte: "engCovoitTexte", picto: "/images/icones/covoiturage.svg" },
 ] as const;
 
 export default function Engagements() {
@@ -38,11 +34,8 @@ export default function Engagements() {
         <ul className="mt-14 max-w-[440px] space-y-7 lg:-ml-8">
           {ENGAGEMENTS.map((e) => (
             <li key={e.titre} className="flex items-start gap-5">
-              {/* Emplacement du picto (vide tant que la graphiste ne l'a pas livre) */}
               <span className="flex h-[72px] w-[72px] shrink-0 items-center justify-center sm:h-[90px] sm:w-[90px]">
-                {e.picto && (
-                  <Image src={e.picto} alt="" width={56} height={56} className="h-[72px] w-auto brightness-0 invert sm:h-[84px]" />
-                )}
+                <Image src={e.picto} alt="" width={56} height={56} className="h-[72px] w-auto brightness-0 invert sm:h-[84px]" />
               </span>
               <div className="flex-1">
                 <h3 className="titre text-[18px] sm:text-[21px]">{t(e.titre)}</h3>

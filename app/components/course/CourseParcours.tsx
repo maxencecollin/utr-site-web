@@ -46,9 +46,8 @@ export default function CourseParcours({
 
       {/* Conteneur resserre : pointilles, carte et boutons alignes sur la meme largeur */}
       <div className="relative mx-auto max-w-6xl px-6 lg:px-10">
-        {/* Picto provisoire (pin) : le panneau directionnel de la maquette n'est pas dans les assets */}
         <CourseSectionHeading
-          icon="/images/icones/pin.svg?v=2"
+          icon="/images/icones/signaletique.svg"
           title={t("parcoursTitle")}
           align="right"
           tone="light"

@@ -22,6 +22,7 @@ export type Ravito = {
   chaud: boolean;
   medical: boolean;
   aideExterne: boolean;
+  toilettes: boolean;
 };
 
 /* Composition generale appliquee a tous les ravitos tant qu'on n'a pas le detail */
@@ -32,6 +33,7 @@ const COMPLET = {
   chaud: true,
   medical: true,
   aideExterne: true,
+  toilettes: true,
 } as const;
 
 export const RAVITOS_80: Ravito[] = [
