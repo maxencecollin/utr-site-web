@@ -18,6 +18,8 @@ export function useDefilementDoux() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1 });
+    // Accessible aux sections pour les sauts programmes (clic sur un ravito)
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
     const tic = (temps: number) => lenis.raf(temps * 1000);
     gsap.ticker.add(tic);
@@ -25,6 +27,7 @@ export function useDefilementDoux() {
     return () => {
       gsap.ticker.remove(tic);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 }
