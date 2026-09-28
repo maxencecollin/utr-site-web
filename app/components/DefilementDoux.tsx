@@ -85,8 +85,10 @@ export default function DefilementDoux() {
         const ancre = window.location.hash ? document.getElementById(window.location.hash.slice(1)) : null;
         cible = ancre ? ancre.getBoundingClientRect().top + window.scrollY - HAUTEUR_HEADER : 0;
       }
-      if (lenis) lenis.scrollTo(cible, { immediate: true, force: true });
-      else window.scrollTo(0, cible);
+      if (lenis) {
+        lenis.resize();
+        lenis.scrollTo(cible, { immediate: true, force: true });
+      } else window.scrollTo(0, cible);
       ScrollTrigger.refresh();
     };
     // Second passage une fois la page stabilisee (images, sections epinglees) :
@@ -97,10 +99,13 @@ export default function DefilementDoux() {
   }, [chemin]);
 
   /*
-    Recalcul des positions des sections animees quand la hauteur de la page
-    change (images qui se chargent, changement de page sans rechargement) :
-    sinon GSAP garde des positions mesurees trop tot, et une section demarre
-    au milieu de son animation.
+    Quand la hauteur de la page change (images qui se chargent, changement de
+    page sans rechargement) :
+    - Lenis remesure la page. Il ne surveille que <html>, dont la hauteur est
+      fixee a celle de la fenetre : il gardait la hauteur de la page precedente
+      et bloquait le defilement avant le bas d'une page plus longue ;
+    - GSAP recalcule les positions des sections animees, sinon une section
+      demarre au milieu de son animation.
   */
   useEffect(() => {
     let minuteur = 0;
@@ -108,6 +113,7 @@ export default function DefilementDoux() {
     const obs = new ResizeObserver(() => {
       if (document.body.scrollHeight === hauteur) return;
       hauteur = document.body.scrollHeight;
+      lenis?.resize();
       clearTimeout(minuteur);
       minuteur = window.setTimeout(() => ScrollTrigger.refresh(), 150);
     });
