@@ -14,6 +14,9 @@ export type TraceSvg = {
   totalKm: number;
   /* Points places a une distance donnee : { km, x, y, fraction du trace } */
   reperes: { km: number; x: number; y: number; fraction: number }[];
+  /* Premier et dernier point du trace */
+  debut: { x: number; y: number };
+  fin: { x: number; y: number };
 };
 
 function distanceKm(a: [number, number], b: [number, number]) {
@@ -57,5 +60,7 @@ export function traceGpx(fichier: string, kms: number[], kmOfficiels: number, la
     const [x1, y1] = proj(i);
     return { km, x: +(x0 + (x1 - x0) * t).toFixed(1), y: +(y0 + (y1 - y0) * t).toFixed(1), fraction: cible / totalKm };
   });
-  return { largeur, hauteur, d, totalKm, reperes };
+  const [dx, dy] = proj(0);
+  const [fx, fy] = proj(pts.length - 1);
+  return { largeur, hauteur, d, totalKm, reperes, debut: { x: dx, y: dy }, fin: { x: fx, y: fy } };
 }

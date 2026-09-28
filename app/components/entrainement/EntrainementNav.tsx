@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { useTranslations } from "next-intl";
+import { defilerVers } from "../DefilementDoux";
 
 /* Les cinq parties de la page, dans l'ordre ou elles apparaissent */
 const SECTIONS = [
@@ -60,14 +61,14 @@ export default function EntrainementNav() {
 
   /* Saut vers une partie en tenant compte du header et de la barre collee.
      Sur grand ecran les ravitos s'epinglent en haut de l'ecran et leur marge
-     haute degage deja la barre : on vise le tout debut de leur conteneur. */
+     haute degage deja la barre : on vise le tout debut de la section. */
   const aller = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
     e.preventDefault();
     const epingle = id === "ravitos" && window.matchMedia("(min-width: 1024px)").matches;
     const cible = el.getBoundingClientRect().top + window.scrollY - (epingle ? 0 : decalage());
-    window.scrollTo({ top: cible + 1, behavior: "smooth" });
+    defilerVers(cible + 1);
     history.replaceState(null, "", `#${id}`);
   };
 

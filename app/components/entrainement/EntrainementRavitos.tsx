@@ -1,366 +1,372 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { usePinnedSteps } from "../usePinnedSteps";
-import { EPREUVES, type Ravito, type RavitoSide } from "./ravitosData";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { aimanter, defilerVers } from "../DefilementDoux";
+import { EPREUVES } from "./ravitosData";
+import type { TraceSvg } from "./traceGpx";
 
-/* Prestations affichees en grille, dans l'ordre de la maquette */
+gsap.registerPlugin(ScrollTrigger);
+
 const PRESTATIONS = [
-  { key: "eau", icon: "/images/icones/eau.svg", label: "ravitosEau", desc: "ravitosEauDesc" },
-  { key: "liquide", icon: "/images/icones/boisson-energie.svg", label: "ravitosLiquide", desc: "ravitosLiquideDesc" },
-  { key: "sec", icon: "/images/icones/barre-energie.svg", label: "ravitosSec", desc: "ravitosSecDesc" },
-  { key: "chaud", icon: "/images/icones/plat-chaud.svg", label: "ravitosChaud", desc: "ravitosChaudDesc" },
+  { cle: "eau", icone: "/images/icones/eau.svg", label: "ravitosEau", desc: "ravitosEauDesc" },
+  { cle: "liquide", icone: "/images/icones/boisson-energie.svg", label: "ravitosLiquide", desc: "ravitosLiquideDesc" },
+  { cle: "sec", icone: "/images/icones/barre-energie.svg", label: "ravitosSec", desc: "ravitosSecDesc" },
+  { cle: "chaud", icone: "/images/icones/plat-chaud.svg", label: "ravitosChaud", desc: "ravitosChaudDesc" },
 ] as const;
-
-/* Produits partenaire presents sur les tables (noms commerciaux, non traduits) */
 const PRODUITS = [
-  { nom: "Energy date bar", icon: "/images/icones/barre-energie-simple.svg", desc: "ravitosProduit1Desc" },
-  { nom: "ISO+ isotonic drink", icon: "/images/icones/boisson-energie-simple.svg", desc: "ravitosProduit2Desc" },
+  { nom: "Energy date bar", icone: "/images/icones/barre-energie-simple.svg", desc: "ravitosProduit1Desc" },
+  { nom: "ISO+ isotonic drink", icone: "/images/icones/boisson-energie-simple.svg", desc: "ravitosProduit2Desc" },
 ] as const;
-
-/*
-  Services. Le picto "toilettes" de la maquette n'est pas dans l'export de la
-  graphiste : la ligne le reprendra quand le SVG arrivera.
-*/
+/* Le picto "toilettes" de la maquette n'est pas dans l'export de la graphiste */
 const SERVICES = [
-  { key: "medical", icon: "/images/icones/fichier-14.svg", label: "ravitosMedical" },
-  { key: "aideExterne", icon: "/images/icones/aide-exterieur.svg", label: "ravitosAideExterne" },
+  { cle: "medical", icone: "/images/icones/fichier-14.svg", label: "ravitosMedical" },
+  { cle: "aideExterne", icone: "/images/icones/aide-exterieur.svg", label: "ravitosAideExterne" },
 ] as const;
 
-/* Decalage de l'etiquette par rapport a son repere, selon le cote */
-const OFFSET: Record<RavitoSide, string> = {
-  left: "-translate-x-full -translate-y-1/2 pr-4",
-  right: "translate-x-0 -translate-y-1/2 pl-4",
-  above: "-translate-x-1/2 -translate-y-full pb-3",
-  below: "-translate-x-1/2 translate-y-0 pt-3",
-};
+/* Grand ecran : section epinglee et pilotee par le defilement */
+const GRAND_ECRAN = "(min-width: 1024px)";
 
-/* Badge hexagonal portant le numero du ravito */
-function NumeroRavito({ n, actif }: { n: number; actif: boolean }) {
+function Numero({ n, plein }: { n: number; plein: boolean }) {
   return (
-    <span
-      className={`font-comico relative inline-flex h-8 w-8 shrink-0 items-center justify-center text-[15px] ${
-        actif ? "text-[#1c3d1c]" : "text-white"
-      }`}
-    >
+    <span className={`font-comico relative inline-flex h-8 w-8 shrink-0 items-center justify-center text-[15px] ${plein ? "text-[#1c3d1c]" : "text-white"}`}>
       <svg viewBox="0 0 40 40" aria-hidden="true" className="absolute inset-0 h-full w-full">
-        <polygon
-          points="20,2 36,11 36,29 20,38 4,29 4,11"
-          fill={actif ? "#ffffff" : "none"}
-          stroke="#ffffff"
-          strokeWidth="2.5"
-        />
+        <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill={plein ? "#fff" : "none"} stroke="#fff" strokeWidth="2.5" />
       </svg>
       <span className="relative">{n}</span>
     </span>
   );
 }
 
-/* Kilometrage d'un ravito, suivi de sa mention eventuelle en plus petit */
-function Kilometrage({ ravito, mention }: { ravito: Ravito; mention?: string }) {
-  return (
-    <>
-      {ravito.km} KM
-      {mention && <span className="text-[0.7em]"> / {mention}</span>}
-    </>
-  );
+const Pointilles = () => (
+  <span className="block h-[2px] bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_9px,transparent_9px,transparent_17px)] opacity-50" />
+);
+
+/* Etiquettes kilometriques sans chevauchement : chacune essaie droite, gauche,
+   dessous puis dessus et garde la premiere place libre */
+type Boite = { x: number; y: number; l: number; h: number };
+function placerEtiquettes(trace: TraceSvg) {
+  const H = 28;
+  const prises: Boite[] = [
+    ...trace.reperes.map((r) => ({ x: r.x - 10, y: r.y - 10, l: 20, h: 20 })),
+    { x: trace.debut.x - 10, y: trace.debut.y - 10, l: 20, h: 20 },
+  ];
+  const chevauche = (a: Boite, b: Boite) => a.x < b.x + b.l && b.x < a.x + a.l && a.y < b.y + b.h && b.y < a.y + a.h;
+  return trace.reperes.map((r) => {
+    const L = r.km >= 10 ? 76 : 64;
+    const essais = [
+      { dx: 16, dy: -14 },
+      { dx: -16 - L, dy: -14 },
+      { dx: -L / 2, dy: 16 },
+      { dx: -L / 2, dy: -16 - H },
+    ];
+    const choix =
+      essais.find(({ dx, dy }) => !prises.some((b) => chevauche({ x: r.x + dx, y: r.y + dy, l: L, h: H }, b))) ?? essais[0];
+    prises.push({ x: r.x + choix.dx, y: r.y + choix.dy, l: L, h: H });
+    return { ...choix, L };
+  });
 }
 
-export default function EntrainementRavitos() {
+/*
+  Section "Les ravitos".
+
+  Grand ecran : la section est epinglee et suit le defilement (GSAP
+  ScrollTrigger, sans capture de la molette). Le trace reel de l'epreuve, lu
+  dans son GPX, se dessine au fil du scroll ; un point de coureur avance, chaque
+  ravito s'allume au passage, le compteur de kilometres defile en continu et le
+  panneau affiche le dernier ravito atteint. Aimantage doux sur chaque ravito.
+
+  Petit ecran : pas d'epinglage, le trace est affiche en entier et on choisit
+  un ravito dans la liste.
+*/
+export default function EntrainementRavitos({ traces }: { traces: TraceSvg[] }) {
   const t = useTranslations("entrainementPage");
-  // Le 33 km emprunte la fin du parcours du 80 : meme carte, reperes differents
   const [indexEpreuve, setIndexEpreuve] = useState(0);
   const epreuve = EPREUVES[indexEpreuve];
+  const trace = traces[indexEpreuve];
   const ravitos = epreuve.ravitos;
-  // captureUp desactive : en remontant, on ressort de la section d'un trait
-  const { containerRef, stickyRef, progress, stickyTop, scrollToStep } =
-    usePinnedSteps(ravitos.length, { captureUp: false, recharge: 450, vitesse: 1.2 });
 
-  // Un palier par ravito ; l'index courant est le palier le plus proche
-  const indexScroll = Math.min(
-    ravitos.length - 1,
-    Math.max(0, Math.round(progress * (ravitos.length - 1))),
-  );
-  /*
-    Sous lg la section n'est pas epinglee : le scroll ne pilote plus rien, c'est
-    le choix explicite de l'utilisateur qui fait foi. Sur grand ecran on laisse
-    le scroll commander et cet etat reste nul.
-  */
-  const [manuel, setManuel] = useState<number | null>(null);
-  const index = manuel ?? indexScroll;
+  const section = useRef<HTMLElement>(null);
+  const chemin = useRef<SVGPathElement>(null);
+  const coureur = useRef<SVGGElement>(null);
+  const compteur = useRef<HTMLSpanElement>(null);
+  const reperes = useRef<(SVGGElement | null)[]>([]);
+  const declencheur = useRef<ScrollTrigger | null>(null);
+  const [courant, setCourant] = useState(-1);
+  const [epingle, setEpingle] = useState(false);
+  const etiquettes = useMemo(() => placerEtiquettes(trace), [trace]);
 
-  /*
-    Changer de course change la hauteur de defilement de la section (70vh par
-    ravito : 4200 px pour le 80, 1400 pour le 33). Si on est en plein milieu,
-    la position de scroll se retrouve alors au-dela de la section et les
-    ravitos disparaissent de l'ecran. On revient donc au debut de la section,
-    sur le premier ravito de la nouvelle course : visuellement elle ne bouge pas.
-  */
-  const revenirAuDebut = useRef(false);
-  const changerEpreuve = (i: number) => {
-    const conteneur = containerRef.current;
-    revenirAuDebut.current = !!conteneur && conteneur.getBoundingClientRect().top < stickyTop;
-    setIndexEpreuve(i);
-    setManuel(null);
-  };
-  useEffect(() => {
-    const conteneur = containerRef.current;
-    if (!revenirAuDebut.current || !conteneur) return;
-    revenirAuDebut.current = false;
-    window.scrollTo({
-      top: window.scrollY + conteneur.getBoundingClientRect().top - stickyTop,
-      behavior: "instant",
+  // Affichage d'un etat : p = part du trace parcourue
+  const afficher = (p: number, c: number, km?: number) => {
+    const path = chemin.current;
+    if (!path) return;
+    const longueur = path.getTotalLength();
+    path.style.strokeDasharray = `${longueur}`;
+    path.style.strokeDashoffset = `${longueur * (1 - p)}`;
+    const pt = path.getPointAtLength(longueur * p);
+    coureur.current?.setAttribute("transform", `translate(${pt.x} ${pt.y})`);
+    if (compteur.current) compteur.current.textContent = `${km ?? Math.round(p * epreuve.km)}`;
+    reperes.current.forEach((g, i) => {
+      g?.classList.toggle("atteint", i <= c);
+      g?.classList.toggle("courant", i === c);
     });
-  }, [indexEpreuve, containerRef, stickyTop]);
-
-  const allerAu = (i: number) => {
-    setManuel(scrollToStep(i) ? null : i);
+    setCourant((x) => (x === c ? x : c));
   };
-  const actif = ravitos[index];
-  const autres = ravitos.filter((_, i) => i !== index);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    // Grand ecran : epinglage et defilement
+    mm.add(GRAND_ECRAN, () => {
+      setEpingle(true);
+      /* Chaque intervalle (depart, ravitos, arrivee) recoit la meme longueur de
+         defilement, quelle que soit sa distance reelle : un geste = un ravito.
+         Le trace se dessine plus ou moins vite selon la distance a couvrir. */
+      const trajet = [0, ...trace.reperes.map((r) => r.fraction), 1];
+      const n = trajet.length - 1;
+      const paliers = trajet.map((_, k) => k / n);
+      const parcours = (s: number) => {
+        const k = Math.min(n - 1, Math.floor(s * n));
+        return trajet[k] + (trajet[k + 1] - trajet[k]) * (s * n - k);
+      };
+      declencheur.current = ScrollTrigger.create({
+        trigger: section.current,
+        start: "top top",
+        end: `+=${n * 55}%`,
+        pin: true,
+        // Le <body> est en flex : ScrollTrigger y desactive par defaut la reserve
+        // d'espace, et la suite de la page remonterait par-dessus la section
+        pinSpacing: true,
+        scrub: 0.8,
+        onUpdate: (st) => {
+          const c = Math.min(trace.reperes.length, Math.floor(st.progress * n + 0.02)) - 1;
+          afficher(parcours(st.progress), c);
+        },
+      });
+      afficher(0, -1);
+      // Aimantage sur le ravito le plus proche a l'arret du defilement
+      const lacher = aimanter(declencheur.current, paliers);
+      return () => {
+        lacher();
+        declencheur.current = null;
+      };
+    });
+    // Petit ecran : trace complet, premier ravito selectionne
+    mm.add(`not all and ${GRAND_ECRAN}`, () => {
+      setEpingle(false);
+      afficher(1, 0, ravitos[0].km);
+    });
+    return () => mm.revert();
+    // afficher ne depend que de l'epreuve, deja dans les dependances
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trace, epreuve]);
+
+  /* Choix d'un ravito dans la liste : on defile jusqu'a lui (grand ecran), ou on
+     l'affiche directement (petit ecran) */
+  const allerAu = (i: number) => {
+    const st = declencheur.current;
+    if (st) defilerVers(st.start + ((st.end - st.start) * (i + 1)) / (trace.reperes.length + 1));
+    else afficher(1, i, ravitos[i].km);
+  };
+
+  /* Changer de course change la longueur de la section : on repart de son debut
+     si on etait en plein milieu, pour ne pas se retrouver au-dela */
+  const changerEpreuve = (i: number) => {
+    const st = declencheur.current;
+    if (st && window.scrollY > st.start) defilerVers(st.start);
+    setIndexEpreuve(i);
+  };
+
+  const ravito = courant >= 0 ? ravitos[courant] : null;
+  const boucle = Math.hypot(trace.debut.x - trace.fin.x, trace.debut.y - trace.fin.y) < 12;
 
   return (
-    <div
+    <section
       id="ravitos"
-      ref={containerRef}
-      /* Longueur du voyage proportionnelle au nombre de ravitos : le 33 km en
-         a deux, le 80 en a six. Une hauteur fixe rendrait le 33 interminable. */
-      style={{ "--hauteur-ravitos": `${ravitos.length * 70}vh` } as CSSProperties}
-      className="relative lg:h-[var(--hauteur-ravitos)]"
+      ref={section}
+      className="relative isolate overflow-hidden py-14 text-white lg:h-screen lg:py-0"
     >
-      <section
-        ref={stickyRef}
-        className="relative isolate overflow-hidden pb-8 pt-28 text-white lg:sticky lg:pt-[144px]"
-        style={{ top: stickyTop }}
-      >
-        {/* Fond vert flou pleine largeur */}
-        <Image
-          src="/photos/fond-vert-flou.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="-z-20 object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-[#17321a]/45" />
+      <Image src="/photos/fond-vert-flou.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover" />
+      <div className="absolute inset-0 -z-10 bg-[#17321a]/55" />
 
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          {/* En-tete */}
-          <div className="max-w-xl">
-            <h2 className="titre text-2xl sm:text-3xl">{t("ravitosTitle")}</h2>
-            <span className="mt-4 block h-[2px] bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_11px,transparent_11px,transparent_20px)] opacity-80" />
-            <p className="mt-3 text-[14px] leading-[1.5] text-white/90">
-              {t("ravitosIntro")}
-            </p>
-          </div>
+      {/* Marge haute sur grand ecran : header fixe + barre d'onglets collee */}
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 lg:h-full lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-8 lg:px-10 lg:pb-6 lg:pt-[140px]">
+        {/* ---------- Panneau ---------- */}
+        <div className="max-w-[560px]">
+          <h2 className="titre text-2xl sm:text-3xl">{t("ravitosTitle")}</h2>
+          <span className="mt-3 block h-[2px] bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_11px,transparent_11px,transparent_20px)] opacity-80" />
 
           {/* Choix de l'epreuve */}
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             {EPREUVES.map((e, i) => (
               <button
                 key={e.ongletKey}
                 type="button"
                 onClick={() => changerEpreuve(i)}
                 aria-pressed={indexEpreuve === i}
-                className={`relative px-5 py-2 text-[13px] font-bold uppercase italic tracking-wide transition-colors ${
-                  indexEpreuve === i ? "text-[#1c3d1c]" : "text-white hover:text-white/80"
-                }`}
+                className={`relative px-5 py-1.5 text-[13px] font-bold uppercase italic tracking-wide transition-colors ${indexEpreuve === i ? "text-[#1c3d1c]" : "text-white hover:text-white/80"}`}
               >
-                <span
-                  aria-hidden="true"
-                  className={`absolute inset-0 -skew-x-12 border border-white ${
-                    indexEpreuve === i ? "bg-white" : ""
-                  }`}
-                />
+                <span aria-hidden="true" className={`absolute inset-0 -skew-x-12 border border-white ${indexEpreuve === i ? "bg-white" : ""}`} />
                 <span className="relative">{t(e.ongletKey)}</span>
               </button>
             ))}
           </div>
 
-          <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
-            {/* ---------- Panneau du ravito courant ---------- */}
-            <div className="relative">
-              {/* Fleches de navigation entre ravitos (desktop) */}
-              <div className="absolute -left-2 top-1/3 flex flex-col gap-3 sm:-left-4 xl:-left-14">
-                <button
-                  type="button"
-                  onClick={() => allerAu(Math.max(0, index - 1))}
-                  aria-label={t("ravitosPrecedent")}
-                  disabled={index === 0}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/70 text-white transition-colors hover:bg-white hover:text-[#1c3d1c] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-white"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5 -rotate-90" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => allerAu(Math.min(ravitos.length - 1, index + 1))}
-                  aria-label={t("ravitosSuivant")}
-                  disabled={index === ravitos.length - 1}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/70 text-white transition-colors hover:bg-white hover:text-[#1c3d1c] disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-white"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5 rotate-90" aria-hidden="true">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Titre du ravito : numero + kilometrage + heure de fermeture */}
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-                <NumeroRavito n={index + 1} actif />
-                <span className="titre text-3xl">
-                  <Kilometrage ravito={actif} mention={actif.mentionKey && t(actif.mentionKey)} />
+          {/* Compteur continu + ravito atteint */}
+          <div className="mt-5 flex flex-wrap items-end gap-x-6 gap-y-2">
+            <p className="flex items-baseline gap-2">
+              <span ref={compteur} className="titre text-6xl tabular-nums sm:text-7xl">0</span>
+              <span className="titre text-2xl">KM</span>
+            </p>
+            <div className={`pb-2 transition-opacity duration-500 ${ravito ? "opacity-100" : "opacity-0"}`}>
+              <p className="flex items-center gap-2.5">
+                <Numero n={courant + 1} plein />
+                <span className="titre text-[17px]">
+                  {ravito ? `${ravito.km} KM` : ""}
+                  {ravito?.mentionKey ? <span className="text-[0.75em]"> / {t(ravito.mentionKey)}</span> : null}
                 </span>
-                <span className="flex items-center gap-2 text-[13px] uppercase italic tracking-wide text-white/85">
-                  <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-                    <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                  {t("ravitosArriveeMax")} : {actif.arriveeMax ?? t("ravitosAConfirmer")}
-                </span>
-              </div>
+              </p>
+              <p className="mt-1.5 flex items-center gap-2 text-[12px] uppercase italic tracking-wide text-white/80">
+                <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+                  <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+                {t("ravitosArriveeMax")} : {ravito?.arriveeMax ?? t("ravitosAConfirmer")}
+              </p>
+            </div>
+          </div>
 
-              <span className="mt-4 block h-px bg-white/45" />
-
-              {/* Prestations */}
-              <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
-                {PRESTATIONS.filter((p) => actif[p.key]).map((p) => (
-                  <li key={p.key} className="flex items-start gap-4">
-                    <Image src={p.icon} alt="" width={48} height={44} className="h-9 w-auto shrink-0 brightness-0 invert" />
+          {/* Detail du ravito, ou texte d'introduction avant le premier */}
+          <div className="relative mt-5">
+            <p className={`text-[15px] leading-[1.55] text-white/85 transition-opacity duration-500 ${ravito ? "absolute inset-x-0 top-0 opacity-0" : "opacity-100"}`}>
+              {t("ravitosIntro")}
+            </p>
+            <div className={`transition-all duration-500 ${ravito ? "translate-y-0 opacity-100" : "pointer-events-none absolute inset-x-0 top-0 translate-y-3 opacity-0"}`}>
+              <span className="block h-px bg-white/40" />
+              <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                {PRESTATIONS.filter((p) => !ravito || ravito[p.cle]).map((p) => (
+                  <li key={p.cle} className="flex items-start gap-3">
+                    <Image src={p.icone} alt="" width={40} height={40} className="h-8 w-auto shrink-0 brightness-0 invert" />
                     <div>
-                      <p className="text-[15px] font-bold uppercase">{t(p.label)}</p>
-                      <p className="mt-0.5 text-[13px] leading-[1.4] text-white/85">{t(p.desc)}</p>
+                      <p className="text-[13px] font-bold uppercase">{t(p.label)}</p>
+                      <p className="text-[12px] leading-[1.35] text-white/80">{t(p.desc)}</p>
                     </div>
                   </li>
                 ))}
               </ul>
-
-              <span className="mt-4 block h-[2px] bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_9px,transparent_9px,transparent_17px)] opacity-60" />
-
-              {/* Produits partenaire */}
-              <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+              <div className="mt-4"><Pointilles /></div>
+              <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
                 {PRODUITS.map((p) => (
-                  <li key={p.nom} className="flex items-start gap-4">
-                    <Image src={p.icon} alt="" width={40} height={44} className="h-9 w-auto shrink-0 brightness-0 invert" />
+                  <li key={p.nom} className="flex items-start gap-3">
+                    <Image src={p.icone} alt="" width={36} height={40} className="h-8 w-auto shrink-0 brightness-0 invert" />
                     <div>
-                      <p className="max-w-[16ch] text-[15px] font-bold uppercase leading-[1.2]">{p.nom}</p>
-                      <p className="mt-0.5 flex items-center gap-3 text-[13px] text-white/85">
+                      <p className="text-[13px] font-bold uppercase leading-[1.2]">{p.nom}</p>
+                      <p className="mt-0.5 flex items-center gap-2 text-[12px] text-white/80">
                         {t(p.desc)}
-                        <Image
-                          src="/images/partenaires/decathlon.svg"
-                          alt="Decathlon"
-                          width={313}
-                          height={203}
-                          className="h-3.5 w-auto brightness-0 invert"
-                        />
+                        <Image src="/images/partenaires/decathlon.svg" alt="Decathlon" width={313} height={203} className="h-3 w-auto brightness-0 invert" />
                       </p>
                     </div>
                   </li>
                 ))}
               </ul>
-
-              <span className="mt-4 block h-[2px] bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_9px,transparent_9px,transparent_17px)] opacity-60" />
-
-              {/* Services sur place */}
-              <ul className="mt-4 flex flex-wrap items-center gap-x-10 gap-y-3">
-                {SERVICES.filter((s) => actif[s.key]).map((s) => (
-                  <li key={s.key} className="flex items-center gap-3">
-                    <Image src={s.icon} alt="" width={44} height={40} className="h-9 w-auto shrink-0 brightness-0 invert" />
-                    <span className="max-w-[10ch] text-[13px] font-bold uppercase leading-[1.2]">
-                      {t(s.label)}
-                    </span>
+              <div className="mt-4"><Pointilles /></div>
+              <ul className="mt-4 flex flex-wrap gap-x-8 gap-y-2">
+                {SERVICES.filter((s) => !ravito || ravito[s.cle]).map((s) => (
+                  <li key={s.cle} className="flex items-center gap-3">
+                    <Image src={s.icone} alt="" width={36} height={36} className="h-8 w-auto shrink-0 brightness-0 invert" />
+                    <span className="text-[12px] font-bold uppercase leading-[1.2]">{t(s.label)}</span>
                   </li>
                 ))}
               </ul>
-
-              {/* Acces direct aux autres ravitos */}
-              <div className="mt-5 border-t border-white/35 pt-4">
-                <p className="text-[12px] uppercase tracking-[2px] text-white/70">
-                  {t("ravitosSuivants")}
-                </p>
-                <ul className="mt-3 flex flex-wrap gap-x-7 gap-y-2">
-                  {autres.map((r) => (
-                    <li key={r.km}>
-                      <button
-                        type="button"
-                        onClick={() => allerAu(ravitos.indexOf(r))}
-                        className="flex items-center gap-3 transition-opacity hover:opacity-70"
-                      >
-                        <NumeroRavito n={ravitos.indexOf(r) + 1} actif={false} />
-                        <span className="titre text-lg">
-                          <Kilometrage ravito={r} mention={r.mentionKey && t(r.mentionKey)} />
-                        </span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* ---------- Carte ---------- */}
-            <div className="relative mx-auto w-full max-w-[460px] lg:ml-auto lg:mr-0">
-              <div className="relative mx-auto aspect-[624/679] w-[78%] sm:w-[86%] lg:w-full">
-                <Image
-                  src="/images/deco/carte-ravito.png"
-                  alt={t("ravitosMapAlt")}
-                  fill
-                  sizes="(min-width: 1024px) 45vw, 90vw"
-                  className="object-contain"
-                />
-
-                {/* Ravito courant : halo qui pulse sur son repere */}
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute h-7 w-7 -translate-x-1/2 -translate-y-1/2 transition-all duration-500"
-                  style={{ left: `${actif.x}%`, top: `${actif.y}%` }}
-                >
-                  <span className="absolute inset-0 animate-ping rounded-full bg-white/60 motion-reduce:animate-none" />
-                  <span className="absolute inset-[30%] rounded-full bg-white" />
-                </span>
-
-                {/* Etiquettes kilometriques posees sur les reperes du trace ;
-                    le ravito courant passe en pastille blanche, sans bouger */}
-                {ravitos.map((r, i) => {
-                  const courant = i === index;
-                  return (
-                    <span
-                      key={r.km}
-                      className={`absolute whitespace-nowrap ${OFFSET[r.side]}`}
-                      style={{ left: `${r.x + (r.dx ?? 0)}%`, top: `${r.y + (r.dy ?? 0)}%` }}
-                    >
-                      <span
-                        className={`titre inline-block transition-colors duration-300 ${
-                          courant
-                            ? "rounded-sm bg-white px-2 py-0.5 text-[15px] text-[#1c3d1c] shadow-[0_2px_10px_rgba(0,0,0,0.35)] sm:text-xl"
-                            : "text-sm text-white/85 sm:text-lg"
-                        }`}
-                      >
-                        <Kilometrage ravito={r} mention={r.mentionKey && t(r.mentionKey)} />
-                      </span>
-                    </span>
-                  );
-                })}
-
-                {/* Depart et arrivee, a leur place pour cette epreuve */}
-                {([
-                  { repere: epreuve.arrivee, cle: "ravitosArrivee" },
-                  { repere: epreuve.depart, cle: "ravitosDepart" },
-                ] as const).map(({ repere, cle }) => (
-                  <span
-                    key={cle}
-                    className={`absolute text-[13px] font-bold uppercase italic sm:text-[15px] ${OFFSET[repere.side]}`}
-                    style={{ left: `${repere.x}%`, top: `${repere.y}%` }}
-                  >
-                    {t(cle)}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
+
+          {/* Tous les ravitos, cliquables */}
+          <div className="mt-6 border-t border-white/35 pt-4">
+            <p className="text-[11px] uppercase tracking-[2px] text-white/70">{t("ravitosSuivants")}</p>
+            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+              {ravitos.map((r, i) => (
+                <li key={r.km}>
+                  <button
+                    type="button"
+                    onClick={() => allerAu(i)}
+                    aria-current={i === courant ? "step" : undefined}
+                    className={`flex items-center gap-2 transition-opacity ${i === courant ? "opacity-100" : "opacity-60 hover:opacity-100"}`}
+                  >
+                    <Numero n={i + 1} plein={i === courant} />
+                    <span className="titre text-[15px]">
+                      {r.km} KM
+                      {r.mentionKey ? <span className="text-[0.75em]"> / {t(r.mentionKey)}</span> : null}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </section>
-    </div>
+
+        {/* ---------- Carte : trace reel de l'epreuve ---------- */}
+        <svg
+          key={epreuve.ongletKey}
+          viewBox={`0 0 ${trace.largeur} ${trace.hauteur}`}
+          className="mx-auto w-full max-w-[680px] overflow-visible lg:max-h-[calc(100vh-170px)]"
+          role="img"
+          aria-label={t("ravitosMapAlt")}
+        >
+          <defs>
+            <filter id="craie" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="bruit" />
+              <feDisplacementMap in="SourceGraphic" in2="bruit" scale="2.2" />
+            </filter>
+          </defs>
+          <path d={trace.d} fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+          <path ref={chemin} d={trace.d} fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" filter="url(#craie)" />
+
+          {/* Depart et arrivee */}
+          {[
+            { p: trace.debut, texte: boucle ? `${t("ravitosDepart")} / ${t("ravitosArrivee")}` : t("ravitosDepart") },
+            ...(boucle ? [] : [{ p: trace.fin, texte: t("ravitosArrivee") }]),
+          ].map(({ p, texte }) => (
+            <g key={texte} transform={`translate(${p.x} ${p.y})`}>
+              <rect x="-7" y="-7" width="14" height="14" fill="#fff" transform="rotate(45)" />
+              <text x="14" y="30" className="titre" fill="#fff" fontSize="16" style={{ paintOrder: "stroke", stroke: "#17321a", strokeWidth: 4 }}>
+                {texte}
+              </text>
+            </g>
+          ))}
+
+          {trace.reperes.map((r, i) => (
+            <g key={`${epreuve.ongletKey}-${r.km}`} ref={(el) => { reperes.current[i] = el; }} className="repere-ravito" transform={`translate(${r.x} ${r.y})`}>
+              <circle r="16" className="halo" />
+              <circle r="8" className="point" />
+              <g transform={`translate(${etiquettes[i].dx} ${etiquettes[i].dy})`}>
+                <rect className="fond" x="0" y="0" rx="4" width={etiquettes[i].L} height="28" />
+                <text x="9" y="20" className="titre etiquette">{r.km} KM</text>
+              </g>
+            </g>
+          ))}
+          {/* Point du coureur (grand ecran seulement) */}
+          <g ref={coureur} className={epingle ? "" : "hidden"}>
+            <circle r="13" fill="#0781dd" opacity="0.35" />
+            <circle r="7" fill="#0781dd" stroke="#fff" strokeWidth="2.5" />
+          </g>
+        </svg>
+      </div>
+
+      <style>{`
+        .repere-ravito .point { fill: #17321a; stroke: rgba(255,255,255,.75); stroke-width: 2.5; transition: all .4s; }
+        .repere-ravito .halo { fill: #fff; opacity: 0; transition: opacity .4s; transform-box: fill-box; transform-origin: center; }
+        .repere-ravito .fond { fill: rgba(10,30,14,.72); stroke: rgba(255,255,255,.35); stroke-width: 1; transition: fill .4s; }
+        .repere-ravito .etiquette { fill: #fff; font-size: 19px; transition: fill .4s; }
+        .repere-ravito.atteint .point { fill: #fff; stroke: #fff; }
+        .repere-ravito.courant .halo { opacity: .28; animation: pouls 1.8s ease-out infinite; }
+        .repere-ravito.courant .fond { fill: #fff; stroke: #fff; }
+        .repere-ravito.courant .etiquette { fill: #1c3d1c; }
+        @keyframes pouls { 0% { transform: scale(.6); opacity: .45; } 100% { transform: scale(1.6); opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .repere-ravito.courant .halo { animation: none; } }
+      `}</style>
+    </section>
   );
 }

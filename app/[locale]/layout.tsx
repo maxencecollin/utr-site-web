@@ -7,6 +7,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { CHANTIER_ACTIF, CHANTIER_SCRIPT } from "../chantier";
 import ChantierVoile from "../components/ChantierVoile";
+import DefilementDoux from "../components/DefilementDoux";
 import "../globals.css";
 
 // Interface / corps de texte : Inter
@@ -84,6 +85,7 @@ export default async function LocaleLayout({
       <body className="flex min-h-full flex-col">
         <NextIntlClientProvider>
           {CHANTIER_ACTIF && <ChantierVoile />}
+          <DefilementDoux />
           {children}
         </NextIntlClientProvider>
       </body>

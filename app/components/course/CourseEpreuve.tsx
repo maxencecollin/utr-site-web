@@ -1,10 +1,12 @@
 "use client";
 
-import { type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { usePinnedSteps } from "../usePinnedSteps";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { aimanter, defilerVers } from "../DefilementDoux";
 import CourseSectionHeading from "./CourseSectionHeading";
 import UtmbBadge from "./UtmbBadge";
 
@@ -79,34 +81,33 @@ function HotspotLink({
   );
 }
 
-/* Pause apres le dernier objet, en hauteur d'ecran (reservee dans le conteneur) */
-const PAUSE_FIN = 0.5;
+gsap.registerPlugin(ScrollTrigger);
 
 /* Echelle du zoom photo */
 const ZOOM = 2.2;
 
-/* Part de chaque segment de scroll ou la vue reste posee sur l'objet
-   (le reste du segment sert a la transition vers l'objet suivant) */
-const DWELL = 0.3;
+/* A partir de sm, la section est epinglee et pilotee par le defilement */
+const GRAND_ECRAN = "(min-width: 640px)";
 
 /*
-  Valeurs de transform qui recentrent le point vise au milieu du cadre,
-  bornees pour que les bords de la photo n'entrent pas dans le cadre.
-  Origine fixe (0,0) : translate/scale s'interpolent donc continument.
+  Translation (en % du cadre) qui recentre le point vise, bornee pour que les
+  bords de la photo n'entrent pas dans le cadre. Origine fixe (0,0).
 */
-function zoomValues(x: number, y: number, scale: number) {
-  const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+function cadrage(x: number, y: number, scale: number) {
+  const borne = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
   return {
-    tx: clamp(50 - scale * x, 100 - 100 * scale, 0),
-    ty: clamp(50 - scale * y, 100 - 100 * scale, 0),
-    s: scale,
+    xPercent: borne(50 - scale * x, 100 - 100 * scale, 0),
+    yPercent: borne(50 - scale * y, 100 - 100 * scale, 0),
+    scale,
   };
 }
 
 /*
-  Section "L'epreuve" : photo du materiel a plat, epinglee pendant le scroll.
-  Le defilement fait voyager le zoom d'un objet a l'autre (facon page produit
-  Apple) ; les pilules indiquent le chapitre courant et permettent d'y sauter.
+  Section "L'epreuve" : photo du materiel a plat, epinglee pendant le defilement.
+  Le zoom voyage d'un objet a l'autre en suivant la position de defilement
+  (GSAP ScrollTrigger, facon page produit Apple) : la molette n'est jamais
+  interceptee, et a l'arret un aimantage doux ramene sur l'objet le plus proche.
+  Une courte pause sur le dernier objet precede la section suivante.
 */
 export default function CourseEpreuve({
   trailing,
@@ -118,140 +119,132 @@ export default function CourseEpreuve({
 }: Props) {
   const t = useTranslations("course");
   const tCaptions = useTranslations(captionNamespace);
-  // Un palier par objet, precede de la vue d'ensemble
-  // Retours de l'asso : pas plus rapides, remontee d'un trait, et une pause
-  // sur le dernier objet avant d'enchainer sur la section suivante
-  const { containerRef, stickyRef, progress, stickyTop, scrollToStep } =
-    usePinnedSteps(hotspots.length + 1, {
-      captureUp: false,
-      recharge: 450,
-      vitesse: 1.2,
-      pauseFin: PAUSE_FIN,
+  const section = useRef<HTMLElement>(null);
+  const calque = useRef<HTMLDivElement>(null);
+  const declencheur = useRef<ScrollTrigger | null>(null);
+  const labels = useRef<number[]>([]);
+  // 0 = vue d'ensemble, i = objet i
+  const [etape, setEtape] = useState(0);
+
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+    mm.add(GRAND_ECRAN, () => {
+      gsap.set(calque.current, { transformOrigin: "0 0", ...cadrage(50, 50, 1) });
+      const tl = gsap.timeline({ defaults: { ease: "power2.inOut", duration: 1 } });
+      tl.addLabel("e0").to({}, { duration: 0.35 });
+      hotspots.forEach((h, i) => {
+        const x = h.zoom?.x ?? parseFloat(h.left) + 4;
+        const y = h.zoom?.y ?? parseFloat(h.top) + 12;
+        tl.to(calque.current, cadrage(x, y, ZOOM)).addLabel(`e${i + 1}`).to({}, { duration: 0.35 });
+      });
+      // Pause sur le dernier objet avant la section suivante
+      tl.to({}, { duration: 0.8 });
+      const total = tl.duration();
+      labels.current = hotspots.map((_, i) => tl.labels[`e${i + 1}`] / total);
+      declencheur.current = ScrollTrigger.create({
+        trigger: section.current,
+        start: "top top",
+        end: `+=${(hotspots.length + 1) * 55}%`,
+        pin: true,
+        // Le <body> est en flex : ScrollTrigger y desactive par defaut la reserve
+        // d'espace, et la suite de la page remonterait par-dessus la section
+        pinSpacing: true,
+        scrub: 0.6,
+        animation: tl,
+        onUpdate: (st) => {
+          let courant = 0;
+          labels.current.forEach((pos, i) => { if (st.progress >= pos - 0.06) courant = i + 1; });
+          setEtape((e) => (e === courant ? e : courant));
+        },
+      });
+      // Aimantage sur l'objet le plus proche a l'arret (pas dans la pause finale)
+      const lacher = aimanter(declencheur.current, [0, ...labels.current]);
+      return () => {
+        lacher();
+        declencheur.current = null;
+      };
     });
+    return () => mm.revert();
+  }, [hotspots]);
 
-  // Etapes du voyage : vue d'ensemble puis chaque objet
-  const steps = [
-    { x: 50, y: 50, s: 1 },
-    ...hotspots.map((h) => ({
-      x: h.zoom?.x ?? parseFloat(h.left) + 4,
-      y: h.zoom?.y ?? parseFloat(h.top) + 12,
-      s: ZOOM,
-    })),
-  ];
-
-  // Position dans les segments : palier (DWELL) a chaque bout, smoothstep entre
-  const f = progress * (steps.length - 1);
-  const seg = Math.max(0, Math.min(Math.floor(f), steps.length - 2));
-  const tSeg = f - seg;
-  let eased = 0;
-  if (tSeg >= 1 - DWELL) eased = 1;
-  else if (tSeg > DWELL) {
-    const u = (tSeg - DWELL) / (1 - 2 * DWELL);
-    eased = u * u * (3 - 2 * u);
-  }
-  const a = zoomValues(steps[seg].x, steps[seg].y, steps[seg].s);
-  const b = zoomValues(steps[seg + 1].x, steps[seg + 1].y, steps[seg + 1].s);
-  const zoomStyle: CSSProperties = {
-    transform: `translate(${a.tx + (b.tx - a.tx) * eased}%, ${
-      a.ty + (b.ty - a.ty) * eased
-    }%) scale(${a.s + (b.s - a.s) * eased})`,
-    transformOrigin: "0 0",
+  /* Clic sur une pilule : defilement jusqu'a l'objet */
+  const allerA = (i: number) => {
+    const st = declencheur.current;
+    if (st) defilerVers(st.start + (st.end - st.start) * labels.current[i]);
   };
 
-  // Etape posee (palier) ou -1 en pleine transition ; pilule en surbrillance = etape la plus proche
-  const settled = eased === 0 ? seg : eased === 1 ? seg + 1 : -1;
-  const nearest = Math.round(f);
-  const active = settled >= 1 ? hotspots[settled - 1] : null;
-  // Legende affichee sous l'objet (celle de l'etape la plus proche, pour que
-  // le texte soit deja le bon quand il reapparait apres une transition)
-  const caption = nearest >= 1 ? hotspots[nearest - 1] : null;
+  const objet = etape > 0 ? hotspots[etape - 1] : null;
 
   return (
-    /* Conteneur haut : la hauteur donne la longueur du voyage au scroll (desktop) */
-    <div id="epreuve" ref={containerRef} className="relative sm:h-[450vh]">
-      <section
-        ref={stickyRef}
-        className="overflow-x-clip bg-white pt-16 sm:sticky lg:pt-20"
-        style={{ top: stickyTop }}
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          {/* Picto coureur (entrainement.svg, passe en noir par l'en-tete) */}
-          <CourseSectionHeading
-            icon="/images/icones/entrainement.svg"
-            title={t("epreuve")}
-            trailing={trailing}
+    <section id="epreuve" ref={section} className="overflow-x-clip bg-white pt-16 sm:flex sm:h-screen sm:flex-col sm:pt-24">
+      <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
+        {/* Picto coureur (entrainement.svg, passe en noir par l'en-tete) */}
+        <CourseSectionHeading icon="/images/icones/entrainement.svg" title={t("epreuve")} trailing={trailing} />
+      </div>
+
+      {/* Photo pleine largeur (etiquettes masquees sur petit ecran) */}
+      <div className="relative mt-8 w-full overflow-hidden sm:mt-6 sm:flex-1">
+        <div className="relative aspect-[4/3] w-full overflow-hidden sm:absolute sm:inset-0 sm:aspect-auto">
+          {/* Couche zoomable, pilotee par le defilement */}
+          <div ref={calque} className="absolute inset-0 will-change-transform">
+            <Image src={photo} alt={photoAlt} fill sizes="100vw" className="object-cover" />
+          </div>
+
+          {utmbIndex && <UtmbBadge index={utmbIndex} className="absolute right-[5%] top-[10%]" />}
+
+          {/* Chapitres : pilules translucides, indicateur + acces direct */}
+          <ul className="absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-start gap-2.5 sm:flex">
+            {hotspots.map((h, i) => (
+              <li key={h.labelKey}>
+                <button
+                  type="button"
+                  onClick={() => allerA(i)}
+                  className={`rounded-full px-5 py-2.5 text-[14px] font-medium backdrop-blur-xl transition-all duration-500 active:scale-95 ${
+                    etape === i + 1
+                      ? "bg-white/90 text-[#1c1c1c] shadow-[0_4px_16px_rgba(0,0,0,0.35)]"
+                      : "bg-black/35 text-white/95 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.14),0_2px_10px_rgba(0,0,0,0.25)] hover:bg-black/50"
+                  }`}
+                >
+                  {t(h.labelKey)}
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          {/* Legendes : fondu enchaine d'un objet a l'autre */}
+          <div className="absolute bottom-8 left-1/2 z-10 hidden w-[min(88%,600px)] -translate-x-1/2 sm:block">
+            {hotspots.map((h) => (
+              <p
+                key={h.labelKey}
+                aria-hidden={objet !== h}
+                className={`absolute inset-x-0 bottom-0 rounded-2xl bg-black/45 px-7 py-4 text-center text-[15px] font-medium leading-relaxed text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12),0_6px_24px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 ${
+                  objet === h ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
+                }`}
+              >
+                {tCaptions(`${h.labelKey}Text`)}
+              </p>
+            ))}
+          </div>
+
+          {/* Progression discrete */}
+          <div
+            className="absolute bottom-0 left-0 z-10 hidden h-[3px] bg-ria-500 transition-[width] duration-300 sm:block"
+            style={{ width: `${(etape / hotspots.length) * 100}%` }}
           />
         </div>
+      </div>
 
-        {/* Photo pleine largeur (etiquettes masquees sur petit ecran) */}
-        <div className="relative mt-8 w-full overflow-hidden">
-          <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[1965/1120]">
-            {/* Couche zoomable, pilotee par le scroll */}
-            <div
-              className="absolute inset-0 will-change-transform"
-              style={zoomStyle}
-            >
-              <Image
-                src={photo}
-                alt={photoAlt}
-                fill
-                sizes="100vw"
-                className="object-cover"
-              />
-            </div>
-
-            {utmbIndex && (
-              <UtmbBadge index={utmbIndex} className="absolute right-[5%] top-[10%]" />
-            )}
-
-            {/* Chapitres : pilules translucides, indicateur + acces direct */}
-            <ul className="absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-start gap-2.5 sm:flex">
-              {hotspots
-                .map((h, i) => ({ label: t(h.labelKey), step: i + 1 }))
-                .map(({ label, step }) => (
-                <li key={label}>
-                  <button
-                    type="button"
-                    onClick={() => scrollToStep(step)}
-                    className={`rounded-full px-5 py-2.5 text-[14px] font-medium backdrop-blur-xl transition-all duration-300 active:scale-95 ${
-                      nearest === step
-                        ? "bg-white/90 text-[#1c1c1c] shadow-[0_4px_16px_rgba(0,0,0,0.35)]"
-                        : "bg-black/35 text-white/95 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.14),0_2px_10px_rgba(0,0,0,0.25)] hover:bg-black/50"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            {/* Legende de l'objet (apparait quand la vue est posee) */}
-            <div
-              className={`absolute bottom-8 left-1/2 z-10 hidden w-[min(88%,600px)] -translate-x-1/2 transition-all duration-300 sm:block ${
-                active
-                  ? "translate-y-0 opacity-100"
-                  : "pointer-events-none translate-y-3 opacity-0"
-              }`}
-            >
-              <p className="rounded-2xl bg-black/45 px-7 py-4 text-center text-[15px] font-medium leading-relaxed text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12),0_6px_24px_rgba(0,0,0,0.3)] backdrop-blur-xl">
-                {caption && tCaptions(`${caption.labelKey}Text`)}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile : les memes liens, listes sous la photo */}
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-3 px-6 pt-5 sm:hidden">
-          {hotspots.map((h) => (
-            <HotspotLink key={h.labelKey} href={h.href} className="inline-flex">
-              <span className="inline-flex items-center gap-2.5 border border-dark-900 px-4 py-2 text-[13px] font-semibold uppercase tracking-[1px] text-dark-900">
-                {t(h.labelKey)}
-                <Arrow direction={h.direction} />
-              </span>
-            </HotspotLink>
-          ))}
-        </div>
-      </section>
-    </div>
+      {/* Mobile : les memes liens, listes sous la photo */}
+      <div className="mx-auto flex max-w-7xl flex-wrap gap-3 px-6 pt-5 sm:hidden">
+        {hotspots.map((h) => (
+          <HotspotLink key={h.labelKey} href={h.href} className="inline-flex">
+            <span className="inline-flex items-center gap-2.5 border border-dark-900 px-4 py-2 text-[13px] font-semibold uppercase tracking-[1px] text-dark-900">
+              {t(h.labelKey)}
+              <Arrow direction={h.direction} />
+            </span>
+          </HotspotLink>
+        ))}
+      </div>
+    </section>
   );
 }
