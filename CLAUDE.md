@@ -29,17 +29,11 @@ Bleu principal confirmé par la maquette : `#0781DD`. Specs XD brutes : `_assets
 
 ## Déploiement
 
-- **GitHub Pages** sur ce repo, source **branche `main` / dossier `/docs`**.
-- `npm run deploy` construit le site et copie l'export dans `docs/` (source GitHub Pages).
-- Le dossier `docs/` est versionné ; `out/` est ignoré.
-- PAS de `basePath` ni `assetPrefix` (le site cible est servi à la racine du domaine).
-
-### Domaine `ultratourdelaria.fr` — bascule effectuée
-
-Le domaine (apex) est rattaché à **ce repo** depuis juillet 2026 ; l'ancien repo
-`ultra-tour-de-la-ria` n'est plus en ligne. `public/CNAME` contient
-`ultratourdelaria.fr` et doit rester en place (il est copié dans `docs/` au déploiement).
-Publier = `npm run deploy` puis commit + push de `docs/`.
+- Publication : GitHub Actions (`.github/workflows/deploy.yml`) construit et publie `out/`
+  sur GitHub Pages à chaque push sur `main`.
+- `public/CNAME` (`ultratourdelaria.fr`) doit rester en place. PAS de `basePath` ni `assetPrefix`.
+- Site derrière un rideau « en construction » tant que `CHANTIER_ACTIF` vaut `true` dans
+  `app/chantier.ts` : le passer à `false` à l'ouverture au public.
 
 ## Règles de développement
 
