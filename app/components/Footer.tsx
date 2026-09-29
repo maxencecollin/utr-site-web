@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 const NAV = [
   { key: "courses", href: "/#courses" },
   { key: "parcours", href: "/#parcours" },
-  { key: "patrimoine", href: "/#patrimoine" },
+  { key: "patrimoine", href: "/environnement" },
   { key: "village", href: "/#village" },
   { key: "benevoles", href: "/#benevoles" },
   { key: "partenaires", href: "/#partenaires" },

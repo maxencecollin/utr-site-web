@@ -71,7 +71,7 @@ export default function CourseEnvironnement() {
           <p className="mt-3 max-w-sm leading-relaxed">{t("riaText")}</p>
 
           <div className="mt-10">
-            <ArrowButton href="/#patrimoine" variant="outline-white">
+            <ArrowButton href="/environnement#engagements" variant="outline-white">
               {tNav("engagements")}
             </ArrowButton>
           </div>

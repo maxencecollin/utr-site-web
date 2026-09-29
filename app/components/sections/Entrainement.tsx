@@ -99,7 +99,7 @@ export default function Entrainement() {
             <p className="mt-4 max-w-sm text-dark-700">{t("text")}</p>
             <p className="mt-1 font-bold italic text-dark-800">{t("ready")}</p>
             <div className="mt-8">
-              <ArrowButton href="#entrainement" variant="brown">
+              <ArrowButton href="/entrainement" variant="brown">
                 {t("button")}
               </ArrowButton>
             </div>

@@ -62,7 +62,7 @@ export default function Patrimoine() {
                 <p className="mt-4 max-w-md text-dark-700">{t("text")}</p>
 
                 <div className="mt-8">
-                  <ArrowButton href="#patrimoine" variant="green">
+                  <ArrowButton href="/environnement#engagements" variant="green">
                     {tNav("engagements")}
                   </ArrowButton>
                 </div>
