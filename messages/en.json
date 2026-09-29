@@ -39,11 +39,11 @@
       "hostingHeading": "Hosting",
       "hostingBody": "This website is hosted by GitHub Pages, a service of GitHub Inc.<br></br><b>Address:</b> 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA<br></br><b>Website:</b> <host>pages.github.com</host>",
       "ipHeading": "Intellectual property",
-      "ipBody": "All content on this site (text, images, videos, logos, etc.) is the exclusive property of the Ultra Tour de la Ria association, unless otherwise stated. Any reproduction, representation, modification, publication or adaptation of all or part of the site's elements is prohibited without the prior written consent of the association.",
+      "ipBody": "All content on this site (text, images, videos, logos, etc.) is the exclusive property of the Ultra Trail de la Ria association, unless otherwise stated. Any reproduction, representation, modification, publication or adaptation of all or part of the site's elements is prohibited without the prior written consent of the association.",
       "photoHeading": "Photo credits",
-      "photoBody": "The photographs on this site are the property of the Ultra Tour de la Ria association or are used with the permission of their respective authors.",
+      "photoBody": "The photographs on this site are the property of the Ultra Trail de la Ria association or are used with the permission of their respective authors.",
       "liabilityHeading": "Limitation of liability",
-      "liabilityBody": "The Ultra Tour de la Ria association strives to ensure the accuracy and timeliness of the information published on this site. However, it cannot guarantee the accuracy, precision or completeness of the information provided. Accordingly, the association accepts no liability for any imprecision, inaccuracy or omission regarding the information available on this site.",
+      "liabilityBody": "The Ultra Trail de la Ria association strives to ensure the accuracy and timeliness of the information published on this site. However, it cannot guarantee the accuracy, precision or completeness of the information provided. Accordingly, the association accepts no liability for any imprecision, inaccuracy or omission regarding the information available on this site.",
       "contactHeading": "Contact",
       "contactBody": "For any question about the site or the event, you can contact us at: <mail>contact@ultratourdelaria.fr</mail>"
     },
@@ -58,18 +58,18 @@
       "reglementHeading": "Event rules",
       "reglementBody": "By registering for the Ultra Tour de la Ria, you also agree to comply with the <reg>event rules</reg>.",
       "contactHeading": "Contact",
-      "contactBody": "For any question about your registration, you can contact:<br></br><br></br><b>Klikego</b>: directly via their platform for technical questions related to registration<br></br><br></br><b>Ultra Tour de la Ria association</b>: <mail>contact@ultratourdelaria.fr</mail> for questions about the event",
+      "contactBody": "For any question about your registration, you can contact:<br></br><br></br><b>Klikego</b>: directly via their platform for technical questions related to registration<br></br><br></br><b>Ultra Trail de la Ria association</b>: <mail>contact@ultratourdelaria.fr</mail> for questions about the event",
       "insuranceHeading": "Insurance",
       "insuranceBody": "The organisation of the Ultra Tour de la Ria is covered by civil liability insurance. Participants are advised to check their own insurance coverage for trail running. An FFA licence or individual insurance covering trail running is recommended."
     },
     "confidentialite": {
-      "intro": "The Ultra Tour de la Ria association attaches great importance to the protection of your personal data. This privacy policy informs you about how your data is collected and used.",
+      "intro": "The Ultra Trail de la Ria association attaches great importance to the protection of your personal data. This privacy policy informs you about how your data is collected and used.",
       "controllerHeading": "Data controller",
-      "controllerBody": "The data controller is:<br></br><b>Ultra Tour de la Ria association</b><br></br>11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon, France<br></br>Email: <mail>contact@ultratourdelaria.fr</mail>",
+      "controllerBody": "The data controller is:<br></br><b>Ultra Trail de la Ria association</b><br></br>11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon, France<br></br>Email: <mail>contact@ultratourdelaria.fr</mail>",
       "dataHeading": "Data collected on this site",
       "dataBody": "This showcase website does not collect any personal data directly. There is no contact form or newsletter sign-up, and the site itself does not set any tracking cookies. The race pages do, however, embed a map provided by Strava (see the \"Third-party content\" section).",
       "registrationHeading": "Event registration",
-      "registrationBody": "Registration for the Ultra Tour de la Ria is handled by the <b>Klikego</b> platform. When you register for the event, your personal data is collected and processed by Klikego in accordance with their own privacy policy. We invite you to review Klikego's terms when you register.<br></br><br></br>The registration data passed on to the Ultra Tour de la Ria association is used solely to organise the event: bib management, race-related communication, results, etc.",
+      "registrationBody": "Registration for the Ultra Tour de la Ria is handled by the <b>Klikego</b> platform. When you register for the event, your personal data is collected and processed by Klikego in accordance with their own privacy policy. We invite you to review Klikego's terms when you register.<br></br><br></br>The registration data passed on to the Ultra Trail de la Ria association is used solely to organise the event: bib management, race-related communication, results, etc.",
       "embedsHeading": "Third-party content (Strava maps)",
       "embedsBody": "The race pages display the routes using a map module provided by <b>Strava</b> (strava-embeds.com), which relies on the Mapbox mapping service. When you visit these pages, your browser loads resources from these services' servers, which then receive technical data such as your IP address and may set their own cookies. This processing is governed by the privacy policies of Strava and Mapbox, which we invite you to consult.",
       "cookiesHeading": "Cookies",
@@ -111,6 +111,11 @@
     "legendUltra80": "The full loop",
     "legendRelais": "The loop in pairs"
   },
+  "parcours": {
+    "altCoureur": "Runner in motion",
+    "altFoule": "Crowd of runners at the start",
+    "altItineraire": "Route: Locoal-Mendon, crossing of the Étel river, Sainte-Hélène"
+  },
   "patrimoine": {
     "overline": "The Ria d'Étel, our",
     "title": "Natural heritage",
@@ -118,9 +123,9 @@
     "subtitle1": "A natural jewel",
     "subtitle2": "of Brittany",
     "text": "This former river valley flooded by the sea is home to remarkable biodiversity: migratory birds, fish, shellfish and unique flora. We are committed to preserving this treasure through various actions:",
-    "caption": "House with blue shutters — Saint-Cado Island (Morbihan)",
+    "caption": "House with blue shutters — Nichtarguer islet, facing Saint-Cado (Morbihan)",
     "altRunner": "Runner in the Ria d'Étel",
-    "altPanorama": "House with blue shutters, Saint-Cado Island"
+    "altPanorama": "House with blue shutters on Nichtarguer islet, facing Saint-Cado"
   },
   "festival": {
     "text": "The nerve centre, designed as a place of exchange and conviviality for all participants.",
@@ -132,7 +137,7 @@
     "overline": "Get ready for",
     "title": "Training",
     "categories": [
-      "Training plan",
+      "Coaching",
       "Nutrition",
       "Gear"
     ],
@@ -429,6 +434,7 @@
     "enjAltMaree": "Boats resting on the mud at low tide in front of a village"
   },
   "benevoles": {
+    "sujetMail": "Volunteering",
     "overline": "Join the adventure",
     "title1": "Become a",
     "title2": "volunteer",

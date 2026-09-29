@@ -8,6 +8,8 @@ import ArrowButton from "../ArrowButton";
 */
 export default function Benevoles() {
   const t = useTranslations("benevoles");
+  // Pas encore de formulaire : un e-mail a l'association, objet pre-rempli
+  const mailBenevole = `mailto:contact@ultratourdelaria.fr?subject=${encodeURIComponent(t("sujetMail"))}`;
   return (
     <section id="benevoles" className="relative isolate overflow-hidden text-white">
       {/* DESKTOP/TABLETTE (md+) : composition pleine aux specs XD */}
@@ -64,7 +66,7 @@ export default function Benevoles() {
 
         {/* Bouton (cadre 290x54 a left 325 / top 6540) */}
         <div className="absolute left-[22.57%] top-[66.1%]">
-          <ArrowButton href="#benevoles" variant="outline-white" textSize="text-[15px]">
+          <ArrowButton href={mailBenevole} variant="outline-white" textSize="text-[15px]">
             {t("button")}
           </ArrowButton>
         </div>
@@ -104,7 +106,7 @@ export default function Benevoles() {
           </div>
 
           <div className="mt-8">
-            <ArrowButton href="#benevoles" variant="outline-white">
+            <ArrowButton href={mailBenevole} variant="outline-white">
               {t("button")}
             </ArrowButton>
           </div>

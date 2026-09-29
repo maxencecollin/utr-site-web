@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function Parcours() {
+  const t = useTranslations("parcours");
   return (
     // clip-path : coupe la carte en haut (bande noire) mais la laisse depasser en bas ;
     // z-10 pour que ce depassement reste visible au-dessus du fond topo de la section suivante
@@ -29,7 +31,7 @@ export default function Parcours() {
             <div className="relative w-[66%]">
               <Image
                 src="/photos/_dsc6875.jpg"
-                alt="Coureur en mouvement"
+                alt={t("altCoureur")}
                 fill
                 sizes="66vw"
                 className="object-cover object-[32%_42%]"
@@ -41,7 +43,7 @@ export default function Parcours() {
           <div className="absolute inset-x-0 bottom-0 h-[42.8%]">
             <Image
               src="/photos/calque-24.jpg"
-              alt="Foule de coureurs"
+              alt={t("altFoule")}
               fill
               sizes="100vw"
               className="object-cover"
@@ -53,7 +55,7 @@ export default function Parcours() {
             <div className="relative -ml-[18%] h-[185%] aspect-square">
               <Image
                 src="/photos/groupe-321.png"
-                alt="Itinéraire : Locoal-Mendon, traversée d'Étel, Sainte-Hélène"
+                alt={t("altItineraire")}
                 fill
                 sizes="(max-width: 640px) 90vw, 900px"
                 className="object-contain [filter:drop-shadow(0_2px_3px_rgba(0,0,0,0.28))]"
@@ -68,7 +70,7 @@ export default function Parcours() {
           <div className="relative h-52 w-full">
             <Image
               src="/photos/_dsc6875.jpg"
-              alt="Coureur en mouvement"
+              alt={t("altCoureur")}
               fill
               sizes="100vw"
               className="object-cover object-[32%_42%]"
@@ -78,7 +80,7 @@ export default function Parcours() {
           <div className="relative mt-2 h-52 w-full">
             <Image
               src="/photos/calque-24.jpg"
-              alt="Foule de coureurs"
+              alt={t("altFoule")}
               fill
               sizes="100vw"
               className="object-cover"
@@ -90,7 +92,7 @@ export default function Parcours() {
             <div className="relative aspect-[755/1361] w-[88vw] max-w-[420px]">
               <Image
                 src="/photos/groupe-321-mobile.png"
-                alt="Itinéraire : Locoal-Mendon, traversée d'Étel, Sainte-Hélène"
+                alt={t("altItineraire")}
                 fill
                 sizes="100vw"
                 className="object-contain [filter:drop-shadow(0_2px_4px_rgba(0,0,0,0.3))]"

@@ -39,11 +39,11 @@
       "hostingHeading": "Alojamiento",
       "hostingBody": "Este sitio está alojado por GitHub Pages, un servicio de GitHub Inc.<br></br><b>Dirección:</b> 88 Colin P Kelly Jr St, San Francisco, CA 94107, EE. UU.<br></br><b>Sitio web:</b> <host>pages.github.com</host>",
       "ipHeading": "Propiedad intelectual",
-      "ipBody": "Todo el contenido de este sitio (textos, imágenes, vídeos, logotipos, etc.) es propiedad exclusiva de la asociación Ultra Tour de la Ria, salvo que se indique lo contrario. Queda prohibida cualquier reproducción, representación, modificación, publicación o adaptación de la totalidad o parte de los elementos del sitio sin la autorización previa por escrito de la asociación.",
+      "ipBody": "Todo el contenido de este sitio (textos, imágenes, vídeos, logotipos, etc.) es propiedad exclusiva de la asociación Ultra Trail de la Ria, salvo que se indique lo contrario. Queda prohibida cualquier reproducción, representación, modificación, publicación o adaptación de la totalidad o parte de los elementos del sitio sin la autorización previa por escrito de la asociación.",
       "photoHeading": "Créditos fotográficos",
-      "photoBody": "Las fotografías presentes en este sitio son propiedad de la asociación Ultra Tour de la Ria o se utilizan con el permiso de sus respectivos autores.",
+      "photoBody": "Las fotografías presentes en este sitio son propiedad de la asociación Ultra Trail de la Ria o se utilizan con el permiso de sus respectivos autores.",
       "liabilityHeading": "Limitación de responsabilidad",
-      "liabilityBody": "La asociación Ultra Tour de la Ria se esfuerza por garantizar la exactitud y la actualización de la información publicada en este sitio. No obstante, no puede garantizar la exactitud, precisión o exhaustividad de la información facilitada. En consecuencia, la asociación declina toda responsabilidad por cualquier imprecisión, inexactitud u omisión relativa a la información disponible en este sitio.",
+      "liabilityBody": "La asociación Ultra Trail de la Ria se esfuerza por garantizar la exactitud y la actualización de la información publicada en este sitio. No obstante, no puede garantizar la exactitud, precisión o exhaustividad de la información facilitada. En consecuencia, la asociación declina toda responsabilidad por cualquier imprecisión, inexactitud u omisión relativa a la información disponible en este sitio.",
       "contactHeading": "Contacto",
       "contactBody": "Para cualquier pregunta sobre el sitio o el evento, puede contactarnos en: <mail>contact@ultratourdelaria.fr</mail>"
     },
@@ -58,18 +58,18 @@
       "reglementHeading": "Reglamento de la prueba",
       "reglementBody": "Al inscribirse en el Ultra Tour de la Ria, se compromete también a respetar el <reg>reglamento de la prueba</reg>.",
       "contactHeading": "Contacto",
-      "contactBody": "Para cualquier pregunta sobre su inscripción, puede contactar:<br></br><br></br><b>Klikego</b>: directamente a través de su plataforma para las cuestiones técnicas relacionadas con la inscripción<br></br><br></br><b>Asociación Ultra Tour de la Ria</b>: <mail>contact@ultratourdelaria.fr</mail> para las cuestiones relativas al evento",
+      "contactBody": "Para cualquier pregunta sobre su inscripción, puede contactar:<br></br><br></br><b>Klikego</b>: directamente a través de su plataforma para las cuestiones técnicas relacionadas con la inscripción<br></br><br></br><b>Asociación Ultra Trail de la Ria</b>: <mail>contact@ultratourdelaria.fr</mail> para las cuestiones relativas al evento",
       "insuranceHeading": "Seguro",
       "insuranceBody": "La organización del Ultra Tour de la Ria está cubierta por un seguro de responsabilidad civil. Se recomienda a los participantes que verifiquen su propia cobertura de seguro para la práctica del trail running. Se recomienda una licencia FFA o un seguro individual que cubra la práctica del trail."
     },
     "confidentialite": {
-      "intro": "La asociación Ultra Tour de la Ria concede gran importancia a la protección de sus datos personales. Esta política de privacidad le informa sobre cómo se recogen y utilizan sus datos.",
+      "intro": "La asociación Ultra Trail de la Ria concede gran importancia a la protección de sus datos personales. Esta política de privacidad le informa sobre cómo se recogen y utilizan sus datos.",
       "controllerHeading": "Responsable del tratamiento",
-      "controllerBody": "El responsable del tratamiento de los datos es:<br></br><b>Asociación Ultra Tour de la Ria</b><br></br>11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon, Francia<br></br>Correo electrónico: <mail>contact@ultratourdelaria.fr</mail>",
+      "controllerBody": "El responsable del tratamiento de los datos es:<br></br><b>Asociación Ultra Trail de la Ria</b><br></br>11 rue de l'Éolienne, 56510 Saint-Pierre-Quiberon, Francia<br></br>Correo electrónico: <mail>contact@ultratourdelaria.fr</mail>",
       "dataHeading": "Datos recogidos en este sitio",
       "dataBody": "Este sitio de presentación no recoge ningún dato personal directamente. No hay formulario de contacto ni suscripción a un boletín, y el propio sitio no instala ninguna cookie de seguimiento. No obstante, las páginas de las pruebas integran un mapa proporcionado por Strava (véase la sección «Contenidos de terceros»).",
       "registrationHeading": "Inscripciones al evento",
-      "registrationBody": "Las inscripciones al Ultra Tour de la Ria se gestionan a través de la plataforma <b>Klikego</b>. Cuando se inscribe en el evento, sus datos personales son recogidos y tratados por Klikego de acuerdo con su propia política de privacidad. Le invitamos a consultar las condiciones de Klikego al inscribirse.<br></br><br></br>Los datos de inscripción transmitidos a la asociación Ultra Tour de la Ria se utilizan únicamente para la organización del evento: gestión de dorsales, comunicación relativa a la carrera, resultados, etc.",
+      "registrationBody": "Las inscripciones al Ultra Tour de la Ria se gestionan a través de la plataforma <b>Klikego</b>. Cuando se inscribe en el evento, sus datos personales son recogidos y tratados por Klikego de acuerdo con su propia política de privacidad. Le invitamos a consultar las condiciones de Klikego al inscribirse.<br></br><br></br>Los datos de inscripción transmitidos a la asociación Ultra Trail de la Ria se utilizan únicamente para la organización del evento: gestión de dorsales, comunicación relativa a la carrera, resultados, etc.",
       "embedsHeading": "Contenidos de terceros (mapas de Strava)",
       "embedsBody": "Las páginas de las pruebas muestran los recorridos mediante un módulo cartográfico proporcionado por <b>Strava</b> (strava-embeds.com), que se apoya en el servicio de mapas Mapbox. Al consultar estas páginas, su navegador carga recursos desde los servidores de estos servicios, que reciben entonces datos técnicos como su dirección IP y pueden instalar sus propias cookies. Estos tratamientos se rigen por las políticas de privacidad de Strava y de Mapbox, que le invitamos a consultar.",
       "cookiesHeading": "Cookies",
@@ -111,6 +111,11 @@
     "legendUltra80": "La vuelta completa",
     "legendRelais": "La vuelta en dúo"
   },
+  "parcours": {
+    "altCoureur": "Corredor en movimiento",
+    "altFoule": "Multitud de corredores en la salida",
+    "altItineraire": "Itinerario: Locoal-Mendon, travesía de la ría de Étel, Sainte-Hélène"
+  },
   "patrimoine": {
     "overline": "La Ria d'Étel, nuestro",
     "title": "Patrimonio natural",
@@ -118,9 +123,9 @@
     "subtitle1": "Una joya natural",
     "subtitle2": "de Bretaña",
     "text": "Este antiguo valle fluvial invadido por el mar alberga una biodiversidad excepcional: aves migratorias, peces, crustáceos y una flora única. Nos comprometemos a preservar este tesoro mediante diversas acciones:",
-    "caption": "Casa de contraventanas azules — Isla de Saint-Cado (Morbihan)",
+    "caption": "Casa de contraventanas azules — Islote de Nichtarguer, frente a Saint-Cado (Morbihan)",
     "altRunner": "Corredor en la Ria d'Étel",
-    "altPanorama": "Casa de contraventanas azules, Isla de Saint-Cado"
+    "altPanorama": "Casa de contraventanas azules en el islote de Nichtarguer, frente a Saint-Cado"
   },
   "festival": {
     "text": "El centro neurálgico, concebido como un lugar de encuentro y convivencia para todos los participantes.",
@@ -132,7 +137,7 @@
     "overline": "Prepárate para",
     "title": "El entrenamiento",
     "categories": [
-      "Plan de entrenamiento",
+      "Coaching",
       "Nutrición",
       "Material"
     ],
@@ -429,6 +434,7 @@
     "enjAltMaree": "Barcos sobre el fango en marea baja frente a un pueblo"
   },
   "benevoles": {
+    "sujetMail": "Voluntariado",
     "overline": "Únete a la aventura",
     "title1": "Hazte",
     "title2": "voluntario",
