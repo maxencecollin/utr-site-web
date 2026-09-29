@@ -19,7 +19,6 @@ function LibelleVertical({ children }: { children: React.ReactNode }) {
 
 export default function CoachingOffres() {
   const t = useTranslations("coaching");
-  const tCta = useTranslations("cta");
   // Les libelles des epreuves vivent dans le namespace de la page Entrainement
   const tEpreuves = useTranslations("entrainementPage");
   const [index, setIndex] = useState(0);
@@ -151,9 +150,6 @@ export default function CoachingOffres() {
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <ArrowButton href={`mailto:${EMAIL_RONAN}`} variant="outline-white">
             {t("ctaContact")}
-          </ArrowButton>
-          <ArrowButton href="#inscription" variant="outline-white">
-            {tCta("inscription")}
           </ArrowButton>
         </div>
       </div>

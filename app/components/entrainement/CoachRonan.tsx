@@ -11,7 +11,6 @@ const HREF_COACH = "/coaching";
 */
 export default function CoachRonan() {
   const t = useTranslations("entrainementPage");
-  const tCta = useTranslations("cta");
 
   return (
     <section
@@ -58,9 +57,6 @@ export default function CoachRonan() {
             </div>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <ArrowButton href="#inscription" variant="outline-white" direction="up">
-                {tCta("inscription")}
-              </ArrowButton>
               <ArrowButton href={HREF_COACH} variant="outline-white">
                 {t("coachCta")}
               </ArrowButton>
