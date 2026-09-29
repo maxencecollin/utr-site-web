@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 const PARTNERS = [
   { nom: "Decathlon", src: "/images/partenaires/decathlon.svg", w: 313, h: 203 },
@@ -79,7 +80,7 @@ export default function Hero() {
             ))}
           </ul>
 
-          <ArrowButton href="#inscription" variant="outline-white">
+          <ArrowButton href={HREF_INSCRIPTION} variant="outline-white">
             {tCta("inscription")}
           </ArrowButton>
         </div>

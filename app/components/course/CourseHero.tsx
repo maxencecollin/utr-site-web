@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
 import UtmbBadge from "./UtmbBadge";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 type Props = {
   /* Gros lettrage Technor du hero, une entree par ligne (ex. ["80 KM"]) */
@@ -69,7 +70,7 @@ export default function CourseHero({
             {t("detailsCourse")}
           </ArrowButton>
 
-          <ArrowButton href="#inscription" variant="outline-white">
+          <ArrowButton href={HREF_INSCRIPTION} variant="outline-white">
             {tCta("inscription")}
           </ArrowButton>
         </div>

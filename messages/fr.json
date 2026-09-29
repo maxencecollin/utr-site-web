@@ -541,5 +541,21 @@
     "label": "Mot de passe",
     "bouton": "Entrer",
     "erreur": "Mot de passe incorrect."
+  },
+  "inscription": {
+    "metaTitle": "Inscriptions",
+    "metaDescription": "Les inscriptions à l'Ultra Tour de la Ria d'Étel 2027 ouvriront prochainement.",
+    "titreLigne1": "Inscriptions",
+    "titreLigne2": "2027",
+    "badge": "Ouverture prochainement",
+    "texte": "Les inscriptions aux trois épreuves se feront en ligne. Elles ne sont pas encore ouvertes : la date d'ouverture sera annoncée ici très bientôt.",
+    "attenteOverline": "En attendant",
+    "attenteTitre": "Choisis ton épreuve",
+    "carte80": "Ultra 80 km",
+    "carteRelais": "Relais Duo 80 km",
+    "carte33": "Trail 33 km",
+    "reglement": "Lire le règlement",
+    "preparer": "Préparer ta course",
+    "question": "Une question ? Écris-nous à"
   }
 }

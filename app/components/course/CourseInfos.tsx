@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import ArrowButton, { type ArrowButtonVariant } from "../ArrowButton";
 import UtmbBadge from "./UtmbBadge";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 type Props = {
   /* Namespace des contenus specifiques a la course (ex. "course80") */
@@ -99,7 +100,7 @@ export default function CourseInfos({
             <p className="text-[16px] leading-relaxed text-dark-700">
               {t("description")}
             </p>
-            <ArrowButton href="#inscription" variant={buttonVariant}>
+            <ArrowButton href={HREF_INSCRIPTION} variant={buttonVariant}>
               {tCta("inscription")}
             </ArrowButton>
           </div>

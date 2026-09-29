@@ -3,6 +3,7 @@ import ArrowButton from "../ArrowButton";
 import CourseSectionHeading from "./CourseSectionHeading";
 import ParcoursMap from "./ParcoursMap";
 import StravaRoute from "./StravaRoute";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 type Props = {
   traceUrl: string;
@@ -105,7 +106,7 @@ export default function CourseParcours({
           <ArrowButton href={traceUrl} variant="outline-white" direction="up">
             {t("downloadGpx")}
           </ArrowButton>
-          <ArrowButton href="#inscription" variant="outline-white">
+          <ArrowButton href={HREF_INSCRIPTION} variant="outline-white">
             {tCta("inscription")}
           </ArrowButton>
         </div>

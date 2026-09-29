@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 /* Hero de la page Coaching : meme ossature que celui de la page Entrainement */
 export default function CoachingHero() {
@@ -49,7 +50,7 @@ export default function CoachingHero() {
           <ArrowButton href="/#courses" variant="outline-white">
             {tNav("epreuves")}
           </ArrowButton>
-          <ArrowButton href="#inscription" variant="outline-white">
+          <ArrowButton href={HREF_INSCRIPTION} variant="outline-white">
             {tCta("inscription")}
           </ArrowButton>
         </div>

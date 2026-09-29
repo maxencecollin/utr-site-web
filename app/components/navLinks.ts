@@ -4,6 +4,11 @@
   pages de course et la page Entrainement.
 */
 
+/* Cible de tous les boutons d'inscription : page d'attente tant que la page
+   Klikego n'existe pas. Mettre ici son adresse complete (https://...) le jour
+   de l'ouverture. */
+export const HREF_INSCRIPTION = "/inscription";
+
 /* Les quatre entrees de la maquette XD.
    TODO : "Infos pratiques" pointe sur une section de la landing en attendant
    sa page dediee. */

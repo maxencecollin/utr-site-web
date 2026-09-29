@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import ArrowButton from "../ArrowButton";
 import CourseSectionHeading from "./CourseSectionHeading";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 export type AutreEpreuve = {
   /* Route de la page de course (ex. "/33km") */
@@ -88,7 +89,7 @@ export default function CourseAutresEpreuves({
               <ArrowButton href="/#courses" variant="outline-white" direction="up">
                 {tCourses("details")}
               </ArrowButton>
-              <ArrowButton href="#inscription" variant="outline-white">
+              <ArrowButton href={HREF_INSCRIPTION} variant="outline-white">
                 {tCta("inscription")}
               </ArrowButton>
             </div>

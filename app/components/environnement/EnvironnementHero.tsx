@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Countdown from "../Countdown";
 import ArrowButton from "../ArrowButton";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 /* Hero de la page Environnement : entree de la ria vue du ciel, titre incline
    et cartouche bleu comme le hero de la landing */
@@ -55,7 +56,7 @@ export default function EnvironnementHero() {
           <ArrowButton href="#engagements" variant="outline-white" direction="down">
             {t("heroCta")}
           </ArrowButton>
-          <ArrowButton href="#inscription" variant="outline-white">
+          <ArrowButton href={HREF_INSCRIPTION} variant="outline-white">
             {tCta("inscription")}
           </ArrowButton>
         </div>

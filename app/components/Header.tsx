@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import LanguageSelector from "./LanguageSelector";
 import MobileMenu from "./MobileMenu";
-import { HEADER_LINKS } from "./navLinks";
+import { HEADER_LINKS, HREF_INSCRIPTION } from "./navLinks";
 
 /* Hauteur de scroll a partir de laquelle le header prend son fond opaque */
 const SCROLL_THRESHOLD = 24;
@@ -64,8 +64,8 @@ export default function Header({ logoFonce = false }: Props) {
           </ul>
 
           {/* S'inscrire : degrade bleu en parallelogramme (toujours visible, compact sur mobile) */}
-          <a
-            href="#inscription"
+          <Link
+            href={HREF_INSCRIPTION}
             className="group relative px-4 py-2 text-xs font-bold italic uppercase text-white md:px-7 md:py-2 md:text-[18px] md:leading-7"
           >
             <span
@@ -73,7 +73,7 @@ export default function Header({ logoFonce = false }: Props) {
               className="absolute inset-0 -skew-x-12 bg-[linear-gradient(90deg,#0781dd_0%,#04416f_100%)] transition-opacity group-hover:opacity-90"
             />
             <span className="relative">{t("inscrire")}</span>
-          </a>
+          </Link>
 
           {/* Selecteur de langue (desktop ; sur mobile il est dans le menu) */}
           <div className="hidden lg:block">

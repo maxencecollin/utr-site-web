@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import ArrowButton from "../ArrowButton";
+import { HREF_INSCRIPTION } from "@/app/components/navLinks";
 
 // Le gros lettrage : distance fixe (33/80 KM, universel) ou mot "relais" traduit (2 lignes).
 // href : page dediee de la course (les pages 33 km et relais arrivent ensuite).
@@ -133,7 +134,7 @@ export default function Courses() {
             <ArrowButton href="#courses" variant="outline-white" direction="up">
               {t("details")}
             </ArrowButton>
-            <ArrowButton href="#inscription" variant="outline-white">
+            <ArrowButton href={HREF_INSCRIPTION} variant="outline-white">
               {tCta("inscription")}
             </ArrowButton>
           </div>

@@ -541,5 +541,21 @@
     "label": "Password",
     "bouton": "Enter",
     "erreur": "Wrong password."
+  },
+  "inscription": {
+    "metaTitle": "Registration",
+    "metaDescription": "Registration for the 2027 Ultra Tour de la Ria d'Étel will open soon.",
+    "titreLigne1": "Registration",
+    "titreLigne2": "2027",
+    "badge": "Opening soon",
+    "texte": "Registration for all three races will take place online. It is not open yet: the opening date will be announced here very soon.",
+    "attenteOverline": "In the meantime",
+    "attenteTitre": "Pick your race",
+    "carte80": "Ultra 80 km",
+    "carteRelais": "Duo Relay 80 km",
+    "carte33": "Trail 33 km",
+    "reglement": "Read the rules",
+    "preparer": "Prepare your race",
+    "question": "Any questions? Email us at"
   }
 }
