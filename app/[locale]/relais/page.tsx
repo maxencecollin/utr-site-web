@@ -14,11 +14,15 @@ import CourseAutresEpreuves, {
 } from "@/app/components/course/CourseAutresEpreuves";
 import Footer from "@/app/components/Footer";
 
-export const metadata: Metadata = {
-  title: "Relais Duo 80 km",
-  description:
-    "Le Relais Duo : le Tour de la Ria d'Étel à deux, 50 km puis 30 km avec passage de relais à Sainte-Hélène. Parcours, infos pratiques et inscription. 16 octobre 2027.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "courseRelais" });
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
 // Declinaison marron de la maquette pour le relais
 const MARRON = "bg-[#5e3a1c]";

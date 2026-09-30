@@ -14,11 +14,15 @@ import CourseAutresEpreuves, {
 } from "@/app/components/course/CourseAutresEpreuves";
 import Footer from "@/app/components/Footer";
 
-export const metadata: Metadata = {
-  title: "Ultra 80 km",
-  description:
-    "L'Ultra 80 km, le tour complet de la Ria d'Étel en semi-autonomie : parcours, infos pratiques, ravitaillements et inscription. 16 octobre 2027, Locoal-Mendon.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "course80" });
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
 // Page dediee a l'entrainement
 const HREF_ENTRAINEMENT = "/entrainement";

@@ -14,11 +14,15 @@ import CourseAutresEpreuves, {
 } from "@/app/components/course/CourseAutresEpreuves";
 import Footer from "@/app/components/Footer";
 
-export const metadata: Metadata = {
-  title: "Trail 33 km",
-  description:
-    "Le 33 de la Ria, un trail entre sentiers techniques et paysages emblématiques de la Ria d'Étel : parcours, infos pratiques et inscription. 16 octobre 2027, Sainte-Hélène.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "course33" });
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
 // Declinaison verte de la maquette pour le 33 km
 const VERT = "bg-[#4a5a20]";
