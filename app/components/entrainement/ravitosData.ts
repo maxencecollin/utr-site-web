@@ -4,9 +4,10 @@
   Les ravitos sont places sur le trace GPX de l'epreuve a leur distance reelle
   (voir traceGpx.ts) : aucune position a relever a la main.
 
-  TODO : composition reelle et heures de fermeture par ravito (l'organisation
-  doit les fournir) ; en attendant tous les ravitos affichent la composition
-  generale du reglement ("solide et liquide tous les 10 a 15 km").
+  Decide avec l'organisation (2026-09-30) : pas de chaud, pas de poste medical
+  sur les ravitos (il est a Locoal-Mendon, sur le site d'arrivee), aide
+  exterieure autorisee uniquement sur les ravitos, toilettes visees partout.
+  TODO : heures de fermeture par ravito.
 */
 
 export type Ravito = {
@@ -19,19 +20,15 @@ export type Ravito = {
   eau: boolean;
   liquide: boolean;
   sec: boolean;
-  chaud: boolean;
-  medical: boolean;
   aideExterne: boolean;
   toilettes: boolean;
 };
 
-/* Composition generale appliquee a tous les ravitos tant qu'on n'a pas le detail */
+/* Composition commune a tous les ravitos */
 const COMPLET = {
   eau: true,
   liquide: true,
   sec: true,
-  chaud: true,
-  medical: true,
   aideExterne: true,
   toilettes: true,
 } as const;

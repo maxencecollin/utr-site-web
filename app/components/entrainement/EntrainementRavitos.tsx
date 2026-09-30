@@ -15,14 +15,12 @@ const PRESTATIONS = [
   { cle: "eau", icone: "/images/icones/eau.svg", label: "ravitosEau", desc: "ravitosEauDesc" },
   { cle: "liquide", icone: "/images/icones/boisson-energie.svg", label: "ravitosLiquide", desc: "ravitosLiquideDesc" },
   { cle: "sec", icone: "/images/icones/barre-energie.svg", label: "ravitosSec", desc: "ravitosSecDesc" },
-  { cle: "chaud", icone: "/images/icones/plat-chaud.svg", label: "ravitosChaud", desc: "ravitosChaudDesc" },
 ] as const;
 const PRODUITS = [
   { nom: "Energy date bar", icone: "/images/icones/barre-energie-simple.svg", desc: "ravitosProduit1Desc" },
   { nom: "ISO+ isotonic drink", icone: "/images/icones/boisson-energie-simple.svg", desc: "ravitosProduit2Desc" },
 ] as const;
 const SERVICES = [
-  { cle: "medical", icone: "/images/icones/fichier-14.svg", label: "ravitosMedical" },
   { cle: "aideExterne", icone: "/images/icones/aide-exterieur.svg", label: "ravitosAideExterne" },
   { cle: "toilettes", icone: "/images/icones/toilettes.svg", label: "ravitosToilettes" },
 ] as const;
