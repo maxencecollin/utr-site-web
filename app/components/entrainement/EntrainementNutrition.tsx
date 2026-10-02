@@ -12,7 +12,7 @@ import {
   tempsDuJalon,
 } from "./nutritionData";
 
-/* Fleche ronde du selecteur d'epreuve et de relayeur */
+/* Fleche ronde du selecteur d'epreuve */
 function Fleche({
   sens,
   label,
@@ -64,16 +64,8 @@ export default function EntrainementNutrition() {
   const t = useTranslations("entrainementPage");
   const [index, setIndex] = useState(0);
   const etape = ETAPES[index];
-
-  // Les deux etapes du relais se suivent : on navigue entre relayeurs sans
-  // changer d'epreuve, et entre epreuves sans entrer dans le detail du relais.
-  const estRelais = etape.relayeur !== undefined;
-  const allerEpreuve = (pas: number) => {
-    const premieres = ETAPES.map((e, i) => (e.relayeur === undefined || e.relayeur === 1 ? i : -1)).filter((i) => i >= 0);
-    const courant = premieres.findIndex((i) => i === index || (estRelais && ETAPES[i].relayeur === 1));
-    const suivant = (courant + pas + premieres.length) % premieres.length;
-    setIndex(premieres[suivant]);
-  };
+  const prises = t.raw(etape.prisesKey) as string[];
+  const allerEpreuve = (pas: number) => setIndex((index + pas + ETAPES.length) % ETAPES.length);
 
   const formatTemps = (i: number) => {
     const { h, m } = tempsDuJalon(i);
@@ -152,22 +144,11 @@ export default function EntrainementNutrition() {
 
               <Pointilles className="mt-2" />
 
-              {/* Depart : numero de relayeur pour le relais, kilometrage sinon */}
-              <div className="mt-3 flex items-center justify-center gap-2.5">
-                <span className="font-comico text-[13px] uppercase tracking-[1px] sm:text-[15px]">
-                  {t("nutritionDepart")}
-                  {estRelais && ` #${etape.relayeur}`}
-                </span>
-                {estRelais && (
-                  <Fleche
-                    sens={etape.relayeur === 1 ? "droite" : "gauche"}
-                    label={etape.relayeur === 1 ? t("nutritionRelaisSuivant") : t("nutritionRelaisPrecedent")}
-                    onClick={() => setIndex(etape.relayeur === 1 ? index + 1 : index - 1)}
-                  />
-                )}
-              </div>
+              <p className="font-comico mt-3 text-[13px] uppercase tracking-[1px] sm:text-[15px]">
+                {t("nutritionDepart")}
+              </p>
               <p className="font-comico mt-0.5 text-[9px] uppercase tracking-[2px] sm:text-[10px]">
-                {etape.kmDepart} km
+                0 km
               </p>
             </div>
 
@@ -190,7 +171,7 @@ export default function EntrainementNutrition() {
                 }}
               >
                 <span className="hidden text-[9px] leading-[1.3] text-[#1c1c1c] sm:inline sm:text-[10px] lg:text-[11px]">
-                  {t("nutritionRation")}
+                  {prises[i]}
                 </span>
                 <span className="shrink-0 border border-dashed border-[#1c1c1c] px-1 py-0.5 text-center">
                   <span className="font-comico block text-[10px] leading-[1.1] sm:text-[12px]">
@@ -210,10 +191,10 @@ export default function EntrainementNutrition() {
                 {t("nutritionArrivee")}
               </p>
               <p className="mt-1 text-[9px] leading-[1.25] text-[#1c1c1c] sm:hidden">
-                {t("nutritionRationChaque")}
+                {t(etape.resumeKey)}
               </p>
               <p className="mt-1.5 hidden text-[9px] leading-[1.3] text-dark-500 sm:block sm:text-[10px]">
-                {t("nutritionCadence")}
+                {t(etape.conseilKey)}
               </p>
               {/* PDF par epreuve a fournir : lien neutralise en attendant */}
               <span

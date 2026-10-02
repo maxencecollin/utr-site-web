@@ -27,7 +27,6 @@ export const CATEGORIES: Categorie[] = [
     labelKey: "materielHabillement",
     items: [
       { labelKey: "materielVeste", km80: true, km33: true, relais: true },
-      { labelKey: "materielStrap", km80: true, km33: true, relais: true },
     ],
   },
   {
@@ -37,6 +36,7 @@ export const CATEGORIES: Categorie[] = [
       { labelKey: "materielTelephone", detailKey: "materielTelephoneDetail", km80: true, km33: true, relais: true },
       { labelKey: "materielCouverture", detailKey: "materielCouvertureDetail", km80: true, km33: true, relais: true },
       { labelKey: "materielSifflet", km80: true, km33: true, relais: true },
+      { labelKey: "materielStrap", km80: true, km33: true, relais: true },
       { labelKey: "materielFrontale", detailKey: "materielFrontaleDetail", km80: true, km33: false, relais: true },
     ],
   },

@@ -11,14 +11,18 @@ import type { TraceSvg } from "./traceGpx";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* Partenaire qui fournit la prestation, logo affiche a cote de la description */
+const PLANCOET = { nom: "Plancoët", src: "/images/partenaires/plancoet.svg", w: 216, h: 101, classe: "h-7" };
+const DECATHLON = { nom: "Decathlon", src: "/images/partenaires/decathlon.svg", w: 313, h: 203, classe: "h-5" };
+
+/* Eau : exclusivite Plancoet. Boisson et energie : Decathlon. Sec : achats
+   en supermarche, sans partenaire. Gels non annonces tant qu'ils ne sont pas
+   confirmes. */
 const PRESTATIONS = [
-  { cle: "eau", icone: "/images/icones/eau.svg", label: "ravitosEau", desc: "ravitosEauDesc" },
-  { cle: "liquide", icone: "/images/icones/boisson-energie.svg", label: "ravitosLiquide", desc: "ravitosLiquideDesc" },
-  { cle: "sec", icone: "/images/icones/barre-energie.svg", label: "ravitosSec", desc: "ravitosSecDesc" },
-] as const;
-const PRODUITS = [
-  { nom: "Energy date bar", icone: "/images/icones/barre-energie-simple.svg", desc: "ravitosProduit1Desc" },
-  { nom: "ISO+ isotonic drink", icone: "/images/icones/boisson-energie-simple.svg", desc: "ravitosProduit2Desc" },
+  { cle: "eau", icone: "/images/icones/eau.svg", label: "ravitosEau", desc: "ravitosEauDesc", partenaire: PLANCOET },
+  { cle: "liquide", icone: "/images/icones/boisson-energie.svg", label: "ravitosLiquide", desc: "ravitosLiquideDesc", partenaire: DECATHLON },
+  { cle: "energie", icone: "/images/icones/barre-energie.svg", label: "ravitosEnergie", desc: "ravitosEnergieDesc", partenaire: DECATHLON },
+  { cle: "sec", icone: "/images/icones/barre-energie-simple.svg", label: "ravitosSec", desc: "ravitosSecDesc", partenaire: null },
 ] as const;
 const SERVICES = [
   { cle: "aideExterne", icone: "/images/icones/aide-exterieur.svg", label: "ravitosAideExterne" },
@@ -288,21 +292,16 @@ export default function EntrainementRavitos({ traces }: { traces: TraceSvg[] }) 
                         <p className="text-[13px] font-bold uppercase">{t(p.label)}</p>
                         <p className="text-[12px] leading-[1.35] text-white/80">{t(p.desc)}</p>
                       </div>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4"><Pointilles /></div>
-                <ul className="mt-4 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
-                  {PRODUITS.map((p) => (
-                    <li key={p.nom} className="flex items-start gap-3">
-                      <Image src={p.icone} alt="" width={36} height={40} className="h-8 w-auto shrink-0 brightness-0 invert" />
-                      <div>
-                        <p className="text-[13px] font-bold uppercase leading-[1.2]">{p.nom}</p>
-                        <p className="mt-0.5 flex items-center gap-2 text-[12px] text-white/80">
-                          {t(p.desc)}
-                          <Image src="/images/partenaires/decathlon.svg" alt="Decathlon" width={313} height={203} className="h-3 w-auto brightness-0 invert" />
-                        </p>
-                      </div>
+                      {/* Logo du partenaire, centre sur les deux lignes de texte */}
+                      {p.partenaire && (
+                        <Image
+                          src={p.partenaire.src}
+                          alt={p.partenaire.nom}
+                          width={p.partenaire.w}
+                          height={p.partenaire.h}
+                          className={`${p.partenaire.classe} ml-1 w-auto self-center brightness-0 invert`}
+                        />
+                      )}
                     </li>
                   ))}
                 </ul>

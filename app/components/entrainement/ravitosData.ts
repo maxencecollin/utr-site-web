@@ -19,6 +19,7 @@ export type Ravito = {
   /* Prestations presentes sur place */
   eau: boolean;
   liquide: boolean;
+  energie: boolean;
   sec: boolean;
   aideExterne: boolean;
   toilettes: boolean;
@@ -28,6 +29,7 @@ export type Ravito = {
 const COMPLET = {
   eau: true,
   liquide: true,
+  energie: true,
   sec: true,
   aideExterne: true,
   toilettes: true,

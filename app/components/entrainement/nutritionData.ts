@@ -6,9 +6,10 @@
   ci-dessous s'appliquent donc directement a son cadre). On ne pose que le
   texte par-dessus, comme pour la carte des ravitos.
 
-  TODO : plan reel par epreuve (cadence, rations, points de vigilance) a valider
-  avec le coach ; pour l'instant on applique la cadence generale de la maquette,
-  une prise toutes les 45 minutes.
+  Plan basique, une prise toutes les 45 minutes : boisson + un en-cas parmi ce
+  que proposent les ravitos (barres, pates de fruits, fruits, gateaux secs) ou
+  un gel. 500 mL par prise sur le 80 km, 400 mL sur le 33 km.
+  TODO : a faire valider par le coach.
 */
 
 /*
@@ -59,22 +60,18 @@ export function tempsDuJalon(index: number) {
 export type Etape = {
   /* Cle de traduction du nom de l'epreuve */
   nomKey: string;
-  /* Cle de traduction de la duree estimee */
+  /* Cle de traduction de la duree de course */
   dureeKey: string;
-  /* Kilometrage de depart et d'arrivee de l'etape */
-  kmDepart: number;
+  /* Cle de traduction des sept prises, une par repere */
+  prisesKey: string;
+  /* Cles du resume (petit ecran) et du conseil de pied de carte */
+  resumeKey: string;
+  conseilKey: string;
   kmArrivee: number;
-  /* Numero du relayeur, pour les deux etapes du relais */
-  relayeur?: number;
 };
 
-/*
-  Le relais est le parcours du 80 km coupe au km 50 (passage de relais).
-  Les deux relayeurs ont donc chacun leur plan.
-*/
+/* Le relais suit le meme plan que le 80 km, comme sur la carte des ravitos */
 export const ETAPES: Etape[] = [
-  { nomKey: "nutritionEpreuve80", dureeKey: "nutritionDuree80", kmDepart: 0, kmArrivee: 80 },
-  { nomKey: "nutritionEpreuve33", dureeKey: "nutritionDuree33", kmDepart: 0, kmArrivee: 33 },
-  { nomKey: "nutritionEpreuveRelais", dureeKey: "nutritionDureeRelais", kmDepart: 0, kmArrivee: 50, relayeur: 1 },
-  { nomKey: "nutritionEpreuveRelais", dureeKey: "nutritionDureeRelais", kmDepart: 50, kmArrivee: 80, relayeur: 2 },
+  { nomKey: "nutritionEpreuve80", dureeKey: "nutritionDuree80", prisesKey: "nutritionPrises80", resumeKey: "nutritionResume80", conseilKey: "nutritionConseil80", kmArrivee: 80 },
+  { nomKey: "nutritionEpreuve33", dureeKey: "nutritionDuree33", prisesKey: "nutritionPrises33", resumeKey: "nutritionResume33", conseilKey: "nutritionConseil33", kmArrivee: 33 },
 ];
