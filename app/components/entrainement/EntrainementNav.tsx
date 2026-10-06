@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { useTranslations } from "next-intl";
-import { defilerVers } from "../DefilementDoux";
+import { defilerVers } from "../Defilement";
 
 /* Les cinq parties de la page, dans l'ordre ou elles apparaissent */
 const SECTIONS = [

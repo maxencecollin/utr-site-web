@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { aimanter, defilerVers } from "../DefilementDoux";
+import { defilerVers } from "../Defilement";
 import { EPREUVES } from "./ravitosData";
 import type { TraceSvg } from "./traceGpx";
 
@@ -90,7 +90,7 @@ function placerEtiquettes(trace: TraceSvg) {
   ScrollTrigger, sans capture de la molette). Le trace reel de l'epreuve, lu
   dans son GPX, se dessine au fil du scroll ; un point de coureur avance, chaque
   ravito s'allume au passage, le compteur de kilometres defile en continu et le
-  panneau affiche le dernier ravito atteint. Aimantage doux sur chaque ravito.
+  panneau affiche le dernier ravito atteint.
 
   Petit ecran : pas d'epinglage, le trace est affiche en entier et on choisit
   un ravito dans la liste.
@@ -155,11 +155,10 @@ export default function EntrainementRavitos({ traces }: { traces: TraceSvg[] }) 
     mm.add(GRAND_ECRAN, () => {
       setEpingle(true);
       /* Chaque intervalle (depart, ravitos, arrivee) recoit la meme longueur de
-         defilement, quelle que soit sa distance reelle : un geste = un ravito.
+         defilement, quelle que soit sa distance reelle.
          Le trace se dessine plus ou moins vite selon la distance a couvrir. */
       const trajet = [0, ...trace.reperes.map((r) => r.fraction), 1];
       const n = trajet.length - 1;
-      const paliers = trajet.map((_, k) => k / n);
       const parcours = (s: number) => {
         const k = Math.min(n - 1, Math.floor(s * n));
         return trajet[k] + (trajet[k + 1] - trajet[k]) * (s * n - k);
@@ -167,7 +166,8 @@ export default function EntrainementRavitos({ traces }: { traces: TraceSvg[] }) 
       declencheur.current = ScrollTrigger.create({
         trigger: section.current,
         start: "top top",
-        end: `+=${n * 55}%`,
+        // 30 % d'ecran de defilement par etape (depart, ravitos, arrivee)
+        end: `+=${n * 30}%`,
         pin: true,
         // Le <body> est en flex : ScrollTrigger y desactive par defaut la reserve
         // d'espace, et la suite de la page remonterait par-dessus la section
@@ -179,10 +179,7 @@ export default function EntrainementRavitos({ traces }: { traces: TraceSvg[] }) 
         },
       });
       afficher(0, -1);
-      // Aimantage sur le ravito le plus proche a l'arret du defilement
-      const lacher = aimanter(declencheur.current, paliers);
       return () => {
-        lacher();
         declencheur.current = null;
       };
     });

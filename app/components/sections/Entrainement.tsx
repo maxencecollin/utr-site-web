@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { imageOptimisee } from "@/app/imagesOptimisees";
 import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
@@ -65,8 +66,7 @@ export default function Entrainement() {
               role="img"
               aria-label={t("altPhoto")}
               style={{
-                backgroundImage:
-                  "url(/photos/venti-views--uyedjt31zy-unsplash.jpg)",
+                backgroundImage: `url(${imageOptimisee("/photos/venti-views--uyedjt31zy-unsplash.jpg", 2048)})`,
                 backgroundSize: "auto 190%",
                 backgroundPosition: "42% 54%",
                 backgroundRepeat: "no-repeat",

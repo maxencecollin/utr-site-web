@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { imageOptimisee } from "@/app/imagesOptimisees";
 import { useTranslations } from "next-intl";
 import ArrowButton from "../ArrowButton";
 
@@ -34,7 +35,7 @@ export default function Festival({ blur = "/photos/994.jpg" }: Props) {
           aria-hidden="true"
           className="absolute left-0 top-0 h-full w-[70.83%]"
           style={{
-            backgroundImage: "url(/photos/real_-jansen-d3gfrvatsd0-unsplash.jpg)",
+            backgroundImage: `url(${imageOptimisee("/photos/real_-jansen-d3gfrvatsd0-unsplash.jpg", 2048)})`,
             backgroundSize: "auto 106%",
             backgroundPosition: "25% 60%",
             backgroundRepeat: "no-repeat",

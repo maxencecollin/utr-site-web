@@ -20,6 +20,9 @@
 # production
 /build
 
+# versions WebP des images, regenerees a chaque build (scripts/optimiser-images.mjs)
+/public/_img/
+
 # matieres premieres (photos brutes, exports XD) - on ne versionne que le web optimise
 /_assets-source
 

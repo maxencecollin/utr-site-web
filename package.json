@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/optimiser-images.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/optimiser-images.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -12,7 +14,6 @@
   "dependencies": {
     "gsap": "^3.15.0",
     "leaflet": "^1.9.4",
-    "lenis": "^1.3.26",
     "next": "16.2.9",
     "next-intl": "^4.13.0",
     "react": "19.2.4",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

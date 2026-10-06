@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { aimanter, defilerVers } from "../DefilementDoux";
+import { defilerVers } from "../Defilement";
 import CourseSectionHeading from "./CourseSectionHeading";
 import UtmbBadge from "./UtmbBadge";
 
@@ -106,7 +106,7 @@ function cadrage(x: number, y: number, scale: number) {
   Section "L'epreuve" : photo du materiel a plat, epinglee pendant le defilement.
   Le zoom voyage d'un objet a l'autre en suivant la position de defilement
   (GSAP ScrollTrigger, facon page produit Apple) : la molette n'est jamais
-  interceptee, et a l'arret un aimantage doux ramene sur l'objet le plus proche.
+  interceptee ni corrigee, la page s'arrete exactement ou on la laisse.
   Une courte pause sur le dernier objet precede la section suivante.
 */
 export default function CourseEpreuve({
@@ -144,7 +144,9 @@ export default function CourseEpreuve({
       declencheur.current = ScrollTrigger.create({
         trigger: section.current,
         start: "top top",
-        end: `+=${(hotspots.length + 1) * 55}%`,
+        // 30 % d'ecran de defilement par objet : la section ne retient pas la
+        // page trop longtemps
+        end: `+=${(hotspots.length + 1) * 30}%`,
         pin: true,
         // Le <body> est en flex : ScrollTrigger y desactive par defaut la reserve
         // d'espace, et la suite de la page remonterait par-dessus la section
@@ -157,10 +159,7 @@ export default function CourseEpreuve({
           setEtape((e) => (e === courant ? e : courant));
         },
       });
-      // Aimantage sur l'objet le plus proche a l'arret (pas dans la pause finale)
-      const lacher = aimanter(declencheur.current, [0, ...labels.current]);
       return () => {
-        lacher();
         declencheur.current = null;
       };
     });

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { imageOptimisee } from "@/app/imagesOptimisees";
 import { useTranslations } from "next-intl";
 
 export default function Parcours() {
@@ -21,7 +22,7 @@ export default function Parcours() {
               className="relative w-[34%]"
               aria-hidden="true"
               style={{
-                backgroundImage: "url(/photos/_dsc6875.jpg)",
+                backgroundImage: `url(${imageOptimisee("/photos/_dsc6875.jpg", 2048)})`,
                 backgroundSize: "400% auto",
                 backgroundPosition: "left 52%",
                 backgroundRepeat: "no-repeat",

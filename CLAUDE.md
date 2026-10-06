@@ -13,7 +13,12 @@ designer est la **source de vérité** pour le design.
 
 - Next.js 16 (App Router) + Turbopack, TypeScript, React 19
 - Tailwind CSS v4 — configuration via `@theme` dans `app/globals.css` (PAS de `tailwind.config.js`)
-- Site 100 % statique : `output: 'export'`, `images.unoptimized: true`, `trailingSlash: true`
+- Site 100 % statique : `output: 'export'`, `trailingSlash: true`
+- Images : `scripts/optimiser-images.mjs` (lancé par `prebuild`/`predev`) décline chaque image de
+  `public/photos` et `public/images` en WebP multi-largeurs dans `public/_img/` (non versionné) ;
+  `app/chargeurImages.ts` (loader custom de `next/image`) sert la bonne version. Ajouter une photo =
+  la déposer dans `public/photos`, rien d'autre.
+- Défilement natif (pas de Lenis ni d'aimantation) ; sections animées en GSAP ScrollTrigger.
 
 ## Typographie (maquette XD, remplace l'ancienne charte du briefing)
 

@@ -6,9 +6,14 @@ const nextConfig: NextConfig = {
   output: "export",
   // GitHub Pages sert des fichiers statiques : URL avec slash final -> dossier/index.html
   trailingSlash: true,
-  // Obligatoire pour l'export statique (pas d'optimiseur d'images cote serveur)
+  // Pas d'optimiseur d'images cote serveur en export statique : les versions
+  // WebP sont pre-generees (scripts/optimiser-images.mjs) et choisies par un
+  // chargeur maison. Largeurs alignees sur celles du script.
   images: {
-    unoptimized: true,
+    loader: "custom",
+    loaderFile: "./app/chargeurImages.ts",
+    deviceSizes: [640, 828, 1080, 1600, 2048],
+    imageSizes: [384],
   },
 };
 
