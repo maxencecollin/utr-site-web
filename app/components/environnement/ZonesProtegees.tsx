@@ -6,10 +6,10 @@ import { useLocale, useTranslations } from "next-intl";
   Pictos originaux de la graphiste (foret, oiseaux, chapelle) : pas de logo
   officiel (UNESCO, Natura 2000, monument historique), dont l'usage est soumis
   a autorisation. Patrimoine mondial sans picto pour l'instant.
-  Le lien Natura 2000 pointe sur la fiche INPN FR5300028 "Ria d'Etel" : a
-  verifier avant mise en ligne.
+  Lien Natura 2000 : site de l'animateur du site (les fiches INPN affichent
+  une page d'erreur).
 */
-export const LIEN_NATURA_2000 = "https://inpn.mnhn.fr/site/natura2000/FR5300028";
+export const LIEN_NATURA_2000 = "https://ria-etel.n2000.fr/";
 /* Fiche explicative des ZNIEFF (Cerema) */
 const LIEN_ZNIEFF =
   "https://outil2amenagement.cerema.fr/outils/la-zone-naturelle-dinteret-ecologique-faunistique-et-floristique-znieff";
