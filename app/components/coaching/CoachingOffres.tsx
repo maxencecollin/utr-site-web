@@ -147,7 +147,12 @@ export default function CoachingOffres() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        {/* Le coach n'appartient pas a l'association : a dire clairement */}
+        <p className="mt-10 max-w-3xl border-l-2 border-white/70 pl-4 text-[14px] leading-[1.5] text-white/90">
+          {t("offresIndependant")}
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-4">
           <ArrowButton href={`mailto:${EMAIL_RONAN}`} variant="outline-white">
             {t("ctaContact")}
           </ArrowButton>
