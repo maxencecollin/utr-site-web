@@ -21,6 +21,21 @@ const tags = {
     </a>
   ),
   br: () => <br />,
+  // Credit de la photo du saumon (licence CC BY-SA 2.5, page Environnement)
+  saumon: (chunks: ReactNode) => (
+    <a
+      href="https://commons.wikimedia.org/wiki/File:Salmo_salar-Atlantic_Salmon-Atlanterhavsparken_Norway_(cropped).JPG"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {chunks}
+    </a>
+  ),
+  licence: (chunks: ReactNode) => (
+    <a href="https://creativecommons.org/licenses/by-sa/2.5/" target="_blank" rel="noopener noreferrer">
+      {chunks}
+    </a>
+  ),
 };
 
 const EDITOR_ITEMS = [
@@ -61,6 +76,7 @@ export default async function MentionsLegales({
 
       <h2>{t("photoHeading")}</h2>
       <p>{t("photoBody")}</p>
+      <p>{t.rich("photoCredits", tags)}</p>
 
       <h2>{t("liabilityHeading")}</h2>
       <p>{t("liabilityBody")}</p>
