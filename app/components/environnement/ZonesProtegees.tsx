@@ -3,10 +3,9 @@ import { useLocale, useTranslations } from "next-intl";
 
 /*
   Les protections des sites que longe le parcours.
-  Pas de picto pour Natura 2000, le patrimoine mondial et les sites classes :
-  ceux de la graphiste reprenaient les logos officiels (UNESCO, Natura 2000,
-  monument historique), dont l'usage est soumis a autorisation. Emplacement
-  reserve en attendant des pictos originaux (faune, dolmen, chapelle).
+  Pictos originaux de la graphiste (foret, oiseaux, chapelle) : pas de logo
+  officiel (UNESCO, Natura 2000, monument historique), dont l'usage est soumis
+  a autorisation. Patrimoine mondial sans picto pour l'instant.
   Le lien Natura 2000 pointe sur la fiche INPN FR5300028 "Ria d'Etel" : a
   verifier avant mise en ligne.
 */
@@ -21,8 +20,8 @@ export default function ZonesProtegees() {
   const t = useTranslations("environnement");
   const locale = useLocale();
   const zones = [
-    { titre: "zonesZnieffTitre", texte: "zonesZnieffTexte", picto: "/images/icones/znieff.svg", lien: LIEN_ZNIEFF },
-    { titre: "zonesNaturaTitre", texte: "zonesNaturaTexte", picto: null, lien: LIEN_NATURA_2000 },
+    { titre: "zonesZnieffTitre", texte: "zonesZnieffTexte", picto: "/images/icones/znieff.svg?v=2", lien: LIEN_ZNIEFF },
+    { titre: "zonesNaturaTitre", texte: "zonesNaturaTexte", picto: "/images/icones/natura-2000.svg", lien: LIEN_NATURA_2000 },
     {
       titre: "zonesUnescoTitre",
       texte: "zonesUnescoTexte",
@@ -30,7 +29,7 @@ export default function ZonesProtegees() {
       // Fiche du bien n. 1725 "Megalithes de Carnac et des rives du Morbihan", dans la langue de la page
       lien: `https://whc.unesco.org/${locale}/list/1725/`,
     },
-    { titre: "zonesClassesTitre", texte: "zonesClassesTexte", picto: null, lien: LIEN_SAINT_CADO },
+    { titre: "zonesClassesTitre", texte: "zonesClassesTexte", picto: "/images/icones/sites-classes.svg", lien: LIEN_SAINT_CADO },
   ];
   return (
     <section className="relative isolate overflow-hidden py-20 text-white lg:py-28">
