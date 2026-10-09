@@ -566,5 +566,16 @@
     "reglement": "Leer el reglamento",
     "preparer": "Prepara tu carrera",
     "question": "¿Alguna pregunta? Escríbenos a"
+  },
+  "infosPratiques": {
+    "metaTitle": "Información práctica",
+    "metaDescription": "Acceso, aparcamiento, alojamiento y recogida de dorsales del Ultra Tour de la Ria d'Étel 2027: la información práctica llega pronto.",
+    "titreLigne1": "Información",
+    "titreLigne2": "práctica",
+    "badge": "Próximamente",
+    "texte": "Acceso, aparcamiento, autobuses lanzadera, alojamiento, recogida de dorsales: toda la información para preparar tu viaje estará aquí muy pronto.",
+    "reglement": "Leer el reglamento",
+    "epreuves": "Nuestras carreras",
+    "question": "¿Alguna pregunta mientras tanto? Escríbenos a"
   }
 }

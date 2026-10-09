@@ -566,5 +566,16 @@
     "reglement": "Read the rules",
     "preparer": "Prepare your race",
     "question": "Any questions? Email us at"
+  },
+  "infosPratiques": {
+    "metaTitle": "Practical info",
+    "metaDescription": "Access, parking, accommodation and bib collection for the 2027 Ultra Tour de la Ria d'Étel: practical info coming soon.",
+    "titreLigne1": "Practical",
+    "titreLigne2": "info",
+    "badge": "Coming soon",
+    "texte": "Getting there, parking, shuttles, accommodation, bib collection: everything you need to plan your trip will be here very soon.",
+    "reglement": "Read the rules",
+    "epreuves": "Our races",
+    "question": "Any questions in the meantime? Email us at"
   }
 }

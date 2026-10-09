@@ -9,14 +9,13 @@
    de l'ouverture. */
 export const HREF_INSCRIPTION = "/inscription";
 
-/* Les quatre entrees de la maquette XD.
-   TODO : "Infos pratiques" pointe sur une section de la landing en attendant
-   sa page dediee. */
+/* Les quatre entrees de la maquette XD. "Infos pratiques" mene a une page
+   d'attente tant que son contenu n'est pas pret. */
 export const HEADER_LINKS = [
   { key: "headerEpreuves", href: "/#courses" },
   { key: "headerEntrainement", href: "/entrainement" },
   { key: "headerEnvironnement", href: "/environnement" },
-  { key: "headerInfos", href: "/#village" },
+  { key: "headerInfos", href: "/infos-pratiques" },
 ] as const;
 
 /* Sections de la landing listees en plus dans le menu mobile */

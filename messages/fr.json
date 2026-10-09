@@ -566,5 +566,16 @@
     "reglement": "Lire le règlement",
     "preparer": "Préparer ta course",
     "question": "Une question ? Écris-nous à"
+  },
+  "infosPratiques": {
+    "metaTitle": "Infos pratiques",
+    "metaDescription": "Accès, stationnement, hébergement et retrait des dossards de l'Ultra Tour de la Ria d'Étel 2027 : les infos pratiques arrivent bientôt.",
+    "titreLigne1": "Infos",
+    "titreLigne2": "pratiques",
+    "badge": "Bientôt disponible",
+    "texte": "Accès, stationnement, navettes, hébergement, retrait des dossards : toutes les infos pour préparer ta venue arrivent ici très bientôt.",
+    "reglement": "Voir le règlement",
+    "epreuves": "Nos épreuves",
+    "question": "Une question en attendant ? Écris-nous à"
   }
 }
