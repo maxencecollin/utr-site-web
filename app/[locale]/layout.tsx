@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   // Site en construction : pas d'indexation (app/chantier.ts)
   robots: CHANTIER_ACTIF ? { index: false, follow: false } : undefined,
   title: {
-    default: "Ultra Tour de la Ria d'Étel",
-    template: "%s | Ultra Tour de la Ria d'Étel",
+    default: "Ultra Tour de la Ria",
+    template: "%s | Ultra Tour de la Ria",
   },
   description:
     "La grande fête du trail nature autour de la Ria d'Étel, en Bretagne. Édition du 16 octobre 2027 : Ultra 80 km, Relais Duo et Trail 33 km en zone Natura 2000.",

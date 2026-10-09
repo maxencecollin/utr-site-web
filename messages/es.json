@@ -60,7 +60,7 @@
       "contactHeading": "Contacto",
       "contactBody": "Para cualquier pregunta sobre su inscripción, puede contactar:<br></br><br></br><b>Klikego</b>: directamente a través de su plataforma para las cuestiones técnicas relacionadas con la inscripción<br></br><br></br><b>Asociación Ultra Trail de la Ria</b>: <mail>contact@ultratourdelaria.fr</mail> para las cuestiones relativas al evento",
       "insuranceHeading": "Seguro",
-      "insuranceBody": "La organización del Ultra Tour de la Ria está cubierta por un seguro de responsabilidad civil. Se recomienda a los participantes que verifiquen su propia cobertura de seguro para la práctica del trail running. Se recomienda una licencia FFA o un seguro individual que cubra la práctica del trail."
+      "insuranceBody": "La organización contrata un seguro de responsabilidad civil para toda la duración de la prueba. Cada participante debe contar obligatoriamente con un seguro individual de responsabilidad civil. Además, para participar es necesario presentar una licencia FFA (Athlé Compétition, Athlé Entreprise o Athlé Running) en vigor o un certificado PPS (Parcours de Prévention Santé) de menos de un año, tal como indica el reglamento."
     },
     "confidentialite": {
       "intro": "La asociación Ultra Trail de la Ria concede gran importancia a la protección de sus datos personales. Esta política de privacidad le informa sobre cómo se recogen y utilizan sus datos.",
@@ -546,14 +546,14 @@
   },
   "chantier": {
     "titre": "Web en construcción",
-    "texte": "La web del Ultra Tour de la Ria d'Étel llegará pronto. Mientras tanto, el acceso está reservado a la asociación.",
+    "texte": "La web del Ultra Tour de la Ria llegará pronto. Mientras tanto, el acceso está reservado a la asociación.",
     "label": "Contraseña",
     "bouton": "Entrar",
     "erreur": "Contraseña incorrecta."
   },
   "inscription": {
     "metaTitle": "Inscripciones",
-    "metaDescription": "Las inscripciones al Ultra Tour de la Ria d'Étel 2027 se abrirán próximamente.",
+    "metaDescription": "Las inscripciones al Ultra Tour de la Ria 2027 se abrirán próximamente.",
     "titreLigne1": "Inscripciones",
     "titreLigne2": "2027",
     "badge": "Apertura próximamente",
@@ -569,7 +569,7 @@
   },
   "infosPratiques": {
     "metaTitle": "Información práctica",
-    "metaDescription": "Acceso, aparcamiento, alojamiento y recogida de dorsales del Ultra Tour de la Ria d'Étel 2027: la información práctica llega pronto.",
+    "metaDescription": "Acceso, aparcamiento, alojamiento y recogida de dorsales del Ultra Tour de la Ria 2027: la información práctica llega pronto.",
     "titreLigne1": "Información",
     "titreLigne2": "práctica",
     "badge": "Próximamente",

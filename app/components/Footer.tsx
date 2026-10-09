@@ -29,7 +29,7 @@ export default function Footer() {
           <div className="max-w-xs">
             <Image
               src="/images/logos/logo-etire-blanc.svg"
-              alt="Ultra Tour de la Ria d'Étel"
+              alt="Ultra Tour de la Ria"
               width={128}
               height={62}
             />

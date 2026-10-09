@@ -53,7 +53,7 @@ export default function ChantierVoile() {
       <div className="relative w-full max-w-md text-center">
         <Image
           src="/images/logos/logo-etire-blanc.svg"
-          alt="Ultra Tour de la Ria d'Étel"
+          alt="Ultra Tour de la Ria"
           width={116}
           height={56}
           className="mx-auto h-14 w-auto"

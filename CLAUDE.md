@@ -1,8 +1,8 @@
 @AGENTS.md
 
-# Ultra Tour de la Ria d'Étel — site web
+# Ultra Tour de la Ria — site web
 
-Site vitrine de l'événement de trail **Ultra Tour de la Ria d'Étel** (Ria d'Étel, Bretagne).
+Site vitrine de l'événement de trail **Ultra Tour de la Ria** (Ria d'Étel, Bretagne).
 Édition du **16 octobre 2027**. Trois épreuves : Ultra 80 km, Relais Duo 80 km, Trail 33 km.
 
 Le briefing complet du projet est dans `BRIEFING-NOUVEAU-PROJET.md` (contexte événement,

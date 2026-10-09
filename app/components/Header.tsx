@@ -41,10 +41,10 @@ export default function Header({ logoFonce = false }: Props) {
           scrolled ? "py-2.5" : "py-5"
         }`}
       >
-        <Link href="/" aria-label="Ultra Tour de la Ria d'Étel — accueil">
+        <Link href="/" aria-label="Ultra Tour de la Ria — accueil">
           <Image
             src={logoFonce && !scrolled ? "/images/logos/logo-principal-couleur.svg" : "/images/logos/logo-etire-blanc.svg"}
-            alt="Ultra Tour de la Ria d'Étel"
+            alt="Ultra Tour de la Ria"
             width={116}
             height={56}
             priority

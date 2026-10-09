@@ -60,7 +60,7 @@
       "contactHeading": "Contact",
       "contactBody": "For any question about your registration, you can contact:<br></br><br></br><b>Klikego</b>: directly via their platform for technical questions related to registration<br></br><br></br><b>Ultra Trail de la Ria association</b>: <mail>contact@ultratourdelaria.fr</mail> for questions about the event",
       "insuranceHeading": "Insurance",
-      "insuranceBody": "The organisation of the Ultra Tour de la Ria is covered by civil liability insurance. Participants are advised to check their own insurance coverage for trail running. An FFA licence or individual insurance covering trail running is recommended."
+      "insuranceBody": "The organiser takes out civil liability insurance for the duration of the event. Every participant must hold their own personal civil liability insurance. Participation also requires a valid FFA licence (Athlé Compétition, Athlé Entreprise or Athlé Running) or a PPS (Parcours de Prévention Santé) certificate issued less than one year before the race, as set out in the rules."
     },
     "confidentialite": {
       "intro": "The Ultra Trail de la Ria association attaches great importance to the protection of your personal data. This privacy policy informs you about how your data is collected and used.",
@@ -546,14 +546,14 @@
   },
   "chantier": {
     "titre": "Under construction",
-    "texte": "The Ultra Tour de la Ria d'Étel website is on its way. Until then, access is limited to the organising association.",
+    "texte": "The Ultra Tour de la Ria website is on its way. Until then, access is limited to the organising association.",
     "label": "Password",
     "bouton": "Enter",
     "erreur": "Wrong password."
   },
   "inscription": {
     "metaTitle": "Registration",
-    "metaDescription": "Registration for the 2027 Ultra Tour de la Ria d'Étel will open soon.",
+    "metaDescription": "Registration for the 2027 Ultra Tour de la Ria will open soon.",
     "titreLigne1": "Registration",
     "titreLigne2": "2027",
     "badge": "Opening soon",
@@ -569,7 +569,7 @@
   },
   "infosPratiques": {
     "metaTitle": "Practical info",
-    "metaDescription": "Access, parking, accommodation and bib collection for the 2027 Ultra Tour de la Ria d'Étel: practical info coming soon.",
+    "metaDescription": "Access, parking, accommodation and bib collection for the 2027 Ultra Tour de la Ria: practical info coming soon.",
     "titreLigne1": "Practical",
     "titreLigne2": "info",
     "badge": "Coming soon",

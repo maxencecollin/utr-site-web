@@ -15,10 +15,10 @@ export default function LegalLayout({ title, children }: Props) {
       {/* En-tete simple : logo (retour accueil) + lien retour */}
       <header className="border-b border-dark-100 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-          <Link href="/" aria-label="Ultra Tour de la Ria d'Étel — accueil">
+          <Link href="/" aria-label="Ultra Tour de la Ria — accueil">
             <Image
               src="/images/logos/logo-etire-noir.svg"
-              alt="Ultra Tour de la Ria d'Étel"
+              alt="Ultra Tour de la Ria"
               width={116}
               height={56}
               priority

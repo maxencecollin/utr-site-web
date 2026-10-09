@@ -6,7 +6,7 @@ import LegalLayout from "@/app/components/LegalLayout";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description:
-    "Mentions légales du site de l'Ultra Tour de la Ria d'Étel : éditeur, hébergement, propriété intellectuelle.",
+    "Mentions légales du site de l'Ultra Tour de la Ria : éditeur, hébergement, propriété intellectuelle.",
 };
 
 // Mise en forme inline des messages (gras, liens, sauts de ligne)

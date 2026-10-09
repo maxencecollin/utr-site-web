@@ -6,7 +6,7 @@ import LegalLayout from "@/app/components/LegalLayout";
 export const metadata: Metadata = {
   title: "Conditions générales de vente",
   description:
-    "Conditions générales de vente de l'Ultra Tour de la Ria d'Étel : inscriptions via Klikego, règlement, assurance.",
+    "Conditions générales de vente de l'Ultra Tour de la Ria : inscriptions via Klikego, règlement, assurance.",
 };
 
 const tags = {
