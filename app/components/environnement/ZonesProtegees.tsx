@@ -3,9 +3,9 @@ import { useLocale, useTranslations } from "next-intl";
 
 /*
   Les protections des sites que longe le parcours.
-  Pictos originaux de la graphiste (foret, oiseaux, chapelle) : pas de logo
-  officiel (UNESCO, Natura 2000, monument historique), dont l'usage est soumis
-  a autorisation. Patrimoine mondial sans picto pour l'instant.
+  Pictos originaux de la graphiste (foret, oiseaux, megalithe, chapelle) : pas
+  de logo officiel (UNESCO, Natura 2000, monument historique), dont l'usage est
+  soumis a autorisation.
   Lien Natura 2000 : site de l'animateur du site (les fiches INPN affichent
   une page d'erreur).
 */
@@ -25,7 +25,7 @@ export default function ZonesProtegees() {
     {
       titre: "zonesUnescoTitre",
       texte: "zonesUnescoTexte",
-      picto: null,
+      picto: "/images/icones/patrimoine-mondial.svg",
       // Fiche du bien n. 1725 "Megalithes de Carnac et des rives du Morbihan", dans la langue de la page
       lien: `https://whc.unesco.org/${locale}/list/1725/`,
     },
@@ -53,11 +53,7 @@ export default function ZonesProtegees() {
         <ul className="mt-14 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-6 lg:-mx-[74px] lg:grid-cols-4">
           {zones.map((z) => (
             <li key={z.titre} className="flex flex-col items-center">
-              {z.picto ? (
-                <Image src={z.picto} alt="" width={90} height={90} className="h-[90px] w-auto brightness-0 invert" />
-              ) : (
-                <span aria-hidden="true" className="block h-[90px]" />
-              )}
+              <Image src={z.picto} alt="" width={90} height={90} className="h-[90px] w-auto brightness-0 invert" />
               <h3 className="titre mt-4 text-[20px] sm:text-[22px]">{t(z.titre)}</h3>
               <span className="mt-3 block h-px w-24 bg-[repeating-linear-gradient(90deg,#ffffff_0,#ffffff_6px,transparent_6px,transparent_11px)]" />
               <p className="mt-4 max-w-[28ch] text-[15px] leading-[1.35] text-white/90">{t(z.texte)}</p>
